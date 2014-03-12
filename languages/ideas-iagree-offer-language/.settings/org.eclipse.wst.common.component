@@ -10,6 +10,6 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/ideas-sedl-module/target/classes"/>
-        <property name="context-root" value="ideas-iagree-template-language"/>
+        <property name="context-root" value="ideas-iagree-offer-language"/>
     </wb-module>
 </project-modules>
