@@ -1,0 +1,38 @@
+		{
+				id: "iagree-template-language",
+				extension: "iagree.template",
+				formats: [
+				 	{
+				 		format: "iagree",
+				 		editorModeId: "ace/mode/iAgree",
+				 		_editorModeURI: "mode-iAgree.js",
+				 		checkLanguage: "true"
+				 	},
+				 	{
+				 		format: "wsag",
+				 		editorModeId: "ace/mode/xml",
+				 		_editorModeURI: "mode-xml.js",
+				 		checkLanguage: "false"
+				 	}
+				],
+				 
+				operations: [
+
+				             {
+				            	 id: "op1",
+				            	 name: "op1Name",
+				            	 data: {},
+				            	 action: "function(result) {alert(result);}"
+				             },
+				             {
+				            	 id: "op2",
+				            	 name: "op2Name",
+				            	 data: {},
+				            	 action: "function(result) {alert(result);}"
+				             }
+				             
+				             ],
+				             
+				inspectorLoader: "function(loader, format) { loader.append('HelloWorld!\n' + format);}"
+
+			}
