@@ -11,11 +11,11 @@
 	</parent>
 	
 	<groupId>es.us.isa.ideas.module.language</groupId>
-	<artifactId>ideas-iagree-template-language</artifactId>
+	<artifactId>iagree-commons</artifactId>
 <!-- 	<version>0.0.1-SNAPSHOT</version> -->
 	<packaging>war</packaging>
 
-	<name>ideas-iagree-template-language</name>
+	<name>ideas-common</name>
 
 	<!-- Properties -->
 	<properties>
