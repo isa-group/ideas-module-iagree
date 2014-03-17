@@ -56,17 +56,33 @@
 			<id>ideas</id>
 			<url>http://clinker.isagroup.es/nexus/content/repositories/ideas</url>
 		</repository>
-
+		<!-- ADA repository -->
+		<repository>
+			<id>ada</id>
+			<url>http://clinker.isagroup.es/nexus/content/groups/public/</url>
+		</repository>
 
 	</repositories>
 	
 	<dependencies>
 
-		<!-- IDEAS Depebdencies -->
+		<!-- IDEAS Dependencies -->
 		<dependency>
 			<groupId>es.us.isa.ideas</groupId>
 			<artifactId>ideas-core</artifactId>
 			<version>${ideas.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.us.isa</groupId>
+			<artifactId>ada-core</artifactId>
+			<version>0.5-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>es.us.isa</groupId>
+			<artifactId>ada-choco-analyzer</artifactId>
+			<version>0.5-SNAPSHOT</version>
 		</dependency>
 		
 	</dependencies>

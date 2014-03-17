@@ -82,19 +82,7 @@
 		
 		<dependency>
 			<groupId>es.us.isa</groupId>
-			<artifactId>ada-lite</artifactId>
-			<version>0.5-SNAPSHOT</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>es.us.isa</groupId>
-			<artifactId>ada-release</artifactId>
-			<version>0.5-SNAPSHOT</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>es.us.isa</groupId>
-			<artifactId>ada-testing</artifactId>
+			<artifactId>ada-choco-analyzer</artifactId>
 			<version>0.5-SNAPSHOT</version>
 		</dependency>
 		
