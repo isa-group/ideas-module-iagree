@@ -1,27 +1,27 @@
 grammar iAgree;
 
 
-// Parser Rules
 
-entry : template END_TEMPLATE 
+/*=====================================
+            SYNTACTICAL RULES
+ ======================================*/
+
+entry : template END_TEMPLATE
       | agOffer END_AG_OFFER
       ;
  
-template : TEMPLATE IDENT VERSION version template_def;
-				
-agOffer : AG_OFFER IDENT VERSION version FOR IDENT VERSION version ag_def;
+template : TEMPLATE Identifier VERSION versionNumber template_def
+         ;
 
-version : VERSION_NUMBER 
-        | FLOAT
-        ;
+agOffer : AG_OFFER Identifier VERSION versionNumber FOR Identifier VERSION versionNumber ag_def;
 
-template_def : temp_properties*  agreementTerms creationConstraints?;
+template_def : temp_properties* agreementTerms creationConstraints?;
 
 ag_def : temp_properties*  agreementTerms;
 
-temp_properties : initiator_prop 
-                | responder_prop
-                | serviceProvider_prop
+temp_properties : initiator_prop
+                | responder_prop 
+                | serviceProvider_prop 
                 | expirationTime_prop
                 | dateFormat_prop
                 | gmtZone_prop
@@ -30,197 +30,169 @@ temp_properties : initiator_prop
                 | metrics_prop
                 ;
 
+agreementTerms : AGREEMENT_TERMS agreementTerms_def;
 
-//Template properties:
+creationConstraints : CREATION_CONSTRAINTS creationConstraints_def;
 
-initiator_prop : INITIATOR DP STRING;
+agreementTerms_def : service monitorableProperties guaranteeTerms;
+
+creationConstraints_def	: creationConstraint+;
+
+creationConstraint : (Identifier) DP expression SEMICOLON onlyif_sentence?;
+
+//---------------------------------------
+// Template properties
+//---------------------------------------
+
+initiator_prop : INITIATOR DP String;
+
+responder_prop : (PROVIDER | CONSUMER | Identifier) AS RESPONDER;
+
+serviceProvider_prop : SERVICEPROVIDER DP String;
 				
-responder_prop : (PROVIDER | CONSUMER | IDENT) AS RESPONDER;
-				
-serviceProvider_prop : SERVICEPROVIDER DP STRING;
-				
-expirationTime_prop : EXPIRATIONTIME DP STRING;
-				
-dateFormat_prop : DATEFORMAT DP STRING;
-				
-gmtZone_prop : GMTZONE DP (SINT | INT);
-				
+expirationTime_prop : EXPIRATIONTIME DP String;
+
+dateFormat_prop : DATEFORMAT DP String;
+
+gmtZone_prop : GMTZONE DP (S_Integer | Integer);
+
 globalPeriod_prop : GLOBALPERIOD DP datePeriod_def;
-				
+
 definedPeriod_prop : DEFINEDPERIOD DP period+;
-			
-				
-//End Template properties.
-datePeriod_def : DURING DATE RANGE_SEPARATOR DATE;
-               
-//Temp. definitions
 
-temporality : ON IDENT;
+metrics_prop : METRICS /*CA (ACCESS|IDENT) (',' (ACCESS|IDENT))* CC*/ DP (key_value_prop)+;
 
-period : IDENT DP period_def ((EXCEPT|AND) period_def)*;
+//---------------------------------------
+// Temp. definitions
+//---------------------------------------
 
-period_def : FROM HOUR '..' HOUR (ON IDENT)? DURING DATE '..' DATE 
-           | IDENT
+datePeriod_def : DURING Date RANGE_SEPARATOR Date;
+
+temporality : ON Identifier;
+
+period : Identifier DP period_def ((EXCEPT|AND) period_def)*;
+
+period_def : FROM Hour RANGE_SEPARATOR Hour (ON Identifier)? datePeriod_def 
+           | id
            | GLOBALPERIOD
            ;
 
-//End Temp. definitions.
+
+//---------------------------------------
+// Agreement Terms definitions
+//---------------------------------------
 			
-agreementTerms : AGREEMENT_TERMS agreementTerms_def;
-				
-creationConstraints : CREATION_CONSTRAINTS creationConstraints_def;
-
-
-agreementTerms_def : service monitorableProperties guaranteeTerms;
-				
-creationConstraints_def	: creationConstraint+;
-
-creationConstraint : (LABEL|IDENT) DP expression ';' onlyif_sentence?;
-
-//Ag. terms def:
-service : SERVICE IDENT (AVAL_AT url)? (features)? 
+service : SERVICE Identifier (AVAL_AT url)? (features)? 
           globalDescription descriptions
         ;
 
-features : FEATURES DP feature (',' feature)*;
-				
+features : FEATURES DP feature (COMMA feature)*;
+
+globalDescription : GLOBALDESCRIPTION (key_value_prop)+;
+
 descriptions : description*;
 				
-feature : op (',' op)*;
+feature : op (COMMA op)*;
 
-//op
-//				: IDENT (PA ((IDENT|INT) (',' (IDENT|INT))*)* PC)?
-//				;
-op : IDENT (PA IDENT (',' IDENT )* PC)?;
-
-description : DESCRIPTION FOR feature (',' feature)* key_value_prop+;
+description : DESCRIPTION FOR feature (COMMA feature)* key_value_prop+;
 		
-monitorableProperties : MONITORABLEPROPERTIES (IDENT)? 
+monitorableProperties : MONITORABLEPROPERTIES (Identifier)? 
                         global_MonitorableProperties? 
                         local_MonitorableProperties*
                       ;
 				
 global_MonitorableProperties : GLOBAL DP (key_value_prop)+;
 				
-local_MonitorableProperties : FOR IDENT DP key_value_prop+;
+local_MonitorableProperties : FOR Identifier DP key_value_prop+;
 				
 guaranteeTerms : GUARANTEE_TERMS (guaranteeTerm )+;
 				
-guaranteeTerm : (LABEL | IDENT) DP 
-                (guarantee_def | cuantif 'of' grouped_guaranteeTerm)
+guaranteeTerm : Identifier DP 
+                (guarantee_def | cuantif OF grouped_guaranteeTerm)
               ;
 
 grouped_guaranteeTerm : (guaranteeTerm)+;
 							
 guarantee_def : (PROVIDER | CONSUMER) GUARANTEES 
-                expression temporality? ';' 
+                expression temporality? SEMICOLON 
                 (upon_sentence)? (onlyif_sentence)?
               ;
-				
-upon_sentence : UPON IDENT ';';
-	
-onlyif_sentence : ONLY_IF PA expression PC ';';
-                
-//End Ag. terms def.
 
 
-//Aux:
-assig_value : (IDENT | LETTER | VALUE | INT | STRING)+ (operation)?
-            | TRUE
-            | FALSE
-            | FLOAT (unit)? (operation)?
-            | SFLOAT (unit)? (operation)?
-            | SINT (unit)? (operation)?
+//----------------------------------
+// COMMONS
+//----------------------------------
+
+id : Identifier;
+
+versionNumber : Float
+              | Version
+              ;
+
+url : Url
+    | String
+    ;
+
+key_value_prop : k=(Identifier | Access | BOOLEAN | INTEGER ) DP 
+                 (v=String | v2=type)  (IGUAL a=assig_value SEMICOLON)?
+               ;
+
+assig_value : (Identifier | Integer | String)+ (operation)?
+            | Boolean
+            | Float (Unit)? (operation)?
+            | S_Float (Unit)? (operation)?
+            | S_Integer (Unit)? (operation)?
             | list
             ;
-				
-operation : ('+'|'-'|'*'|'/') assig_value;
 
-unit : '%' | 'min'; //Completar!
-
-list : LLA (IDENT|STRING|INT|SINT|FLOAT|SFLOAT) 
-       (',' (IDENT|STRING|INT|SINT|FLOAT|SFLOAT))* LLC
-     ;
-
+operation : Operador assig_value;
 
 expression : NOT expression
            | PA expression PC ((AND|OR|IMPLIES) expression)?
-           | (IDENT|ACCESS|STRING) ( (IGUAL|MENOR|MAYOR|MENOR_IGUAL|MAYOR_IGUAL) assig_value)? ((AND|OR|IMPLIES) expression)?
-           | (IDENT|ACCESS) BELONGS list ((AND|OR|IMPLIES) expression)?
+           | (Identifier | Access | String) ( (IGUAL|MENOR|MAYOR|MENOR_IGUAL|MAYOR_IGUAL) assig_value)? ((AND|OR|IMPLIES) expression)?
+           | (Identifier | Access) BELONGS list ((AND|OR|IMPLIES) expression)?
            ;
 
-cuantif : 'exactly one' 
-        | 'one or more'
-        | 'all'
+op : Identifier (PA Identifier (COMMA Identifier )* PC)?;
+
+cuantif : EXACTLY_ONE 
+        | ONE_OR_MORE
+        | ALL
         ;
 
-key_value_prop : (IDENT|ACCESS|'boolean'|'integer') DP 
-                 (STRING | type)  (IGUAL assig_value ';')?
-               ;
+upon_sentence : UPON Identifier SEMICOLON;
+	
+onlyif_sentence : ONLY_IF PA expression PC SEMICOLON;
 
-type : ('integer' | 'float' | 'natural' | 'number' | 'boolean')(range)? 
-     | IDENT | 'set' list | 'enum' list
+type : Identifier | SET list | ENUM list 
+     | (INTEGER | FLOAT | NATURAL | NUMBER | BOOLEAN)(range)? 
      ;
-				
-range : CA RANGE CC
-      | CA (INT|SINT) RANGE_SEPARATOR (INT|SINT) CC
+
+list : LLA (Identifier | String | Integer | S_Integer | Float | S_Float) 
+       (COMMA (Identifier | String | Integer | S_Integer | Float | S_Float))* LLC
+     ;
+
+range : CA Integer RANGE_SEPARATOR Integer CC
+      |	CA Integer RANGE_SEPARATOR S_Integer CC
+      | CA S_Integer RANGE_SEPARATOR Integer CC
+      | CA S_Integer RANGE_SEPARATOR S_Integer CC
+      | CA (Integer | S_Integer) RANGE_SEPARATOR (Integer | S_Integer) CC
       ;
 
-url
-//  :'http' ('s')? '://' ~(WS | CC) (('/') ~(WS | CC))* ('/')
-//  |'www.' ~(WS | CC) (('/') ~(WS | CC))* ('/')
-    : STRING
-    ;
-		
-		
-metrics_prop : METRICS /*CA (ACCESS|IDENT) (',' (ACCESS|IDENT))* CC*/ DP (key_value_prop)+;
-						
-globalDescription : GLOBALDESCRIPTION (key_value_prop)+;
 
+/*=====================================
+            LEXICAL RULES
+ ======================================*/
 
-// Tokens
-
-CA : '[';
-CC : ']';
-PA : '(';
-PC : ')';
-LLA : '{';
-LLC : '}';
-DP : ':';
-RANGE_SEPARATOR : '..';
-
-MENOR : '<';
-MAYOR : '>';
-IGUAL : '=';
-MENOR_IGUAL : '<=';
-MAYOR_IGUAL : '>=';
-
-AND : 'AND';
-OR : 'OR';
-NOT : 'NOT';
-IMPLIES : 'IMPLIES';
-BELONGS : 'belongs';
-
-TRUE : 'true';
-FALSE : 'false';
-
-EXCEPT : 'except';
-DURING : 'during';
-ON : 'on';
-FROM : 'from';
-
-END : 'end';
+//---------------------------------------
+// Language Keywords
+//---------------------------------------
 
 TEMPLATE : 'Template';
 END_TEMPLATE : 'EndTemplate';
 
-VERSION : 'version';
-
 AG_OFFER : 'AgreementOffer';
 END_AG_OFFER : 'EndAgreementOffer';
-
-FOR : 'for';
-AS : 'as';
 
 INITIATOR : 'Initiator';
 RESPONDER : 'Responder';
@@ -249,36 +221,146 @@ AVAL_AT : 'availableAt.';
 PROVIDER : 'Provider';
 CONSUMER : 'Consumer';
 
-UPON : 'upon';
+VERSION : 'version';
+
+EXCEPT : 'except';
+DURING : 'during';
+
+BOOLEAN : 'boolean';
+INTEGER : 'integer';
+FLOAT : 'float';
+NATURAL : 'natural';
+NUMBER : 'number';
+SET : 'set';
+ENUM : 'enum';
+
+
+//---------------------------------------
+// Commons tokens
+//---------------------------------------
+
+CA : '[';
+CC : ']';
+PA : '(';
+PC : ')';
+LLA : '{';
+LLC : '}';
+ON : 'on';
+FROM : 'from';
+OF : 'of';
+FOR : 'for';
+AS : 'as';
+
+
+//---------------------------------------
+// Logical connective
+//---------------------------------------
+
+AND : 'AND';
+OR : 'OR';
+NOT : 'NOT';
+IMPLIES : 'IMPLIES';
 ONLY_IF : 'onlyIf';
 
-INT : DIGIT+ ;
-SINT : ('+'|'-') INT;
-FLOAT : INT '.' INT;
-SFLOAT : ('+'|'-') FLOAT;
 
-LABEL : (LETTER|DIGIT|'_')+ ('.' (LETTER|DIGIT|'_') )+;
+//---------------------------------------
+// Quantity
+//---------------------------------------
 
-RANGE : INT RANGE_SEPARATOR INT
-			|	INT RANGE_SEPARATOR SINT
-			| SINT RANGE_SEPARATOR INT
-			| SINT RANGE_SEPARATOR SINT;
+EXACTLY_ONE : 'exactly one';
+ONE_OR_MORE : 'one or more';
+ALL : 'all';
 
-VERSION_NUMBER : INT ('.' INT)+;
 
-IDENT : (LETTER | '_') VALUE;
-VALUE : (LETTER | DIGIT | '_' | '-' | '+' | '%')+;
+//---------------------------------------
+// Relational tokens
+//---------------------------------------
 
-ACCESS : IDENT ('.' IDENT)+;
+MENOR : '<';
+MAYOR : '>';
+IGUAL : '=';
+MENOR_IGUAL : '<=';
+MAYOR_IGUAL : '>=';
+BELONGS : 'belongs';
+UPON : 'upon';
 
-DATE : INT (INT | '/' | '-')+;
-HOUR : DIGIT DIGIT DP DIGIT DIGIT;
 
-STRING : '"' (~('"'|'\r'|'\n'))* '"';
+//---------------------------------------
+// Punctuation marks
+//---------------------------------------
 
-fragment LETTER : ('a'..'z' | 'A'..'Z') ;
-fragment DIGIT : '0'..'9';
+DOT : '.';
+COMMA: ',';
+DP: ':';
+SEMICOLON : ';';
+RANGE_SEPARATOR : '..';
 
-COMMENT_LINE : '//' ~('\n'|'\r')* '\n';
 
-WS : (' ' | '\t' | '\n' | '\r' | '\f')+ -> skip;
+//---------------------------------------
+// Basic Lexical Elements
+//---------------------------------------
+
+Identifier: Letter ('-'|'_'|DOT|LetterOrDigit)*;
+
+fragment Letter : [a-zA-Z$_];
+
+fragment LetterOrDigit : [a-zA-Z0-9$_];
+
+// Literals
+
+Integer : Digit+;
+S_Integer : [+-] Integer;
+
+Float: Integer DOT Integer;
+S_Float : [+-] Float;
+
+Boolean : 'true'
+        | 'false'
+        ;
+
+Url : ('http'|'https'|'ftp'|'file')':''/''/'[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]
+    ;
+
+Version : Integer (DOT Integer)+;
+
+Date : Integer [-/] Integer [-/] Integer;
+
+Hour : Digit? Digit DP Digit Digit;
+
+Access : Identifier ('.' Identifier)+;
+
+Unit : '%' | 'min';
+
+Operador : '+'|'-'|'*'|'/';
+
+
+
+//Digits
+
+fragment Digit : '0'
+               | NonZeroDigit
+               ;
+
+fragment NonZeroDigit : [1-9]
+                      ;
+
+// String
+
+String : '\'' ~[']* '\''
+       | '"' ~["]* '"'
+       ;
+
+
+//---------------------------------------
+// Ignone spaces, tabs, newlines
+//---------------------------------------
+
+WS : [ \t\r\n]+ -> skip ;
+
+
+// Comments
+COMMENT : '/*' .*? '*/' -> skip
+        ;
+
+LINE_COMMENT : '//' ~[\r\n]* -> skip
+             ;
