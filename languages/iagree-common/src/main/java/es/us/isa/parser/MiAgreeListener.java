@@ -2,13 +2,34 @@ package es.us.isa.parser;
 
 import java.util.Calendar;
 
+import es.us.isa.parser.iAgreeParser.AgOfferContext;
+import es.us.isa.parser.iAgreeParser.Ag_defContext;
+import es.us.isa.parser.iAgreeParser.AgreementTermsContext;
+import es.us.isa.parser.iAgreeParser.AgreementTerms_defContext;
+import es.us.isa.parser.iAgreeParser.Assig_valueContext;
+import es.us.isa.parser.iAgreeParser.CreationConstraintContext;
+import es.us.isa.parser.iAgreeParser.CreationConstraintsContext;
+import es.us.isa.parser.iAgreeParser.CreationConstraints_defContext;
+import es.us.isa.parser.iAgreeParser.CuantifContext;
 import es.us.isa.parser.iAgreeParser.EntryContext;
+import es.us.isa.parser.iAgreeParser.ExpressionContext;
 import es.us.isa.parser.iAgreeParser.GlobalDescriptionContext;
 import es.us.isa.parser.iAgreeParser.Global_MonitorablePropertiesContext;
+import es.us.isa.parser.iAgreeParser.Grouped_guaranteeTermContext;
+import es.us.isa.parser.iAgreeParser.GuaranteeTermContext;
+import es.us.isa.parser.iAgreeParser.GuaranteeTermsContext;
+import es.us.isa.parser.iAgreeParser.Guarantee_defContext;
 import es.us.isa.parser.iAgreeParser.Key_value_propContext;
+import es.us.isa.parser.iAgreeParser.ListArgContext;
+import es.us.isa.parser.iAgreeParser.ListContext;
+import es.us.isa.parser.iAgreeParser.MonitorablePropertiesContext;
+import es.us.isa.parser.iAgreeParser.Onlyif_sentenceContext;
 import es.us.isa.parser.iAgreeParser.ServiceContext;
 import es.us.isa.parser.iAgreeParser.Temp_propertiesContext;
 import es.us.isa.parser.iAgreeParser.TemplateContext;
+import es.us.isa.parser.iAgreeParser.Template_defContext;
+import es.us.isa.parser.iAgreeParser.TypeContext;
+import es.us.isa.parser.iAgreeParser.VersionNumberContext;
 import es.us.isa.util.Util;
 
 public class MiAgreeListener extends iAgreeBaseListener {
@@ -20,23 +41,196 @@ public class MiAgreeListener extends iAgreeBaseListener {
 	public void enterEntry(EntryContext ctx) {
 		super.enterEntry(ctx);
 		wsag = new WsagObject();
-		wsag.setXmlHeader("<?xml version=\"1.0\" encoding = \"UTF-8\"?>\n");
+		if (ctx.template() != null) {
+			enterTemplate(ctx.template());
+			wsag.setResult("<?xml version=\"1.0\" encoding = \"UTF-8\"?>\n"
+					+ wsag.getTemplate());
+		} else if (ctx.agOffer() != null) {
+			enterAgOffer(ctx.agOffer());
+			wsag.setResult("<?xml version=\"1.0\" encoding = \"UTF-8\"?>\n"
+					+ wsag.getAggOffer());
+		}
 	}
 
 	@Override
 	public void enterTemplate(TemplateContext ctx) {
-		// TODO Auto-generated method stub
 		super.enterTemplate(ctx);
 
 		wsag.setMetric(ctx.Identifier().getText() + "_"
 				+ Calendar.getInstance().getTimeInMillis());
-		wsag.setVersion(ctx.versionNumber().getText());
+
 		wsag.setName(ctx.Identifier().getText());
+
+		enterVersionNumber(ctx.versionNumber());
+
+		enterTemplate_def(ctx.template_def());
+
+		wsag.setTemplate("<wsag:Template wsag:TemplateId=\""
+				+ wsag.getVersionNumber()
+				+ "\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  \n"
+				+ " xmlns:wsag=\"http://schemas.ggf.org/graap/2007/03/ws-agreement\" \n"
+				+ " xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" \n"
+				+ " xsi:schemaLocation=\"http://schemas.ggf.org/graap/2007/03/wsagreement\" \n"
+				+ " agreement_types.xsd=\"http://www.w3.org/2001/XMLSchema XMLSchema.xsd\" >\n"
+				+ "	<wsag:Name >" + wsag.getName() + "</wsag:Name>\n"
+				+ wsag.getTemplateDef() + "</wsag:Template>");
+	}
+
+	@Override
+	public void enterAgOffer(AgOfferContext ctx) {
+		super.enterAgOffer(ctx);
+
+		wsag.setMetric(ctx.Identifier(0).getText() + "_"
+				+ Calendar.getInstance().getTimeInMillis());
+
+		enterVersionNumber(ctx.versionNumber(1));
+		wsag.setAggTemplate("\t\t<wsag:TemplateId>" + wsag.getVersionNumber()
+				+ "</wsag:TemplateId>\n");
+
+		wsag.setAggTemplateId("\t\t<wsag:TemplateName>"
+				+ ctx.Identifier(1).getText() + "</wsag:TemplateName>\n");
+
+		enterAg_def(ctx.ag_def());
+		enterVersionNumber(ctx.versionNumber(0));
+		wsag.setAggOffer("<wsag:AgreementOffer wsag:AgreementId=\""
+				+ wsag.getVersionNumber()
+				+ "\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  \n"
+				+ " xmlns:wsag=\"http://schemas.ggf.org/graap/2007/03/ws-agreement\" \n"
+				+ " xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" \n"
+				+ " xsi:schemaLocation=\"http://schemas.ggf.org/graap/2007/03/wsagreement\" \n"
+				+ " agreement_types.xsd=\"http://www.w3.org/2001/XMLSchema XMLSchema.xsd\" >\n"
+				+ "	<wsag:Name >" + ctx.Identifier(0).getText()
+				+ "</wsag:Name>\n" + wsag.getAggDef()
+				+ "</wsag:AgreementOffer>");
+	}
+
+	@Override
+	public void enterAg_def(Ag_defContext ctx) {
+		super.enterAg_def(ctx);
+
+		for (Temp_propertiesContext tp : ctx.temp_properties()) {
+			enterTemp_properties(tp);
+		}
+
+		enterAgreementTerms(ctx.agreementTerms());
+
+		wsag.setAggDef("	<wsag:Context >\n" + wsag.getAggTemplate()
+				+ wsag.getAggTemplateId() + wsag.getContext()
+				+ "\n	</wsag:Context >\n\n" + "	<wsag:Terms wsag:Name=\""
+				+ wsag.getServiceName() + "\">\n		<wsag:All >\n"
+				+ wsag.getAgreementTerms()
+				+ "\n		</wsag:All >\n	</wsag:Terms >\n\n");
+	}
+
+	@Override
+	public void enterTemplate_def(Template_defContext ctx) {
+		super.enterTemplate_def(ctx);
+
+		for (Temp_propertiesContext tempCtx : ctx.temp_properties()) {
+			enterTemp_properties(tempCtx);
+		}
+
+		enterAgreementTerms(ctx.agreementTerms());
+
+		enterCreationConstraints(ctx.creationConstraints());
+
+		wsag.setTemplateDef("\t<wsag:Context >\n" + wsag.getContext()
+				+ "\n\t</wsag:Context >\n\n" + "\t<wsag:Terms wsag:Name=\""
+				+ wsag.getServiceName() + "\">\n\t\t<wsag:All >\n"
+				+ wsag.getAgreementTerms()
+				+ "\n\t\t</wsag:All >\n	</wsag:Terms >\n\n"
+				+ "\t<wsag:CreationConstraints >\n" + wsag.getCc()
+				+ "\t</wsag:CreationConstraints >\n");
+	}
+
+	@Override
+	public void enterAgreementTerms(AgreementTermsContext ctx) {
+		super.enterAgreementTerms(ctx);
+
+		enterAgreementTerms_def(ctx.agreementTerms_def());
+		wsag.setAgreementTerms(wsag.getAgreementTermsDef());
+	}
+
+	@Override
+	public void enterCreationConstraints(CreationConstraintsContext ctx) {
+		super.enterCreationConstraints(ctx);
+
+		enterCreationConstraints_def(ctx.creationConstraints_def());
+	}
+
+	@Override
+	public void enterCreationConstraints_def(CreationConstraints_defContext ctx) {
+		super.enterCreationConstraints_def(ctx);
+
+		for (CreationConstraintContext cc : ctx.creationConstraint()) {
+			enterCreationConstraint(cc);
+		}
+	}
+
+	@Override
+	public void enterCreationConstraint(CreationConstraintContext ctx) {
+		super.enterCreationConstraint(ctx);
+
+		String name = ctx.Identifier().getText();
+
+		String cc = "\t\t<wsag:Constraint >\n" + "\t\t\t<Name>" + name
+				+ "</Name>\n" + "\t\t\t<Content>";
+
+		if (ctx.onlyif_sentence() != null) {
+			enterOnlyif_sentence(ctx.onlyif_sentence());
+			cc += wsag.getOnlyIf() + " IMPLIES ";
+		}
+
+		enterExpression(ctx.expression());
+		cc += wsag.getExpression() + "</Content>\n"
+				+ "\t\t</wsag:Constraint >\n";
+
+		wsag.setCc(wsag.getCc() + cc);
+	}
+
+	@Override
+	public void enterAgreementTerms_def(AgreementTerms_defContext ctx) {
+		super.enterAgreementTerms_def(ctx);
+
+		enterService(ctx.service());
+
+		enterMonitorableProperties(ctx.monitorableProperties());
+
+		enterGuaranteeTerms(ctx.guaranteeTerms());
+
+		wsag.setAgreementTermsDef(wsag.getService()
+				+ wsag.getMonitorableProperties() + wsag.getGuaranteeTerms());
+	}
+
+	@Override
+	public void enterService(ServiceContext ctx) {
+		super.enterService(ctx);
+
+		enterGlobalDescription(ctx.globalDescription());
+
+		wsag.setServiceUrl(Util.withoutQuotes(ctx.url().getText()));
+
+		String serviceName = ctx.Identifier().getText();
+		String name = "SDT_" + serviceName;
+
+		wsag.setServiceName(serviceName);
+		wsag.setService("\t\t\t<wsag:ServiceDescriptionTerm wsag:Name=\"SDT_"
+				+ name + "\" wsag:ServiceName=\"" + serviceName + "\" >\n"
+				+ wsag.getOfferItems()
+				+ "\t\t\t</wsag:ServiceDescriptionTerm>\n\n");
+
+		if (ctx.url() != null)
+			wsag.setService(wsag.getService()
+					+ "			<wsag:ServiceReference  wsag:Name=\""
+					+ ctx.Identifier().getText()
+					+ "_SREF\" wsag:ServiceName=\""
+					+ ctx.Identifier().getText() + "\" >"
+					+ Util.withoutQuotes(ctx.url().getText())
+					+ "</wsag:ServiceReference>\n\n");
 	}
 
 	@Override
 	public void enterTemp_properties(Temp_propertiesContext ctx) {
-		// TODO Auto-generated method stub
 		super.enterTemp_properties(ctx);
 
 		if (ctx.initiator_prop() != null) {
@@ -95,16 +289,43 @@ public class MiAgreeListener extends iAgreeBaseListener {
 					+ "\t\t<twsag4people:DefinedValidityPeriodSet >" + ""
 					+ "</twsag4people:DefinedValidityPeriodSet >\n");
 		}
-
 	}
 
 	@Override
-	public void enterService(ServiceContext ctx) {
-		super.enterService(ctx);
+	public void enterMonitorableProperties(MonitorablePropertiesContext ctx) {
+		super.enterMonitorableProperties(ctx);
 
-		wsag.setServiceName(ctx.Identifier().getText());
+		if (ctx.global_MonitorableProperties() != null)
+			enterGlobal_MonitorableProperties(ctx
+					.global_MonitorableProperties());
 
-		wsag.setServiceURL(Util.withoutQuotes(ctx.url().getText()));
+		String name = "";
+		if (ctx.Identifier() != null)
+			name = ctx.Identifier().getText();
+		else
+			name = wsag.getServiceName();
+
+		wsag.setServiceProperties("\t\t\t<wsag:ServiceProperties wsag:Name=\"SP_"
+				+ name
+				+ "\" wsag:ServiceName=\""
+				+ name
+				+ "\">\n"
+				+ "\t\t\t\t<wsag:VariableSet >\n"
+				+ wsag.getVariablesSet()
+				+ "\t\t\t\t</wsag:VariableSet >\n"
+				+ "\t\t\t</wsag:ServiceProperties>\n\n");
+	}
+
+	@Override
+	public void enterGuaranteeTerms(GuaranteeTermsContext ctx) {
+		super.enterGuaranteeTerms(ctx);
+
+		for (GuaranteeTermContext gt : ctx.guaranteeTerm()) {
+			enterGuaranteeTerm(gt);
+			wsag.setGuaranteeTerms(wsag.getGuaranteeTerms()
+					+ wsag.getGuaranteeTerm());
+		}
+
 	}
 
 	@Override
@@ -112,30 +333,13 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		super.enterGlobalDescription(ctx);
 
 		for (Key_value_propContext kv : ctx.key_value_prop()) {
-			String assigValue = "";
-
-			if (kv.a != null) {
-				assigValue = kv.a.getText();
-			}
-
-			// String
-			if (kv.v != null) {
-				wsag.setServiceDescTerms(wsag.getServiceDescTerms()
-						+ "\t\t\t\t<OfferItem name=\"" + kv.k.getText()
-						+ "\" wsag:Metric=\"metrics/" + wsag.getMetric() + ":"
-						+ kv.v.getText() + "\" >" + assigValue
-						+ "</OfferItem>\n");
-			}
-			// Type
-			else if (kv.v2 != null) {
-				wsag.setServiceDescTerms(wsag.getServiceDescTerms()
-						+ "\t\t\t\t<OfferItem name=\"" + kv.k.getText()
-						+ "\" wsag:Metric=\"metrics/" + wsag.getMetric() + ":"
-						+ kv.type().getText() + "\" >" + assigValue
-						+ "</OfferItem>\n");
-			}
+			enterKey_value_prop(kv);
+			wsag.setOfferItems(wsag.getOfferItems()
+					+ "\t\t\t\t<OfferItem name=\"" + wsag.getKeyValue().key
+					+ "\" wsag:Metric=\"metrics/" + wsag.getMetric() + ":"
+					+ wsag.getKeyValue().value + "\" >"
+					+ wsag.getKeyValue().assigValue + "</OfferItem>\n");
 		}
-
 	}
 
 	@Override
@@ -144,62 +348,301 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		super.enterGlobal_MonitorableProperties(ctx);
 
 		for (Key_value_propContext kv : ctx.key_value_prop()) {
-
-			// String
-			if (kv.v != null) {
-				wsag.setServiceProperties(wsag.getServiceProperties()
-						+ "\t\t\t\t\t<wsag:Variable  wsag:Name=\""
-						+ kv.k.getText() + "\" wsag:Metric=\"metrics/"
-						+ wsag.getMetric() + ":" + kv.v.getText() + "\" >\n"
-						+ "\t\t\t\t\t\t<wsag:Location >/" + kv.k.getText()
-						+ "</wsag:Location>\n"
-						+ "\t\t\t\t\t</wsag:Variable >\n");
-			}
-			// Type
-			else if (kv.v2 != null) {
-				wsag.setServiceProperties(wsag.getServiceProperties()
-						+ "\t\t\t\t\t<wsag:Variable  wsag:Name=\""
-						+ kv.k.getText() + "\" wsag:Metric=\"metrics/"
-						+ wsag.getMetric() + ":" + kv.v2.getText() + "\" >\n"
-						+ "\t\t\t\t\t\t<wsag:Location >/" + kv.k.getText()
-						+ "</wsag:Location>\n"
-						+ "\t\t\t\t\t</wsag:Variable >\n");
-			}
+			enterKey_value_prop(kv);
+			wsag.setVariablesSet(wsag.getVariablesSet()
+					+ "\t\t\t\t\t<wsag:Variable  wsag:Name=\""
+					+ wsag.getKeyValue().key + "\" wsag:Metric=\"metrics/"
+					+ wsag.getMetric() + ":" + wsag.getKeyValue().value
+					+ "\" >\n" + "\t\t\t\t\t\t<wsag:Location >/"
+					+ wsag.getKeyValue().key + "</wsag:Location>\n"
+					+ "\t\t\t\t\t</wsag:Variable >\n");
 		}
 	}
 
-	public String getWSAG() {
-		String res = wsag.getXmlHeader()
-				+ "<wsag:Template wsag:TemplateId=\""
-				+ wsag.getVersion()
-				+ "\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  \n"
-				+ " xmlns:wsag=\"http://schemas.ggf.org/graap/2007/03/ws-agreement\" \n"
-				+ " xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" \n"
-				+ " xsi:schemaLocation=\"http://schemas.ggf.org/graap/2007/03/wsagreement\" \n"
-				+ " agreement_types.xsd=\"http://www.w3.org/2001/XMLSchema XMLSchema.xsd\" >\n"
-				+ "\t<wsag:Name >" + wsag.getName() + "</wsag:Name>\n"
-				+ "\t<wsag:Context >\n" + wsag.getContext()
-				+ "\n\t</wsag:Context >\n\n" + "\t<wsag:Terms wsag:Name=\""
-				+ wsag.getServiceName() + "\">\n" + "\t\t<wsag:All >\n"
-				+ "\t\t\t<wsag:ServiceDescriptionTerm wsag:Name=\"SDT_"
-				+ wsag.getServiceName() + "\" wsag:ServiceName=\""
-				+ wsag.getServiceName() + "\" >\n" + wsag.getServiceDescTerms()
-				+ "\t\t\t</wsag:ServiceDescriptionTerm>\n\n"
-				+ "\t\t\t<wsag:ServiceReference  wsag:Name=\""
-				+ wsag.getServiceName() + "_SREF\" wsag:ServiceName=\""
-				+ wsag.getServiceName() + "\" >" + wsag.getServiceURL()
-				+ "</wsag:ServiceReference>\n"
-				+ "\n\t\t\t<wsag:ServiceProperties wsag:Name=\"SP_"
-				+ wsag.getServiceName() + "\" wsag:ServiceName=\""
-				+ wsag.getServiceName() + "\">\n"
-				+ "\t\t\t\t<wsag:VariableSet >\n"
-				+ wsag.getServiceProperties()
-				+ "\t\t\t\t</wsag:Variable >\n"
-				+ "\t\t\t</wsag:ServiceProperties>" + "\n\t\t</wsag:All >\n"
-				+ "\t</wsag:Terms >\n\n" +
+	@Override
+	public void enterGuaranteeTerm(GuaranteeTermContext ctx) {
+		super.enterGuaranteeTerm(ctx);
 
-				"\t<wsag:CreationConstraints >\n" + wsag.getCc()
-				+ "\t</wsag:CreationConstraints >\n" + "</wsag:Template>";
-		return res;
+		if (ctx.cuantif() != null) {
+			enterCuantif(ctx.cuantif());
+			enterGrouped_guaranteeTerm(ctx.grouped_guaranteeTerm());
+			wsag.setGuaranteeTerm("\t\t\t<wsag:" + wsag.getCuantif() + " >\n"
+					+ wsag.getGroupedGuaranteeTerm() + "\t\t\t</wsag:"
+					+ wsag.getCuantif() + " >\n");
+		} else {
+			enterGuarantee_def(ctx.guarantee_def());
+			wsag.setGuaranteeTerm("\t\t\t<wsag:GuaranteeTerm wsag:Obligated=\"Service"
+					+ wsag.getGuaranteeDefObligated()
+					+ "\" wsag:Name=\""
+					+ ctx.Identifier().getText()
+					+ "\" >\n"
+					+ wsag.getGuaranteeDef() + "\t\t\t</wsag:GuaranteeTerm>\n");
+		}
+	}
+
+	@Override
+	public void enterGuarantee_def(Guarantee_defContext ctx) {
+		super.enterGuarantee_def(ctx);
+
+		wsag.setGuaranteeDefObligated(ctx.ob.getText());
+		String result = "";
+		if (ctx.onlyif_sentence() != null) {
+			enterOnlyif_sentence(ctx.onlyif_sentence());
+			result = "\t\t\t\t<wsag:QualifyingCondition >\n" + "					"
+					+ Util.convertEntities(wsag.getOnlyIf()) + "\n"
+					+ "\t\t\t\t</wsag:QualifyingCondition>\n";
+		}
+
+		enterExpression(ctx.expression());
+		result += "\t\t\t\t<wsag:ServiceLevelObjective >\n"
+				+ "\t\t\t\t\t<wsag:CustomServiceLevel >"
+				+ Util.convertEntities(wsag.getExpression())
+				+ "</wsag:CustomServiceLevel>\n"
+				+ "\t\t\t\t</wsag:ServiceLevelObjective>\n";
+		wsag.setGuaranteeDef(result);
+	}
+
+	@Override
+	public void enterGrouped_guaranteeTerm(Grouped_guaranteeTermContext ctx) {
+		super.enterGrouped_guaranteeTerm(ctx);
+
+		for (GuaranteeTermContext gt : ctx.guaranteeTerm()) {
+			enterGuaranteeTerm(gt);
+			wsag.setGroupedGuaranteeTerm(wsag.getGroupedGuaranteeTerm()
+					+ wsag.getGuaranteeTerm());
+		}
+
+	}
+
+	@Override
+	public void enterExpression(ExpressionContext ctx) {
+		super.enterExpression(ctx);
+
+		String result = "";
+
+		if (ctx.NOT() != null) {
+			enterExpression(ctx.e1);
+			wsag.setExpression("NOT (" + wsag.getExpression() + ")");
+		} else if (ctx.PA() != null) {
+			enterExpression(ctx.e1);
+			result = ctx.PA().getText() + wsag.getExpression()
+					+ ctx.PC().getText();
+			if (ctx.log != null) {
+				enterExpression(ctx.e2);
+				result += " " + ctx.log.getText() + " " + wsag.getExpression();
+			}
+			result = Util.convertEntities(result);
+			wsag.setExpression(result);
+		} else if (ctx.BELONGS() != null) {
+
+			result = "";
+
+			if (ctx.l != null)
+				enterList(ctx.l);
+
+			String[] values = wsag.getListValues().split(",");
+
+			result += "(" + ctx.ident.getText() + " = \"" + values[0] + "\"";
+
+			for (int i = 1; i < values.length; i++) {
+				result += " OR " + ctx.ident.getText() + " = \"" + values[i]
+						+ "\"";
+			}
+
+			result += ")";
+
+			if (ctx.log != null) {
+				if (ctx.e1 != null)
+					enterExpression(ctx.e1);
+				result += " " + ctx.log.getText() + " " + wsag.getExpression();
+			}
+			result = Util.convertEntities(result);
+			wsag.setExpression(result);
+		} else {
+
+			if (ctx.cmp != null | ctx.log != null)
+				result = ctx.ident.getText() + " ";
+			else
+				result = ctx.ident.getText();
+
+			if (ctx.val != null)
+				enterAssig_value(ctx.val);
+
+			if (ctx.cmp != null)
+				result += ctx.cmp.getText() + wsag.getAssigValue();
+
+			if (ctx.e1 != null)
+				enterExpression(ctx.e1);
+
+			if (ctx.log != null)
+				result += " " + ctx.log.getText() + " " + wsag.getExpression();
+
+			result = Util.convertEntities(result);
+			wsag.setExpression(result);
+		}
+	}
+
+	@Override
+	public void enterAssig_value(Assig_valueContext ctx) {
+		super.enterAssig_value(ctx);
+
+		String result = "";
+
+		if (ctx.val != null) {
+
+			if (ctx.Integer(0) != null)
+				result = " " + ctx.val.getText();
+			else {
+				if (ctx.val.getText().contains("\""))
+					result = " " + ctx.val.getText();
+				else
+					result = " \"" + ctx.val.getText() + "\"";
+			}
+
+			if (ctx.operation() != null) {
+				enterOperation(ctx.operation());
+				result += wsag.getOperation();
+			}
+			wsag.setAssigValue(result);
+		} else if (ctx.TRUE() != null) {
+			result = " \"True\"";
+			wsag.setAssigValue(result);
+		} else if (ctx.FALSE() != null) {
+			result = " \"False\"";
+			wsag.setAssigValue(result);
+		} else if (ctx.Float() != null) {
+			result = " " + ctx.Float().getText();
+			if (ctx.Unit() != null)
+				result += ctx.Unit().getText();
+			if (ctx.operation() != null) {
+				enterOperation(ctx.operation());
+				result += wsag.getOperation();
+			}
+			wsag.setAssigValue(result);
+		} else if (ctx.S_Float() != null) {
+			result = " " + ctx.S_Float().getText();
+			if (ctx.Unit() != null)
+				result += ctx.Unit().getText();
+			if (ctx.operation() != null) {
+				enterOperation(ctx.operation());
+				result += wsag.getOperation();
+			}
+			wsag.setAssigValue(result);
+		} else if (ctx.S_Integer() != null) {
+			result = " " + ctx.S_Integer().getText();
+			if (ctx.Unit() != null)
+				result += ctx.Unit().getText();
+			if (ctx.operation() != null) {
+				enterOperation(ctx.operation());
+				result += wsag.getOperation();
+			}
+			wsag.setAssigValue(result);
+		} else if (ctx.list() != null) {
+			result = " {" + wsag.getListValues() + "}";
+			wsag.setAssigValue(result);
+		}
+	}
+
+	@Override
+	public void enterKey_value_prop(Key_value_propContext ctx) {
+		super.enterKey_value_prop(ctx);
+
+		String key = ctx.k.getText();
+
+		String value = "";
+		String type = "";
+		String typeArg = "";
+		if (ctx.v != null) {
+			value = ctx.v.getText();
+
+		} else if (ctx.v2 != null) {
+			enterType(ctx.v2);
+
+			value = ctx.v2.getText();
+
+			type = wsag.getType();
+			typeArg = wsag.getTypeArg();
+		}
+		String assig = "";
+		if (ctx.a != null) {
+			assig = ctx.a.getText();
+		}
+
+		KeyValueProp kv = new KeyValueProp(key, value, assig, type, typeArg);
+		wsag.setKeyValue(kv);
+	}
+
+	@Override
+	public void enterVersionNumber(VersionNumberContext ctx) {
+		super.enterVersionNumber(ctx);
+
+		if (ctx.Float() != null) {
+			wsag.setVersionNumber(ctx.Float().getText());
+		} else if (ctx.Version() != null) {
+			wsag.setVersionNumber(ctx.Version().getText());
+		}
+	}
+
+	@Override
+	public void enterType(TypeContext ctx) {
+		super.enterType(ctx);
+
+		if (ctx.v != null) {
+			wsag.setType(ctx.v.getText());
+		} else if (ctx.Identifier() != null) {
+			wsag.setType(ctx.Identifier().getText());
+		} else if (ctx.SET() != null) {
+			enterList(ctx.list());
+			wsag.setType(ctx.SET().getText());
+			wsag.setTypeArg(wsag.getListValues());
+		} else if (ctx.ENUM() != null) {
+			enterList(ctx.list());
+			wsag.setType(ctx.ENUM().getText());
+			wsag.setTypeArg(wsag.getListValues());
+		}
+
+		if (ctx.range() != null) {
+			wsag.setTypeArg(ctx.range().min + "," + ctx.range().max);
+		}
+	}
+
+	@Override
+	public void enterList(ListContext ctx) {
+		super.enterList(ctx);
+
+		// wsag.setListValues(ctx.l1.getText());
+
+		for (ListArgContext l : ctx.listArg()) {
+			wsag.setListValues(wsag.getListValues() + l.l1.getText() + ",");
+		}
+
+	}
+
+	@Override
+	public void enterOnlyif_sentence(Onlyif_sentenceContext ctx) {
+		super.enterOnlyif_sentence(ctx);
+
+		if (ctx.expression() != null)
+			enterExpression(ctx.expression());
+
+		wsag.setOnlyIf(wsag.getExpression());
+	}
+
+	@Override
+	public void enterCuantif(CuantifContext ctx) {
+		super.enterCuantif(ctx);
+		String cuantif = "";
+		if (ctx.EXACTLY_ONE() != null) {
+			cuantif = "ExactlyOne";
+		} else if (ctx.ONE_OR_MORE() != null) {
+			cuantif = "OneOrMore";
+		} else if (ctx.ALL() != null) {
+			cuantif = "All";
+		}
+		wsag.setCuantif(cuantif);
+	}
+
+	public String getWSAG() {
+		return wsag.getResult();
 	}
 }

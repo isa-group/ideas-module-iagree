@@ -20,7 +20,7 @@ public class Test {
 
 	public static void main(String[] args) {
 
-		String sample = loadSample("example.txt");
+		String sample = loadSample("samples/example.txt");
 		// System.out.println(sample);
 
 		// Get our lexer

@@ -568,4 +568,15 @@ public interface iAgreeListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitInitiator_prop(@NotNull iAgreeParser.Initiator_propContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link iAgreeParser#listArg}.
+	 * @param ctx the parse tree
+	 */
+	void enterListArg(@NotNull iAgreeParser.ListArgContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link iAgreeParser#listArg}.
+	 * @param ctx the parse tree
+	 */
+	void exitListArg(@NotNull iAgreeParser.ListArgContext ctx);
 }

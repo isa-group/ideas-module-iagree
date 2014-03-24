@@ -680,6 +680,19 @@ public class iAgreeBaseListener implements iAgreeListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterListArg(@NotNull iAgreeParser.ListArgContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitListArg(@NotNull iAgreeParser.ListArgContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterEveryRule(@NotNull ParserRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}

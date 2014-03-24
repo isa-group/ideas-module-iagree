@@ -2,24 +2,15 @@ package es.us.isa.parser;
 
 public class WsagObject {
 
-	String xmlHeader = "";
-	String template = "";
-	String metric = "", version = "", name = "";
-	String context = "";
-	String serviceName = "", serviceURL = "";
-	String servDescTerms = "";
-	String serviceProps = "";
-	String cc = "";
-
 	public WsagObject() {
 	}
 
-	public String getXmlHeader() {
-		return xmlHeader;
+	public String getResult() {
+		return result;
 	}
 
-	public void setXmlHeader(String xmlHeader) {
-		this.xmlHeader = xmlHeader;
+	public void setResult(String result) {
+		this.result = result;
 	}
 
 	public String getTemplate() {
@@ -30,6 +21,14 @@ public class WsagObject {
 		this.template = template;
 	}
 
+	public String getAggOffer() {
+		return aggOffer;
+	}
+
+	public void setAggOffer(String aggOffer) {
+		this.aggOffer = aggOffer;
+	}
+
 	public String getMetric() {
 		return metric;
 	}
@@ -38,20 +37,52 @@ public class WsagObject {
 		this.metric = metric;
 	}
 
-	public String getVersion() {
-		return version;
-	}
-
-	public void setVersion(String version) {
-		this.version = version;
-	}
-
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getVersionNumber() {
+		return versionNumber;
+	}
+
+	public void setVersionNumber(String versionNumber) {
+		this.versionNumber = versionNumber;
+	}
+
+	public String getTemplateDef() {
+		return templateDef;
+	}
+
+	public void setTemplateDef(String templateDef) {
+		this.templateDef = templateDef;
+	}
+
+	public String getAggTemplate() {
+		return aggTemplate;
+	}
+
+	public void setAggTemplate(String aggTemplate) {
+		this.aggTemplate = aggTemplate;
+	}
+
+	public String getAggTemplateId() {
+		return aggTemplateId;
+	}
+
+	public void setAggTemplateId(String aggTemplateId) {
+		this.aggTemplateId = aggTemplateId;
+	}
+
+	public String getAggDef() {
+		return aggDef;
+	}
+
+	public void setAggDef(String aggDef) {
+		this.aggDef = aggDef;
 	}
 
 	public String getContext() {
@@ -69,29 +100,13 @@ public class WsagObject {
 	public void setServiceName(String serviceName) {
 		this.serviceName = serviceName;
 	}
-	
-	public String getServiceURL() {
-		return serviceURL;
+
+	public String getAgreementTerms() {
+		return agreementTerms;
 	}
 
-	public void setServiceURL(String serviceURL) {
-		this.serviceURL = serviceURL;
-	}
-
-	public String getServiceDescTerms() {
-		return servDescTerms;
-	}
-
-	public void setServiceDescTerms(String servDescTerms) {
-		this.servDescTerms = servDescTerms;
-	}
-
-	public String getServiceProperties() {
-		return serviceProps;
-	}
-
-	public void setServiceProperties(String serviceProps) {
-		this.serviceProps = serviceProps;
+	public void setAgreementTerms(String agreementTerms) {
+		this.agreementTerms = agreementTerms;
 	}
 
 	public String getCc() {
@@ -101,4 +116,209 @@ public class WsagObject {
 	public void setCc(String cc) {
 		this.cc = cc;
 	}
+
+	public String getAgreementTermsDef() {
+		return agreementTermsDef;
+	}
+
+	public void setAgreementTermsDef(String agreementTermsDef) {
+		this.agreementTermsDef = agreementTermsDef;
+	}
+
+	public String getService() {
+		return service;
+	}
+
+	public void setService(String service) {
+		this.service = service;
+	}
+
+	public String getMonitorableProperties() {
+		return monitorableProperties;
+	}
+
+	public void setMonitorableProperties(String monitorableProperties) {
+		this.monitorableProperties = monitorableProperties;
+	}
+
+	public String getGuaranteeTerms() {
+		return guaranteeTerms;
+	}
+
+	public void setGuaranteeTerms(String guaranteeTerms) {
+		this.guaranteeTerms = guaranteeTerms;
+	}
+
+	public String getGuaranteeTerm() {
+		return guaranteeTerm;
+	}
+
+	public void setGuaranteeTerm(String guaranteeTerm) {
+		this.guaranteeTerm = guaranteeTerm;
+	}
+
+	public String getGroupedGuaranteeTerm() {
+		return groupedGuaranteeTerm;
+	}
+
+	public void setGroupedGuaranteeTerm(String groupedGuaranteeTerm) {
+		this.groupedGuaranteeTerm = groupedGuaranteeTerm;
+	}
+
+	public String getGuaranteeDef() {
+		return guaranteeDef;
+	}
+
+	public void setGuaranteeDef(String guaranteeDef) {
+		this.guaranteeDef = guaranteeDef;
+	}
+
+	public String getGuaranteeDefObligated() {
+		return guaranteeDefObligated;
+	}
+
+	public void setGuaranteeDefObligated(String guaranteeDefObligated) {
+		this.guaranteeDefObligated = guaranteeDefObligated;
+	}
+
+	public String getOfferItems() {
+		return offerItems;
+	}
+
+	public void setOfferItems(String offerItems) {
+		this.offerItems = offerItems;
+	}
+
+	public String getServiceUrl() {
+		return serviceUrl;
+	}
+
+	public void setServiceUrl(String serviceUrl) {
+		this.serviceUrl = serviceUrl;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getTypeArg() {
+		return typeArg;
+	}
+
+	public void setTypeArg(String typeArg) {
+		this.typeArg = typeArg;
+	}
+
+	public KeyValueProp getKeyValue() {
+		return keyValue;
+	}
+
+	public void setKeyValue(KeyValueProp keyValue) {
+		this.keyValue = keyValue;
+	}
+
+	public String getListValues() {
+		return listValues;
+	}
+
+	public void setListValues(String listValues) {
+		this.listValues = listValues;
+	}
+
+	public String getServiceProperties() {
+		return serviceProperties;
+	}
+
+	public void setServiceProperties(String serviceProperties) {
+		this.serviceProperties = serviceProperties;
+	}
+
+	public String getVariablesSet() {
+		return variablesSet;
+	}
+
+	public void setVariablesSet(String variablesSet) {
+		this.variablesSet = variablesSet;
+	}
+
+	public String getCuantif() {
+		return cuantif;
+	}
+
+	public void setCuantif(String cuantif) {
+		this.cuantif = cuantif;
+	}
+
+	public String getOnlyIf() {
+		return onlyIf;
+	}
+
+	public void setOnlyIf(String onlyIf) {
+		this.onlyIf = onlyIf;
+	}
+
+	public String getExpression() {
+		return expression;
+	}
+
+	public void setExpression(String expression) {
+		this.expression = expression;
+	}
+
+	public String getAssigValue() {
+		return assigValue;
+	}
+
+	public void setAssigValue(String assigValue) {
+		this.assigValue = assigValue;
+	}
+
+	public String getOperation() {
+		return operation;
+	}
+
+	public void setOperation(String operation) {
+		this.operation = operation;
+	}
+	
+	String result = "";
+	String template = "";
+	String aggOffer = "";
+	String aggTemplate = "";
+	String aggTemplateId = "";
+	String aggDef = "";
+	String metric = "";
+	String name = "";
+	String versionNumber = "";
+	String templateDef = "";
+	String context = "";
+	String serviceName = "";
+	String agreementTerms = "";
+	String cc = "";
+	String agreementTermsDef = "";
+	String service = "";
+	String monitorableProperties = "";
+	String guaranteeTerms = "";
+	String guaranteeTerm = "";
+	String groupedGuaranteeTerm = "";
+	String guaranteeDef = "";
+	String guaranteeDefObligated = "";
+	String offerItems = "";
+	String serviceUrl = "";
+	String type = "";
+	String typeArg = "";
+	KeyValueProp keyValue = new KeyValueProp();
+	String listValues = "";
+	String serviceProperties = "";
+	String variablesSet = "";
+	String cuantif = "";
+	String onlyIf = "";
+	String expression = "";
+	String assigValue = "";
+	String operation = "";
+
 }
