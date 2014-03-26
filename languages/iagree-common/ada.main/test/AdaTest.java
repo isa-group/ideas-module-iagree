@@ -9,7 +9,7 @@ import es.us.isa.ada.loaders.ReflexionExtensionsLoader;
 import es.us.isa.ada.service.ADAServiceImpl;
 import es.us.isa.ada.service.ADAServiceV2;
 
-public class ADATest {
+public class AdaTest {
 	
 	public static void main(String[] args) throws Exception {
 		//nombre de ficheros
