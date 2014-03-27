@@ -45,14 +45,14 @@ AgreementTerms
 	MonitorableProperties 
 		global: 
 			Availability: percent
-				DataDurability: percent 
-				ForumAccess: boolean 
-				Report-an-issue: boolean 
-				WebTicketing: boolean 
-				WebSupport: boolean
+			DataDurability: percent 
+			ForumAccess: boolean 
+			Report-an-issue: boolean 
+			WebTicketing: boolean 
+			WebSupport: boolean
 	 
 		GuaranteeTerms
-			G2: Provider guarantees DataDurability >= 99.999999999%; 
+			G2: Provider guarantees DataDurability >= 99.999999999%;
 				onlyIf (NOT RRS); 
 	 
 			G3: Provider guarantees DataDurability <= 99.99%; 

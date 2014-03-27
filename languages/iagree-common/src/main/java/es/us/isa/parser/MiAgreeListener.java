@@ -1,6 +1,9 @@
 package es.us.isa.parser;
 
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
 import es.us.isa.parser.iAgreeParser.AgOfferContext;
 import es.us.isa.parser.iAgreeParser.Ag_defContext;
@@ -22,20 +25,25 @@ import es.us.isa.parser.iAgreeParser.Guarantee_defContext;
 import es.us.isa.parser.iAgreeParser.Key_value_propContext;
 import es.us.isa.parser.iAgreeParser.ListArgContext;
 import es.us.isa.parser.iAgreeParser.ListContext;
+import es.us.isa.parser.iAgreeParser.Metrics_propContext;
 import es.us.isa.parser.iAgreeParser.MonitorablePropertiesContext;
 import es.us.isa.parser.iAgreeParser.Onlyif_sentenceContext;
+import es.us.isa.parser.iAgreeParser.RangeContext;
 import es.us.isa.parser.iAgreeParser.ServiceContext;
 import es.us.isa.parser.iAgreeParser.Temp_propertiesContext;
 import es.us.isa.parser.iAgreeParser.TemplateContext;
 import es.us.isa.parser.iAgreeParser.Template_defContext;
 import es.us.isa.parser.iAgreeParser.TypeContext;
 import es.us.isa.parser.iAgreeParser.VersionNumberContext;
+import es.us.isa.util.KeyValueProp;
+import es.us.isa.util.Range;
 import es.us.isa.util.Util;
 
 public class MiAgreeListener extends iAgreeBaseListener {
 
 	// Global vars:
 	WsagObject wsag = null;
+	private String metricsTemplate;
 
 	@Override
 	public void enterEntry(EntryContext ctx) {
@@ -305,7 +313,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		else
 			name = wsag.getServiceName();
 
-		wsag.setServiceProperties("\t\t\t<wsag:ServiceProperties wsag:Name=\"SP_"
+		wsag.setMonitorableProperties("\t\t\t<wsag:ServiceProperties wsag:Name=\"SP_"
 				+ name
 				+ "\" wsag:ServiceName=\""
 				+ name
@@ -546,7 +554,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 	@Override
 	public void enterKey_value_prop(Key_value_propContext ctx) {
 		super.enterKey_value_prop(ctx);
-
+		
 		String key = ctx.k.getText();
 
 		String value = "";
@@ -557,9 +565,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 
 		} else if (ctx.v2 != null) {
 			enterType(ctx.v2);
-
 			value = ctx.v2.getText();
-
 			type = wsag.getType();
 			typeArg = wsag.getTypeArg();
 		}
@@ -587,8 +593,15 @@ public class MiAgreeListener extends iAgreeBaseListener {
 	public void enterType(TypeContext ctx) {
 		super.enterType(ctx);
 
+		wsag.setType("");
+		wsag.setTypeArg("");
+		
 		if (ctx.v != null) {
 			wsag.setType(ctx.v.getText());
+			if (ctx.range() != null) {
+				enterRange(ctx.range());
+				wsag.setTypeArg(wsag.getRange().min + "," + wsag.getRange().max);
+			}
 		} else if (ctx.Identifier() != null) {
 			wsag.setType(ctx.Identifier().getText());
 		} else if (ctx.SET() != null) {
@@ -600,22 +613,17 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			wsag.setType(ctx.ENUM().getText());
 			wsag.setTypeArg(wsag.getListValues());
 		}
-
-		if (ctx.range() != null) {
-			wsag.setTypeArg(ctx.range().min + "," + ctx.range().max);
-		}
 	}
 
 	@Override
 	public void enterList(ListContext ctx) {
 		super.enterList(ctx);
 
-		// wsag.setListValues(ctx.l1.getText());
+		wsag.setListValues("");
 
 		for (ListArgContext l : ctx.listArg()) {
 			wsag.setListValues(wsag.getListValues() + l.l1.getText() + ",");
 		}
-
 	}
 
 	@Override
@@ -642,7 +650,78 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		wsag.setCuantif(cuantif);
 	}
 
+	@Override
+	public void enterRange(RangeContext ctx) {
+		super.enterRange(ctx);
+
+		wsag.setRange(new Range(ctx.min.getText(), ctx.max.getText()));
+	}
+
+	@Override
+	public void enterMetrics_prop(Metrics_propContext ctx) {
+		super.enterMetrics_prop(ctx);
+
+		String metrics_def = "\t<met:metric id=\"boolean\" type=\"enumerated\" >\n"
+				+ "		<met:value value=\"True\"/>\n"
+				+ "		<met:value value=\"False\"/>\n" + "\t</met:metric>\n";
+
+		for (Key_value_propContext kv : ctx.key_value_prop()) {			
+			enterKey_value_prop(kv);
+			
+			String mId, mType;
+			String min = "0";
+			String max = "500";
+			
+			mId = wsag.getKeyValue().key;
+			mType = Util.convertMetricType(wsag.getKeyValue().type);
+
+			metrics_def += "\t<met:metric id=\"" + mId + "\" type=\"" + mType
+					+ "\" ";
+			
+			if (!wsag.getKeyValue().typeArg.isEmpty()) {
+				String[] aux = wsag.getKeyValue().typeArg.split(",");
+
+				if (mType == "enumerated") {
+					metrics_def += ">\n";
+
+					if (!wsag.getKeyValue().type.isEmpty()
+							&& wsag.getKeyValue().type.toLowerCase().equals(
+									"boolean")) {
+						aux[0] = "True";
+						aux[1] = "False";
+					}
+
+					for (int i = 0; i < aux.length; i++) {
+						metrics_def += "\t\t<met:value value=\"" + aux[i]
+								+ "\"/>\n";
+					}
+
+					metrics_def += "\t</met:metric>\n";
+
+				} else {
+					min = aux[0];
+					max = aux[1];
+
+					metrics_def += " min=\"" + min + "\" max=\"" + max
+							+ "\" />\n";
+
+				}
+
+			} else {
+				metrics_def += " min=\"" + min + "\" max=\"" + max + "\"";
+				metrics_def += "/>\n";
+			}
+		}
+
+		metricsTemplate = "<met:metricXML xmlns:met=\"http:/www.isa.us.es/ada/metrics\">\n"
+				+ metrics_def + "</met:metricXML>\n";
+	}
+
 	public String getWSAG() {
 		return wsag.getResult();
+	}
+
+	public String getMetrics() {
+		return metricsTemplate;
 	}
 }

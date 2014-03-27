@@ -1,12 +1,12 @@
-package es.us.isa.parser;
+package es.us.isa.util;
 
 public class KeyValueProp {
 	
-	String key;
-	String value;
-	String assigValue;
-	String type;
-	String typeArg;
+	public String key;
+	public String value;
+	public String assigValue;
+	public String type;
+	public String typeArg;
 	
 	
 	public KeyValueProp() {}

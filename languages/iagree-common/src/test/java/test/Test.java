@@ -21,6 +21,7 @@ public class Test {
 	public static void main(String[] args) {
 
 		String sample = loadSample("samples/example.txt");
+		//String sample = loadSample("samples/AmazonS3 with Semantic Errors Template.iagree.template");
 		// System.out.println(sample);
 
 		// Get our lexer
@@ -40,7 +41,17 @@ public class Test {
 		MiAgreeListener listener = new MiAgreeListener();
 		walker.walk(listener, context);
 
-		System.out.println(listener.getWSAG());		
+		System.out.println("-------------------------------------------------");
+		System.out.println("------------------- WSAG File -------------------");
+		System.out.println("-------------------------------------------------\n\n");		
+		System.out.println(listener.getWSAG());
+		
+		
+		System.out.println("\n\n-------------------------------------------------");
+		System.out.println("---------------------- Metrics ----------------------");
+		System.out.println("-----------------------------------------------------\n\n");
+		System.out.println(listener.getMetrics());
+		
 	}
 
 	private static String loadSample(String filePath) {

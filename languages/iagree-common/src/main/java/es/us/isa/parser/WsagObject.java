@@ -1,5 +1,8 @@
 package es.us.isa.parser;
 
+import es.us.isa.util.KeyValueProp;
+import es.us.isa.util.Range;
+
 public class WsagObject {
 
 	public WsagObject() {
@@ -285,6 +288,14 @@ public class WsagObject {
 		this.operation = operation;
 	}
 	
+	public Range getRange() {
+		return range;
+	}
+
+	public void setRange(Range range) {
+		this.range = range;
+	}
+
 	String result = "";
 	String template = "";
 	String aggOffer = "";
@@ -320,5 +331,6 @@ public class WsagObject {
 	String expression = "";
 	String assigValue = "";
 	String operation = "";
+	Range range = new Range();
 
 }
