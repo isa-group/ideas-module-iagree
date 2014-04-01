@@ -64,8 +64,7 @@ public class AdaFacadeTest {
 	public void getNumberOfAlternatives() throws IOException{
 		AdaFacade ada = new AdaFacade();
 		String doc = new String(Files.readAllBytes(Paths.get("complianceTemplate2.xml")));
-		System.out.println(ada.getNumberOfAlternatives(doc));
-		assertTrue(ada.getNumberOfAlternatives(doc)>-1);
+		assertTrue(ada.getNumberOfAlternatives(doc)==1);
 	}
 	
 	//nonCompilanceExplaining
@@ -77,6 +76,5 @@ public class AdaFacadeTest {
 		String string = ada.nonComplianceExplaining(template, offer);
 		assertTrue(string.contains("Conflicting Template Term: G3"));
 	}
-	//uploadMetrics
 
 }
