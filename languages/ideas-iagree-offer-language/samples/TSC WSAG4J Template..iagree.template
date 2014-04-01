@@ -1,0 +1,24 @@
+Template WSAG4J-UNICORE6-COMPUTE version 1.0
+	Provider as Responder
+	Metrics:
+		versions: integer [1..5]
+		appNames: enum {WISDOM-PACK, WISDOM-PACK2}
+		fileNames: enum {input, output}
+		
+AgreementTerms
+	Service APPLICATION_STD_1 availableAt. "http://www.isa.us.es/"
+		GlobalDescription 
+			ApplicationName: appNames = "WISDOM-PACK";
+			ApplicationVersion: versions = 1;
+			InputFilename: fileNames = "input";
+			OutputFilename: fileNames = "output";
+
+	MonitorableProperties
+		global:
+
+	GuaranteeTerms
+
+CreationConstraints
+	C1: ApplicationName belongs {WISDOM-PACK};
+	C2: ApplicationVersion = 2;
+EndTemplate		

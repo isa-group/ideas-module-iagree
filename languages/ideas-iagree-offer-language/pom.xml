@@ -2,17 +2,17 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>es.us.isa.ideas.module</groupId>
 		<artifactId>IDEAS-iAgree-module</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>./../../pom.xml</relativePath>
 	</parent>
-	
+
 	<groupId>es.us.isa.ideas.module.language</groupId>
 	<artifactId>ideas-iagree-offer-language</artifactId>
-<!-- 	<version>0.0.1-SNAPSHOT</version> -->
+	<!-- <version>0.0.1-SNAPSHOT</version> -->
 	<packaging>war</packaging>
 
 	<name>ideas-iagree-offer-language</name>
@@ -23,7 +23,7 @@
 		<java.version>1.6</java.version>
 		<ideas.version>0.0.1-SNAPSHOT</ideas.version>
 	</properties>
-	
+
 	<!-- Repositories to download components and plugins -->
 	<pluginRepositories>
 		<pluginRepository>
@@ -37,7 +37,7 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-	
+
 	<repositories>
 
 		<repository>
@@ -50,7 +50,7 @@
 			<id>central</id>
 			<url>http://repo.maven.apache.org/maven2</url>
 		</repository>
-		
+
 		<!-- IDEAS repository -->
 		<repository>
 			<id>ideas</id>
@@ -59,18 +59,33 @@
 
 
 	</repositories>
-	
+
 	<dependencies>
 
-		<!-- IDEAS Depebdencies -->
+		<!-- IDEAS Dependencies -->
 		<dependency>
 			<groupId>es.us.isa.ideas</groupId>
 			<artifactId>ideas-core</artifactId>
 			<version>${ideas.version}</version>
 		</dependency>
-		
+
+
+		<dependency>
+			<groupId>es.us.isa.ideas.module.language</groupId>
+			<artifactId>iagree-commons</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		 
+
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr4-runtime</artifactId>
+			<version>4.2</version>
+			<scope>compile</scope>
+		</dependency>
+
 	</dependencies>
-	
+
 	<!-- BUILD CONFIGURATION -->
 	<build>
 
@@ -79,7 +94,7 @@
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<configuration>
-					<wtpversion>2.0</wtpversion>
+					<wtpversion>2.5</wtpversion>
 				</configuration>
 			</plugin>
 			<plugin>

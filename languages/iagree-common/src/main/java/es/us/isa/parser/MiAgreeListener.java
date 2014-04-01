@@ -1,9 +1,6 @@
 package es.us.isa.parser;
 
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
 
 import es.us.isa.parser.iAgreeParser.AgOfferContext;
 import es.us.isa.parser.iAgreeParser.Ag_defContext;
@@ -42,8 +39,8 @@ import es.us.isa.util.Util;
 public class MiAgreeListener extends iAgreeBaseListener {
 
 	// Global vars:
-	WsagObject wsag = null;
-	private String metricsTemplate;
+	public WsagObject wsag = null;
+	public String metricsTemplate;
 
 	@Override
 	public void enterEntry(EntryContext ctx) {
