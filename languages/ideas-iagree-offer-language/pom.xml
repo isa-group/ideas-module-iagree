@@ -56,7 +56,11 @@
 			<id>ideas</id>
 			<url>http://clinker.isagroup.es/nexus/content/repositories/ideas</url>
 		</repository>
-
+		<!-- ADA repository -->
+		<repository>
+			<id>ada</id>
+			<url>http://clinker.isagroup.es/nexus/content/groups/public/</url>
+		</repository>
 
 	</repositories>
 
@@ -75,14 +79,19 @@
 			<artifactId>iagree-commons</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		 
 
 		<dependency>
-			<groupId>org.antlr</groupId>
-			<artifactId>antlr4-runtime</artifactId>
-			<version>4.2</version>
-			<scope>compile</scope>
+			<groupId>es.us.isa</groupId>
+			<artifactId>ada-core</artifactId>
+			<version>0.5-SNAPSHOT</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>es.us.isa</groupId>
+			<artifactId>ada-choco-analyzer</artifactId>
+			<version>0.5-SNAPSHOT</version>
+		</dependency>
+		
 
 	</dependencies>
 
