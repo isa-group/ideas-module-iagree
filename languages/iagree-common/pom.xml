@@ -84,6 +84,13 @@
 			<version>4.2</version>
 			<scope>compile</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+            
 
 		<!--  Mirar deuda tecnica
 		<dependency>
