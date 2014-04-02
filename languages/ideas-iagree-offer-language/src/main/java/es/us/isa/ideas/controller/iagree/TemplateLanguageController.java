@@ -1,8 +1,14 @@
 package es.us.isa.ideas.controller.iagree;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import es.us.isa.error.IAgreeError;
+import es.us.isa.ideas.common.AppAnnotations;
 import es.us.isa.ideas.common.AppResponse;
 import es.us.isa.ideas.module.controller.BaseLanguageController;
 import es.us.isa.util.Conversion;
@@ -13,7 +19,7 @@ public class TemplateLanguageController extends BaseLanguageController {
 
 	@Override
 	public AppResponse executeOperation(String id, String content,
-			String fileUri) {
+			String fileUri, Map<String, String> data) {
 		// TODO Auto-generated method stub
 		return null;
 
@@ -63,18 +69,35 @@ public class TemplateLanguageController extends BaseLanguageController {
 
 	@Override
 	public AppResponse convertFormat(String currentFormat,
-			String desiredFormat, String fileUri, String code) {
+			String desiredFormat, String fileUri, String content) {
 
-		System.out.println(currentFormat);
-		System.out.println(desiredFormat);	
-		
-		
+		AppResponse appResp = new AppResponse();
+		List<AppAnnotations> annotations = new ArrayList<AppAnnotations>();
+		String wsag = "";
+
 		if (currentFormat.equals("iagree") && desiredFormat.equals("wsag")) {
-			
-			String wsag = Conversion.getWSAG(code);
-			//AppResponse resp = new AppResponse();
+			if (Conversion.hasErrors()) {
+				for (IAgreeError error : Conversion.getErrors()) {
+					Integer lineNo = error.getLineNo();
+					Integer columnNo = error.getCharStart();
+
+					AppAnnotations appAnnot = new AppAnnotations();
+					appAnnot.setRow(lineNo.toString());
+					appAnnot.setColumn(columnNo.toString());
+					appAnnot.setText(error.getMessage());
+					appAnnot.setType(error.getSeverity().toString());
+					annotations.add(appAnnot);
+				}
+			} else {
+				wsag = Conversion.getWSAG(content);
+			}
+
+			appResp.setData(wsag);
+			appResp.setFileUri(fileUri);
+			appResp.setAnnotations(annotations
+					.toArray(new AppAnnotations[annotations.size()]));
 		}
 
-		return null;
+		return appResp;
 	}
 }

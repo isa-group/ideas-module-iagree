@@ -1,5 +1,12 @@
 package es.us.isa.util;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Util {
 
 	public static String withoutQuotes(String s) {
@@ -44,5 +51,29 @@ public class Util {
 		}
 
 		return newType;
+	}
+
+	public static String loadSample(String filePath) {
+		// Location of file to read
+		File f = new File(filePath);
+		FileInputStream is;
+		String res = "";
+		try {
+			is = new FileInputStream(f);
+			BufferedReader reader = new BufferedReader(
+					new InputStreamReader(is));
+			StringBuilder sb = new StringBuilder();
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				sb.append(line.replaceAll("	", "\t")+"\n");
+			}
+			res = sb.toString();
+			is.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return res;
 	}
 }
