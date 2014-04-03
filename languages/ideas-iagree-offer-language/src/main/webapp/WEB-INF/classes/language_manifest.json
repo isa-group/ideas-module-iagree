@@ -53,12 +53,6 @@
 				            	 name: "Non compliance full explaining",
 				            	 data: {},
 				            	 action: "function(result) {alert(result);}"
-				             },
-				             {
-				            	 id: "uploadMetricsFile",
-				            	 name: "Upload a metric file",
-				            	 data: {},
-				            	 action: "function(result) {alert(result);}"
 				             }
 				             
 				             ],

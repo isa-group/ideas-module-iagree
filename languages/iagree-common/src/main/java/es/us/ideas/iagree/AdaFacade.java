@@ -51,11 +51,6 @@ public class AdaFacade {
 		return service.isCompliant(template.getBytes(), offer.getBytes());
 	}
 	
-	//Cargar metricas
-	public void uploadMetrics(String metricsName, String metrics){
-		service.addMetricFile(metrics.getBytes(), (metricsName+".xml").getBytes());
-	}
-	
 	//Explicacion de la inconsistencia
 	public String inconsitencyExplaining(String wsag) {
 		
