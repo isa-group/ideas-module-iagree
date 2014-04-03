@@ -15,19 +15,19 @@ import es.us.isa.ada.document.AgreementElement;
 
 @Controller
 @RequestMapping("/language")
-public class OfferLanguageController extends BaseLanguageController {
+public class TemplateLanguageController extends BaseLanguageController {
 
 	public AppResponse executeOperation(String id, String content,
-			String fileUri, Map<String,String> data) {
+			String fileUri) {
 		
 		//instanciados
 		AdaFacade service = new AdaFacade();
 		AppResponse appResponse = new AppResponse();
 		//traduccion del documento
+		String translatedDoc = convertFormat("iagree", "xml", fileUri, content).getData();
 		//seleccion de la operacion
 		if(id=="checkConsistency"){
 			try{
-				String translatedDoc = convertFormat("iagree", "xml", fileUri, content).getData();
 				Boolean check = service.consistency(translatedDoc);
 				if(check){
 					appResponse.setStatus(Status.OK);
@@ -43,7 +43,6 @@ public class OfferLanguageController extends BaseLanguageController {
 			}
 		}else if(id=="inconsistencyExplainingShort"){
 			try{
-				String translatedDoc = convertFormat("iagree", "xml", fileUri, content).getData();
 				Map<AgreementElement, Collection<AgreementElement>> inconsistences = service.inconsistenciesMap(translatedDoc);
 				if(inconsistences.isEmpty()){
 					appResponse.setStatus(Status.OK_PROBLEMS);
@@ -59,7 +58,6 @@ public class OfferLanguageController extends BaseLanguageController {
 			}
 		}else if(id=="inconsistenciesExplainingLong"){
 			try{
-				String translatedDoc = convertFormat("iagree", "xml", fileUri, content).getData();
 				String inconsistencies = service.inconsitencyExplaining(translatedDoc);
 				if(inconsistencies.contains("error")){
 					appResponse.setStatus(Status.OK_PROBLEMS);
@@ -75,7 +73,6 @@ public class OfferLanguageController extends BaseLanguageController {
 			}
 		}else if(id=="getNumberOfAlternatives"){
 			try{
-				String translatedDoc = convertFormat("iagree", "xml", fileUri, content).getData();
 				Integer numAlt = service.getNumberOfAlternatives(translatedDoc);
 				if(numAlt == 0){
 					appResponse.setStatus(Status.OK_PROBLEMS);
@@ -93,27 +90,6 @@ public class OfferLanguageController extends BaseLanguageController {
 				appResponse.setStatus(Status.ERROR);
 				appResponse.setMessage("There has been an error: " + e.getMessage());
 			}
-		}else if(id=="checkCompliance"){
-			try{
-				String translatedTemplate = convertFormat("iagree", "xml", fileUri, data.get("template")).getData();
-				String translatedOffer = convertFormat("iagree", "xml", fileUri, data.get("offer")).getData();
-				Boolean compliance = service.isCompliant(translatedTemplate, translatedOffer);
-				if(compliance){
-					appResponse.setStatus(Status.OK);
-					appResponse.setMessage("The provided offer is compliant with the provided template");
-				}else{
-					appResponse.setStatus(Status.OK_PROBLEMS);
-					appResponse.setMessage("The provided offer is not compliant with the provided template");
-				}
-				appResponse.setFileUri(fileUri);
-			}catch(Exception e){
-				appResponse.setStatus(Status.ERROR);
-				appResponse.setMessage("There has been an error: " + e.getMessage());
-			}
-		}else if(id=="nonComplianceExplaining"){
-			//TODO nonComplianceExplaining(String template, String offer)
-		}else if(id=="uploadMetricsFile"){
-			//TODO uploadMetrics(String metricsName, String metrics)
 		}else{
 			appResponse.setStatus(Status.ERROR);
 			appResponse.setMessage("No such opperation");

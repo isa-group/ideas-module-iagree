@@ -1,4 +1,4 @@
-package es.us.isa.facade;
+package es.us.ideas.iagree;
 
 import static org.junit.Assert.*;
 

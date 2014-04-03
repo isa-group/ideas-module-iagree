@@ -1,4 +1,4 @@
-package es.us.isa.facade;
+package es.us.ideas.iagree;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,12 +13,6 @@ import es.us.isa.ada.service.ADAServiceImpl;
 import es.us.isa.ada.service.ADAServiceV2;
 import es.us.isa.ada.wsag10.Term;
 
-
-//La responsabilidad de la clase debería incluir al menos:
-//*Instanciado de ADA.
-//*Lógica para la externalización de los mensajes.
-//*Construcción de las respuestas y errores.
-//*Gestión de errores internos.
 public class AdaFacade {
 	
 	//instanciado de ADA
@@ -29,7 +23,7 @@ public class AdaFacade {
 	}
 	
 	//Devuelve true si es consistente y false en caso contrario
-	public boolean consistency(String doc){
+	public Boolean consistency(String doc){
 		byte[] bdoc = doc.getBytes();
 		boolean res = false;
 		if (service.checkDocumentConsistency(bdoc)){	
@@ -43,7 +37,7 @@ public class AdaFacade {
 	}
 	
 	//Devuelve el numero del alternativas del documento
-	public int getNumberOfAlternatives(String doc){
+	public Integer getNumberOfAlternatives(String doc){
 		return service.getNumberOfAlternatives(doc.getBytes());
 	}
 	
@@ -53,7 +47,7 @@ public class AdaFacade {
 	}
 	
 	//Compara si la plantilla y la oferta son igual de restrictivas
-	public boolean isCompliant(String template, String offer){
+	public Boolean isCompliant(String template, String offer){
 		return service.isCompliant(template.getBytes(), offer.getBytes());
 	}
 	
