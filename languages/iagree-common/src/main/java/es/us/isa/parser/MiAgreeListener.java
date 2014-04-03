@@ -14,6 +14,7 @@ import es.us.isa.parser.iAgreeParser.CuantifContext;
 import es.us.isa.parser.iAgreeParser.EntryContext;
 import es.us.isa.parser.iAgreeParser.ExpressionContext;
 import es.us.isa.parser.iAgreeParser.GlobalDescriptionContext;
+import es.us.isa.parser.iAgreeParser.GlobalPeriod_propContext;
 import es.us.isa.parser.iAgreeParser.Global_MonitorablePropertiesContext;
 import es.us.isa.parser.iAgreeParser.Grouped_guaranteeTermContext;
 import es.us.isa.parser.iAgreeParser.GuaranteeTermContext;
@@ -213,7 +214,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 
 		enterGlobalDescription(ctx.globalDescription());
 
-		wsag.setServiceUrl(Util.withoutQuotes(ctx.url().getText()));
+		wsag.setServiceUrl(Util.withoutDoubleQuotes(ctx.url().getText()));
 
 		String serviceName = ctx.Identifier().getText();
 		String name = "SDT_" + serviceName;
@@ -230,7 +231,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 					+ ctx.Identifier().getText()
 					+ "_SREF\" wsag:ServiceName=\""
 					+ ctx.Identifier().getText() + "\" >"
-					+ Util.withoutQuotes(ctx.url().getText())
+					+ Util.withoutDoubleQuotes(ctx.url().getText())
 					+ "</wsag:ServiceReference>\n\n");
 	}
 
@@ -241,7 +242,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		if (ctx.initiator_prop() != null) {
 			wsag.setContext(wsag.getContext()
 					+ "\t\t<wsag:AgreementInitiator >"
-					+ Util.withoutQuotes(ctx.initiator_prop().String()
+					+ Util.withoutDoubleQuotes(ctx.initiator_prop().String()
 							.getText()) + "</wsag:AgreementInitiator >\n");
 		} else if (ctx.responder_prop() != null) {
 			if (ctx.responder_prop().PROVIDER() != null) {
@@ -263,18 +264,19 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		} else if (ctx.serviceProvider_prop() != null) {
 			wsag.setContext(wsag.getContext()
 					+ "\t\t<wsag:ServiceProvider >"
-					+ Util.withoutQuotes(ctx.serviceProvider_prop().String()
+					+ Util.withoutDoubleQuotes(ctx.serviceProvider_prop().String()
 							.getText()) + "</wsag:ServiceProvider >\n");
 		} else if (ctx.expirationTime_prop() != null) {
 			wsag.setContext(wsag.getContext()
 					+ "\t\t<wsag:ExpirationTime >"
-					+ Util.withoutQuotes(ctx.expirationTime_prop().String()
+					+ Util.withoutDoubleQuotes(ctx.expirationTime_prop().String()
 							.getText()) + "</wsag:ExpirationTime >\n");
 		} else if (ctx.dateFormat_prop() != null) {
-			wsag.setContext(wsag.getContext()
-					+ "\t\t<twsag4people:DateFormat >"
-					+ Util.withoutQuotes(ctx.dateFormat_prop().String()
-							.getText()) + "</twsag4people:DateFormat >\n");
+			// TODO Definir temporalidad
+//			wsag.setContext(wsag.getContext()
+//					+ "\t\t<twsag4people:DateFormat >"
+//					+ Util.withoutQuotes(ctx.dateFormat_prop().String()
+//							.getText()) + "</twsag4people:DateFormat >\n");
 		} else if (ctx.gmtZone_prop() != null) {
 			if (ctx.gmtZone_prop().S_Integer() != null) {
 				wsag.setContext(wsag.getContext() + "\t\t<wsag:GMTZone >"
@@ -286,13 +288,15 @@ public class MiAgreeListener extends iAgreeBaseListener {
 						+ "</wsag:GMTZone >\n");
 			}
 		} else if (ctx.globalPeriod_prop() != null) {
-			wsag.setContext(wsag.getContext()
-					+ "\t\t<twsag4people:GlobalPeriod >" + ""
-					+ "</twsag4people:GlobalPeriod >\n");
+			// TODO Definir temporalidad
+//			wsag.setContext(wsag.getContext()
+//					+ "\t\t<twsag4people:GlobalPeriod >" + ""
+//					+ "</twsag4people:GlobalPeriod >\n");
 		} else if (ctx.definedPeriod_prop() != null) {
-			wsag.setContext(wsag.getContext()
-					+ "\t\t<twsag4people:DefinedValidityPeriodSet >" + ""
-					+ "</twsag4people:DefinedValidityPeriodSet >\n");
+			// TODO Definir temporalidad
+//			wsag.setContext(wsag.getContext()
+//					+ "\t\t<twsag4people:DefinedValidityPeriodSet >" + ""
+//					+ "</twsag4people:DefinedValidityPeriodSet >\n");
 		}
 	}
 
@@ -394,14 +398,14 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		if (ctx.onlyif_sentence() != null) {
 			enterOnlyif_sentence(ctx.onlyif_sentence());
 			result = "\t\t\t\t<wsag:QualifyingCondition >\n" + "					"
-					+ Util.convertEntities(wsag.getOnlyIf()) + "\n"
+					+ Util.encodeEntities(wsag.getOnlyIf()) + "\n"
 					+ "\t\t\t\t</wsag:QualifyingCondition>\n";
 		}
 
 		enterExpression(ctx.expression());
 		result += "\t\t\t\t<wsag:ServiceLevelObjective >\n"
 				+ "\t\t\t\t\t<wsag:CustomServiceLevel >"
-				+ Util.convertEntities(wsag.getExpression())
+				+ Util.encodeEntities(wsag.getExpression())
 				+ "</wsag:CustomServiceLevel>\n"
 				+ "\t\t\t\t</wsag:ServiceLevelObjective>\n";
 		wsag.setGuaranteeDef(result);
@@ -436,7 +440,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				enterExpression(ctx.e2);
 				result += " " + ctx.log.getText() + " " + wsag.getExpression();
 			}
-			result = Util.convertEntities(result);
+			result = Util.encodeEntities(result);
 			wsag.setExpression(result);
 		} else if (ctx.BELONGS() != null) {
 
@@ -461,7 +465,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 					enterExpression(ctx.e1);
 				result += " " + ctx.log.getText() + " " + wsag.getExpression();
 			}
-			result = Util.convertEntities(result);
+			result = Util.encodeEntities(result);
 			wsag.setExpression(result);
 		} else {
 
@@ -482,7 +486,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			if (ctx.log != null)
 				result += " " + ctx.log.getText() + " " + wsag.getExpression();
 
-			result = Util.convertEntities(result);
+			result = Util.encodeEntities(result);
 			wsag.setExpression(result);
 		}
 	}

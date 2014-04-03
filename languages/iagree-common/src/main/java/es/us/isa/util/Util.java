@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 
 public class Util {
 
-	public static String withoutQuotes(String s) {
+	public static String withoutDoubleQuotes(String s) {
 		String str = s;
 		if (str.startsWith("\"")) {
 			str = str.substring(1, str.length());
@@ -19,11 +19,29 @@ public class Util {
 		}
 		return str;
 	}
+	
+	public static String withoutQuotes(String s) {
+		String str = s;
+		if (str.startsWith("\'")) {
+			str = str.substring(1, str.length());
+		}
+		if (str.endsWith("\'")) {
+			str = str.substring(0, str.length() - 1);
+		}
+		return str;
+	}
 
-	public static String convertEntities(String s) {
+	public static String encodeEntities(String s) {
 		String str = s;
 		str = str.replaceAll("<", "&lt;");
 		str = str.replaceAll(">", "&gt;");
+		return str;
+	}
+	
+	public static String decodeEntities(String s) {
+		String str = s;
+		str = str.replaceAll("&lt;", "<");
+		str = str.replaceAll("&gt;", ">");
 		return str;
 	}
 

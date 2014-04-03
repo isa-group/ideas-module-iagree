@@ -7,51 +7,48 @@
 	<wsag:Name >S3Premium</wsag:Name>
 	<wsag:Context >
 		<wsag:AgreementResponder >Provider</wsag:AgreementResponder >
-		<twsag4people:DateFormat >MM/DD/YYYY</twsag4people:DateFormat >
 		<wsag:GMTZone >+1</wsag:GMTZone >
-		<twsag4people:GlobalPeriod ></twsag4people:GlobalPeriod >
-		<twsag4people:DefinedValidityPeriodSet ></twsag4people:DefinedValidityPeriodSet >
 
 	</wsag:Context >
 
 	<wsag:Terms wsag:Name="AWS-S3PremiumSupport">
 		<wsag:All >
 			<wsag:ServiceDescriptionTerm wsag:Name="SDT_SDT_AWS-S3PremiumSupport" wsag:ServiceName="AWS-S3PremiumSupport" >
-				<OfferItem name="ObjectSize" wsag:Metric="metrics/S3Premium_1396469835191:float" >7</OfferItem>
-				<OfferItem name="Region" wsag:Metric="metrics/S3Premium_1396469835191:countries" ></OfferItem>
-				<OfferItem name="Interface" wsag:Metric="metrics/S3Premium_1396469835191:interfaceType" ></OfferItem>
-				<OfferItem name="SVN" wsag:Metric="metrics/S3Premium_1396469835191:boolean" ></OfferItem>
-				<OfferItem name="RRS" wsag:Metric="metrics/S3Premium_1396469835191:boolean" ></OfferItem>
-				<OfferItem name="TotalPrice" wsag:Metric="metrics/S3Premium_1396469835191:money" >100</OfferItem>
-				<OfferItem name="StoragePrice" wsag:Metric="metrics/S3Premium_1396469835191:money" ></OfferItem>
-				<OfferItem name="DataTransferPrice" wsag:Metric="metrics/S3Premium_1396469835191:money" ></OfferItem>
-				<OfferItem name="StorageSize" wsag:Metric="metrics/S3Premium_1396469835191:size" ></OfferItem>
-				<OfferItem name="WriteRequests" wsag:Metric="metrics/S3Premium_1396469835191:integer" ></OfferItem>
-				<OfferItem name="ReadRequests" wsag:Metric="metrics/S3Premium_1396469835191:integer" ></OfferItem>
-				<OfferItem name="TransferredGB" wsag:Metric="metrics/S3Premium_1396469835191:size" ></OfferItem>
-				<OfferItem name="Support" wsag:Metric="metrics/S3Premium_1396469835191:supportType" ></OfferItem>
+				<OfferItem name="ObjectSize" wsag:Metric="metrics/S3Premium_1396516041818:float" >7</OfferItem>
+				<OfferItem name="Region" wsag:Metric="metrics/S3Premium_1396516041818:countries" ></OfferItem>
+				<OfferItem name="Interface" wsag:Metric="metrics/S3Premium_1396516041818:interfaceType" ></OfferItem>
+				<OfferItem name="SVN" wsag:Metric="metrics/S3Premium_1396516041818:boolean" ></OfferItem>
+				<OfferItem name="RRS" wsag:Metric="metrics/S3Premium_1396516041818:boolean" ></OfferItem>
+				<OfferItem name="TotalPrice" wsag:Metric="metrics/S3Premium_1396516041818:money" >100</OfferItem>
+				<OfferItem name="StoragePrice" wsag:Metric="metrics/S3Premium_1396516041818:money" ></OfferItem>
+				<OfferItem name="DataTransferPrice" wsag:Metric="metrics/S3Premium_1396516041818:money" ></OfferItem>
+				<OfferItem name="StorageSize" wsag:Metric="metrics/S3Premium_1396516041818:size" ></OfferItem>
+				<OfferItem name="WriteRequests" wsag:Metric="metrics/S3Premium_1396516041818:integer" ></OfferItem>
+				<OfferItem name="ReadRequests" wsag:Metric="metrics/S3Premium_1396516041818:integer" ></OfferItem>
+				<OfferItem name="TransferredGB" wsag:Metric="metrics/S3Premium_1396516041818:size" ></OfferItem>
+				<OfferItem name="Support" wsag:Metric="metrics/S3Premium_1396516041818:supportType" ></OfferItem>
 			</wsag:ServiceDescriptionTerm>
 
 			<wsag:ServiceReference  wsag:Name="AWS-S3PremiumSupport_SREF" wsag:ServiceName="AWS-S3PremiumSupport" >http://aws.amazon.com/s3/</wsag:ServiceReference>
 
 			<wsag:ServiceProperties wsag:Name="SP_AWS-S3PremiumSupport" wsag:ServiceName="AWS-S3PremiumSupport">
 				<wsag:VariableSet >
-					<wsag:Variable  wsag:Name="Availability" wsag:Metric="metrics/S3Premium_1396469835191:percent" >
+					<wsag:Variable  wsag:Name="Availability" wsag:Metric="metrics/S3Premium_1396516041818:percent" >
 						<wsag:Location >/Availability</wsag:Location>
 					</wsag:Variable >
-					<wsag:Variable  wsag:Name="DataDurability" wsag:Metric="metrics/S3Premium_1396469835191:percent" >
+					<wsag:Variable  wsag:Name="DataDurability" wsag:Metric="metrics/S3Premium_1396516041818:percent" >
 						<wsag:Location >/DataDurability</wsag:Location>
 					</wsag:Variable >
-					<wsag:Variable  wsag:Name="ForumAccess" wsag:Metric="metrics/S3Premium_1396469835191:boolean" >
+					<wsag:Variable  wsag:Name="ForumAccess" wsag:Metric="metrics/S3Premium_1396516041818:boolean" >
 						<wsag:Location >/ForumAccess</wsag:Location>
 					</wsag:Variable >
-					<wsag:Variable  wsag:Name="Report-an-issue" wsag:Metric="metrics/S3Premium_1396469835191:boolean" >
+					<wsag:Variable  wsag:Name="Report-an-issue" wsag:Metric="metrics/S3Premium_1396516041818:boolean" >
 						<wsag:Location >/Report-an-issue</wsag:Location>
 					</wsag:Variable >
-					<wsag:Variable  wsag:Name="WebTicketing" wsag:Metric="metrics/S3Premium_1396469835191:boolean" >
+					<wsag:Variable  wsag:Name="WebTicketing" wsag:Metric="metrics/S3Premium_1396516041818:boolean" >
 						<wsag:Location >/WebTicketing</wsag:Location>
 					</wsag:Variable >
-					<wsag:Variable  wsag:Name="WebSupport" wsag:Metric="metrics/S3Premium_1396469835191:boolean" >
+					<wsag:Variable  wsag:Name="WebSupport" wsag:Metric="metrics/S3Premium_1396516041818:boolean" >
 						<wsag:Location >/WebSupport</wsag:Location>
 					</wsag:Variable >
 				</wsag:VariableSet >

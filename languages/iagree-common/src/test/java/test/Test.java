@@ -17,15 +17,15 @@ public class Test {
 //
 //		System.out.println(Convert2Wsag.getWsagFromIAgree(sample));
 		
-		PrintWriter writer;
-		try {
-			writer = new PrintWriter("samples/exampleMetrics.xml");
+//		PrintWriter writer;
+//		try {
+//			writer = new PrintWriter("samples/example.xml");
 //			writer.println(Convert2Wsag.getWsagFromIAgree(sample));
-			writer.println(Convert2Wsag.getMetricsFromIAgree(sample));
-			writer.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+//			writer.println(Convert2Wsag.getMetricsFromIAgree(sample));
+//			writer.close();
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		}
 		
 		System.out.println(Convert2IAgree.getIAgreeFromWSAG(""));
 		
