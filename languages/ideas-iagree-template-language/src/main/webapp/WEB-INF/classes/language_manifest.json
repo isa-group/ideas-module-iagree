@@ -1,5 +1,5 @@
 		{
-				id: "iagree-offer-language",
+				id: "iagree-template-language",
 				extension: "iagree.template",
 				formats: [
 				 	{
@@ -39,18 +39,6 @@
 				             {
 				            	 id: "getNumberOfAlternatives",
 				            	 name: "Number of alternatives to the document",
-				            	 data: {},
-				            	 action: "function(result) {alert(result);}"
-				             },
-				             {
-				            	 id: "checkCompliance",
-				            	 name: "Check the compliance between a template and an offer",
-				            	 data: {},
-				            	 action: "function(result) {alert(result);}"
-				             },
-				             {
-				            	 id: "nonComplianceExplaining",
-				            	 name: "Non compliance full explaining",
 				            	 data: {},
 				            	 action: "function(result) {alert(result);}"
 				             }
