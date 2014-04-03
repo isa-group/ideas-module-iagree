@@ -21,7 +21,7 @@ public class TemplateLanguageController extends BaseLanguageController {
 
 	public AppResponse executeOperation(String id, String content,
 			String fileUri, Map<String,String> data) {
-			String translatedDoc = convertFormat("iagree", "xml", fileUri, content).getData();
+			String translatedDoc = convertFormat("iagree", "wsag", fileUri, content).getData();
 			AppResponse appResponse = AnalizeDelegate.analize(id, translatedDoc, null, false);
 			appResponse.setFileUri(fileUri);
 			return appResponse;
@@ -70,7 +70,7 @@ public class TemplateLanguageController extends BaseLanguageController {
 
 	@Override
 	public AppResponse convertFormat(String currentFormat,
-			String desiredFormat, String fileUri, String content) {
+		String desiredFormat, String fileUri, String content) {
 		AppResponse appResp = new AppResponse();
 		List<AppAnnotations> annotations = new ArrayList<AppAnnotations>();
 		String wsag = "";

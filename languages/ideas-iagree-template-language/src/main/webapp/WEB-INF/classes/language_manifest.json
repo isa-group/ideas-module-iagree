@@ -1,6 +1,7 @@
 		{
 				id: "iagree-template-language",
 				extension: "iagree.template",
+				name: "iAgreeTemplate",
 				formats: [
 				 	{
 				 		format: "iagree",
@@ -22,24 +23,28 @@
 				            	 id: "checkConsistency",
 				            	 name: "Check the document consistency",
 				            	 data: {},
+				            	 _remoteExecution: "true",
 				            	 action: "function(result) {alert(result);}"
 				             },
 				             {
 				            	 id: "inconsistencyExplainingShort",
 				            	 name: "Inconsistency explaining just with the inconsistent term",
 				            	 data: {},
+				            	 _remoteExecution: "true",
 				            	 action: "function(result) {alert(result);}"
 				             }
 				             {
 				            	 id: "inconsistenciesExplainingLong",
 				            	 name: "Inconsistency full explaining",
 				            	 data: {},
+				            	 _remoteExecution: "true",
 				            	 action: "function(result) {alert(result);}"
 				             },
 				             {
 				            	 id: "getNumberOfAlternatives",
 				            	 name: "Number of alternatives to the document",
 				            	 data: {},
+				            	 _remoteExecution: "true",
 				            	 action: "function(result) {alert(result);}"
 				             }
 				             
