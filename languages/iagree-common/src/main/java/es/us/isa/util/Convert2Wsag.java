@@ -14,11 +14,11 @@ import es.us.isa.parser.iAgreeLexer;
 import es.us.isa.parser.iAgreeParser;
 import es.us.isa.parser.iAgreeParser.EntryContext;
 
-public class Conversion {
+public class Convert2Wsag {
 
 	private static List<IAgreeError> errors = new LinkedList<IAgreeError>();
 
-	public static String getWSAG(String code) {
+	public static String getWsagFromIAgree(String code) {
 		// Get our lexer
 		iAgreeLexer lexer = new iAgreeLexer(new ANTLRInputStream(code));
 
@@ -60,7 +60,7 @@ public class Conversion {
 		errors.clear();
 	}
 
-	public static String getMetrics(String code) {
+	public static String getMetricsFromIAgree(String code) {
 
 		// Get our lexer
 		iAgreeLexer lexer = new iAgreeLexer(new ANTLRInputStream(code));

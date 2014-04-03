@@ -13,7 +13,7 @@
 	 
 	<groupId>es.us.isa.ideas.module.language</groupId>
 	<artifactId>iagree-commons</artifactId>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>ideas-common</name>

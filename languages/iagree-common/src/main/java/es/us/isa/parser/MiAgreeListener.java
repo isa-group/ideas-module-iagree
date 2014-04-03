@@ -119,12 +119,12 @@ public class MiAgreeListener extends iAgreeBaseListener {
 
 		enterAgreementTerms(ctx.agreementTerms());
 
-		wsag.setAggDef("	<wsag:Context >\n" + wsag.getAggTemplate()
+		wsag.setAggDef("\t<wsag:Context >\n" + wsag.getAggTemplate()
 				+ wsag.getAggTemplateId() + wsag.getContext()
-				+ "\n	</wsag:Context >\n\n" + "	<wsag:Terms wsag:Name=\""
-				+ wsag.getServiceName() + "\">\n		<wsag:All >\n"
+				+ "\n\t</wsag:Context >\n\n" + "\t<wsag:Terms wsag:Name=\""
+				+ wsag.getServiceName() + "\">\n\t\t<wsag:All >\n"
 				+ wsag.getAgreementTerms()
-				+ "\n		</wsag:All >\n	</wsag:Terms >\n\n");
+				+ "\n\t\t</wsag:All >\n\t</wsag:Terms >\n\n");
 	}
 
 	@Override
@@ -246,7 +246,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		} else if (ctx.responder_prop() != null) {
 			if (ctx.responder_prop().PROVIDER() != null) {
 				wsag.setContext(wsag.getContext()
-						+ "\t<wsag:AgreementResponder >"
+						+ "\t\t<wsag:AgreementResponder >"
 						+ ctx.responder_prop().PROVIDER().getText()
 						+ "</wsag:AgreementResponder >\n");
 			} else if (ctx.responder_prop().CONSUMER() != null) {

@@ -11,7 +11,7 @@ import es.us.isa.error.IAgreeError;
 import es.us.isa.ideas.common.AppAnnotations;
 import es.us.isa.ideas.common.AppResponse;
 import es.us.isa.ideas.module.controller.BaseLanguageController;
-import es.us.isa.util.Conversion;
+import es.us.isa.util.Convert2Wsag;
 
 @Controller
 @RequestMapping("/language")
@@ -76,8 +76,8 @@ public class TemplateLanguageController extends BaseLanguageController {
 		String wsag = "";
 
 		if (currentFormat.equals("iagree") && desiredFormat.equals("wsag")) {
-			if (Conversion.hasErrors()) {
-				for (IAgreeError error : Conversion.getErrors()) {
+			if (Convert2Wsag.hasErrors()) {
+				for (IAgreeError error : Convert2Wsag.getErrors()) {
 					Integer lineNo = error.getLineNo();
 					Integer columnNo = error.getCharStart();
 
@@ -89,7 +89,7 @@ public class TemplateLanguageController extends BaseLanguageController {
 					annotations.add(appAnnot);
 				}
 			} else {
-				wsag = Conversion.getWSAG(content);
+				wsag = Convert2Wsag.getWsagFromIAgree(content);
 			}
 
 			appResp.setData(wsag);
