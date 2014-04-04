@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import es.us.ideas.iagree.AnalizeDelegate;
 import es.us.isa.error.IAgreeError;
@@ -18,6 +19,12 @@ import es.us.isa.util.Convert2Wsag;
 @Controller
 @RequestMapping("/language")
 public class TemplateLanguageController extends BaseLanguageController {
+	
+	@RequestMapping("/pepe")
+	@ResponseBody
+	public String test() {
+		return "pepepepe";
+	}
 
 	public AppResponse executeOperation(String id, String content,
 			String fileUri, Map<String,String> data) {
