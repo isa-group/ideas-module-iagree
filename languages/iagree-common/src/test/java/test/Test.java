@@ -11,23 +11,37 @@ public class Test {
 
 	public static void main(String[] args) {
 
-		String sample = Util.loadSample("samples/example.txt");
-//		String sample = loadSample("samples/AmazonS3 with Semantic Errors Template.iagree.template");
-//		System.out.println(sample);
-//
-//		System.out.println(Convert2Wsag.getWsagFromIAgree(sample));
+//		String sample = Util.loadSample("samples/Compliant Offer.iagree.offer");
+//		convert2WSAG(sample);
 		
-//		PrintWriter writer;
-//		try {
-//			writer = new PrintWriter("samples/example.xml");
-//			writer.println(Convert2Wsag.getWsagFromIAgree(sample));
-//			writer.println(Convert2Wsag.getMetricsFromIAgree(sample));
-//			writer.close();
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		}
-		
-		System.out.println(Convert2IAgree.getIAgreeFromWSAG(""));
-		
+		String sample2 = Util.loadSample("samples/AAA_Test.xml");
+		String sample2_metrics = Util.loadSample("samples/AAA_Test_Metrics.xml");
+		convert2IAgree(sample2, sample2_metrics);	
+	}
+	
+	public static void convert2WSAG(String sample){
+		PrintWriter writer, writerMetrics;
+		try {
+			writer = new PrintWriter("samples/AAA_Test.xml");
+			writer.println(Convert2Wsag.getWsagFromIAgree(sample));
+			writer.close();
+			
+			writerMetrics = new PrintWriter("samples/AAA_Test_Metrics.xml");
+			writerMetrics.println(Convert2Wsag.getMetricsFromIAgree(sample));
+			writerMetrics.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void convert2IAgree(String sample, String sample_metrics){
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter("samples/AAA_Test.txt");
+			writer.println(Convert2IAgree.getIAgreeFromWSAG(sample, sample_metrics));
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 }

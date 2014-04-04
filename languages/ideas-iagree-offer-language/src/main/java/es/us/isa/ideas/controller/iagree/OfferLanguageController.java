@@ -1,18 +1,14 @@
 package es.us.isa.ideas.controller.iagree;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import es.us.ideas.iagree.*;
-import es.us.isa.error.IAgreeError;
-import es.us.isa.ideas.common.AppAnnotations;
+import es.us.ideas.iagree.AnalizeDelegate;
 import es.us.isa.ideas.common.AppResponse;
 import es.us.isa.ideas.module.controller.BaseLanguageController;
-import es.us.isa.util.Convert2Wsag;
+import es.us.isa.util.ConversionDelegate;
 
 @Controller
 @RequestMapping("/language")
@@ -71,33 +67,6 @@ public class OfferLanguageController extends BaseLanguageController {
 	@Override
 	public AppResponse convertFormat(String currentFormat,
 		String desiredFormat, String fileUri, String content) {
-		AppResponse appResp = new AppResponse();
-		List<AppAnnotations> annotations = new ArrayList<AppAnnotations>();
-		String wsag = "";
-		if (currentFormat.equals("iagree") && desiredFormat.equals("wsag")) {
-			
-			if (Convert2Wsag.hasErrors()) {
-				for (IAgreeError error : Convert2Wsag.getErrors()) {
-					Integer lineNo = error.getLineNo();
-					Integer columnNo = error.getCharStart();
-
-					AppAnnotations appAnnot = new AppAnnotations();
-					appAnnot.setRow(lineNo.toString());
-					appAnnot.setColumn(columnNo.toString());
-					appAnnot.setText(error.getMessage());
-					appAnnot.setType(error.getSeverity().toString());
-					annotations.add(appAnnot);
-				}
-			} else {
-				wsag = Convert2Wsag.getWsagFromIAgree(content);
-			}
-
-			appResp.setData(wsag);
-			appResp.setFileUri(fileUri);
-			appResp.setAnnotations(annotations
-					.toArray(new AppAnnotations[annotations.size()]));
-			}
-
-		return appResp;
+		return ConversionDelegate.convert(currentFormat, desiredFormat, fileUri, content);
 	}
 }

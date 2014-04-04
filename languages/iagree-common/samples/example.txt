@@ -72,6 +72,6 @@ CreationConstraints
 	C1: Region belongs {US, west_US, EU_Irland, Pacific_Asia, Southamerica, GovCloud_US}; 
  
 	C3: TotalPrice = 0;
-		onlyIf (StorageSize <= 5 AND WriteRequests <=2000 AND ReadRequests <= 20000 AND TransferredGB <= 15);
+		onlyIf (StorageSize <= 5 AND WriteRequests <= 2000 AND ReadRequests <= 20000 AND TransferredGB <= 15);
 
 EndTemplate

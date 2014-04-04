@@ -14,7 +14,6 @@ import es.us.isa.parser.iAgreeParser.CuantifContext;
 import es.us.isa.parser.iAgreeParser.EntryContext;
 import es.us.isa.parser.iAgreeParser.ExpressionContext;
 import es.us.isa.parser.iAgreeParser.GlobalDescriptionContext;
-import es.us.isa.parser.iAgreeParser.GlobalPeriod_propContext;
 import es.us.isa.parser.iAgreeParser.Global_MonitorablePropertiesContext;
 import es.us.isa.parser.iAgreeParser.Grouped_guaranteeTermContext;
 import es.us.isa.parser.iAgreeParser.GuaranteeTermContext;
@@ -26,6 +25,7 @@ import es.us.isa.parser.iAgreeParser.ListContext;
 import es.us.isa.parser.iAgreeParser.Metrics_propContext;
 import es.us.isa.parser.iAgreeParser.MonitorablePropertiesContext;
 import es.us.isa.parser.iAgreeParser.Onlyif_sentenceContext;
+import es.us.isa.parser.iAgreeParser.OperationContext;
 import es.us.isa.parser.iAgreeParser.RangeContext;
 import es.us.isa.parser.iAgreeParser.ServiceContext;
 import es.us.isa.parser.iAgreeParser.Temp_propertiesContext;
@@ -220,7 +220,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		String name = "SDT_" + serviceName;
 
 		wsag.setServiceName(serviceName);
-		wsag.setService("\t\t\t<wsag:ServiceDescriptionTerm wsag:Name=\"SDT_"
+		wsag.setService("\t\t\t<wsag:ServiceDescriptionTerm wsag:Name=\""
 				+ name + "\" wsag:ServiceName=\"" + serviceName + "\" >\n"
 				+ wsag.getOfferItems()
 				+ "\t\t\t</wsag:ServiceDescriptionTerm>\n\n");
@@ -502,15 +502,12 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			if (ctx.Integer(0) != null)
 				result = " " + ctx.val.getText();
 			else {
-				if (ctx.val.getText().contains("\""))
-					result = " " + ctx.val.getText();
-				else
-					result = " \"" + ctx.val.getText() + "\"";
+				result = " " + ctx.val.getText();
 			}
 
 			if (ctx.operation() != null) {
 				enterOperation(ctx.operation());
-				result += wsag.getOperation();
+				result += " " + wsag.getOperation();
 			}
 			wsag.setAssigValue(result);
 		} else if (ctx.TRUE() != null) {
@@ -525,7 +522,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				result += ctx.Unit().getText();
 			if (ctx.operation() != null) {
 				enterOperation(ctx.operation());
-				result += wsag.getOperation();
+				result += " " + wsag.getOperation();
 			}
 			wsag.setAssigValue(result);
 		} else if (ctx.S_Float() != null) {
@@ -534,7 +531,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				result += ctx.Unit().getText();
 			if (ctx.operation() != null) {
 				enterOperation(ctx.operation());
-				result += wsag.getOperation();
+				result += " " + wsag.getOperation();
 			}
 			wsag.setAssigValue(result);
 		} else if (ctx.S_Integer() != null) {
@@ -543,7 +540,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				result += ctx.Unit().getText();
 			if (ctx.operation() != null) {
 				enterOperation(ctx.operation());
-				result += wsag.getOperation();
+				result += " " + wsag.getOperation();
 			}
 			wsag.setAssigValue(result);
 		} else if (ctx.list() != null) {
@@ -656,6 +653,14 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		super.enterRange(ctx);
 
 		wsag.setRange(new Range(ctx.min.getText(), ctx.max.getText()));
+	}
+	
+	@Override
+	public void enterOperation(OperationContext ctx) {
+		super.enterOperation(ctx);
+		
+		enterAssig_value(ctx.assig_value());
+		wsag.setOperation(ctx.Operador().getText() + wsag.getAssigValue());
 	}
 
 	@Override

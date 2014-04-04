@@ -72,6 +72,12 @@
 			<artifactId>ideas-core</artifactId>
 			<version>${ideas.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>es.us.isa.ideas.module.language</groupId>
+			<artifactId>iagree-commons</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 			
 		<dependency>
 			<groupId>es.us.isa</groupId>

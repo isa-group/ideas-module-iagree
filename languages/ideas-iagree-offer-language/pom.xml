@@ -73,7 +73,6 @@
 			<version>${ideas.version}</version>
 		</dependency>
 
-
 		<dependency>
 			<groupId>es.us.isa.ideas.module.language</groupId>
 			<artifactId>iagree-commons</artifactId>
