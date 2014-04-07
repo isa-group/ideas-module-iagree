@@ -14,7 +14,7 @@
 	<groupId>es.us.isa.ideas.module.language</groupId>
 	<artifactId>iagree-commons</artifactId>
 	<packaging>jar</packaging>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 
 	<name>ideas-common</name>
 

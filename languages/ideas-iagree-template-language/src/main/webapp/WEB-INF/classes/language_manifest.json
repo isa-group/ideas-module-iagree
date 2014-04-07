@@ -32,7 +32,7 @@
 				            	 data: {},
 				            	 _remoteExecution: "true",
 				            	 action: "function(result) {alert(result);}"
-				             }
+				             },
 				             {
 				            	 id: "inconsistenciesExplainingLong",
 				            	 name: "Inconsistency full explaining",
