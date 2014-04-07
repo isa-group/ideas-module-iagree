@@ -1,6 +1,6 @@
-		{
+{
 				id: "iagree-offer-language",
-				extension: "iagree.offer",
+				extension: "iagree-offer",
 				name: "iAgreeOffer",
 				formats: [
 				 	{
@@ -32,7 +32,7 @@
 				            	 data: {},
 				            	 _remoteExecution: "true",
 				            	 action: "function(result) {alert(result);}"
-				             }
+				             },
 				             {
 				            	 id: "inconsistenciesExplainingLong",
 				            	 name: "Inconsistency full explaining",
