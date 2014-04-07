@@ -1,94 +1,20 @@
 package es.us.isa.util;
 
-import java.io.File;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 
 import es.us.isa.error.IAgreeError;
 import es.us.isa.parser.iAgreeParser;
 
 public class Convert2IAgree {
-
-	private static List<IAgreeError> errors = new LinkedList<IAgreeError>();
-
-	public static String getIAgreeFromWSAG(String sample, String sample_metrics) {
-		String result = "";
-		try {
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
-					.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(new InputSource(new StringReader(
-					sample)));
-			doc.getDocumentElement().normalize();
-			Element root = doc.getDocumentElement();
-
-			Document doc_metrics = dBuilder.parse(new InputSource(
-					new StringReader(sample_metrics)));
-			doc_metrics.getDocumentElement().normalize();
-
-			if (root.getNodeName().equals("wsag:Template")) {
-				String name = doc.getElementsByTagName("wsag:Name").item(0)
-						.getTextContent();
-				String version = root.getAttribute("wsag:TemplateId");
-
-				result = Util
-						.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.TEMPLATE])
-						+ " "
-						+ name
-						+ " "
-						+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.VERSION])
-						+ " " + version;
-
-				result += "\n"
-						+ getContext(doc)
-						+ "\n\t"
-						+ getMetrics(doc_metrics)
-						+ "\n"
-						+ getAgreementTerms(doc)
-						+ "\n"
-						+ getCreationConstraints(doc)
-						+ "\n"
-						+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.END_TEMPLATE]);
-			} else if (root.getNodeName().equals("wsag:AgreementOffer")) {
-				String name = doc.getElementsByTagName("wsag:Name").item(0)
-						.getTextContent();
-				String version = root.getAttribute("wsag:AgreementId");
-
-				result = Util
-						.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.AG_OFFER])
-						+ " "
-						+ name
-						+ " "
-						+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.VERSION])
-						+ " " + version;
-
-				result += getContext(doc)
-						+ "\n\t"
-						+ getMetrics(doc_metrics)
-						+ "\n"
-						+ getAgreementTerms(doc)
-						+ "\n"
-						+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.END_AG_OFFER]);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return result;
-	}
 
 	public static String getContext(Document doc) {
 		String result = "";
@@ -160,7 +86,8 @@ public class Convert2IAgree {
 				} else if (nodeType.equals("enumerated")) {
 					NodeList values = node.getElementsByTagName("met:value");
 					Element value = (Element) values.item(0);
-					result += " {" + value.getAttribute("value");
+					if(value != null)
+						result += " {" + value.getAttribute("value");
 					for (int j = 1; j < values.getLength(); j++) {
 						value = (Element) values.item(j);
 						result += ", " + value.getAttribute("value");

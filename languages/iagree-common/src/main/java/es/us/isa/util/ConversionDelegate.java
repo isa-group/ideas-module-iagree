@@ -15,11 +15,9 @@ public class ConversionDelegate {
 		List<AppAnnotations> annotations = new ArrayList<AppAnnotations>();
 		String wsag = "";
 		if (currentFormat.equals("iagree") && desiredFormat.equals("wsag")) {
-			
-			System.out.println("aaaaaaaaaaasdafsada");
 
-			if (Convert2Wsag.hasErrors()) {
-				for (IAgreeError error : Convert2Wsag.getErrors()) {
+			if (Convert.hasErrors()) {
+				for (IAgreeError error : Convert.getErrors()) {
 					Integer lineNo = error.getLineNo();
 					Integer columnNo = error.getCharStart();
 
@@ -29,11 +27,9 @@ public class ConversionDelegate {
 					appAnnot.setText(error.getMessage());
 					appAnnot.setType(error.getSeverity().toString());
 					annotations.add(appAnnot);
-					
-					System.out.println("aaaaaaaaaa" + lineNo + " , " + columnNo);
 				}
 			} else {
-				wsag = Convert2Wsag.getWsagFromIAgree(content);
+				wsag = Convert.getWsagFromIAgree(content);
 			}
 
 			appResp.setData(wsag);
@@ -41,26 +37,11 @@ public class ConversionDelegate {
 			appResp.setAnnotations(annotations
 					.toArray(new AppAnnotations[annotations.size()]));
 		} else if (currentFormat.equals("wsag") && desiredFormat.equals("iagree")) {
-
-			/*
-			if (Convert2IAgree.hasErrors()) {
-				for (IAgreeError error : Convert2Wsag.getErrors()) {
-					Integer lineNo = error.getLineNo();
-					Integer columnNo = error.getCharStart();
-
-					AppAnnotations appAnnot = new AppAnnotations();
-					appAnnot.setRow(lineNo.toString());
-					appAnnot.setColumn(columnNo.toString());
-					appAnnot.setText(error.getMessage());
-					appAnnot.setType(error.getSeverity().toString());
-					annotations.add(appAnnot);
-				}
-			} else {
-				wsag = Convert2Wsag.getWsagFromIAgree(content);
-			}
-			*/
 			
-			wsag = Convert2Wsag.getWsagFromIAgree(content);
+			wsag = Convert.getIAgreeFromWsag(content);
+			
+			if(wsag.isEmpty())
+				wsag = "errorrororrorororororr";
 
 			appResp.setData(wsag);
 			appResp.setFileUri(fileUri);
@@ -70,5 +51,4 @@ public class ConversionDelegate {
 
 		return appResp;
 	}
-
 }

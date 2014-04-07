@@ -40,11 +40,11 @@ public class WsagObject {
 		this.metric = metric;
 	}
 
-	public String getName() {
+	public String getTemplateName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setTemplateName(String name) {
 		this.name = name;
 	}
 
@@ -70,14 +70,6 @@ public class WsagObject {
 
 	public void setAggTemplate(String aggTemplate) {
 		this.aggTemplate = aggTemplate;
-	}
-
-	public String getAggTemplateId() {
-		return aggTemplateId;
-	}
-
-	public void setAggTemplateId(String aggTemplateId) {
-		this.aggTemplateId = aggTemplateId;
 	}
 
 	public String getAggDef() {

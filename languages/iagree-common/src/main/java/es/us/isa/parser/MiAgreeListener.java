@@ -41,12 +41,16 @@ public class MiAgreeListener extends iAgreeBaseListener {
 
 	// Global vars:
 	public WsagObject wsag = null;
-	public String metricsTemplate;
+	public String metrics;
+	public long timeStamp;
 
 	@Override
 	public void enterEntry(EntryContext ctx) {
 		super.enterEntry(ctx);
+
 		wsag = new WsagObject();
+		timeStamp = Calendar.getInstance().getTimeInMillis();
+
 		if (ctx.template() != null) {
 			enterTemplate(ctx.template());
 			wsag.setResult("<?xml version=\"1.0\" encoding = \"UTF-8\"?>\n"
@@ -62,10 +66,9 @@ public class MiAgreeListener extends iAgreeBaseListener {
 	public void enterTemplate(TemplateContext ctx) {
 		super.enterTemplate(ctx);
 
-		wsag.setMetric(ctx.Identifier().getText() + "_"
-				+ Calendar.getInstance().getTimeInMillis());
+		wsag.setMetric(ctx.Identifier().getText() + "_" + timeStamp);
 
-		wsag.setName(ctx.Identifier().getText());
+		wsag.setTemplateName(ctx.Identifier().getText());
 
 		enterVersionNumber(ctx.versionNumber());
 
@@ -78,7 +81,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				+ " xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" \n"
 				+ " xsi:schemaLocation=\"http://schemas.ggf.org/graap/2007/03/wsagreement\" \n"
 				+ " agreement_types.xsd=\"http://www.w3.org/2001/XMLSchema XMLSchema.xsd\" >\n"
-				+ "	<wsag:Name >" + wsag.getName() + "</wsag:Name>\n"
+				+ "	<wsag:Name >" + wsag.getTemplateName() + "</wsag:Name>\n"
 				+ wsag.getTemplateDef() + "</wsag:Template>");
 	}
 
@@ -86,15 +89,13 @@ public class MiAgreeListener extends iAgreeBaseListener {
 	public void enterAgOffer(AgOfferContext ctx) {
 		super.enterAgOffer(ctx);
 
-		wsag.setMetric(ctx.Identifier(0).getText() + "_"
-				+ Calendar.getInstance().getTimeInMillis());
+		wsag.setMetric(ctx.Identifier(0).getText() + "_" + timeStamp);
 
 		enterVersionNumber(ctx.versionNumber(1));
 		wsag.setAggTemplate("\t\t<wsag:TemplateId>" + wsag.getVersionNumber()
 				+ "</wsag:TemplateId>\n");
 
-		wsag.setAggTemplateId("\t\t<wsag:TemplateName>"
-				+ ctx.Identifier(1).getText() + "</wsag:TemplateName>\n");
+		wsag.setTemplateName(ctx.Identifier(1).getText());
 
 		enterAg_def(ctx.ag_def());
 		enterVersionNumber(ctx.versionNumber(0));
@@ -121,7 +122,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		enterAgreementTerms(ctx.agreementTerms());
 
 		wsag.setAggDef("\t<wsag:Context >\n" + wsag.getAggTemplate()
-				+ wsag.getAggTemplateId() + wsag.getContext()
+				+ "\t\t<wsag:TemplateName>" + wsag.getTemplateName()
+				+ "</wsag:TemplateName>\n" + wsag.getContext()
 				+ "\n\t</wsag:Context >\n\n" + "\t<wsag:Terms wsag:Name=\""
 				+ wsag.getServiceName() + "\">\n\t\t<wsag:All >\n"
 				+ wsag.getAgreementTerms()
@@ -264,19 +266,19 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		} else if (ctx.serviceProvider_prop() != null) {
 			wsag.setContext(wsag.getContext()
 					+ "\t\t<wsag:ServiceProvider >"
-					+ Util.withoutDoubleQuotes(ctx.serviceProvider_prop().String()
-							.getText()) + "</wsag:ServiceProvider >\n");
+					+ Util.withoutDoubleQuotes(ctx.serviceProvider_prop()
+							.String().getText()) + "</wsag:ServiceProvider >\n");
 		} else if (ctx.expirationTime_prop() != null) {
 			wsag.setContext(wsag.getContext()
 					+ "\t\t<wsag:ExpirationTime >"
-					+ Util.withoutDoubleQuotes(ctx.expirationTime_prop().String()
-							.getText()) + "</wsag:ExpirationTime >\n");
+					+ Util.withoutDoubleQuotes(ctx.expirationTime_prop()
+							.String().getText()) + "</wsag:ExpirationTime >\n");
 		} else if (ctx.dateFormat_prop() != null) {
 			// TODO Definir temporalidad
-//			wsag.setContext(wsag.getContext()
-//					+ "\t\t<twsag4people:DateFormat >"
-//					+ Util.withoutQuotes(ctx.dateFormat_prop().String()
-//							.getText()) + "</twsag4people:DateFormat >\n");
+			// wsag.setContext(wsag.getContext()
+			// + "\t\t<twsag4people:DateFormat >"
+			// + Util.withoutQuotes(ctx.dateFormat_prop().String()
+			// .getText()) + "</twsag4people:DateFormat >\n");
 		} else if (ctx.gmtZone_prop() != null) {
 			if (ctx.gmtZone_prop().S_Integer() != null) {
 				wsag.setContext(wsag.getContext() + "\t\t<wsag:GMTZone >"
@@ -289,14 +291,14 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			}
 		} else if (ctx.globalPeriod_prop() != null) {
 			// TODO Definir temporalidad
-//			wsag.setContext(wsag.getContext()
-//					+ "\t\t<twsag4people:GlobalPeriod >" + ""
-//					+ "</twsag4people:GlobalPeriod >\n");
+			// wsag.setContext(wsag.getContext()
+			// + "\t\t<twsag4people:GlobalPeriod >" + ""
+			// + "</twsag4people:GlobalPeriod >\n");
 		} else if (ctx.definedPeriod_prop() != null) {
 			// TODO Definir temporalidad
-//			wsag.setContext(wsag.getContext()
-//					+ "\t\t<twsag4people:DefinedValidityPeriodSet >" + ""
-//					+ "</twsag4people:DefinedValidityPeriodSet >\n");
+			// wsag.setContext(wsag.getContext()
+			// + "\t\t<twsag4people:DefinedValidityPeriodSet >" + ""
+			// + "</twsag4people:DefinedValidityPeriodSet >\n");
 		}
 	}
 
@@ -552,7 +554,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 	@Override
 	public void enterKey_value_prop(Key_value_propContext ctx) {
 		super.enterKey_value_prop(ctx);
-		
+
 		String key = ctx.k.getText();
 
 		String value = "";
@@ -593,7 +595,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 
 		wsag.setType("");
 		wsag.setTypeArg("");
-		
+
 		if (ctx.v != null) {
 			wsag.setType(ctx.v.getText());
 			if (ctx.range() != null) {
@@ -654,11 +656,11 @@ public class MiAgreeListener extends iAgreeBaseListener {
 
 		wsag.setRange(new Range(ctx.min.getText(), ctx.max.getText()));
 	}
-	
+
 	@Override
 	public void enterOperation(OperationContext ctx) {
 		super.enterOperation(ctx);
-		
+
 		enterAssig_value(ctx.assig_value());
 		wsag.setOperation(ctx.Operador().getText() + wsag.getAssigValue());
 	}
@@ -671,19 +673,19 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				+ "		<met:value value=\"True\"/>\n"
 				+ "		<met:value value=\"False\"/>\n" + "\t</met:metric>\n";
 
-		for (Key_value_propContext kv : ctx.key_value_prop()) {			
+		for (Key_value_propContext kv : ctx.key_value_prop()) {
 			enterKey_value_prop(kv);
-			
+
 			String mId, mType;
 			String min = "0";
 			String max = "500";
-			
+
 			mId = wsag.getKeyValue().key;
 			mType = Util.convertMetricType(wsag.getKeyValue().type);
 
 			metrics_def += "\t<met:metric id=\"" + mId + "\" type=\"" + mType
 					+ "\" ";
-			
+
 			if (!wsag.getKeyValue().typeArg.isEmpty()) {
 				String[] aux = wsag.getKeyValue().typeArg.split(",");
 
@@ -719,7 +721,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			}
 		}
 
-		metricsTemplate = "<met:metricXML xmlns:met=\"http:/www.isa.us.es/ada/metrics\">\n"
+		metrics = "<met:metricXML xmlns:met=\"http:/www.isa.us.es/ada/metrics\">\n"
 				+ metrics_def + "</met:metricXML>\n";
 	}
 
@@ -727,7 +729,15 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		return wsag.getResult();
 	}
 
+	public String getTemplateName() {
+		return wsag.getTemplateName();
+	}
+
+	public long getTimeStamp() {
+		return timeStamp;
+	}
+
 	public String getMetrics() {
-		return metricsTemplate;
+		return metrics;
 	}
 }
