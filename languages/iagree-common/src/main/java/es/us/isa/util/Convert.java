@@ -35,7 +35,9 @@ public class Convert {
 
 	public static String getWsagFromIAgree(String content) {
 		// Get our lexer
+		System.out.println("conversion start");
 		iAgreeLexer lexer = new iAgreeLexer(new ANTLRInputStream(content));
+		System.out.println(lexer);
 
 		// Get a list of matched tokens
 		CommonTokenStream tokens = new CommonTokenStream(lexer);

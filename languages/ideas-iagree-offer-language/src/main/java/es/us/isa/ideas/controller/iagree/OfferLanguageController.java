@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.us.ideas.iagree.AnalizeDelegate;
 import es.us.isa.ideas.common.AppResponse;
+import es.us.isa.ideas.common.AppResponse.Status;
 import es.us.isa.ideas.module.controller.BaseLanguageController;
 import es.us.isa.util.ConversionDelegate;
 
@@ -26,7 +27,11 @@ public class OfferLanguageController extends BaseLanguageController {
 	@Override
 	public AppResponse checkLanguage(String id, String content, String fileUri) {
 		// TODO Auto-generated method stub
-		return null;
+		AppResponse appResponse = new AppResponse();
+		appResponse.setStatus(Status.OK_PROBLEMS);
+		appResponse.setMessage("Language Checked, method not implemented");
+		appResponse.setFileUri(fileUri);
+		return appResponse;
 		// AppResponse appResponse = new AppResponse();
 		// SEDL4PeopleUnmarshaller unmarshaller = new SEDL4PeopleUnmarshaller();
 		// Experiment experiment = unmarshaller.fromString(content);

@@ -23,5 +23,11 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Mike/.m2/repository/junit/junit/4.11/junit-4.11.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

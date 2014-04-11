@@ -12,7 +12,7 @@
 	</parent>
 
 	<groupId>es.us.isa.ideas.module.language</groupId>
-	<artifactId>iagree-commons</artifactId>
+	<artifactId>iagree-common</artifactId>
 	<packaging>jar</packaging>
 	<version>0.0.4-SNAPSHOT</version>
 
@@ -91,12 +91,6 @@
 			<version>3.1.1</version>
 		</dependency>
 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-		</dependency>
-
 
 		<!-- Mirar deuda tecnica <dependency> <groupId>es.us.isa</groupId> <artifactId>ada-core</artifactId> 
 			<version>0.5-SNAPSHOT</version> </dependency> <dependency> <groupId>es.us.isa</groupId> 
@@ -138,7 +132,7 @@
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<configuration>
-					<wtpversion>2.0</wtpversion>
+					<wtpversion>2.5</wtpversion>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -150,7 +144,33 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
+
+		<!-- <resources> -->
+		<!-- <resource> -->
+		<!-- <directory>src/main/resources</directory> -->
+		<!-- </resource> -->
+		<!-- <resource> -->
+		<!-- <directory>src/main/java</directory> -->
+		<!-- <includes> -->
+		<!-- <include>**/*.java</include> -->
+
+		<!-- </includes> -->
+		<!-- </resource> -->
+		<!-- </resources> -->
+
 	</build>
 
 </project>
