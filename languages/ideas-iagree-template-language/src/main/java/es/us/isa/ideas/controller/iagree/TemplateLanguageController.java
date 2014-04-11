@@ -1,16 +1,18 @@
 package es.us.isa.ideas.controller.iagree;
 
+import java.io.File;
+import java.io.InputStream;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import es.us.ideas.iagree.AnalizeDelegate;
+import es.us.isa.ideas.adaintegration.iagree.AnalizeDelegate;
 import es.us.isa.ideas.common.AppResponse;
 import es.us.isa.ideas.common.AppResponse.Status;
 import es.us.isa.ideas.module.controller.BaseLanguageController;
-import es.us.isa.util.ConversionDelegate;
+import es.us.isa.ideas.util.ConversionDelegate;
 
 
 @Controller
@@ -26,6 +28,10 @@ public class TemplateLanguageController extends BaseLanguageController {
 	@Override
 	public AppResponse executeOperation(String id, String content,
 			String fileUri, Map<String,String> data) {
+		
+		InputStream adaConfig;
+		adaConfig = this.getClass().getResourceAsStream(File.separator + "config" + File.separator + "ADAConfig.xml");
+		
 			String translatedDoc = convertFormat("iagree", "wsag", fileUri, content).getData();
 			AppResponse appResponse = AnalizeDelegate.analize(id, translatedDoc, null, false);
 			appResponse.setFileUri(fileUri);

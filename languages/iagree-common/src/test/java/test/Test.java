@@ -3,8 +3,8 @@ package test;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-import es.us.isa.util.Convert;
-import es.us.isa.util.Util;
+import es.us.isa.ideas.util.Convert;
+import es.us.isa.ideas.util.Util;
 
 public class Test {
 

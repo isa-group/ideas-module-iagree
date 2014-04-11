@@ -75,8 +75,8 @@
 
 		<dependency>
 			<groupId>es.us.isa.ideas.module.language</groupId>
-			<artifactId>iagree-commons</artifactId>
-			<version>0.0.3-SNAPSHOT</version>
+			<artifactId>iagree-common</artifactId>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
