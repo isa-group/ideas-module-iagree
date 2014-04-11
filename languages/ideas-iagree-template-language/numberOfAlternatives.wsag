@@ -1,0 +1,72 @@
+Template S3Premium version 1.0
+	Provider as Responder
+	
+
+	Metrics:
+		boolean: enum {True, False}
+		integer: integer [0..500]
+		id: integer
+		percent: float [0..100]
+		countries: set {US, west_US, EU_Irland, Pacific_Asia, Southamerica, GovCloud_US}
+		interfaceType: enum {SOAP, REST}
+		objectType: integer
+		protocol: set {HTTP, BitTorrent, HTTPS, FTP}
+		rightsType: set {read, write, delete, read_write, full}
+		money: float
+		size: float
+		supportType: enum {Bronze, Silver, Gold, Platinum}
+		
+
+AgreementTerms
+	Service AWS-S3PremiumSupport availableAt. http://aws.amazon.com/s3/
+		Features/Operations: put(Object,Private), post(Object,Private), get(ObjectId,DownloadProtocol),
+		delete(ObjectId), deleteRule(ObjectId,Rule), grant(ObjectId,Rights,UserId), copy, list
+		
+		GlobalDescription
+			ObjectSize: integer
+			Region: countries
+			Interface: interfaceType
+			SVN: boolean
+			RRS: boolean
+			TotalPrice: money
+			StoragePrice: money
+			DataTransferPrice: money
+			StorageSize: size
+			WriteRequests: integer
+			ReadRequests: integer
+			TransferredGB: size
+			Support: supportType
+			
+	MonitorableProperties
+		global:
+			Availability: percent
+			DataDurability: percent
+			ForumAccess: boolean
+			ReportAnIssue: boolean
+			WebTicketing: boolean 
+			WebSupport: boolean
+
+	GuaranteeTerms
+		G2: Provider guarantees DataDurability >= 99;
+			onlyIf (RRS="False");
+
+		G3: Provider guarantees DataDurability <= 98;
+			onlyIf (RRS="True");
+
+		G4: Provider guarantees ForumAccess = "True" AND ReportAnIssue = "True";
+
+		G5: Provider guarantees WebTicketing = "True" AND WebSupport = "True";
+			onlyIf (Support = "Bronze");
+
+		G6: one or more of
+			G6.1: Provider guarantees (WebTicketing = "True" AND WebSupport = "True") IMPLIES Support = "Bronze";
+					
+			G6.2: Provider guarantees (TurnAroundTime = 240) IMPLIES (Support = "Silver" AND WebTicketing = "True" AND WebSupport = "True");
+		end
+
+CreationConstraints
+	C1: Region belongs {US, west_US, EU_Irland, Pacific_Asia, Southamerica, GovCloud_US};
+
+	C3: TotalPrice = 0;
+		onlyIf (StorageSize <= 5 AND WriteRequests <=400 AND ReadRequests <= 400 AND TransferredGB <= 15);
+EndTemplate
