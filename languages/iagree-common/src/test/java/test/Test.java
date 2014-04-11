@@ -10,11 +10,11 @@ public class Test {
 
 	public static void main(String[] args) {
 
-//		String sample = Util.loadSample("samples/example.txt");
-//		convert2WSAG(sample);
+		String sample = Util.loadFile("samples/iagree/example.txt");
+		convert2WSAG(sample);
 		
-		String sample2 = Util.loadSample("samples/S3Premium.xml");
-		convert2IAgree(sample2);	
+//		String sample2 = Util.loadFile("samples/S3Premium.xml");
+//		convert2IAgree(sample2);	
 		
 //		System.out.println(ConversionDelegate.convert("wsag", "iagree", "1234", sample2).getData());
 		

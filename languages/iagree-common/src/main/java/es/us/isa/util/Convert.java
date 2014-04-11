@@ -1,10 +1,13 @@
 package es.us.isa.util;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.io.StringReader;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -25,6 +28,9 @@ import es.us.isa.parser.iAgreeParser.EntryContext;
 
 public class Convert {
 
+	public static Map<String, String> metricsMap = new HashMap<String, String>();
+	public static Stack<String> metricsStack = new SizedStack<String>(3);
+	
 	private static List<IAgreeError> errors = new LinkedList<IAgreeError>();
 
 	public static String getWsagFromIAgree(String content) {
@@ -58,20 +64,22 @@ public class Convert {
 		String title = listener.getTemplateName();
 		String metrics = listener.getMetrics();
 
-		PrintWriter writer, writerMetrics;
-		try {
-			writer = new PrintWriter("./samples/" + title + ".xml");
-			writer.println(res);
-			writer.close();
-
-			writerMetrics = new PrintWriter("./metrics/" + title + "_"
-					+ listener.getTimeStamp() + ".xml");
-			writerMetrics.println(metrics);
-			writerMetrics.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		String metricTitle = title + "_" + listener.getTimeStamp();
+		
+		if(metricsMap.size() < 100){
+			metricsStack.push(metricTitle);
+			metricsMap.put(metricTitle, metrics);
+		} else {
+			for(String key:metricsMap.keySet()){
+				if(!metricsStack.contains(key)){
+					metricsMap.remove(key);
+				}
+			}
 		}
-
+		
+		System.out.println("Stack : " + metricsStack.toString());
+		System.out.println("Map : " + metricsMap.toString());
+		
 		return res;
 	}
 
@@ -84,34 +92,23 @@ public class Convert {
 			Document doc = dBuilder.parse(new InputSource(new StringReader(
 					content)));
 			doc.getDocumentElement().normalize();
+
+			Pattern pattern = Pattern.compile("(\"metrics/)(\\w*)");
+			Matcher matcher = pattern.matcher(content);
+			matcher.find();
+
+			String metrics = metricsMap.get(matcher.group(2));
+
+			Document doc_metrics = dBuilder.parse(new InputSource(
+					new StringReader(metrics)));
+			doc_metrics.getDocumentElement().normalize();
+
 			Element root = doc.getDocumentElement();
 
 			if (root.getNodeName().equals("wsag:Template")) {
 
 				String name = doc.getElementsByTagName("wsag:Name").item(0)
 						.getTextContent();
-
-				String metrics = "";
-				Element offerItem = (Element) doc.getElementsByTagName(
-						"OfferItem").item(0);
-				if (offerItem != null) {
-					String aux = offerItem.getAttribute("wsag:Metric");
-					String title = aux.substring(0, aux.indexOf(':'));
-
-					metrics = Util.loadSample(title + ".xml");
-				} else {
-					Element variable = (Element) doc.getElementsByTagName(
-							"wsag:Variable").item(0);
-					if (variable != null) {
-						String aux = variable.getAttribute("wsag:Metric");
-						String title = aux.substring(0, aux.indexOf(':'));
-
-						metrics = Util.loadSample(title + ".xml");
-					}
-				}
-				Document doc_metrics = dBuilder.parse(new InputSource(
-						new StringReader(metrics)));
-				doc_metrics.getDocumentElement().normalize();
 
 				String version = root.getAttribute("wsag:TemplateId");
 
@@ -134,18 +131,9 @@ public class Convert {
 						+ "\n"
 						+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.END_TEMPLATE]);
 			} else if (root.getNodeName().equals("wsag:AgreementOffer")) {
+
 				String name = doc.getElementsByTagName("wsag:Name").item(0)
 						.getTextContent();
-				String templateName = doc
-						.getElementsByTagName("wsag:TemplateName").item(0)
-						.getTextContent();
-
-				String metrics = Util.loadSample("./metrics/" + templateName
-						+ "Metrics.xml");
-				Document doc_metrics = dBuilder.parse(new InputSource(
-						new StringReader(metrics)));
-				doc_metrics.getDocumentElement().normalize();
-
 				String version = root.getAttribute("wsag:AgreementId");
 
 				result = Util

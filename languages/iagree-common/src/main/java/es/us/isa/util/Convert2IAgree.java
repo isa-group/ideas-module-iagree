@@ -2,7 +2,6 @@ package es.us.isa.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +10,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import es.us.isa.error.IAgreeError;
 import es.us.isa.parser.iAgreeParser;
 
 public class Convert2IAgree {

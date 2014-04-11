@@ -71,7 +71,7 @@ public class Util {
 		return newType;
 	}
 
-	public static String loadSample(String filePath) {
+	public static String loadFile(String filePath) {
 		// Location of file to read
 		File f = new File(filePath);
 		FileInputStream is;
