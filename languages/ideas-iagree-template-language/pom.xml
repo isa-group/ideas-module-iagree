@@ -74,9 +74,9 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>es.us.isa</groupId>
-			<artifactId>ada.test</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>es.us.isa.ideas.module.language</groupId>
+			<artifactId>iagree-commons</artifactId>
+			<version>0.0.3-SNAPSHOT</version>
 		</dependency>
 			
 		<dependency>
@@ -96,6 +96,7 @@
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
 		</dependency>
+		
 		
 	</dependencies>
 	
