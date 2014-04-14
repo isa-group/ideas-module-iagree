@@ -30,13 +30,13 @@ import org.w3c.dom.Element;
 
 public class WebServiceInformation {
 	
-//	<WebServiceInformation name>               // Información del servicio
+//	<WebServiceInformation name>               // Informaci-n del servicio
 //	  <description>...</description>
 //	  <domain>...</domain>
 //	  <wsdlURL>...</wsdlURL>
 //	  <endpoint>...</endpoint>
 //	  <operation opName>  // Permitimos n operations
-//	           <soapAction>…</soapAction>
+//	           <soapAction>-</soapAction>
 //	  </operation>
 //	</WebServiceInformation>
 	
@@ -125,12 +125,12 @@ public class WebServiceInformation {
 			wsdlURLElement.setTextContent(wsdlURL);
 			endpointElement.setTextContent(endpoint);
 			
-			//añadimos los nodos de "WebServiceInformation"
+			//a-adimos los nodos de "WebServiceInformation"
 			root.appendChild(descriptionElement);
 			root.appendChild(domainElement);
 			root.appendChild(wsdlURLElement);
 			root.appendChild(endpointElement);
-			//por cada operación añadimos un nodo
+			//por cada operaci-n a-adimos un nodo
 			for(Entry<String, String> e: this.operations.entrySet()){
 				root.appendChild(getOperation(doc, e.getKey(), e.getValue()));
 			}

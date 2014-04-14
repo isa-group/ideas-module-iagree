@@ -376,7 +376,7 @@ public class ChocoTranslator implements IChocoTranslator {
 				p.setVariables(chocoVars);
 			}
 
-			// Sólo añadimos las restricciones de los OfferItems si el documento
+			// S-lo a-adimos las restricciones de los OfferItems si el documento
 			// es una oferta. En las plantillas, los valores que aparecen en los
 			// OfferItems se consideran valores 'por defecto' o 'de ejemplo' por
 			// lo que no deben ser tenidos en cuenta a la hora de analizar.
@@ -393,7 +393,7 @@ public class ChocoTranslator implements IChocoTranslator {
 							chocoConstraints.put(oi, c);
 						} catch (UnknownVariableException e) {
 							// no puede darse esta excepcion
-							// la vble se ha añadido en addVar
+							// la vble se ha a-adido en addVar
 						}
 					}
 				}

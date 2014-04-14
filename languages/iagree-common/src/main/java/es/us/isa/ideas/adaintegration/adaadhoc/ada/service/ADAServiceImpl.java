@@ -385,7 +385,7 @@ public class ADAServiceImpl implements ADAServiceV2 {
 			throw new BadSyntaxException();
 		}
 
-		// Descomentar esto para probarlo una vez se ponga el código definitivo
+		// Descomentar esto para probarlo una vez se ponga el c-digo definitivo
 		return res.getBytes();
 		// return null;
 	}

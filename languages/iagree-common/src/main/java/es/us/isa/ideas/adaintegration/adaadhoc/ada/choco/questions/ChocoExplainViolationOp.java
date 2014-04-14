@@ -81,7 +81,7 @@ public class ChocoExplainViolationOp extends ChocoQuickxplainNoComplianceOp impl
 					//Obtenemos el MMD con el GeneralResponseTime
 					this.mmd = getMMDConGeneralResponseTime(mmd);
 					
-					//Aquí no hace falta preprocesar el MMD porque ya se hace
+					//Aqu- no hace falta preprocesar el MMD porque ya se hace
 					//en checkAgreementFulfilment, que vamos a llamarla ahora
 					
 					//comprobar si hay problemas
@@ -94,7 +94,7 @@ public class ChocoExplainViolationOp extends ChocoQuickxplainNoComplianceOp impl
 					
 					if (!fulfilled){
 //						//Ahora si preprocesamos despues de haber llamado
-//						//a agreementFulfilment, para así tener también aquí
+//						//a agreementFulfilment, para as- tener tambi-n aqu-
 //						//el MMD preprocesado
 //						this.mmd = preprocesarMMD(mmd);
 						//y si los hay, explanations que te crio
@@ -104,7 +104,7 @@ public class ChocoExplainViolationOp extends ChocoQuickxplainNoComplianceOp impl
 						
 						Map<ServiceScope, AgreementState> agStates = new HashMap<ServiceScope, AgreementState>();
 						
-						//Cargamos los OperationMetric primero para luego añadir a cada Scope
+						//Cargamos los OperationMetric primero para luego a-adir a cada Scope
 						//las medidas de los ServiceMetric
 						Collection<OperationMetric> operationMetrics = mmd.getOperationMetrics();
 						for(OperationMetric om:operationMetrics){
@@ -114,11 +114,11 @@ public class ChocoExplainViolationOp extends ChocoQuickxplainNoComplianceOp impl
 								String varName = om.getMetric();
 								String value = m.getValue();
 								//Si el scope ya existe, sacamos el estado y le
-								//añadimos la variable y el valor
+								//a-adimos la variable y el valor
 								if(agStates.keySet().contains(scope)){
 									AgreementState agState = agStates.get(scope);
 									agState.putVariableValue(varName, value);
-								}else{//Sino existe, lo añadimos a un state nuevo
+								}else{//Sino existe, lo a-adimos a un state nuevo
 									AgreementState agState = new AgreementStateImpl();
 									agState.putVariableValue(varName, value);
 									agStates.put(scope, agState);
@@ -132,8 +132,8 @@ public class ChocoExplainViolationOp extends ChocoQuickxplainNoComplianceOp impl
 							for(Measure m:sm.getMeasures()){
 								String varName = sm.getMetric();
 								String value = m.getValue();
-								//Los serviceMetric tienen que ir en cada Scope, así que
-								//recorremos los scopes y vamos añadiendo la medida del 
+								//Los serviceMetric tienen que ir en cada Scope, as- que
+								//recorremos los scopes y vamos a-adiendo la medida del 
 								//serviceMetric en el state que corresponde al scope
 								for(ServiceScope ss:agStates.keySet()){
 									AgreementState st = agStates.get(ss);
@@ -150,11 +150,11 @@ public class ChocoExplainViolationOp extends ChocoQuickxplainNoComplianceOp impl
 							for (ServiceScope ss:scopes){
 								AbstractDocument view = views.get(ss);
 								if(view == null){
-									//El scope que buscábamos es el scope por defecto, el
+									//El scope que busc-bamos es el scope por defecto, el
 									//que engloba a las variables sin scope
 									//En este caso, asignamos como doc al alternative, que
 									//contiene todas las variables que haya en el state
-									//y las que no estén en el state se borrarán luego
+									//y las que no est-n en el state se borrar-n luego
 									view = alt;
 								}
 								AgreementState st = agStates.get(ss);
@@ -172,8 +172,8 @@ public class ChocoExplainViolationOp extends ChocoQuickxplainNoComplianceOp impl
 								Map<AgreementElement, Constraint> agreementConstraints = trans.getChocoConstraints();
 								
 								//Como en el documento de esta vista puede haber constraints
-								//que se refieran a variables que no estén en este state,
-								//tenemos que borrarlas también
+								//que se refieran a variables que no est-n en este state,
+								//tenemos que borrarlas tambi-n
 								Collection<Constraint> col = agreementConstraints.values();
 								Collection<Constraint> constToBeDeleted = new LinkedList<Constraint>();
 
@@ -198,7 +198,7 @@ public class ChocoExplainViolationOp extends ChocoQuickxplainNoComplianceOp impl
 								Collection<Variable> usedVars = extractUsedVars(chocoVars.values(),agreementConstraints);
 								//XXX con esto tenemos los elementos que fallan en la oferta
 								//aun nos faltarian los que fallan en la plantilla
-								//1ª opcion
+								//1- opcion
 								Map<AgreementError,Explanation> res = quickxplain(usedVars, states, agreementConstraints);
 								if (level == ExplainAgreementViolation.REFINE_ALL){
 									res = refineAgreementErrors(res, states, agreementConstraints);
@@ -213,8 +213,8 @@ public class ChocoExplainViolationOp extends ChocoQuickxplainNoComplianceOp impl
 									}
 								}
 								//Antes de meter los resultados, a cada agreementError
-								//lo añadimos delante el nombre de su Scope
-								//así se facilita la identificación del error
+								//lo a-adimos delante el nombre de su Scope
+								//as- se facilita la identificaci-n del error
 								//en el acuerdo
 								for(AgreementError ae:res.keySet()){
 									for(AgreementElement aElem:ae.getElements()){
@@ -254,7 +254,7 @@ public class ChocoExplainViolationOp extends ChocoQuickxplainNoComplianceOp impl
 //									Collection<Variable> usedVars = extractUsedVars(chocoVars.values(),agreementConstraints);
 //									//XXX con esto tenemos los elementos que fallan en la oferta
 //									//aun nos faltarian los que fallan en la plantilla
-//									//1ª opcion
+//									//1- opcion
 //									Map<AgreementError,Explanation> res = quickxplain(usedVars, states, agreementConstraints);
 //									if (level == ExplainAgreementViolation.REFINE_ALL){
 //										res = refineAgreementErrors(res, states, agreementConstraints);
@@ -330,32 +330,32 @@ public class ChocoExplainViolationOp extends ChocoQuickxplainNoComplianceOp impl
 	
 	/*
 	 * Calcula la media entre todos los averageResponseTime,
-	 * si los hay, de todas las operaciones para añadir
+	 * si los hay, de todas las operaciones para a-adir
 	 * GeneralResponseTime al MMD como ServiceMetric
-	 * return el MMD con un ServiceMetric más, el GeneralResponseTime
+	 * return el MMD con un ServiceMetric m-s, el GeneralResponseTime
 	 */
 	private MonitoringManagementDocument getMMDConGeneralResponseTime(MonitoringManagementDocument mmd){
-		//Aquí guardaremos los primeros AverageResponseTime
-		//de cada operación para luego hacer la media
+		//Aqu- guardaremos los primeros AverageResponseTime
+		//de cada operaci-n para luego hacer la media
 		Collection<Integer> averageResponseTimeFirstMeasures = new LinkedList<Integer>();
 		//Recorremos los OperationMetric para sacar los AverageResponseTime
-		//y añadirlos a la colección averageResponseTimeFirstMeasures
+		//y a-adirlos a la colecci-n averageResponseTimeFirstMeasures
 		for(OperationMetric om:mmd.getOperationMetrics()){
 			if(om.getMetric().equalsIgnoreCase("AverageResponseTime")){
 				//Solo cogemos el primer AverageResponseTime que
-				//corresponde al último medido
+				//corresponde al -ltimo medido
 				if(!om.getMeasures().isEmpty()){
 					Measure firstMeasure = om.getMeasures().get(0);
 					averageResponseTimeFirstMeasures.add(Integer.parseInt(firstMeasure.getValue().trim()));
 				}
 			}
 		}
-		//Si había algún AverageResponseTime, hacemos la media
+		//Si hab-a alg-n AverageResponseTime, hacemos la media
 		if(averageResponseTimeFirstMeasures.size() > 0){
 			//Sacamos la media los primeros AverageResponseTime
-			//de cada operación
+			//de cada operaci-n
 			Integer media = mediaAritmetica(averageResponseTimeFirstMeasures);
-			//Buscamos el ServiceMetric de GeneralResponseTime y añadimos la medida
+			//Buscamos el ServiceMetric de GeneralResponseTime y a-adimos la medida
 			for(ServiceMetric sm:mmd.getServiceMetrics()){
 				if(sm.getMetric().equalsIgnoreCase("GeneralResponseTime")){
 					Measure generalResponseTimeMeasure = new Measure();
@@ -364,7 +364,7 @@ public class ChocoExplainViolationOp extends ChocoQuickxplainNoComplianceOp impl
 				}
 			}
 		}else{
-			//Si no había, devolvemos el MMD tal como estaba
+			//Si no hab-a, devolvemos el MMD tal como estaba
 		}
 		return mmd;
 	}

@@ -106,14 +106,14 @@ public class ChocoAgreementFulfilmentOp extends ChocoOperation
 				//Sacamos del MMD las medidas del ServiceMetric y OperationMetric
 				//y creamos los AgreementState
 				
-				//El ServiceScope será la operación(new GeneralServiceScope() para los serviceMetric)
+				//El ServiceScope ser- la operaci-n(new GeneralServiceScope() para los serviceMetric)
 				Map<ServiceScope, AgreementState> states = new HashMap<ServiceScope, AgreementState>();
 				
 				//Tenemos que llevar un control de las variables que han sido monitorizadas
-				//para así poder quitar las constraints del acuerdo que tengan variables no monitorizadas
+				//para as- poder quitar las constraints del acuerdo que tengan variables no monitorizadas
 				Collection<String> monitorisedVars = new LinkedList<String>();
 				
-				//Cargamos los OperationMetric primero para luego añadir a cada Scope
+				//Cargamos los OperationMetric primero para luego a-adir a cada Scope
 				//las medidas de los ServiceMetric
 				Collection<OperationMetric> operationMetrics = mmd.getOperationMetrics();
 				for(OperationMetric om:operationMetrics){
@@ -126,11 +126,11 @@ public class ChocoAgreementFulfilmentOp extends ChocoOperation
 						scope.setContent(om.getOpName());
 						String value = m.getValue();
 						//Si el scope ya existe, sacamos el estado y le
-						//añadimos la variable y el valor
+						//a-adimos la variable y el valor
 						if(states.keySet().contains(scope)){
 							AgreementState agState = states.get(scope);
 							agState.putVariableValue(varName, value);
-						}else{//Sino existe, lo añadimos a un state nuevo
+						}else{//Sino existe, lo a-adimos a un state nuevo
 							AgreementState agState = new AgreementStateImpl();
 							agState.putVariableValue(varName, value);
 							states.put(scope, agState);
@@ -147,8 +147,8 @@ public class ChocoAgreementFulfilmentOp extends ChocoOperation
 							monitorisedVars.add(varName);
 						}
 						String value = m.getValue();
-						//Los serviceMetric tienen que ir en cada Scope, así que
-						//recorremos los scopes y vamos añadiendo la medida del 
+						//Los serviceMetric tienen que ir en cada Scope, as- que
+						//recorremos los scopes y vamos a-adiendo la medida del 
 						//serviceMetric en el state que corresponde al scope
 						for(ServiceScope ss:states.keySet()){
 							AgreementState st = states.get(ss);
@@ -167,11 +167,11 @@ public class ChocoAgreementFulfilmentOp extends ChocoOperation
 						ServiceScope ss = e.getKey();
 						AbstractDocument doc = views.get(ss);
 						if(doc == null){
-							//El scope que buscábamos es el scope por defecto, el
+							//El scope que busc-bamos es el scope por defecto, el
 							//que engloba a las variables sin scope
 							//En este caso, asignamos como doc al alternative, que
 							//contiene todas las variables que haya en el state
-							//y las que no estén en el state se borrarán luego
+							//y las que no est-n en el state se borrar-n luego
 							doc = alt;
 						}
 						AgreementState specificState = e.getValue();
@@ -194,7 +194,7 @@ public class ChocoAgreementFulfilmentOp extends ChocoOperation
 							Collection<Constraint> constToBeDeleted = new LinkedList<Constraint>();
 							for(Constraint auxCons:col){
 								for(Variable v:auxCons.extractVariables()){
-									//habrá que borrar las constraint que tengan alguna
+									//habr- que borrar las constraint que tengan alguna
 									//variable sin monitorizar, siempre que no sean una constante
 									String varName = v.toString().substring(0, v.toString().indexOf(" "));
 									if(!monitorisedVars.contains(varName) && !varName.equalsIgnoreCase("cst")){
@@ -205,14 +205,14 @@ public class ChocoAgreementFulfilmentOp extends ChocoOperation
 								}
 							}
 							//Para poder analizar borramos las constraints en las que alguna
-							//de sus variables no esté en el estado, ya que no tendrían valor
+							//de sus variables no est- en el estado, ya que no tendr-an valor
 							Collection<String> stateVars = specificState.getVariablesAsString();
 							for(Constraint auxCons:col){
 								Boolean deleteThisConstraint = false;
 								for(Variable v:auxCons.extractVariables()){
 									String varName = v.toString().substring(0, v.toString().indexOf(" "));
 									//Si alguna de las variables (distinta de cst, que son 
-									//las constantes) no está en el state, borramos esta constraint
+									//las constantes) no est- en el state, borramos esta constraint
 									if(!varName.equalsIgnoreCase("cst") && !stateVars.contains(varName)){
 										deleteThisConstraint = true;
 									}
@@ -333,32 +333,32 @@ public class ChocoAgreementFulfilmentOp extends ChocoOperation
 	
 	/*
 	 * Calcula la media entre todos los averageResponseTime,
-	 * si los hay, de todas las operaciones para añadir
+	 * si los hay, de todas las operaciones para a-adir
 	 * GeneralResponseTime al MMD como ServiceMetric
-	 * return el MMD con un ServiceMetric más, el GeneralResponseTime
+	 * return el MMD con un ServiceMetric m-s, el GeneralResponseTime
 	 */
 	private MonitoringManagementDocument getMMDConGeneralResponseTime(MonitoringManagementDocument mmd){
-		//Aquí guardaremos los primeros AverageResponseTime
-		//de cada operación para luego hacer la media
+		//Aqu- guardaremos los primeros AverageResponseTime
+		//de cada operaci-n para luego hacer la media
 		Collection<Integer> averageResponseTimeFirstMeasures = new LinkedList<Integer>();
 		//Recorremos los OperationMetric para sacar los AverageResponseTime
-		//y añadirlos a la colección averageResponseTimeFirstMeasures
+		//y a-adirlos a la colecci-n averageResponseTimeFirstMeasures
 		for(OperationMetric om:mmd.getOperationMetrics()){
 			if(om.getMetric().equalsIgnoreCase("AverageResponseTime")){
 				//Solo cogemos el primer AverageResponseTime que
-				//corresponde al último medido
+				//corresponde al -ltimo medido
 				if(!om.getMeasures().isEmpty()){
 					Measure firstMeasure = om.getMeasures().get(0);
 					averageResponseTimeFirstMeasures.add(Integer.parseInt(firstMeasure.getValue().trim()));
 				}
 			}
 		}
-		//Si había algún AverageResponseTime, hacemos la media
+		//Si hab-a alg-n AverageResponseTime, hacemos la media
 		if(averageResponseTimeFirstMeasures.size() > 0){
 			//Sacamos la media los primeros AverageResponseTime
-			//de cada operación
+			//de cada operaci-n
 			Integer media = mediaAritmetica(averageResponseTimeFirstMeasures);
-			//Buscamos el ServiceMetric de GeneralResponseTime y añadimos la medida
+			//Buscamos el ServiceMetric de GeneralResponseTime y a-adimos la medida
 			for(ServiceMetric sm:mmd.getServiceMetrics()){
 				if(sm.getMetric().equalsIgnoreCase("GeneralResponseTime")){
 					Measure generalResponseTimeMeasure = new Measure();
@@ -367,7 +367,7 @@ public class ChocoAgreementFulfilmentOp extends ChocoOperation
 				}
 			}
 		}else{
-			//Si no había, devolvemos el MMD tal como estaba
+			//Si no hab-a, devolvemos el MMD tal como estaba
 		}
 		return mmd;
 	}

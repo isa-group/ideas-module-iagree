@@ -25,7 +25,7 @@ import es.us.isa.ideas.adaintegration.adaadhoc.ada.document.AgreementElement;
 public class TermConstraintPairs {
 	
 	/*
-	 * ¿por que par de colecciones en lugar de coleccion de pares?
+	 * -por que par de colecciones en lugar de coleccion de pares?
 	 * 
 	 * asi sera mas eficiente el recorrido. ademas, una vez tengamos
 	 * descompuestos los documentos en estos pares para las explanations,

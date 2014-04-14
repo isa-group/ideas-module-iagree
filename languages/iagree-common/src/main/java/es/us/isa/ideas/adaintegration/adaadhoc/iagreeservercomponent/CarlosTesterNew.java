@@ -126,7 +126,7 @@ public class CarlosTesterNew {
 				if (ada.isLessRestrictiveOffer(wsagBytesTemplate, wsagBytesOffer)){
 					System.out.println("OK, La oferta es menos restrictiva que la plantilla");
 					if (ada.isMoreRestrictiveTemplateTermsThanCC(wsagBytesTemplate)){
-						System.out.println("OK, Los t�rminos de la plantilla son m�s restrictivos que las CCs de la plantilla");
+						System.out.println("OK, Los t-rminos de la plantilla son m-s restrictivos que las CCs de la plantilla");
 						compliance = true;
 					}
 				}
@@ -137,10 +137,10 @@ public class CarlosTesterNew {
 		} else System.out.println("NO, Plantilla y oferta NO son compliant");
 		if (ada.isLessRestrictiveOffer(wsagBytesTemplate, wsagBytesOffer)){
 			System.out.println("OK, La oferta es menos o igual de restrictiva que la plantilla");
-		} else System.out.println("NO, La oferta es M�S restrictiva que la plantilla");
+		} else System.out.println("NO, La oferta es M-S restrictiva que la plantilla");
 		if (ada.isMoreRestrictiveTemplateTermsThanCC(wsagBytesTemplate)){
-			System.out.println("OK, Los t�rminos de la plantilla son m�s o igual de restrictivos que las CCs de la plantilla");
-		} else System.out.println("NO, Los t�rminos de la plantilla son MENOS restrictivos que las CCs de la plantilla");
+			System.out.println("OK, Los t-rminos de la plantilla son m-s o igual de restrictivos que las CCs de la plantilla");
+		} else System.out.println("NO, Los t-rminos de la plantilla son MENOS restrictivos que las CCs de la plantilla");
 				
 			
 			

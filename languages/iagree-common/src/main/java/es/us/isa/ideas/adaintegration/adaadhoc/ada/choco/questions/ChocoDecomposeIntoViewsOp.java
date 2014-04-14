@@ -67,7 +67,7 @@ public class ChocoDecomposeIntoViewsOp extends ChocoOperation implements
 			//a su operacion (ServiceScope). tenemos que extraer las variables
 			//de los slo's
 			Map<ServiceScope,Set<Variable>> scopes2vars = new HashMap<ServiceScope, Set<Variable>>();
-			//1º creamos los distintos documentos
+			//1- creamos los distintos documentos
 			globalVars = new HashSet<Variable>();
 			
 			Class clazz = document.getClass();
@@ -167,7 +167,7 @@ public class ChocoDecomposeIntoViewsOp extends ChocoOperation implements
 					ssProps.setVariableSet(ssVars);
 					tc.add(ssProps);
 				}
-				//añadimos una vista para las variables sin scope
+				//a-adimos una vista para las variables sin scope
 //				ServiceScope defaultServiceScope = new ServiceScope();
 //				AbstractDocument absDoc = views.get(defaultServiceScope);
 //				AbstractAgreementDocument absAgDoc = null;
@@ -189,11 +189,11 @@ public class ChocoDecomposeIntoViewsOp extends ChocoOperation implements
 //				//le metemos el GT
 //				compositor.addComprisedTerm(gt);
 //				views.put(defaultServiceScope, absAgDoc);
-//				//Añadimos una vista para las variables sin scope
+//				//A-adimos una vista para las variables sin scope
 //				views.put(new ServiceScope(), document);
 			}
 			else{
-				//si el tamaño es 0, es que no hay service scope en ningun sitio
+				//si el tama-o es 0, es que no hay service scope en ningun sitio
 				//lo metemos como un service scope sin nombre, y ya esta
 				views.put(new ServiceScope(), document);
 			}
@@ -202,7 +202,7 @@ public class ChocoDecomposeIntoViewsOp extends ChocoOperation implements
 			
 			if (document instanceof Template){
 				//XXX y que hacemos con los items y las CreationConstraints??
-				//en principio, voy a añadirlas a lo burro
+				//en principio, voy a a-adirlas a lo burro
 				Set<Entry<ServiceScope,AbstractDocument>> entries = views.entrySet();
 				for (Entry<ServiceScope,AbstractDocument> e:entries){
 					Template aux = (Template) e.getValue();

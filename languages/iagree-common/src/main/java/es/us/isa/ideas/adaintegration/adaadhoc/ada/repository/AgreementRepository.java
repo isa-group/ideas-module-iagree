@@ -31,7 +31,7 @@ public interface AgreementRepository {
 //	 * Stores an agreement in the repository as public
 //	 * @param agreementName Name asigned to the agreement
 //	 * @param agreementContent Text content of the agreement
-//	 * @return the agreement id. Returns 0 if it doesn´t insert the agreement 
+//	 * @return the agreement id. Returns 0 if it doesn-t insert the agreement 
 //	 */
 //	public int storeAgreement(String agreementName, String agreementContent) throws SQLException;
 	
@@ -40,7 +40,7 @@ public interface AgreementRepository {
 	 * @param agreementName Name asigned to the agreement
 	 * @param agreementContent Text content of the agreement
 	 * @param session An opened session
-	 * @return the agreement id. Returns 0 if it doesn´t insert the agreement 
+	 * @return the agreement id. Returns 0 if it doesn-t insert the agreement 
 	 */
 	public int storeAgreement(String agreementName, String agreementContent, String session) throws SQLException;
 	
@@ -87,14 +87,14 @@ public interface AgreementRepository {
 	/**
 	 * 
 	 * @param session An opened session 
-	 * @return All private agreements stored in the repository that belongs to the user that has opened the session. Key is the agreement id and value is an agreement. Returns empty Map if the session hasn´t been opened
+	 * @return All private agreements stored in the repository that belongs to the user that has opened the session. Key is the agreement id and value is an agreement. Returns empty Map if the session hasn-t been opened
 	 */
 	public Map<Integer, DocumentProxy> getAgreementsByUser(String session) throws SQLException;
 	
 	/**
 	 * 
 	 * @param docId Agreement identifier
-	 * @return An agreement. Returns null if the agreement doesn´t exist
+	 * @return An agreement. Returns null if the agreement doesn-t exist
 	 * @throws SQLException
 	 */
 	public DocumentProxy getAgreementById(int docId) throws SQLException;

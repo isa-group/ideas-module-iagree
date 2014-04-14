@@ -30,7 +30,7 @@ public interface UsersManager {
 	 * @param password Password of the user. It must be at least 6 characters long
 	 * @return The id of created user, 0 if the user cannot be created
 	 */
-	public int addUser(String name, String password, String company, String email); //TODO ¿Que más información queremos añadir?
+	public int addUser(String name, String password, String company, String email); //TODO -Que m-s informaci-n queremos a-adir?
 	
 	/**
 	 * 
@@ -48,12 +48,12 @@ public interface UsersManager {
 	 * @param session Opened session for user represented by id
 	 * @return True if the user information was successfully updated; false otherwise.
 	 */
-	public boolean updateUser(int id, String name, String password, String company, String email, String session); //TODO ¿Que más información habrá?
+	public boolean updateUser(int id, String name, String password, String company, String email, String session); //TODO -Que m-s informaci-n habr-?
 	
 	/**
 	 * 
 	 * @param name Name of the user to be returned
-	 * @return The id of the requested user. It will return 0 if the user doesn´t exist.
+	 * @return The id of the requested user. It will return 0 if the user doesn-t exist.
 	 */
 	public int getUserIdByName(String name);
 }

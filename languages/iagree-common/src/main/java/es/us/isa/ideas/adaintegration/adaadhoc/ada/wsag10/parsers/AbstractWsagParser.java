@@ -244,7 +244,7 @@ public abstract class AbstractWsagParser implements IDocumentParser {
 				}
 			}
 			// Las CreationConstraint son obligatorias para una plantilla,
-			// si no se han parseado lanzamos excepción
+			// si no se han parseado lanzamos excepci-n
 			if(agDoc.getCc() == null){
 				throw new BadSyntaxException("CreationConstraint not found. Please add a CreationConstraint element to your document");
 			}
@@ -370,7 +370,7 @@ public abstract class AbstractWsagParser implements IDocumentParser {
 					}
 				}
 			}
-			// ahora sí, parseamos todo el contexto
+			// ahora s-, parseamos todo el contexto
 			for (int j = 0; j < childNodesContext.getLength(); j++) {
 				Node nextNodeContext = childNodesContext.item(j);
 				if (nextNodeContext.getNodeType() == Node.ELEMENT_NODE) {
@@ -442,14 +442,14 @@ public abstract class AbstractWsagParser implements IDocumentParser {
 						agDoc.setHasTemporality(true);
 					}else if(nextNodeContext.getNodeName().equalsIgnoreCase(TA_NAMESPACE+"DefinedValidityPeriodSet")){
 						if(context.getGmtZone() == null || context.getDateFormat() == null){
-							System.err.println("Estamos parseando términos antes de parsear DateFormat y GMTZone");
+							System.err.println("Estamos parseando t-rminos antes de parsear DateFormat y GMTZone");
 						}
 						Map<String, RealTemporalInterval> periods = selectedTimeAwareParser.parseDefinedValidityPeriodSet(nextNodeContext);
 						context.setPeriods(periods);
 					}
 				}
 			}
-			// como supusimos al principio que el contexto tenía temporalidad,
+			// como supusimos al principio que el contexto ten-a temporalidad,
 			// en caso de que finalmente no tenga hacemos el casting a Context
 			if(agDoc.getHasTemporality()){
 				agDoc.setContext(context);
@@ -491,7 +491,7 @@ public abstract class AbstractWsagParser implements IDocumentParser {
 					}
 				}
 			}
-			// ahora sí, parseamos todo el contexto
+			// ahora s-, parseamos todo el contexto
 			for (int j = 0; j < childNodesContext.getLength(); j++) {
 				Node nextNodeContext = childNodesContext.item(j);
 				if (nextNodeContext.getNodeType() == Node.ELEMENT_NODE) {
@@ -558,14 +558,14 @@ public abstract class AbstractWsagParser implements IDocumentParser {
 						agDoc.setHasTemporality(true);
 					}else if(nextNodeContext.getNodeName().equalsIgnoreCase(TA_NAMESPACE+"DefinedValidityPeriodSet")){
 						if(context.getGmtZone() == null || context.getDateFormat() == null){
-							System.err.println("Estamos parseando términos antes de parsear DateFormat y GMTZone");
+							System.err.println("Estamos parseando t-rminos antes de parsear DateFormat y GMTZone");
 						}
 						Map<String, RealTemporalInterval> periods = selectedTimeAwareParser.parseDefinedValidityPeriodSet(nextNodeContext);
 						context.setPeriods(periods);
 					}
 				}
 			}
-			// como supusimos al principio que el contexto tenía temporalidad,
+			// como supusimos al principio que el contexto ten-a temporalidad,
 			// en caso de que finalmente no tenga hacemos el casting a Context
 			if(agDoc.getHasTemporality()){
 				agDoc.setContext(context);
@@ -804,7 +804,7 @@ public abstract class AbstractWsagParser implements IDocumentParser {
 								for (int m = 0; m < PreferenceNodes.getLength(); m++) {
 									Node nextPreferenceNode = PreferenceNodes.item(m);
 
-									// Esto va aï¿½adiendo las
+									// Esto va a-adiendo las
 									// preferencias cuando tiene un
 									// SDT y su Utilidad
 									if ((sdtRef != null) && (utility != null)) {

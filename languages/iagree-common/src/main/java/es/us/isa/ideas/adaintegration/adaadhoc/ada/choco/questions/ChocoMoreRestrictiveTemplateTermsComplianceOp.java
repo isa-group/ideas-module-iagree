@@ -96,7 +96,7 @@ MoreRestrictiveTemplateTermsComplianceOperation {
 				t = (Template) doc;
 				if (checkConsistency(t,an)){
 					//System.out.println("La plantilla es consistente");
-				// para esta operación debemos asegurarnos de que la plantilla sea consistente
+				// para esta operaci-n debemos asegurarnos de que la plantilla sea consistente
 						ChocoAlternativeDocumentsOp adop = new ChocoAlternativeDocumentsOp();
 						adop.addDocument(doc);
 						an.analyze(adop);
@@ -106,8 +106,8 @@ MoreRestrictiveTemplateTermsComplianceOperation {
 						Iterator<AbstractDocument> it = alts.iterator();
 						
 						boolean b = false; 
-						// revisar la condición de !b... pq..
-						// ¿con que haya una more restrictive ya devolvemos TRUE?
+						// revisar la condici-n de !b... pq..
+						// -con que haya una more restrictive ya devolvemos TRUE?
 						// es decir, creo que TODAS las vistas deben devolver true... (REVISAR)
 						while (it.hasNext() && !b) {
 							// por cada alternative document de la plantilla
@@ -219,11 +219,11 @@ MoreRestrictiveTemplateTermsComplianceOperation {
 								
 								
 								//Problema por resolver: cuando las GTs no usan la variable o variables que usan las CCs
-								//solución actual: usando gtConstraints y ccConstraints
+								//soluci-n actual: usando gtConstraints y ccConstraints
 								// 1.- extraer variables de GTs
-								// 2.- por cada CC, ver si su/s variable/s están en las GTs o no
+								// 2.- por cada CC, ver si su/s variable/s est-n en las GTs o no
 								// 3.- si no estan copiamos la CC en el conjunto de GTs
-								// 4.- generamos el array de GTs (por si hemos tenido que añadir alguna/s CC/s)
+								// 4.- generamos el array de GTs (por si hemos tenido que a-adir alguna/s CC/s)
 								
 								// 1.- extraer variables de GTs
 								Collection<Variable> chocoVars = trans1.getChocoVars().values();
@@ -256,7 +256,7 @@ MoreRestrictiveTemplateTermsComplianceOperation {
 									}
 								}
 								
-								// 2.- por cada CC, ver si su/s variable/s están en las GTs o no
+								// 2.- por cada CC, ver si su/s variable/s est-n en las GTs o no
 								for (Constraint c : ccConstraints) {
 									Boolean addConstraint = false;
 									Variable[] vars = c.getVariables();
@@ -287,7 +287,7 @@ MoreRestrictiveTemplateTermsComplianceOperation {
 									if (addConstraint) gtConstraints.add(c);
 								}
 								
-								// 4.- generamos el array de GTs (por si hemos tenido que añadir alguna/s CC/s)
+								// 4.- generamos el array de GTs (por si hemos tenido que a-adir alguna/s CC/s)
 								//int termsArraySize = gtConstraints.size() + sdtConstraints.size();
 								int termsArraySize = gtConstraints.size();
 								Constraint[] termsConstraintsarray; 
@@ -353,10 +353,10 @@ MoreRestrictiveTemplateTermsComplianceOperation {
 								// todas las constraints de las CCs
 								Constraint templateCcConstraint = Choco.and(ccConstraintsarray);
 								
-								// XXX el primer parámetro debe ser el equivalente a la template en el compliance 
+								// XXX el primer par-metro debe ser el equivalente a la template en el compliance 
 								// y el segundo debe ser el equivalente a la oferta en el compliance
-								// para reutilizar la operación isCompliantConstraint de cara a
-								// comprobar si los términos de la plantilla son más restrictivos
+								// para reutilizar la operaci-n isCompliantConstraint de cara a
+								// comprobar si los t-rminos de la plantilla son m-s restrictivos
 								// o no que las CCs de la plantilla	
 								b = Utils.isCompliantConstraint(templateTermsConstraint, templateCcConstraint);
 							}

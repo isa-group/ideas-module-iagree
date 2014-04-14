@@ -29,7 +29,7 @@ import org.w3c.dom.Element;
 
 public class ServiceMetric {
 
-//	<serviceMetric>                   // métricas de servicio: e.g. availability
+//	<serviceMetric>                   // m-tricas de servicio: e.g. availability
 //	  <metric>...</metric>
 //	  <localPeriodInit>...</localPeriodInit>
 //	  <localPeriodEnd>...</localPeriodEnd>
@@ -97,12 +97,12 @@ public class ServiceMetric {
 			localPeriodInitElement.setTextContent(localPeriodInit);
 			localPeriodEndElement.setTextContent(localPeriodEnd);
 			
-			//añadimos los hijos de "serviceMetric"
+			//a-adimos los hijos de "serviceMetric"
 			serviceMetric.appendChild(metricElement);
 			serviceMetric.appendChild(metricElement);
 			serviceMetric.appendChild(localPeriodInitElement);
 			serviceMetric.appendChild(localPeriodEndElement);
-			//añadimos todas las measures
+			//a-adimos todas las measures
 			if(!measures.isEmpty()){
 				for(Measure m:measures){
 					serviceMetric.appendChild(doc.importNode(m.getAsDOMDocument().getDocumentElement(), true));

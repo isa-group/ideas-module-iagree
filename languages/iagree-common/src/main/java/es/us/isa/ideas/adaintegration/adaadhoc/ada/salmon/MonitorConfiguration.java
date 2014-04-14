@@ -72,7 +72,7 @@ public class MonitorConfiguration {
 			globalPeriodInit.setTextContent(this.globalPeriodInit);
 			globalPeriodEnd.setTextContent(this.globalPeriodEnd);
 			
-			//añadimos los hijos de monitorConfiguration
+			//a-adimos los hijos de monitorConfiguration
 			monitorConfiguration.appendChild(globalPeriodInit);
 			monitorConfiguration.appendChild(globalPeriodEnd);
 			

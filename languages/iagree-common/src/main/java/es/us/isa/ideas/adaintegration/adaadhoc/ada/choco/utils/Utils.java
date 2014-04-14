@@ -134,9 +134,9 @@ public class Utils {
 	 * Uso: el primer parametro debe ser el conjunto de restricciones
 	 * de la oferta, y el segundo, el conjunto de restricciones
 	 * de la plantilla. 
-	 * Pero esto no siempre es así porque para las operaciones de 
-	 * comprobar que la oferta no sea más restrictiva que la plantilla
-	 * el orden de los parámetros es al revés 
+	 * Pero esto no siempre es as- porque para las operaciones de 
+	 * comprobar que la oferta no sea m-s restrictiva que la plantilla
+	 * el orden de los par-metros es al rev-s 
 	 * 
 	 * @param c1 Constraint offer
 	 * @param c2 Constraint template

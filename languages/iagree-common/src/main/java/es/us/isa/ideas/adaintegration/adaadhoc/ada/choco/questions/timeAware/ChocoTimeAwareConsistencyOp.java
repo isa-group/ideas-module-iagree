@@ -110,8 +110,8 @@ public class ChocoTimeAwareConsistencyOp extends ChocoOperation implements Consi
 						for(InverseTemporalPair itp: its.getPairs()){
 							// This is the point for non-temporal checking consistency to be asked (!)
 							LinkedHashSet<Object> terms = itp.getData();
-							// Si en los términos del conjunto no aparece alguno de los términos
-							// que están definidos en todo el periodo global, es que hay overcovering
+							// Si en los t-rminos del conjunto no aparece alguno de los t-rminos
+							// que est-n definidos en todo el periodo global, es que hay overcovering
 							// Lo comprobamos dentro de createNewDocument
 							
 							// A new document with terms in the same period is created to be analysed
@@ -158,7 +158,7 @@ public class ChocoTimeAwareConsistencyOp extends ChocoOperation implements Consi
 				if (consistencyResult != ConsistencyResult.INCONSISTENT && consistencyResult != ConsistencyResult.TEMPORAL_OVERCOVERING){
 					if (!covering.isEmpty()){
 						consistencyResult = ConsistencyResult.TEMPORAL_UNDERCOVERING_WARNING;
-						throw new PeriodDefinitionWarningException("Undercovering detected! Global period isn´t covered by all validity periods");
+						throw new PeriodDefinitionWarningException("Undercovering detected! Global period isn-t covered by all validity periods");
 					}
 				}
 			}
@@ -190,9 +190,9 @@ public class ChocoTimeAwareConsistencyOp extends ChocoOperation implements Consi
 //				// A new document with terms in the same period is created to be analysed
 //				AbstractDocument newDoc = createNewDocument(doc, terms);
 //				
-//				// creamos el nuevo documento con los términos que coinciden
-//				//en un mismo intervalo, pero que los términos no incluyan el intervalo
-//				//para analizarlo con la operación de consistencia sin temporalidad
+//				// creamos el nuevo documento con los t-rminos que coinciden
+//				//en un mismo intervalo, pero que los t-rminos no incluyan el intervalo
+//				//para analizarlo con la operaci-n de consistencia sin temporalidad
 //				
 //				Boolean intervalConsistent = checkConsistency(newDoc, an);
 //				if(intervalConsistent){
@@ -222,27 +222,27 @@ public class ChocoTimeAwareConsistencyOp extends ChocoOperation implements Consi
 	private AbstractAgreementDocument createNewDocument(AbstractAgreementDocument doc, LinkedHashSet<Object> terms){
 		AbstractAgreementDocument newDoc;
 		
-		//Los términos que nos llegan pueden ser GT, SDT, Items y Constraints
+		//Los t-rminos que nos llegan pueden ser GT, SDT, Items y Constraints
 		TermCompositor compositor = new TermCompositor();
 		compositor.setType(TermCompositor.ALL);
 		compositor.setName("terms");
 		CreationConstraints cc = new CreationConstraints();
 		Boolean isThereSomeGlobalPeriodInTerms = false;
 		if(doc.getHasSomeGlobalTerm()){
-			// tenemos que ver si hay algún global term en el conjunto de términos. Si no hay ninguno
+			// tenemos que ver si hay alg-n global term en el conjunto de t-rminos. Si no hay ninguno
 			// estamos ante un overcovering
 		}
 		for(Object t: terms){
 			if(t instanceof Item){
 				cc.addItem((Item) t);
 				if(((TimeAwareItem) t).getValidityPeriod() == null){
-					// este término es válido en todo el global period
+					// este t-rmino es v-lido en todo el global period
 					isThereSomeGlobalPeriodInTerms = true;
 				}
 			}else if(t instanceof GeneralConstraint){
 				cc.addConstraint((GeneralConstraint) t);
 				if(((TimeAwareGeneralConstraint) t).getValidityPeriod() == null){
-					// este término es válido en todo el global period
+					// este t-rmino es v-lido en todo el global period
 					isThereSomeGlobalPeriodInTerms = true;
 				}
 			}else if(t instanceof Term){
@@ -251,20 +251,20 @@ public class ChocoTimeAwareConsistencyOp extends ChocoOperation implements Consi
 //				}
 				compositor.addComprisedTerm((Term) t);
 				if(t instanceof TimeAwareServiceDescriptionTerm && ((TimeAwareServiceDescriptionTerm) t).getValidityPeriod() == null){
-					// este término es válido en todo el global period
+					// este t-rmino es v-lido en todo el global period
 					isThereSomeGlobalPeriodInTerms = true;
 				}else if(t instanceof TimeAwareGuaranteeTerm && ((TimeAwareGuaranteeTerm) t).getValidityPeriod() == null){
-					// este término es válido en todo el global period
+					// este t-rmino es v-lido en todo el global period
 					isThereSomeGlobalPeriodInTerms = true;
 				}
 			}
 		}
-		// Si en el documento hay términos válidos para todo el global period,
+		// Si en el documento hay t-rminos v-lidos para todo el global period,
 		// pero en Terms no hay ninguno entonces estamos ante un overcovering
 		if(doc.getHasSomeGlobalTerm() != isThereSomeGlobalPeriodInTerms){
 			throw new PeriodDefinitionWarningException("Overcovering detected! The following terms are overcovering the global period: "+terms);
 		}
-		//Si es una plantilla tenemos que meter también las CreationConstraints
+		//Si es una plantilla tenemos que meter tambi-n las CreationConstraints
 		if(doc instanceof Template){
 			Template t = new Template();
 			t.setCc(cc);
@@ -272,13 +272,13 @@ public class ChocoTimeAwareConsistencyOp extends ChocoOperation implements Consi
 		}else if(doc instanceof AgreementOffer){
 			newDoc = new AgreementOffer();
 		}else{
-			throw new ADAException("The document isn´t a template neither an offer");
+			throw new ADAException("The document isn-t a template neither an offer");
 		}
 		newDoc.setId(doc.getId());
 		newDoc.setName(doc.getName());
 		newDoc.setContext((Context) doc.getContext());
-		// También tenemos que añadir las ServiceProperties del documento
-		// original, sino fallaría el translator a Choco por no conocer las
+		// Tambi-n tenemos que a-adir las ServiceProperties del documento
+		// original, sino fallar-a el translator a Choco por no conocer las
 		// variables que se usan en el documento
 		for(Term t: doc.getAllTerms()){
 			if(t instanceof ServiceProperties){

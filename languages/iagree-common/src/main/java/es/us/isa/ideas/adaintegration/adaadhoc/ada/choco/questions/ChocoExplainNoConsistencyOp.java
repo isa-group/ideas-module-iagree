@@ -52,7 +52,7 @@ import es.us.isa.ideas.adaintegration.adaadhoc.ada.wsag10.Term;
  * Devolvemos el conjunto minimo de explanations que, dandoles
  * arreglo, hace que el documento sea consistente.
  * Para documentos con multiples alternatives, devolvemos
- * el conjunto mas peque�o de todos los posibles entre
+ * el conjunto mas peque-o de todos los posibles entre
  * todos los alternatives.
  * @author Jesus
  *

@@ -449,7 +449,7 @@ public class XmlToWSAg4People {
 
 			}
 		} else if (root.getNodeName().equalsIgnoreCase("wsag:AgreementOffer")) {
-			//TODO modificar aqui para el pequeño error que aun da
+			//TODO modificar aqui para el peque-o error que aun da
 			wSAg4People += "AgreementOffer ";
 			NamedNodeMap m = root.getAttributes();
 			String TemplateId = root.getAttributes().getNamedItem(
@@ -601,7 +601,7 @@ public class XmlToWSAg4People {
 		}
 
 		tipoActual = nodoInicial.getNodeName();
-		if (inicial) {// primero se mira el All inicial que difiere de los demï¿½s
+		if (inicial) {// primero se mira el All inicial que difiere de los dem-s
 			int i = 0;
 			while (i < nodos.getLength()) {
 				int calculaNumIguales = 0;
@@ -799,7 +799,7 @@ public class XmlToWSAg4People {
 				iguales = false;
 			}
 
-			if (iguales) { // son todos Iguales asï¿½ que se agrupan
+			if (iguales) { // son todos Iguales as- que se agrupan
 				if (tipoActual.equalsIgnoreCase("wsag:ServiceDescriptionTerm")) {
 					String espacios = espaciado(numEspacios * 5);
 					wSAg4People += espacios + numElement
@@ -887,7 +887,7 @@ public class XmlToWSAg4People {
 
 				}
 
-			} else { // los elementos no se agrupan asï¿½ que ya directamente nos
+			} else { // los elementos no se agrupan as- que ya directamente nos
 						// dedicamos a irlos pintando o bien son all, exactly
 						// one o one more between
 				int numero = 0;

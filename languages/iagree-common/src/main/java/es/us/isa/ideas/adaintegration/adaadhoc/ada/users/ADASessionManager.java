@@ -45,7 +45,7 @@ public class ADASessionManager implements SessionManager{
 		this.db = db;
 	}
 	
-	//¿Singleton?
+	//-Singleton?
 
 	public String login(String username, String password) {
 		Connection c = db.connect();

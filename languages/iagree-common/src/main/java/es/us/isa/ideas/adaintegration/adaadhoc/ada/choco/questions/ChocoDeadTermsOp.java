@@ -146,7 +146,7 @@ public class ChocoDeadTermsOp extends ChocoOperation implements
 							for (Entry<Term,Constraint> e2:complexGTsMappedSet){
 								if (!e2.getKey().equals(complexGT.getTerm())){
 									//si no es la propia GT que estamos analizando
-									//la añadimos
+									//la a-adimos
 									m.addConstraint(e2.getValue());
 								}
 							}
@@ -174,7 +174,7 @@ public class ChocoDeadTermsOp extends ChocoOperation implements
 						//XXX realmente hace falta? si no es consistente
 						//no se elimina ningun termino...
 						
-						// Lanzar excepción que diga:
+						// Lanzar excepci-n que diga:
 						// There are inconsistents elements inside the document. They must be solved beforehand to get the dead terms.
 						throw new InconsistenciesException("There are inconsistent elements inside the document. They must be solved beforehand to get the dead terms.");
 					}

@@ -29,7 +29,7 @@ import org.w3c.dom.Element;
 
 public class OperationMetric {
 //	<operationMetric opName >                                 
-//	  <metric>...</metric>        // métricas de la operación: e.g. response time of operation 1
+//	  <metric>...</metric>        // m-tricas de la operaci-n: e.g. response time of operation 1
 //	  <localPeriodInit>...</localPeriodInit>
 //	  <localPeriodEnd>...</localPeriodEnd>
 //	  <measure>
@@ -104,11 +104,11 @@ public class OperationMetric {
 			localPeriodInitElement.setTextContent(localPeriodInit);
 			localPeriodEndElement.setTextContent(localPeriodEnd);
 			
-			//añadimos los hijos de "operationMetric"
+			//a-adimos los hijos de "operationMetric"
 			operationMetric.appendChild(metricElement);
 			operationMetric.appendChild(localPeriodInitElement);
 			operationMetric.appendChild(localPeriodEndElement);
-			//añadimos todas las measures
+			//a-adimos todas las measures
 			if(!measures.isEmpty()){
 				for(Measure m:measures){
 					operationMetric.appendChild(doc.importNode(m.getAsDOMDocument().getDocumentElement(), true));

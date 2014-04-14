@@ -24,7 +24,7 @@ public class DefaultTimeAwareSelectorCriteria implements TimeAwareSelectorCriter
 
 	@Override
 	/*
-	 * Por ahora, el único algoritmo de normalización es el basado en puntos
+	 * Por ahora, el -nico algoritmo de normalizaci-n es el basado en puntos
 	 */
 	public TemporalSequence selectTemporalNormaliser() {
 		return new PointBasedNormalization();

@@ -26,7 +26,7 @@ public class UtilidadesItems {
 	
 	public static String imprimeItems(LinkedList<Item> listaItems){
 		String resultado = "";
-		//primero crearemos un item ALL que será el padre de todos recorreremos la lista Items buscando a los padres de cada elemento y los iremos añadiendo
+		//primero crearemos un item ALL que ser- el padre de todos recorreremos la lista Items buscando a los padres de cada elemento y los iremos a-adiendo
 		// a su lista de hijos para luego imprimirlo en orden
 		
 		Item padre = new Item();
@@ -123,7 +123,7 @@ public class UtilidadesItems {
 		return resultado;
 	}
 	
-	//Esta función coge los \n y le agrega tantos espacio para tabular los diferentes elementos
+	//Esta funci-n coge los \n y le agrega tantos espacio para tabular los diferentes elementos
 	public static String agregaEspacios(String s,int numEspacios){
 		String resultado= "";
 		for(int i =0 ; i < s.length();i++){

@@ -81,7 +81,7 @@ public class ADASDTParser implements SDTParser {
 				for (int j = 0; j < serviceFeaturesNodes.getLength(); j++) {
 					Node nextFeatureNode = serviceFeaturesNodes.item(j);
 
-					// TODO aï¿½adir aki el sugar syntax de los SDT
+					// TODO a-adir aki el sugar syntax de los SDT
 
 					if (nextFeatureNode.getNodeType() == Node.ELEMENT_NODE) {
 						String nodeName = nextFeatureNode.getNodeName();
@@ -165,7 +165,7 @@ public class ADASDTParser implements SDTParser {
 
 						}else if(nodeName.equalsIgnoreCase("twsag4people:ValidityPeriod")){
 							if(taParser == null){
-								System.err.println("Se está intentando parsear un ValidityPeriod en un SDT y el parser de SDT no tiene referencia del parser de temporalidad");
+								System.err.println("Se est- intentando parsear un ValidityPeriod en un SDT y el parser de SDT no tiene referencia del parser de temporalidad");
 							}else{
 								RealTemporalInterval rti = taParser.parseValidityPeriod(nextFeatureNode);
 								sdt.setValidityPeriod(rti);

@@ -61,22 +61,22 @@ public class ChocoExplainLessRestrictiveTemplateTermsOp extends ChocoOperation i
 	protected Map<AgreementError, Explanation> explanations;
 	
 	/**
-	 * Colección que agrupa todas las restricciones de la plantilla
+	 * Colecci-n que agrupa todas las restricciones de la plantilla
 	 */
 	private Collection<Constraint> allccConstraints;
 	
 	/**
-	 * Colección que agrupa todas las restricciones de la oferta
+	 * Colecci-n que agrupa todas las restricciones de la oferta
 	 */
 	private Collection<Constraint> allgtConstraints;
 	
 	/**
-	 * Colección de restricciones que pertenecen a la plantilla, excepto las que son conflictivas
+	 * Colecci-n de restricciones que pertenecen a la plantilla, excepto las que son conflictivas
 	 */
 	private Collection<Constraint> compliantCcConstraints;
 	
 	/**
-	 * Colección de restricciones que pertenecen a la oferta, excepto las que son conflictivas
+	 * Colecci-n de restricciones que pertenecen a la oferta, excepto las que son conflictivas
 	 */
 	private Collection<Constraint> compliantGtConstraints;
 
@@ -87,21 +87,21 @@ public class ChocoExplainLessRestrictiveTemplateTermsOp extends ChocoOperation i
 
 	@Override
 	public void execute(ChocoAnalyzer choco) {
-		// IGUAL QUE EN QUICKXPLAIN PERO LLAMANDO A LA OPERACIÓN DE ISMORERESTRICTIVETEMPLATETERMS EN LUGAR DE AL COMPLIANCE
-		// 1º descomponer plantilla y oferta en sus
+		// IGUAL QUE EN QUICKXPLAIN PERO LLAMANDO A LA OPERACI-N DE ISMORERESTRICTIVETEMPLATETERMS EN LUGAR DE AL COMPLIANCE
+		// 1- descomponer plantilla y oferta en sus
 		// alternate documents
 
-		// 2º comprobar si la oferta es compliant con la plantilla
+		// 2- comprobar si la oferta es compliant con la plantilla
 
-		// 3º si no es compliant, agrupar las restricciones en conjuntos
+		// 3- si no es compliant, agrupar las restricciones en conjuntos
 		// de terminos por la misma variable
 
-		// 4º por cada conjunto, eliminarlo del total,
-		// 4ºa si el total
+		// 4- por cada conjunto, eliminarlo del total,
+		// 4-a si el total
 		// es compliant, convertir el total en el conjunto eliminado
-		// 4ºb si el total no es compliant, probar con otro conjunto
+		// 4-b si el total no es compliant, probar con otro conjunto
 
-		// 5º si hemos agotado todos los grupos y el total sigue sin ser
+		// 5- si hemos agotado todos los grupos y el total sigue sin ser
 		// compliant, tomar agrupar las restricciones por conjuntos de
 		// k + 1 variables
 
@@ -115,7 +115,7 @@ public class ChocoExplainLessRestrictiveTemplateTermsOp extends ChocoOperation i
 			AbstractDocument doc = docs.get(0);
 			t = (Template) doc;
 
-				// 1º descomponer plantilla y oferta en sus
+				// 1- descomponer plantilla y oferta en sus
 				// alternate documents
 				Collection<AbstractDocument> altsTemplate = getAlternatives(t, choco, false);
 				//Collection<AbstractDocument> altsOffer = getAlternatives(o, choco, false);
@@ -139,7 +139,7 @@ public class ChocoExplainLessRestrictiveTemplateTermsOp extends ChocoOperation i
 					Entry<ServiceScope, AbstractDocument> entry = (Entry<ServiceScope, AbstractDocument>) iterator.next();
 					Template viewTemp = (Template) entry.getValue();
 					
-					//en ppio no haría falta hacer esto de nuevo, pero mejor no asumir que ya se ha comprobado que hay términos menos restrictivos que las ccs
+					//en ppio no har-a falta hacer esto de nuevo, pero mejor no asumir que ya se ha comprobado que hay t-rminos menos restrictivos que las ccs
 					ChocoMoreRestrictiveTemplateTermsComplianceOp moreRestrictiveTemplateTermsOp = new ChocoMoreRestrictiveTemplateTermsComplianceOp();
 					moreRestrictiveTemplateTermsOp.addDocument(viewTemp);
 					//lessRestrictiveComplianceOp.addDocument(viewOffer);
@@ -170,7 +170,7 @@ public class ChocoExplainLessRestrictiveTemplateTermsOp extends ChocoOperation i
 						//Map<AgreementElement, Constraint> offerConstraints = trans2.getChocoConstraints();
 						Collection<Variable> usedVars = extractUsedVars(chocoVars, templateConstraints);
 						// antes de buscar los conflictos guardamos las restricciones de plantilla y oferta
-						// para después poder refinar los conflictos
+						// para despu-s poder refinar los conflictos
 						allccConstraints = ccConstraints.values();
 						allgtConstraints = gtConstraints.values();
 						
@@ -185,7 +185,7 @@ public class ChocoExplainLessRestrictiveTemplateTermsOp extends ChocoOperation i
 								res = refineExplanations(res, gtConstraints, trans.getChocoConstraints());
 							}
 						}
-						// TRAZAR PQ ME SIGUE DICIENDO C1 EN LA EXPLICACIÓN, Y SI NO VEO OTRA SOLUCIÓN, QUITAR DE LA EXPLICACIÓN
+						// TRAZAR PQ ME SIGUE DICIENDO C1 EN LA EXPLICACI-N, Y SI NO VEO OTRA SOLUCI-N, QUITAR DE LA EXPLICACI-N
 						// AQUELLAS ENTRADAS QUE NO TENGAN GTS QUE LO EXPLIQUEN
 						Map<AgreementError, Explanation> result = new HashMap<AgreementError, Explanation>();
 						Set<AgreementError> keys = res.keySet();
@@ -254,7 +254,7 @@ public class ChocoExplainLessRestrictiveTemplateTermsOp extends ChocoOperation i
 					res.add(variable);
 			}		*/	
 			
-			//Así estaba antes
+			//As- estaba antes
 				/*
 				Variable[] vars = c.getVariables();
 				for (int i = 0; i < vars.length; i++) {
@@ -308,13 +308,13 @@ public class ChocoExplainLessRestrictiveTemplateTermsOp extends ChocoOperation i
 				Constraint offerAnd = Choco.and(offerArray);
 				Constraint[] templateArray = newTemplateSet.toArray(new Constraint[0]);
 				Constraint templateAnd = Choco.and(templateArray);
-				// ACABO DE CAMBIAR EL ORDEN DE LOS PARÁMETROS PARA ESTUDIAR SI LOS DE
-				// LA OFERTA SON MÁS RESTRICTIVOS QUE LOS DE LA PLANTILLA O NO
+				// ACABO DE CAMBIAR EL ORDEN DE LOS PAR-METROS PARA ESTUDIAR SI LOS DE
+				// LA OFERTA SON M-S RESTRICTIVOS QUE LOS DE LA PLANTILLA O NO
 				b = Utils.isCompliantConstraint(offerAnd, templateAnd);
 				if (b) {
 					// si es compliant, el problema esta en los conjuntos
 					// eliminados. Guardamos los conjuntos sin restricciones
-					// conflictivas para después poder refinar el resultado
+					// conflictivas para despu-s poder refinar el resultado
 					compliantCcConstraints = newTemplateSet;
 					compliantGtConstraints = newOfferSet;
 					res = quickxplain(e.getKey(), e.getValue(), templateConstraintsMap);
@@ -323,7 +323,7 @@ public class ChocoExplainLessRestrictiveTemplateTermsOp extends ChocoOperation i
 					// las restricciones serian erroneas?
 					break;
 				}
-				// 4ºb si el total no es compliant, probar con otro conjunto
+				// 4-b si el total no es compliant, probar con otro conjunto
 			}
 		}
 
@@ -335,7 +335,7 @@ public class ChocoExplainLessRestrictiveTemplateTermsOp extends ChocoOperation i
 			Set<Entry<Collection<Variable>, Map<AgreementElement, Constraint>>> entries = offerGroups.entrySet();
 			for (Entry<Collection<Variable>, Map<AgreementElement, Constraint>> e : entries) {
 				Map<AgreementElement, Constraint> templateConstraintsMap = templateGroups.get(e.getKey());
-				// Antes de meter los conflictos, vemos si hay alguna restricción que no falle
+				// Antes de meter los conflictos, vemos si hay alguna restricci-n que no falle
 				refineConflicts(e.getValue().values(), templateConstraintsMap.values());
 				
 //				Constraint[] offerConsts = e.getValue().values().toArray(new Constraint[0]);
@@ -359,32 +359,32 @@ public class ChocoExplainLessRestrictiveTemplateTermsOp extends ChocoOperation i
 	}
 	
 	/**
-	 * Elimina restricciones que se consideren conflictivas erróneamente por estar en el
-	 * mismo conjunto que otra restricción conflictiva. 
-	 * @param offerConstraints Colección de restricciones conflictivas en la oferta
-	 * @param templateConstraints Colección de restricciones conflictivas en la plantilla
+	 * Elimina restricciones que se consideren conflictivas err-neamente por estar en el
+	 * mismo conjunto que otra restricci-n conflictiva. 
+	 * @param offerConstraints Colecci-n de restricciones conflictivas en la oferta
+	 * @param templateConstraints Colecci-n de restricciones conflictivas en la plantilla
 	 */
 	private void refineConflicts(Collection<Constraint> offerConstraints, Collection<Constraint> templateConstraints){
 		if(offerConstraints.size() > 1){
 			// si hay menos de dos restricciones no hace falta que comprobemos
-			// porque al meter la única restricción conflictiva en la oferta
-			// tendríamos la oferta original y que ya ha sido comprobada su
+			// porque al meter la -nica restricci-n conflictiva en la oferta
+			// tendr-amos la oferta original y que ya ha sido comprobada su
 			// conformidad con la plantilla
 			Iterator<Constraint> itOfferConstraints = offerConstraints.iterator();
 			while(itOfferConstraints.hasNext()){
 				Constraint offConst = itOfferConstraints.next();
-				// añadimos la restricción a las restricciones no conflictivas de la oferta
+				// a-adimos la restricci-n a las restricciones no conflictivas de la oferta
 				compliantGtConstraints.add(offConst);
-				// creamos una única restricción que une las no conflictivas de la oferta junto a la que hemos añadido
+				// creamos una -nica restricci-n que une las no conflictivas de la oferta junto a la que hemos a-adido
 				Constraint[] arrayOfferConsts = compliantGtConstraints.toArray(new Constraint[0]);
 				Constraint offerConsts = Choco.and(arrayOfferConsts);
-				// cremos a una única restricción que une todas las restricciones de la plantilla
+				// cremos a una -nica restricci-n que une todas las restricciones de la plantilla
 				Constraint[] arrayTemplateConsts = allccConstraints.toArray(new Constraint[0]);
 				Constraint tempConsts = Choco.and(arrayTemplateConsts);
 				
 				if(Utils.isCompliantConstraint(offerConsts, tempConsts)){
 					// si son compliant quiere decir que la constraint de la oferta
-					// que hemos añadido no es conflictiva y podemos borrarla del
+					// que hemos a-adido no es conflictiva y podemos borrarla del
 					// resultado
 					itOfferConstraints.remove();
 				}
@@ -397,23 +397,23 @@ public class ChocoExplainLessRestrictiveTemplateTermsOp extends ChocoOperation i
 		// refinamos la plantilla
 		if(templateConstraints.size() > 1){
 			// si hay menos de dos restricciones no hace falta que comprobemos
-			// porque al meter la única restricción conflictiva en la plantilla
-			// tendríamos la plantilla original y que ya ha sido comprobada su
+			// porque al meter la -nica restricci-n conflictiva en la plantilla
+			// tendr-amos la plantilla original y que ya ha sido comprobada su
 			// conformidad con la oferta
 			Iterator<Constraint> itTemplateConstraints = templateConstraints.iterator();
 			while(itTemplateConstraints.hasNext()){
 				Constraint tempConst = itTemplateConstraints.next();
-				// añadimos la restricción a las restricciones no conflictivas de la plantilla
+				// a-adimos la restricci-n a las restricciones no conflictivas de la plantilla
 				compliantCcConstraints.add(tempConst);
-				// creamos una única restricción que une las no conflictivas de la plantilla junto a la que hemos añadido
+				// creamos una -nica restricci-n que une las no conflictivas de la plantilla junto a la que hemos a-adido
 				Constraint[] arrayTemplateConsts = compliantCcConstraints.toArray(new Constraint[0]);
 				Constraint templateConsts = Choco.and(arrayTemplateConsts);
-				// creamos una única restricción que une todas las restricciones de la oferta
+				// creamos una -nica restricci-n que une todas las restricciones de la oferta
 				Constraint[] arrayOfferConsts = allgtConstraints.toArray(new Constraint[0]);
 				Constraint offerConsts = Choco.and(arrayOfferConsts);
 				
 				if(Utils.isCompliantConstraint(offerConsts, templateConsts)){
-					// si son compliant borramos la restricción de los conflictos de la plantilla
+					// si son compliant borramos la restricci-n de los conflictos de la plantilla
 					itTemplateConstraints.remove();
 				}
 				// una vez terminado dejamos las restricciones no conflictivas de la plantilla

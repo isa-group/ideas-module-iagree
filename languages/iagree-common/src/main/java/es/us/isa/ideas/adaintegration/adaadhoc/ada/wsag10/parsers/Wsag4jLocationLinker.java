@@ -41,7 +41,7 @@ public class Wsag4jLocationLinker implements LocationLinker {
 		}
 		
 		XmlObject[] obj = doc.execQuery(expr);
-//		System.out.println("Tamaño del array devuelto: "+obj.length);
+//		System.out.println("Tama-o del array devuelto: "+obj.length);
 //		for (int i = 0; i < obj.length; i++) {
 //			System.out.println("Valor: "+obj[i]);
 //			System.out.println("Ahora: "+getTextContent(obj[i].toString()));

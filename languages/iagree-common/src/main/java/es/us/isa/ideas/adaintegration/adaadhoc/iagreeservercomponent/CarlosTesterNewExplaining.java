@@ -138,20 +138,20 @@ public class CarlosTesterNewExplaining {
 				if (ada.isLessRestrictiveOffer(wsagBytesTemplate, wsagBytesOffer)){
 					System.out.println("OK, La oferta es menos restrictiva que la plantilla");
 					if (ada.isMoreRestrictiveTemplateTermsThanCC(wsagBytesTemplate)){
-						System.out.println("OK, Los t�rminos de la plantilla son m�s restrictivos que las CCs de la plantilla");
+						System.out.println("OK, Los t-rminos de la plantilla son m-s restrictivos que las CCs de la plantilla");
 						compliance = true;
 					}
 				}
 			}
 			*/
 		
-		// ESTO NO HACE FALTA HACERLO EN EL EXPLAINING, SOLO EN LA DETECCI�N
+		// ESTO NO HACE FALTA HACERLO EN EL EXPLAINING, SOLO EN LA DETECCI-N
 		if (ada.isCompliant(wsagBytesTemplate, wsagBytesOffer)){
 			System.out.println("OK, Plantilla y oferta son compliant");
 			if (ada.isLessRestrictiveOffer(wsagBytesTemplate, wsagBytesOffer)){
 				System.out.println("OK, La oferta es menos o igual de restrictiva que la plantilla");
 				if (ada.isMoreRestrictiveTemplateTermsThanCC(wsagBytesTemplate)){
-					System.out.println("OK, Los t�rminos de la plantilla son m�s o igual de restrictivos que las CCs de la plantilla");
+					System.out.println("OK, Los t-rminos de la plantilla son m-s o igual de restrictivos que las CCs de la plantilla");
 					compliance = true;
 				}
 			}	
@@ -317,7 +317,7 @@ public class CarlosTesterNewExplaining {
 							}else returnMsg += "<span class=\"result-correct\">The agreement offer is Less Restrictive, or equal, than the template.</span>";
 						}
 						if(!isMoreRestrictiveTemplateTerms){
-							//System.out.println("a�n por hacer la explicaci�n de que los GTs de la plantilla son menos restrictivos que las CCs");
+							//System.out.println("a-n por hacer la explicaci-n de que los GTs de la plantilla son menos restrictivos que las CCs");
 							
 									
 							returnMsg += "<span class=\"result-error\">Less Restrictive Template Terms conflicts:</span>";

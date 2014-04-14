@@ -79,7 +79,7 @@ public class Measure {
 			timeStampInit.setTextContent(this.timeStampInit);
 			timeStampEnd.setTextContent(this.timeStampEnd);
 			
-			//añadimos los hijos de "measure"
+			//a-adimos los hijos de "measure"
 			measure.appendChild(value);
 			measure.appendChild(timeStampInit);
 			measure.appendChild(timeStampEnd);

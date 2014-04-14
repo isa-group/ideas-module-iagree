@@ -106,12 +106,12 @@ LessRestrictiveOfferComplianceOperation {
 				t = (Template) doc1;
 				o = (AgreementOffer) doc2;
 				//if (checkConsistency(t,an) && checkConsistency(o,an)){
-				// para esta operación debemos asegurarnos no sólo de que los documentos sean consistentes
-				// sino también de que son compliant, tanto una cosa como la otra se hace en la llamada a checkCompliance
+				// para esta operaci-n debemos asegurarnos no s-lo de que los documentos sean consistentes
+				// sino tambi-n de que son compliant, tanto una cosa como la otra se hace en la llamada a checkCompliance
 				
-				// No hago la comproabación de que sean compliant para permitir cosas como
+				// No hago la comproabaci-n de que sean compliant para permitir cosas como
 				// ResponseTime < 10 en plantilla y ResponseTime < 15 en la oferta 
-				// (pq si compruebo que sean compliant me devolverá FALSE esta operación)
+				// (pq si compruebo que sean compliant me devolver- FALSE esta operaci-n)
 				
 				//if (checkCompliance(t, o, an)){
 					
@@ -177,7 +177,7 @@ LessRestrictiveOfferComplianceOperation {
 									Constraint template = Choco.and(templateAux);
 									
 									//XXX Oferta
-									// la traducción a choco en compliance de la oferta
+									// la traducci-n a choco en compliance de la oferta
 									// (segundo document) debe hacerse con el
 									// ChocoComplianceTranslator
 									ChocoComplianceTranslator trans2 = new ChocoComplianceTranslator(
@@ -190,9 +190,9 @@ LessRestrictiveOfferComplianceOperation {
 									if (!trans2.hasDifferentDomains()
 											&& newVarsFromOffer.isEmpty()) {
 
-										// XXX no se tienen en cuenta los SDTs de la oferta porque son más restrictivos siempre, 
+										// XXX no se tienen en cuenta los SDTs de la oferta porque son m-s restrictivos siempre, 
 										// esto es debido a que en la plantilla no se asigna valor ninguno a los SDTs
-										// y de asignarle algún valor, son valores por defecto a título informativo para el que hace la oferta
+										// y de asignarle alg-n valor, son valores por defecto a t-tulo informativo para el que hace la oferta
 										//Collection<Constraint> sdtConstraints = trans2.getSdtConstraints();
 										Collection<Constraint> ccConstraints = trans2
 												.getCcConstraints();
@@ -234,9 +234,9 @@ LessRestrictiveOfferComplianceOperation {
 										}
 										
 										Constraint offer = Choco.and(basicConstraintsarray);
-										// XXX offer y template están cambiados de orden 
-										// para reutilizar la operación isCompliantConstraint de cara a
-										// comprobar si la oferta es más restrictiva que la plantilla o no
+										// XXX offer y template est-n cambiados de orden 
+										// para reutilizar la operaci-n isCompliantConstraint de cara a
+										// comprobar si la oferta es m-s restrictiva que la plantilla o no
 										b = Utils.isCompliantConstraint(template, offer);
 									}
 								}

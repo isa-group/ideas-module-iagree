@@ -92,8 +92,8 @@ public class ADAManagerServiceImpl implements ADAManagerService {
 	public String getMMD(int docId, String session) {
 		/*
 		 * dado el identificador del documento, generar el documento
-		 * de monitorizaci�n (MonitoringManagementDocument) de este.
-		 * Si la sesi�n no es del usuario due�o del documento, devolver null.
+		 * de monitorizaci-n (MonitoringManagementDocument) de este.
+		 * Si la sesi-n no es del usuario due-o del documento, devolver null.
 		 * Si el documento no tiene WebServiceInformation dentro de los SDT,
 		 * devolver un MonitoringManagementDocument sin WebServiceInformation
 		 */
@@ -167,7 +167,7 @@ public class ADAManagerServiceImpl implements ADAManagerService {
 					monProps.put(serviceScope, auxVariables);
 				}
 				
-//				//La variable que no est� en el alg�n Scope no ser� ServiceMetric
+//				//La variable que no est- en el alg-n Scope no ser- ServiceMetric
 //				Collection<String> serviceMetrics = new HashSet<String>();
 //				for(String v:allVariables){
 //					//Suponemos que cada variable es ServiceMetric
@@ -176,14 +176,14 @@ public class ADAManagerServiceImpl implements ADAManagerService {
 //						//Por cada ServiceScope
 //						Collection<String> scopeVars = monProp.getValue();
 //						if(!scopeVars.contains(v)){
-//							//Si la variable no est� entre las variables 
+//							//Si la variable no est- entre las variables 
 //							//de el Scope entonces no es ServiceMetric
 //							isServiceMetric = false;
 //							break;
 //						}
 //					}
 //					if(isServiceMetric){
-//						//Si es ServiceMetric lo creamos y a�adimos al MMD
+//						//Si es ServiceMetric lo creamos y a-adimos al MMD
 //						String metric = v;
 //						String localPeriodInit = Utils.getTimestamp();
 //						String localPeriodEnd = Utils.dateTrasform(expirationTime);
@@ -232,9 +232,9 @@ public class ADAManagerServiceImpl implements ADAManagerService {
 
 //	private Map<String, Collection<String>> getMonitorisableProperties(int docId, String sessions) {
 //		// dado el identificador del documento, generar
-//		// el documento de monitorizaci�n (monitoring management
+//		// el documento de monitorizaci-n (monitoring management
 //		// document de este. si la sesion
-//		// no es del usuario due�o del documento, devolver un map vacio
+//		// no es del usuario due-o del documento, devolver un map vacio
 //		Map<String, Collection<String>> monProps = new HashMap<String, Collection<String>>();
 //		//If logged user is document owner
 //		Boolean loggedUserIsDocumentOwner = false;

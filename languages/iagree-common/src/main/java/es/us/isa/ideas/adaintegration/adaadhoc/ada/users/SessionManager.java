@@ -37,7 +37,7 @@ public interface SessionManager {
 	/**
 	 * 
 	 * @param session
-	 * @return The user id for this opened session. If session isn´t opened it returns 0
+	 * @return The user id for this opened session. If session isn-t opened it returns 0
 	 */
 	public int getUserId(String session);
 }

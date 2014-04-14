@@ -58,7 +58,7 @@ public class DefaultTimeAwareParser implements TimeAwareParser{
 	private RealTemporalInterval lastInterval;
 	
 	/**
-	 * Milisegundos en un día
+	 * Milisegundos en un d-a
 	 */
 	private final long MILLSECS_PER_DAY = 24 * 60 * 60 * 1000;
 	
@@ -91,7 +91,7 @@ public class DefaultTimeAwareParser implements TimeAwareParser{
 			throw new PeriodDefinitionException("GlobalValidityPeriod must contain an Interval element");
 		}
 		result.setName(globalPeriodName);
-		// Global period siempre será un intervalo sencillo
+		// Global period siempre ser- un intervalo sencillo
 		this.definedPeriods.put(globalPeriodName, result);
 		return result;
 	}
@@ -159,7 +159,7 @@ public class DefaultTimeAwareParser implements TimeAwareParser{
 					if(rti != null){
 						intervals.add(rti);
 					}else{
-						throw new BadSyntaxException("ValidityPeriodName "+name+" doesn´t exist. A ValidityPeriodName must be defined before use it");
+						throw new BadSyntaxException("ValidityPeriodName "+name+" doesn-t exist. A ValidityPeriodName must be defined before use it");
 					}
 					lastInterval = rti;
 				}else if(child.getNodeName().equalsIgnoreCase(taNamespace+"Interval")){
@@ -176,23 +176,23 @@ public class DefaultTimeAwareParser implements TimeAwareParser{
 					lastInterval = rti;
 				}else if(child.getNodeName().equalsIgnoreCase(taNamespace+"Except")){
 					intervals.add(parseExcept(child));
-					// sacamos el último intervalo (lastInterval) del disjoint ya que en el
-					// except ya se incluye, así no duplicamos ese periodo
+					// sacamos el -ltimo intervalo (lastInterval) del disjoint ya que en el
+					// except ya se incluye, as- no duplicamos ese periodo
 					intervals.remove(lastInterval);
 				}
 			}
 		}
 		DisjointRealTemporalInterval drti = new DisjointRealTemporalInterval(intervals);
-		// Si el periodo que se ha parseado no está dentro
+		// Si el periodo que se ha parseado no est- dentro
 		// de DefinedValidityPeriodSet le asignamos como nombre
 		// el nombre del validityPeriodName
 		
-		// TODO por ahora, asumimos que los periodos sólo pueden
+		// TODO por ahora, asumimos que los periodos s-lo pueden
 		// definirse en el contexto dentro de DefinedValidityPeriodSet,
-		// por lo que en los términos sólo se pueden hacer referencias
+		// por lo que en los t-rminos s-lo se pueden hacer referencias
 		// por su nombre a periodos ya definidos.
 		// Si queremos permitir que se definan nuevos periodos en los
-		// términos, habrá que asignar como nombre el valor del atributo
+		// t-rminos, habr- que asignar como nombre el valor del atributo
 		// 'name' del nodo ValidityPeriod.
 		if(name != null){
 			drti.setName(name);
@@ -221,7 +221,7 @@ public class DefaultTimeAwareParser implements TimeAwareParser{
 		
 		Calendar initPoint = parseDate(initDate, gmtZone, dateFormat);
 		Calendar endPoint = parseDate(endDate, gmtZone, dateFormat);
-		// sumamos uno al resultado porque la fecha final también está incluida
+		// sumamos uno al resultado porque la fecha final tambi-n est- incluida
 		long initPointMillis = initPoint.getTimeInMillis();
 		long endPointMillis = endPoint.getTimeInMillis();
 		Integer diasEntreFechas = (int) ((endPointMillis-initPointMillis)/MILLSECS_PER_DAY)+1;
@@ -248,7 +248,7 @@ public class DefaultTimeAwareParser implements TimeAwareParser{
 		if(endHourNode == null){
 			throw new BadSyntaxException("endHour attribute is required inside a Periodical element");
 		}
-		// el periódico empieza a una hora concreta, así que tenemos que 
+		// el peri-dico empieza a una hora concreta, as- que tenemos que 
 		// especificarla en el calendar
 		SingleRealTemporalInterval srti = null;
 		NodeList periodicalChilds = periodical.getChildNodes();
@@ -267,11 +267,11 @@ public class DefaultTimeAwareParser implements TimeAwareParser{
 		String initHourString = initHourNode.getNodeValue().trim();
 		String endHourString = endHourNode.getNodeValue().trim();
 		
-		// en este caso, la duración del periodo será la diferencia entre las horas,
+		// en este caso, la duraci-n del periodo ser- la diferencia entre las horas,
 		// la frecuencia es el tiempo entre el inicio de un periodo y el inicio de otro
-		// que en este caso será siempre de un día
-		// y el número de repeticiones será el número de días entre fechas, que ya
-		// lo tenemos calculado en la duración de srti
+		// que en este caso ser- siempre de un d-a
+		// y el n-mero de repeticiones ser- el n-mero de d-as entre fechas, que ya
+		// lo tenemos calculado en la duraci-n de srti
 		Calendar initHour = parseHour(initHourString, gmtZone);
 		Calendar endHour = parseHour(endHourString, gmtZone);
 		Calendar initPoint = mixHourAndDate(srti.getInitialTimePoint(), initHour);
@@ -287,19 +287,19 @@ public class DefaultTimeAwareParser implements TimeAwareParser{
 		Integer repeticiones = srti.getDuration();
 		if(diferenciaEntreHoras < 0){
 			// si la diferencia de horas es negativa suponemos que el periodo
-			// contiene horas de dos días distintos, por ejemplo de 22:00
-			// de un día cualquiera a las 8:00 del día siguiente
-			// por lo tanto, la duración del periodo sería 24+(resultadoNegativo)
+			// contiene horas de dos d-as distintos, por ejemplo de 22:00
+			// de un d-a cualquiera a las 8:00 del d-a siguiente
+			// por lo tanto, la duraci-n del periodo ser-a 24+(resultadoNegativo)
 			duracion = 24+diferenciaEntreHoras;
-			// también en este caso, el número de repeticiones sería la
-			// duración del Interval ya calculado menos uno. Si suponemos
+			// tambi-n en este caso, el n-mero de repeticiones ser-a la
+			// duraci-n del Interval ya calculado menos uno. Si suponemos
 			// un periodo entre 12:00 y 24:00 entre 10/11/2011 y 12/11/2011, las
-			// repeticiones serían de 2, pero si fuera entre 22:00 y 8:00 entre 
-			// 10/11/2011 y 12/11/2011, en número de repeticiones sería de uno, ya que
-			// la primera repetición empieza a las 22:00 del 10/11/2011 y termina a
-			// las 8:00 del 11/11/2011, la segunda repetición empezaría a las 22:00
-			// del 11/11/2011 y terminaría a las 8:00 del 12/11/2011 y esto se pasa
-			// de la duración del periodo
+			// repeticiones ser-an de 2, pero si fuera entre 22:00 y 8:00 entre 
+			// 10/11/2011 y 12/11/2011, en n-mero de repeticiones ser-a de uno, ya que
+			// la primera repetici-n empieza a las 22:00 del 10/11/2011 y termina a
+			// las 8:00 del 11/11/2011, la segunda repetici-n empezar-a a las 22:00
+			// del 11/11/2011 y terminar-a a las 8:00 del 12/11/2011 y esto se pasa
+			// de la duraci-n del periodo
 			repeticiones--;
 		}else if(diferenciaEntreHoras == 0){
 			throw new PeriodDefinitionException("There is no time between initHour: "+initHourString+" and endHour: "+endHourString);
@@ -330,28 +330,28 @@ public class DefaultTimeAwareParser implements TimeAwareParser{
 		if(periodic == null){
 			throw new BadSyntaxException("PeriodicalWeekly elements must contain a Periodical element");
 		}
-		// parseamos los días
+		// parseamos los d-as
 		String initDayString = initDayNode.getTextContent().trim();
-		if(endDayNode == null){ // solo se repite un día a la semana
+		if(endDayNode == null){ // solo se repite un d-a a la semana
 			SinglePeriodicRealTemporalInterval result = parseOnceAWeekPeriodic(initDayString, periodic);
 			return result;
-		}else{ // se repite varios días a la semana
+		}else{ // se repite varios d-as a la semana
 			String endDayString = endDayNode.getTextContent().trim();
-			// por cada día que se repite sacamos un periodo, 
-			// y metemos cada uno de ellos en un disjoint de periódicos
+			// por cada d-a que se repite sacamos un periodo, 
+			// y metemos cada uno de ellos en un disjoint de peri-dicos
 			ArrayList<RealTemporalInterval> periodicIntervalsList = new ArrayList<RealTemporalInterval>();
-			// para saber que días se repite hacemos resta entre los días
+			// para saber que d-as se repite hacemos resta entre los d-as
 			Integer initDay = parseDay(initDayString);
 			Integer endDay = parseDay(endDayString);
 			Integer diff = endDay - initDay;
 			if(diff == 0){
-				throw new PeriodDefinitionException("There aren´t days between initDay: "+initDayString+" and endDay: "+endDayString);
+				throw new PeriodDefinitionException("There aren-t days between initDay: "+initDayString+" and endDay: "+endDayString);
 			}else if(diff > 0){
 				for(int i=initDay; i<=endDay; i++){
 					SinglePeriodicRealTemporalInterval sprti = parseOnceAWeekPeriodic(parseDay(i), periodic);
 					periodicIntervalsList.add(sprti);
 				}
-			}else if(diff < 0){ // este caso sería por ejemplo, de SAT a TUE
+			}else if(diff < 0){ // este caso ser-a por ejemplo, de SAT a TUE
 				// recorremos desde inicio del periodo hasta el final de la semana
 				// y luego desde el inicio de la semana hasta el final del periodo
 				for(int i=initDay; i<=Calendar.SATURDAY; i++){
@@ -396,8 +396,8 @@ public class DefaultTimeAwareParser implements TimeAwareParser{
 		Integer initDay = parseDay(day);
 		Calendar initDate = (Calendar) periodic.getInitialTimePoint().clone();
 		Calendar endDate = (Calendar) initDate.clone();
-		// añadimos a endDate las horas que tenga initDate para que luego
-		// el cálculo de la diferencia de días entre ellas sea de días 
+		// a-adimos a endDate las horas que tenga initDate para que luego
+		// el c-lculo de la diferencia de d-as entre ellas sea de d-as 
 		// exactos
 		endDate.add(Calendar.DAY_OF_MONTH, periodic.getRepetitions()-1);
 		if(periodic.getDurationMetric().equals(TemporalMetric.SECONDS)){
@@ -405,7 +405,7 @@ public class DefaultTimeAwareParser implements TimeAwareParser{
 		}else if(periodic.getDurationMetric().equals(TemporalMetric.HOURS)){
 			endDate.add(Calendar.HOUR_OF_DAY, periodic.getDuration());
 		}
-		// el inicio del periodo será el primer día desde el inicio del intervalo
+		// el inicio del periodo ser- el primer d-a desde el inicio del intervalo
 		// que coincida con initDay
 		Integer dayOfWeek = initDate.get(Calendar.DAY_OF_WEEK);
 		Integer diff = initDay - dayOfWeek;
@@ -413,16 +413,16 @@ public class DefaultTimeAwareParser implements TimeAwareParser{
 			diff += 7;
 		}
 		initDate.add(Calendar.DAY_OF_WEEK, diff);			
-		// el número de repeticiones es el número de initDay que hay entre
-		// las fechas del intervalo. Para calcularlo, cogemos el número de días
-		// entre initDate y endDate, y lo dividimos entre 7; el cociente será
+		// el n-mero de repeticiones es el n-mero de initDay que hay entre
+		// las fechas del intervalo. Para calcularlo, cogemos el n-mero de d-as
+		// entre initDate y endDate, y lo dividimos entre 7; el cociente ser-
 		// nuestro resultado
 		Integer repeticiones = (int) (((endDate.getTimeInMillis()-initDate.getTimeInMillis())/MILLSECS_PER_DAY)/7)+1;
 		if(repeticiones <= 0){
-			throw new PeriodDefinitionException("There isn´t a "+day+" between initDate and endDate");
+			throw new PeriodDefinitionException("There isn-t a "+day+" between initDate and endDate");
 		}
-		// la duración será la misma que la del Periodic
-		// la frequencia será de una semana ya que endDay es null
+		// la duraci-n ser- la misma que la del Periodic
+		// la frequencia ser- de una semana ya que endDay es null
 		return new SinglePeriodicRealTemporalInterval(initDate, periodic.getDuration(), periodic.getDurationMetric(), repeticiones, 7, TemporalMetric.DAYS);
 	}
 	
@@ -439,7 +439,7 @@ public class DefaultTimeAwareParser implements TimeAwareParser{
 					if(rti != null){
 						exceptInterval = rti;
 					}else{
-						throw new BadSyntaxException("ValidityPeriodName "+validityPeriodName+" doesn´t exist. A ValidityPeriodName must be defined before use it");
+						throw new BadSyntaxException("ValidityPeriodName "+validityPeriodName+" doesn-t exist. A ValidityPeriodName must be defined before use it");
 					}
 				}else if(child.getNodeName().equalsIgnoreCase(taNamespace+"Interval")){
 					exceptInterval = parseInterval(child, gmtZone, dateFormat);
@@ -486,7 +486,7 @@ public class DefaultTimeAwareParser implements TimeAwareParser{
 //		Calendar result = Calendar.getInstance(TimeZone.getTimeZone("GMT"+gmtZone));
 		DateFormat formatter = null;
 		// solo permitimos los formatos MM/DD/YYYY y DD/MM/YYYY
-		// le añadimos el gmt zone para el parseo
+		// le a-adimos el gmt zone para el parseo
 		dateString = dateString+":GMT"+gmtZone;
 		if(dateFormat.equalsIgnoreCase("MM/DD/YYYY")){
 			formatter = new SimpleDateFormat("MM/dd/yyyy");
@@ -550,7 +550,7 @@ public class DefaultTimeAwareParser implements TimeAwareParser{
 		}else if(dayString.equalsIgnoreCase("SUN")){
 			result = Calendar.SUNDAY;
 		}else{
-			throw new BadSyntaxException(dayString+" isn´t a valid day of the week. Just MON, TUE, WED, THU, FRI, SAT and SUN are supported");
+			throw new BadSyntaxException(dayString+" isn-t a valid day of the week. Just MON, TUE, WED, THU, FRI, SAT and SUN are supported");
 		}
 		return result;
 	}

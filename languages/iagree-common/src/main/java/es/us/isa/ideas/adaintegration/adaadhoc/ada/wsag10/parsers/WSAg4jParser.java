@@ -59,7 +59,7 @@ public class WSAg4jParser extends AbstractWsagParser {
 
 	protected Item parseItem(Node nextNodeCC){
 		//XXX Si el item es analizable por ADA, lo parseamos
-		//sino devolvemos un item vacío con Analysable = false
+		//sino devolvemos un item vac-o con Analysable = false
 		Item res = new Item();
 		Boolean isAnalysableNodeExists = false;
 		NodeList itemChilds = nextNodeCC.getChildNodes();

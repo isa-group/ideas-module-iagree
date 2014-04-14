@@ -39,21 +39,21 @@ import org.xml.sax.InputSource;
 
 public class MonitoringManagementDocument {
 //	<monitoringManagementDocument>
-//		<WebServiceInformation name>               // Información del servicio
+//		<WebServiceInformation name>               // Informaci-n del servicio
 //		  <description>...</description>
 //		  <domain>...</domain>
 //		  <wsdlURL>...</wsdlURL>
 //		  <endpoint>...</endpoint>
 //		  <operation opName>  // Permitimos n operations
-//		           <soapAction>…</soapAction>
+//		           <soapAction>-</soapAction>
 //		  </operation>
 //		</WebServiceInformation>
 //		<monitorConfiguration>
 //		  <globalPeriodInit>...</globalPeriodInit>
 //		  <globalPeriodEnd>...</globalPeriodEnd>
 //		</monitorConfiguration>
-//		// Métricas y medidas de servicio a monitorizar: RoundTimeTrip, Availability,....
-//		<serviceMetric>                   // métricas de servicio: e.g. availability
+//		// M-tricas y medidas de servicio a monitorizar: RoundTimeTrip, Availability,....
+//		<serviceMetric>                   // m-tricas de servicio: e.g. availability
 //		  <metric>...</metric>
 //		  <localPeriodInit>...</localPeriodInit>
 //		  <localPeriodEnd>...</localPeriodEnd>
@@ -63,9 +63,9 @@ public class MonitoringManagementDocument {
 //		           <timeStampEnd>...</timeStampEnd>
 //		   </measure>
 //		</serviceMetric>
-//		// Métricas y medidas de la operación a monitorizar
+//		// M-tricas y medidas de la operaci-n a monitorizar
 //		<operationMetric opName >                                 
-//		  <metric>...</metric>        // métricas de la operación: e.g. response time of operation 1
+//		  <metric>...</metric>        // m-tricas de la operaci-n: e.g. response time of operation 1
 //		  <localPeriodInit>...</localPeriodInit>
 //		  <localPeriodEnd>...</localPeriodEnd>
 //		  <measure>
@@ -74,7 +74,7 @@ public class MonitoringManagementDocument {
 //		           <timeStampEnd>...</timeStampEnd>
 //		   </measure>
 //		</operationMetric>
-//		//... repetir para toda operación
+//		//... repetir para toda operaci-n
 //	</monitoringManagementDocument>
 	
 	private WebServiceInformation webServiceInformation;
@@ -153,16 +153,16 @@ public class MonitoringManagementDocument {
 			Element wsi = webServiceInformation.getAsDOMDocument().getDocumentElement();
 			Element mc = monitorConfiguration.getAsDOMDocument().getDocumentElement();
 			
-			//añadimos los nodos hijos
+			//a-adimos los nodos hijos
 			root.appendChild(doc.importNode(wsi, true));
 			root.appendChild(doc.importNode(mc, true));
 			
-			//creamos y añadimos los service metric
+			//creamos y a-adimos los service metric
 			for(ServiceMetric sm:serviceMetrics){
 				Element smElem = sm.getAsDOMDocument().getDocumentElement();
 				root.appendChild(doc.importNode(smElem, true));
 			}
-			//creamos y añadimos los operation metric
+			//creamos y a-adimos los operation metric
 			for(OperationMetric om:operationMetrics){
 				Element omElem = om.getAsDOMDocument().getDocumentElement();
 				root.appendChild(doc.importNode(omElem, true));
@@ -190,7 +190,7 @@ public class MonitoringManagementDocument {
 		} catch (Exception e) {
 			System.err.println("Error while opening the monitoring management document");
 		}
-		//Si el documento tiene información empezamos a recorrerlo y parseamos
+		//Si el documento tiene informaci-n empezamos a recorrerlo y parseamos
 		NodeList rootNode = documentMMD.getChildNodes();
 		if (rootNode.getLength() != 0) {
 			Node root = rootNode.item(0);

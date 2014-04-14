@@ -345,7 +345,7 @@ public class ChocoComplianceTranslator implements IChocoTranslator{
 							this.sdtConstraints.add(c);
 						} catch (UnknownVariableException e) {
 							//no puede darse esta excepcion
-							//la vble se ha añadido en addVar
+							//la vble se ha a-adido en addVar
 						}
 					}
 				}

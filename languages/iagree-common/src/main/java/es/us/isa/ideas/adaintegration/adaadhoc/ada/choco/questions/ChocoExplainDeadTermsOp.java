@@ -57,7 +57,7 @@ public class ChocoExplainDeadTermsOp extends ChocoOperation implements ExplainDe
 	 * haya en este, impongo este(1), y reifico el resto. Maximizo la suma de
 	 * ellos, y si el resultado es menor que el actual, me quedo con el.
 	 * 
-	 * Notas: inicialmente el map estara vacio. Cada termino se añadira cuando
+	 * Notas: inicialmente el map estara vacio. Cada termino se a-adira cuando
 	 * encontremos alguna explicacion. Si no encontramos ningna, es que no es un
 	 * error. Si encontramos alguna, pero luego encontramos que no es un error
 	 * (no hay explicacion) lo borraremos al final
@@ -108,7 +108,7 @@ public class ChocoExplainDeadTermsOp extends ChocoOperation implements ExplainDe
 							// termino
 							// del map
 
-							// guardamos el tamaño actual de las explanations
+							// guardamos el tama-o actual de las explanations
 							int setSize = res.get(t).size();
 
 							// impongo el termino actual (dentro de regularCons

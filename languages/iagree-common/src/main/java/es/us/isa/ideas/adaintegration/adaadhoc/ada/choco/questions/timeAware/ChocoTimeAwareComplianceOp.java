@@ -272,7 +272,7 @@ public class ChocoTimeAwareComplianceOp extends ChocoOperation implements Compli
 //				AgreementOffer o = (AgreementOffer) doc2;
 //				
 //				//Suponemos que ambos documentos son consistentes ya que la consistencia
-//				//se comprobará después dentro de la operación Compliance sin temporalidad
+//				//se comprobar- despu-s dentro de la operaci-n Compliance sin temporalidad
 //				TemporalSequence etsTemp = TemporalAwareUtils.getEquivalentTemporalSequence(t);
 //				TemporalSequence etsOff = TemporalAwareUtils.getEquivalentTemporalSequence(o);
 //				
@@ -334,7 +334,7 @@ public class ChocoTimeAwareComplianceOp extends ChocoOperation implements Compli
 	private AbstractAgreementDocument createNewDocument(AbstractAgreementDocument doc, LinkedHashSet<Object> terms){
 AbstractAgreementDocument newDoc;
 		
-		//Los términos que nos llegan pueden ser GT, SDT, Items y Constraints
+		//Los t-rminos que nos llegan pueden ser GT, SDT, Items y Constraints
 		TermCompositor compositor = new TermCompositor();
 		compositor.setType(TermCompositor.ALL);
 		compositor.setName("terms");
@@ -348,7 +348,7 @@ AbstractAgreementDocument newDoc;
 				compositor.addComprisedTerm((Term) t);
 			}
 		}
-		//Si es una plantilla tenemos que meter también las CreationConstraints
+		//Si es una plantilla tenemos que meter tambi-n las CreationConstraints
 		if(doc instanceof Template){
 			Template t = new Template();
 			t.setCc(cc);
@@ -356,13 +356,13 @@ AbstractAgreementDocument newDoc;
 		}else if(doc instanceof AgreementOffer){
 			newDoc = new AgreementOffer();
 		}else{
-			throw new ADAException("The document isn´t a template neither an offer");
+			throw new ADAException("The document isn-t a template neither an offer");
 		}
 		newDoc.setId(doc.getId());
 		newDoc.setName(doc.getName());
 		newDoc.setContext((Context) doc.getContext());
-		// También tenemos que añadir las ServiceProperties del documento
-		// original, sino fallaría el translator a Choco por no conocer las
+		// Tambi-n tenemos que a-adir las ServiceProperties del documento
+		// original, sino fallar-a el translator a Choco por no conocer las
 		// variables que se usan en el documento
 		for(Term t: doc.getAllTerms()){
 			if(t instanceof ServiceProperties){

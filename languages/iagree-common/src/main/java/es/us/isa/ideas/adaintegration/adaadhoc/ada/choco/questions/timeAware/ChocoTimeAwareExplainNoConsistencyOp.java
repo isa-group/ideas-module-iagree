@@ -155,8 +155,8 @@ public class ChocoTimeAwareExplainNoConsistencyOp extends ChocoOperation impleme
 				for(InverseTemporalPair itp: its.getPairs()){
 					// This is the point for non-temporal checking consistency to be asked (!)
 					LinkedHashSet<Object> terms = itp.getData();
-					// Si en los t�rminos del conjunto no aparece alguno de los t�rminos
-					// que est�n definidos en todo el periodo global, es que hay overcovering
+					// Si en los t-rminos del conjunto no aparece alguno de los t-rminos
+					// que est-n definidos en todo el periodo global, es que hay overcovering
 					// Lo comprobamos dentro de createNewDocument
 					
 					// A new document with terms in the same period is created to be analysed
@@ -239,11 +239,11 @@ public class ChocoTimeAwareExplainNoConsistencyOp extends ChocoOperation impleme
 				}
 			}
 		}
-		// In the end, if there aren�t errors and the covering is empty, the covering is not complete (!)
+		// In the end, if there aren-t errors and the covering is empty, the covering is not complete (!)
 		// If some error exists, it has no sense to check for Undercovering
 		if (minSetVars == null){
 			if (!covering.isEmpty()){
-				throw new PeriodDefinitionWarningException("Undercovering detected! Global period isn�t covered by all validity periods");
+				throw new PeriodDefinitionWarningException("Undercovering detected! Global period isn-t covered by all validity periods");
 			}
 		}
 		
@@ -367,10 +367,10 @@ public class ChocoTimeAwareExplainNoConsistencyOp extends ChocoOperation impleme
 					error.setName(((OfferItem)error).toString());
 				}
 				appendPeriodNameToAgreementElement(error);
-				// TODO en el futuro estar�a bien generar un periodo en 4people que
-				// indique los instantes temporales en los que los t�rminos son inconsistentes
-				// en vez de decir el nombre de los periodos de cada t�rmino. Por ejemplo,
-				// que en la explicaci�n se dijera que el conflicto est� en los lunes y martes
+				// TODO en el futuro estar-a bien generar un periodo en 4people que
+				// indique los instantes temporales en los que los t-rminos son inconsistentes
+				// en vez de decir el nombre de los periodos de cada t-rmino. Por ejemplo,
+				// que en la explicaci-n se dijera que el conflicto est- en los lunes y martes
 				// del periodo WORK.
 				res.put(error, causes);
 
@@ -387,27 +387,27 @@ public class ChocoTimeAwareExplainNoConsistencyOp extends ChocoOperation impleme
 	private AbstractAgreementDocument createNewDocument(AbstractAgreementDocument doc, LinkedHashSet<Object> terms){
 		AbstractAgreementDocument newDoc;
 		
-		//Los t�rminos que nos llegan pueden ser GT, SDT, Items y Constraints
+		//Los t-rminos que nos llegan pueden ser GT, SDT, Items y Constraints
 		TermCompositor compositor = new TermCompositor();
 		compositor.setType(TermCompositor.ALL);
 		compositor.setName("terms");
 		CreationConstraints cc = new CreationConstraints();
 		Boolean isThereSomeGlobalPeriodInTerms = false;
 		if(doc.getHasSomeGlobalTerm()){
-			// tenemos que ver si hay alg�n global term en el conjunto de t�rminos. Si no hay ninguno
+			// tenemos que ver si hay alg-n global term en el conjunto de t-rminos. Si no hay ninguno
 			// estamos ante un overcovering
 		}
 		for(Object t: terms){
 			if(t instanceof Item){
 				cc.addItem((Item) t);
 				if(((TimeAwareItem) t).getValidityPeriod() == null){
-					// este t�rmino es v�lido en todo el global period
+					// este t-rmino es v-lido en todo el global period
 					isThereSomeGlobalPeriodInTerms = true;
 				}
 			}else if(t instanceof GeneralConstraint){
 				cc.addConstraint((GeneralConstraint) t);
 				if(((TimeAwareGeneralConstraint) t).getValidityPeriod() == null){
-					// este t�rmino es v�lido en todo el global period
+					// este t-rmino es v-lido en todo el global period
 					isThereSomeGlobalPeriodInTerms = true;
 				}
 			}else if(t instanceof Term){
@@ -416,20 +416,20 @@ public class ChocoTimeAwareExplainNoConsistencyOp extends ChocoOperation impleme
 //				}
 				compositor.addComprisedTerm((Term) t);
 				if(t instanceof TimeAwareServiceDescriptionTerm && ((TimeAwareServiceDescriptionTerm) t).getValidityPeriod() == null){
-					// este t�rmino es v�lido en todo el global period
+					// este t-rmino es v-lido en todo el global period
 					isThereSomeGlobalPeriodInTerms = true;
 				}else if(t instanceof TimeAwareGuaranteeTerm && ((TimeAwareGuaranteeTerm) t).getValidityPeriod() == null){
-					// este t�rmino es v�lido en todo el global period
+					// este t-rmino es v-lido en todo el global period
 					isThereSomeGlobalPeriodInTerms = true;
 				}
 			}
 		}
-		// Si en el documento hay t�rminos v�lidos para todo el global period,
+		// Si en el documento hay t-rminos v-lidos para todo el global period,
 		// pero en Terms no hay ninguno entonces estamos ante un overcovering
 		if(doc.getHasSomeGlobalTerm() != isThereSomeGlobalPeriodInTerms){
 			throw new PeriodDefinitionWarningException("Overcovering detected! The following terms are overcovering the global period: "+terms);
 		}
-		//Si es una plantilla tenemos que meter tambi�n las CreationConstraints
+		//Si es una plantilla tenemos que meter tambi-n las CreationConstraints
 		if(doc instanceof Template){
 			Template t = new Template();
 			t.setCc(cc);
@@ -437,13 +437,13 @@ public class ChocoTimeAwareExplainNoConsistencyOp extends ChocoOperation impleme
 		}else if(doc instanceof AgreementOffer){
 			newDoc = new AgreementOffer();
 		}else{
-			throw new ADAException("The document isn�t a template neither an offer");
+			throw new ADAException("The document isn-t a template neither an offer");
 		}
 		newDoc.setId(doc.getId());
 		newDoc.setName(doc.getName());
 		newDoc.setContext((Context) doc.getContext());
-		// Tambi�n tenemos que a�adir las ServiceProperties del documento
-		// original, sino fallar�a el translator a Choco por no conocer las
+		// Tambi-n tenemos que a-adir las ServiceProperties del documento
+		// original, sino fallar-a el translator a Choco por no conocer las
 		// variables que se usan en el documento
 		for(Term t: doc.getAllTerms()){
 			if(t instanceof ServiceProperties){

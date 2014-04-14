@@ -75,7 +75,7 @@ public class ChocoLudicrousTermsOp extends ChocoOperation implements LudicrousTe
 	 * (unicamente entre los dos) 2) QC cierta, y slo se contradice contra algun
 	 * otro termino o CC
 	 * 
-	 * ¿Igual que para dead terms, pero incluyendo tambien el SLO?
+	 * -Igual que para dead terms, pero incluyendo tambien el SLO?
 	 * 
 	 * Tomamos todos los terminos muertos, pues los ludicrous son un subconjunto
 	 * de estos. mapeamos, por cada GT complejo, su QC, su SLO, y el resto
@@ -207,9 +207,9 @@ public class ChocoLudicrousTermsOp extends ChocoOperation implements LudicrousTe
 										}
 									}else{
 										// no se contradice con el resto de restricciones
-										// añadimos un nuevo caso donde también añadimos
-										// la restricción de la QC del ludicrous. Así 
-										// vemos si hay términos que tienen la misma QC
+										// a-adimos un nuevo caso donde tambi-n a-adimos
+										// la restricci-n de la QC del ludicrous. As- 
+										// vemos si hay t-rminos que tienen la misma QC
 										// o donde la parte izquierda de un IMPLIES coincide
 										// con la QC.
 										m = new CPModel();

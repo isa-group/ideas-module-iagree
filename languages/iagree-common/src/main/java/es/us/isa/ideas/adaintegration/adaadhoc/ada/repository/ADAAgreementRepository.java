@@ -133,13 +133,13 @@ public class ADAAgreementRepository implements AgreementRepository{
 					ps.close();
 					result = true;
 				} else {
-					System.err.println("The agreement doesn´t belong to the user");
+					System.err.println("The agreement doesn-t belong to the user");
 				}
 			} else {
 				System.err.println("The user must be logged in");
 			}
 		}else{
-			System.err.println("The agreement doesn´t exists");
+			System.err.println("The agreement doesn-t exists");
 		}
 		connection.close();
 		
@@ -170,13 +170,13 @@ public class ADAAgreementRepository implements AgreementRepository{
 						System.err.println("The user already has an agreement with the same name");
 					}
 				} else {
-					System.err.println("The agreement doesn´t belong to the user");
+					System.err.println("The agreement doesn-t belong to the user");
 				}
 			} else {
 				System.err.println("The user must be logged in");
 			}
 		}else{
-			System.err.println("The agreement doesn´t exists");
+			System.err.println("The agreement doesn-t exists");
 		}
 		return result;
 	}
@@ -222,7 +222,7 @@ public class ADAAgreementRepository implements AgreementRepository{
 				rs.close();
 				ps.close();
 			}else{
-				System.err.println("The agreement doesn´t exist");
+				System.err.println("The agreement doesn-t exist");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -286,7 +286,7 @@ public class ADAAgreementRepository implements AgreementRepository{
 	 * @param updatedAgreem The agreement id to be updated
 	 * @param agName The agreement name
 	 * @param user The user id
-	 * @return True if the user already has an agreement with the same name and it isn´t the agreement to be updated
+	 * @return True if the user already has an agreement with the same name and it isn-t the agreement to be updated
 	 * @throws SQLException
 	 */
 	private boolean existsAgWithSameNameForUserExceptCurrentUpdatedDocument(Connection c, int updatedAgreem, String agName, int user) throws SQLException{

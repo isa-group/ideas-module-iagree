@@ -58,7 +58,7 @@ public class TemporalAwareUtils {
 			
 			// Recorremos los SDTs, GTs, Items y Constraints porque es donde puede
 			// estar la temporalidad
-			// Si estos términos no tienen asignado un periodo de validez,
+			// Si estos t-rminos no tienen asignado un periodo de validez,
 			// le asignamos el globalPeriod
 			for(Term t: agreement.getAllTerms()){
 				if(t instanceof TimeAwareServiceDescriptionTerm){
@@ -133,7 +133,7 @@ public class TemporalAwareUtils {
 	
 	/**
 	 * Associates a given Term to a given ValidityPeriod into a TemporalSequence
-	 * @param ts Where TemporalPair´s and Terms will be associated
+	 * @param ts Where TemporalPair-s and Terms will be associated
 	 * @param taTerm This term will be associated to a TemporalInterval
 	 * @param rti This ValidityPeriod will be transformed into a TemporalInterval
 	 */

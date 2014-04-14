@@ -64,7 +64,7 @@ public class ChocoExplainLudicrousTermsOp extends ChocoOperation implements Expl
 	 * el resto, incluyendo la QC. Maximizo la suma de ellos, y si el resultado
 	 * es menor que el actual, me quedo con el.
 	 * 
-	 * Notas: inicialmente el map estara vacio. Cada termino se añadira cuando
+	 * Notas: inicialmente el map estara vacio. Cada termino se a-adira cuando
 	 * encontremos alguna explicacion. Si no encontramos ningna, es que no es un
 	 * error. Si encontramos alguna, pero luego encontramos que no es un error
 	 * (no hay explicacion) lo borraremos al final
@@ -93,7 +93,7 @@ public class ChocoExplainLudicrousTermsOp extends ChocoOperation implements Expl
 			for (AbstractDocument doc : alts) {
 				// si imponemos que deben ser consistentes
 				// habra dead terms (todos aquellos que no sean complejos)
-				// por lo tanto, no vamos a imponerloç
+				// por lo tanto, no vamos a imponerlo-
 
 				Collection<AbstractDocument> views = super.getViews(doc, an).values();
 				for (AbstractDocument v : views) {
@@ -114,7 +114,7 @@ public class ChocoExplainLudicrousTermsOp extends ChocoOperation implements Expl
 							// termino
 							// del map
 
-							// guardamos el tamaño actual de las explanations
+							// guardamos el tama-o actual de las explanations
 							int setSize = res.get(t).size();
 
 							// impongo el termino actual (dentro de complexGTs)
@@ -129,7 +129,7 @@ public class ChocoExplainLudicrousTermsOp extends ChocoOperation implements Expl
 							// la constraint sera null
 							if (c != null) {
 								// probamos si el SLO es consistente consigo mismo
-								// en caso de no serlo será una explicación
+								// en caso de no serlo ser- una explicaci-n
 								Model sloModel = new CPModel();
 								sloModel.addConstraint(c);
 								Solver sloSolver = new CPSolver();
@@ -138,14 +138,14 @@ public class ChocoExplainLudicrousTermsOp extends ChocoOperation implements Expl
 									Model model = new CPModel();
 									Solver solver = new CPSolver();
 									// vemos si entra en conflicto con su QC
-									// añadimos ambas restricciones
+									// a-adimos ambas restricciones
 									model.addConstraint(c);
 									model.addConstraint(complexgt.getQc());
 									solver.read(model);
 									if(solver.solve()){
 										// QC y SLO no son conflictivos,
-										// vemos si el SLO entra en conflicto con otros términos
-										// imponiendo como fija la restricción del SLO y la QC
+										// vemos si el SLO entra en conflicto con otros t-rminos
+										// imponiendo como fija la restricci-n del SLO y la QC
 										model.addConstraint(c);
 
 										// reificamos el resto de constraints y las
@@ -160,8 +160,8 @@ public class ChocoExplainLudicrousTermsOp extends ChocoOperation implements Expl
 										model.addConstraint(reifiedConstraint);
 										reifiedElements.put(reifiedVar, complexgt.getTerm());
 										
-										// en este Map guardaremos todos los términos regulares,
-										// GTs complejos y creation constraints para después 
+										// en este Map guardaremos todos los t-rminos regulares,
+										// GTs complejos y creation constraints para despu-s 
 										// refinar las explanations
 										Map<AgreementElement, Constraint> allTerms = new HashMap<AgreementElement, Constraint>();
 
@@ -245,7 +245,7 @@ public class ChocoExplainLudicrousTermsOp extends ChocoOperation implements Expl
 													// XXX comento esta linea porque si en una variante no hay
 													// explanations para el ludicrous que tratamos, borra el
 													// ludicrous del resultado evitando que se trate dicho
-													// término en otras variantes
+													// t-rmino en otras variantes
 												}
 											}
 										}
@@ -309,22 +309,22 @@ public class ChocoExplainLudicrousTermsOp extends ChocoOperation implements Expl
 	}
 	
 	/**
-	 * Comprueba una por una si cada explicación es conflictiva con la restricción del SLO.
+	 * Comprueba una por una si cada explicaci-n es conflictiva con la restricci-n del SLO.
 	 * En caso de que alguna no sea conflictiva quiere decir que no es causante del ludicrous term,
-	 * por lo que no será devuelta.
-	 * @param sloCons Constraint del SLO del término detectado como ludicrous term
-	 * @param explanations Colección de términos devueltos como explicaciones del ludicrous term
-	 * @param allTerms Todos los términos del documento y sus restricciones
-	 * @return Colección de explicaciones refinada. Sólo aquellos términos que son conflictivos
+	 * por lo que no ser- devuelta.
+	 * @param sloCons Constraint del SLO del t-rmino detectado como ludicrous term
+	 * @param explanations Colecci-n de t-rminos devueltos como explicaciones del ludicrous term
+	 * @param allTerms Todos los t-rminos del documento y sus restricciones
+	 * @return Colecci-n de explicaciones refinada. S-lo aquellos t-rminos que son conflictivos
 	 * con el SLO
 	 */
 	private Collection<AgreementElement> refineExplanations(ChocoComplexGT ludicrous, Collection<AgreementElement> explanations, Map<AgreementElement, Constraint> allTerms){
-		// Si sólo hay una explicación no refinamos nada
+		// Si s-lo hay una explicaci-n no refinamos nada
 		if(explanations.size() > 1){
 			Iterator<AgreementElement> it = explanations.iterator();
 			while(it.hasNext()){
 				AgreementElement ae = it.next();
-				// Sólo refinamos si la explicación es otro ludicrous
+				// S-lo refinamos si la explicaci-n es otro ludicrous
 //				if(ludicrousTerms.contains(ae)){
 					Constraint c = allTerms.get(ae);
 					if(c != null){
@@ -334,39 +334,39 @@ public class ChocoExplainLudicrousTermsOp extends ChocoOperation implements Expl
 							GuaranteeTerm gt = (GuaranteeTerm) ae;
 							if(gt.hasQualifyCondition()){
 								if(gt.getQualifyingCondition().equalsIgnoreCase(ludicrous.getTerm().getQualifyingCondition())){
-									// la QC del ludicrous y de la explicación es la misma
+									// la QC del ludicrous y de la explicaci-n es la misma
 									// por lo que la imponemos en el problema para que se
 									// compruebe si hay conflicto entre los SLO
 									model.addConstraint(ludicrous.getSlo());
 									model.addConstraint(ludicrous.getQc());
-									model.addConstraint(c); // c es la restricción de la explicación
+									model.addConstraint(c); // c es la restricci-n de la explicaci-n
 								}else{
-									// la QC del ludicrous y de la explicación son distintas
-									// por lo que sólo metemos en el problema el SLO del
-									// ludicrous y la restricción de la explicación
+									// la QC del ludicrous y de la explicaci-n son distintas
+									// por lo que s-lo metemos en el problema el SLO del
+									// ludicrous y la restricci-n de la explicaci-n
 									model.addConstraint(ludicrous.getSlo());
-									model.addConstraint(c); // c es la restricción de la explicación
+									model.addConstraint(c); // c es la restricci-n de la explicaci-n
 								}
 							}else{
-								// la explicación es un GT sin QC
-								// metemos en el problema sólo los SLO de ambos
+								// la explicaci-n es un GT sin QC
+								// metemos en el problema s-lo los SLO de ambos
 								model.addConstraint(ludicrous.getSlo());
-								model.addConstraint(c); // c es la restricción de la explicación
+								model.addConstraint(c); // c es la restricci-n de la explicaci-n
 							}
 						}else{
-							// la explicación no es un GT
-							// metemos el SLO del ludicrous y la restricción
-							// de la explicación
+							// la explicaci-n no es un GT
+							// metemos el SLO del ludicrous y la restricci-n
+							// de la explicaci-n
 							model.addConstraint(ludicrous.getSlo());
 							model.addConstraint(c);
 						}
 						solver.read(model);
 						if(solver.solve()){
-							// tiene solución por lo que no son conflictivas, borramos la explicación
+							// tiene soluci-n por lo que no son conflictivas, borramos la explicaci-n
 							it.remove();
 						}
 					}else{
-						System.err.println("El AgreementElement "+ae+" no está en los términos del documento");
+						System.err.println("El AgreementElement "+ae+" no est- en los t-rminos del documento");
 					}
 //				}
 			}

@@ -48,8 +48,8 @@ import es.us.isa.ideas.adaintegration.adaadhoc.ada.wsag10.transforms.wsag4people
 
 /**
  * @author  cmuller
- * Hay que modificar todo lo de dentro de esta clase para a�adir
- * c�digo del parseo de WSAg4People a WSAG
+ * Hay que modificar todo lo de dentro de esta clase para a-adir
+ * c-digo del parseo de WSAg4People a WSAG
  */
 public class WSAgPeople2XMLTransform implements ITransform{
 
@@ -161,7 +161,7 @@ public class WSAgPeople2XMLTransform implements ITransform{
 		
 		boolean res = (content != null);
 
-		//Quiz�s habr�a que hacer el parseo a xml para ver si es un xml bien formado y libre de errores de XML
+		//Quiz-s habr-a que hacer el parseo a xml para ver si es un xml bien formado y libre de errores de XML
 		FileWriter fichero = null;
 		PrintWriter pw = null;
 		try {

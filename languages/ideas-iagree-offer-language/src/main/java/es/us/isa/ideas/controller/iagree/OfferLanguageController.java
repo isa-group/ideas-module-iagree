@@ -5,11 +5,11 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import es.us.ideas.iagree.AnalizeDelegate;
+import es.us.isa.ideas.adaintegration.iagree.AnalizeDelegate;
 import es.us.isa.ideas.common.AppResponse;
 import es.us.isa.ideas.common.AppResponse.Status;
 import es.us.isa.ideas.module.controller.BaseLanguageController;
-import es.us.isa.util.ConversionDelegate;
+import es.us.isa.ideas.util.ConversionDelegate;
 
 @Controller
 @RequestMapping("/language")

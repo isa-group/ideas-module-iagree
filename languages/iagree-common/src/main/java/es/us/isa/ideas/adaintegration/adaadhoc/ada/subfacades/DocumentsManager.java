@@ -58,7 +58,7 @@ public class DocumentsManager {
 		if (parser != null){
 			res = parser.parseFile(path,opts);
 		}else{
-			throw new ADAException("There aren´t a parser for extension "+extension);
+			throw new ADAException("There aren-t a parser for extension "+extension);
 		}
 		return res;
 	}

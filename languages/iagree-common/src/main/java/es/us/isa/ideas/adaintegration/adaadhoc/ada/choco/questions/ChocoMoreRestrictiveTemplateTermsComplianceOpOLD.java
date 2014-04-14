@@ -96,7 +96,7 @@ MoreRestrictiveTemplateTermsComplianceOperation {
 				t = (Template) doc;
 				if (checkConsistency(t,an)){
 					//System.out.println("La plantilla es consistente");
-				// para esta operación debemos asegurarnos de que la plantilla sea consistente
+				// para esta operaci-n debemos asegurarnos de que la plantilla sea consistente
 						ChocoAlternativeDocumentsOp adop = new ChocoAlternativeDocumentsOp();
 						adop.addDocument(doc);
 						an.analyze(adop);
@@ -106,8 +106,8 @@ MoreRestrictiveTemplateTermsComplianceOperation {
 						Iterator<AbstractDocument> it = alts.iterator();
 						
 						boolean b = false; 
-						// revisar la condición de !b... pq..
-						// ¿con que haya una more restrictive ya devolvemos TRUE?
+						// revisar la condici-n de !b... pq..
+						// -con que haya una more restrictive ya devolvemos TRUE?
 						// es decir, creo que TODAS las vistas deben devolver true... (REVISAR)
 						while (it.hasNext() && !b) {
 							// por cada alternative document de la plantilla
@@ -198,10 +198,10 @@ MoreRestrictiveTemplateTermsComplianceOperation {
 								// todas las constraints de las CCs
 								Constraint templateCcConstraint = Choco.and(ccConstraintsarray);
 								
-								// XXX el primer parámetro debe ser el equivalente a la template en el compliance 
+								// XXX el primer par-metro debe ser el equivalente a la template en el compliance 
 								// y el segundo debe ser el equivalente a la oferta en el compliance
-								// para reutilizar la operación isCompliantConstraint de cara a
-								// comprobar si los términos de la plantilla son más restrictivos
+								// para reutilizar la operaci-n isCompliantConstraint de cara a
+								// comprobar si los t-rminos de la plantilla son m-s restrictivos
 								// o no que las CCs de la plantilla
 								b = Utils.isCompliantConstraint(templateTermsConstraint, templateCcConstraint);
 							}
