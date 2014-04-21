@@ -1,8 +1,5 @@
 package test;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-
 import es.us.isa.ideas.util.Convert;
 import es.us.isa.ideas.util.Util;
 
@@ -12,27 +9,17 @@ public class Test {
 
 		String sample = Util.loadFile("samples/iagree/example.txt");
 		
-//		String sample2 = Util.loadFile("samples/S3Premium.xml");
-//		convert2IAgree(sample2);	
+		String sample2 = Util.loadFile("samples/S3Premium.xml");
 		
 		convert2WSAG(sample);
-		
+		convert2IAgree(sample2);
 	}
 	
 	public static String[] convert2WSAG(String sample){
 		return Convert.getWsagFromIAgree(sample);
 	}
 	
-	public static String convert2IAgree(String sample){
-//		PrintWriter writer;
-//		try {
-//			writer = new PrintWriter("samples/AAA_Test.txt");
-//			writer.println(Convert.getIAgreeFromWsag(sample));
-//			writer.close();
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		}
-		
+	public static String convert2IAgree(String sample){		
 		return Convert.getIAgreeFromWsag(sample);
 	}
 }
