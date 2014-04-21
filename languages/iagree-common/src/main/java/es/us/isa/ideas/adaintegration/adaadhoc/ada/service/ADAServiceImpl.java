@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Map;
@@ -351,14 +353,28 @@ public class ADAServiceImpl implements ADAServiceV2 {
 		if (!existingMetricName) {
 			// Si no ha encontrado ninguno con el mismo nombre
 			// lo creamos
-			String path = METRICS_FOLDER + "/" + metricNameToAdd;
+			String path = METRICS_FOLDER + metricNameToAdd;
+//			if (path.startsWith("/"))
+//				path = path.substring(1, path.length());
+//			
+//			path = path.replace("/", System.getProperty("file.separator"));
+			
+			
 			
 			try {
+				path = new URI(path).normalize().getPath();
+				
+				File f = new File(path);
+				f.getParentFile().mkdirs();
+				f.createNewFile();
+				
 				OutputStream out = new FileOutputStream(path);
 				out.write(data);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
 				e.printStackTrace();
 			}
 			result = path;
