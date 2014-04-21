@@ -7,6 +7,8 @@
 				 		format: "iagree",
 				 		editorModeId: "ace/mode/iAgree",
 				 		_editorModeURI: "mode-iAgree.js",
+				 		editorThemeId: "ace/theme/iAgree",
+				 		_editorThemeURI: "theme-iAgree.js",
 				 		checkLanguage: "true"
 				 	},
 				 	{
@@ -24,42 +26,42 @@
 				            	 name: "Check the document consistency",
 				            	 data: {},
 				            	 _remoteExecution: "true",
-				            	 action: "function(result) {alert(result);}"
+				            	 action: "function(result) {console.log(result);}"
 				             },
 				             {
 				            	 id: "inconsistencyExplainingShort",
 				            	 name: "Inconsistency explaining just with the inconsistent term",
 				            	 data: {},
 				            	 _remoteExecution: "true",
-				            	 action: "function(result) {alert(result);}"
+				            	 action: "function(result) {console.log(result);}"
 				             },
 				             {
 				            	 id: "inconsistenciesExplainingLong",
 				            	 name: "Inconsistency full explaining",
 				            	 data: {},
 				            	 _remoteExecution: "true",
-				            	 action: "function(result) {alert(result);}"
+				            	 action: "function(result) {console.log(result);}"
 				             },
 				             {
 				            	 id: "getNumberOfAlternatives",
 				            	 name: "Number of alternatives to the document",
 				            	 data: {},
 				            	 _remoteExecution: "true",
-				            	 action: "function(result) {alert(result);}"
+				            	 action: "function(result) {console.log(result);}"
 				             },
 				             {
 				            	 id: "checkCompliance",
 				            	 name: "Check the compliance between a template and an offer",
 				            	 data: {},
 				            	 _remoteExecution: "true",
-				            	 action: "function(result) {alert(result);}"
+				            	 action: "function(result) {console.log(result);}"
 				             },
 				             {
 				            	 id: "nonComplianceExplaining",
 				            	 name: "Non compliance full explaining",
 				            	 data: {},
 				            	 _remoteExecution: "true",
-				            	 action: "function(result) {alert(result);}"
+				            	 action: "function(result) {console.log(result);}"
 				             }
 				             
 				             ],
