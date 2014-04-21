@@ -82,9 +82,9 @@ public class Convert {
 				}
 			}
 		}
-		
-		System.out.println("Stack : " + metricsStack.toString());
-		System.out.println("Map : " + metricsMap.toString());
+
+//		System.out.println("Stack : " + metricsStack.toString());
+//		System.out.println("Map : " + metricsMap.toString());
 		
 		return res;
 	}
