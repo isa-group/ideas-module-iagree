@@ -740,4 +740,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 	public String getMetrics() {
 		return metrics;
 	}
+	
+	public String getMetricUri() {
+		return wsag.getMetric();
+	}
 }

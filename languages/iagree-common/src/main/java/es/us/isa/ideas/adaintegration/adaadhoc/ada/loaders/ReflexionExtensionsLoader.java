@@ -63,38 +63,39 @@ public class ReflexionExtensionsLoader implements ExtensionsLoader {
         InputStream adaConfig = null;
         try {
         	//File carpeta = new File("C:/workspaceADA/iAgreeStudioServerComponent/config");
-        	File carpeta = new File("C:/Program Files/Apache Software Foundation/Tomcat 7.0/webapps/iAgreeStudioServerComponent/config");
-        	//File carpeta = new File("config");
-    		String[] lista = carpeta.list();
-    		
-    		for (int i = 0; i < lista.length; i++) {
-    			if (lista[i].endsWith("ADAConfig.xml")) {
-    				FileInputStream fis;
-    				try {
-    					fis = new FileInputStream(carpeta+"/"+lista[i]);
-    					//fis = new FileInputStream(carpeta+"\\"+lista[i]);
-    					//fis = new FileInputStream(carpeta.getCanonicalPath()+"\\"+lista[i]);
-    					//System.out.println(carpeta+"/"+lista[i]);
-    					//System.out.println(carpeta+"\\"+lista[i]);
-    					//System.out.println("GetAbsolutePath: "+carpeta.getAbsolutePath()+"\\"+lista[i]);
-    					//System.out.println("getCanonicalPath: "+carpeta.getCanonicalPath()+"\\"+lista[i]);
-    					
-    					adaConfig = fis;
-    				}
-    				catch (FileNotFoundException e) {
-    					// TODO Auto-generated catch block
-    					e.printStackTrace();
-    				} catch (IOException e) {
-    					// TODO Auto-generated catch block
-    					e.printStackTrace();
-    				} 
-    			}
-    			}
-    			
-            //InputStream adaConfig = this.getClass().getClassLoader().getResourceAsStream("ADAConfig.xml");
+        	//File carpeta = new File("C:/Program Files/Apache Software Foundation/Tomcat 7.0/webapps/iAgreeStudioServerComponent/config");
+//        	File carpeta = new File("config");
+//    		String[] lista = carpeta.list();
+//    		
+//    		for (int i = 0; i < lista.length; i++) {
+//    			if (lista[i].endsWith("ADAConfig.xml")) {
+//    				FileInputStream fis;
+//    				try {
+//    					fis = new FileInputStream(carpeta+"/"+lista[i]);
+//    					//fis = new FileInputStream(carpeta+"\\"+lista[i]);
+//    					//fis = new FileInputStream(carpeta.getCanonicalPath()+"\\"+lista[i]);
+//    					//System.out.println(carpeta+"/"+lista[i]);
+//    					//System.out.println(carpeta+"\\"+lista[i]);
+//    					//System.out.println("GetAbsolutePath: "+carpeta.getAbsolutePath()+"\\"+lista[i]);
+//    					//System.out.println("getCanonicalPath: "+carpeta.getCanonicalPath()+"\\"+lista[i]);
+//    					
+//    					adaConfig = fis;
+//    				}
+//    				catch (FileNotFoundException e) {
+//    					// TODO Auto-generated catch block
+//    					e.printStackTrace();
+//    				} catch (IOException e) {
+//    					// TODO Auto-generated catch block
+//    					e.printStackTrace();
+//    				} 
+//    			}
+//    			}
+//    			
+            adaConfig = this.getClass().getClassLoader().getResourceAsStream("/config/ADAConfig.xml");
         	//InputStream adaConfig = this.getClass().getResourceAsStream("C:/workspaceADA/iAgreeStudioServerComponent/config/ADAConfig.xml");
         	//InputStream adaConfig = this.getClass().getClassLoader().get.getResourceAsStream("C:\\workspaceADA\\iAgreeStudioServerComponent\\config\\ADAConfig.xml");
-            DocumentBuilder builder = factory.newDocumentBuilder();
+            
+        	DocumentBuilder builder = factory.newDocumentBuilder();
             Document configDocument = builder.parse(adaConfig);
             Node root = configDocument.getDocumentElement();
             NodeList children = root.getChildNodes();

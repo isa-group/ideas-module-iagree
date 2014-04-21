@@ -69,11 +69,18 @@ public class ADAServiceImpl implements ADAServiceV2 {
 	//private final static String METRICS_FOLDER = "C:/Users/Antonio/workspaceICSOC/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/iAgreeStudioServerComponent/metrics";
 	//private final static String METRICS_FOLDER = "/usr/share/tomcat6/webapps/iAgreeStudioServerComponent/metrics";
 	//private final static String METRICS_FOLDER = "C:/workspaceADA/iAgreeStudioServerComponent/metrics";
-	private final static String METRICS_FOLDER = "C:/Program Files/Apache Software Foundation/Tomcat 7.0/webapps/iAgreeStudioServerComponent/metrics";
+	private static String METRICS_FOLDER = "metrics";
 	
 	public ADAServiceImpl() {
 		ExtensionsLoader el = new ReflexionExtensionsLoader();
 		ada = new ADA(el);
+		
+		METRICS_FOLDER = getMetricsDirectoryPath() + METRICS_FOLDER + "/";
+		System.out.println("metrics directory:" + METRICS_FOLDER);
+	}
+	
+	public static String getMetricsDirectoryPath() {
+		return ADAServiceImpl.class.getClassLoader().getResource("").getPath();
 	}
 
 	@Override

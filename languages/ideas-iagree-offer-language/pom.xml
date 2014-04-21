@@ -2,17 +2,17 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-
+	
 	<parent>
 		<groupId>es.us.isa.ideas.module</groupId>
 		<artifactId>IDEAS-iAgree-module</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>./../../pom.xml</relativePath>
 	</parent>
-
+	
 	<groupId>es.us.isa.ideas.module.language</groupId>
 	<artifactId>ideas-iagree-offer-language</artifactId>
-	<!-- <version>0.0.1-SNAPSHOT</version> -->
+<!-- 	<version>0.0.1-SNAPSHOT</version> -->
 	<packaging>war</packaging>
 
 	<name>ideas-iagree-offer-language</name>
@@ -25,7 +25,7 @@
 		<java.version>1.6</java.version>
 		<ideas.version>0.0.1-SNAPSHOT</ideas.version>
 	</properties>
-
+	
 	<!-- Repositories to download components and plugins -->
 	<pluginRepositories>
 		<pluginRepository>
@@ -39,7 +39,7 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
+	
 	<repositories>
 
 		<repository>
@@ -52,7 +52,7 @@
 			<id>central</id>
 			<url>http://repo.maven.apache.org/maven2</url>
 		</repository>
-
+		
 		<!-- IDEAS repository -->
 		<repository>
 			<id>ideas</id>
@@ -65,7 +65,7 @@
 		</repository>
 
 	</repositories>
-
+	
 	<dependencies>
 
 		<!-- IDEAS Dependencies -->
@@ -74,13 +74,13 @@
 			<artifactId>ideas-core</artifactId>
 			<version>${ideas.version}</version>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>es.us.isa.ideas.module.language</groupId>
 			<artifactId>iagree-common</artifactId>
 			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
-
+			
 		<dependency>
 			<groupId>es.us.isa</groupId>
 			<artifactId>ada-core</artifactId>
@@ -93,9 +93,15 @@
 			<version>0.5-SNAPSHOT</version>
 		</dependency>
 		
-
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
+		
+		
 	</dependencies>
-
+	
 	<!-- BUILD CONFIGURATION -->
 	<build>
 

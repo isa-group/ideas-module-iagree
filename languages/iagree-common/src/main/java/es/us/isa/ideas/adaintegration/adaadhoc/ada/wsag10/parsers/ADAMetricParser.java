@@ -25,6 +25,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import es.us.isa.ideas.adaintegration.adaadhoc.ada.service.ADAServiceImpl;
 import es.us.isa.ideas.adaintegration.adaadhoc.ada.wsag10.domain.DefaultConstantConverter;
 import es.us.isa.ideas.adaintegration.adaadhoc.ada.wsag10.domain.Domain;
 import es.us.isa.ideas.adaintegration.adaadhoc.ada.wsag10.domain.EnumeratedDomain;
@@ -44,7 +45,7 @@ public class ADAMetricParser implements MetricParser {
 
 	public Domain getValue(String metric) {
 		Domain d = null;
-
+		
 		if (metric.equals("xsd:int") || metric.equals("xsd:integer")) {
 			IntegerDomain auxRes = new IntegerDomain();
 			IntegerRange range = new IntegerRange(MIN_INT, MAX_INT);
@@ -60,7 +61,9 @@ public class ADAMetricParser implements MetricParser {
 			//fileName = "C:/Users/Antonio/workspaceICSOC/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/iAgreeStudioServerComponent/"+fileName;
 			//fileName = "/usr/share/tomcat6/webapps/iAgreeStudioServerComponent/"+fileName;
 			//fileName = "C:/workspaceADA/iAgreeStudioServerComponent/"+fileName;
-			fileName = "C:/Program Files/Apache Software Foundation/Tomcat 7.0/webapps/iAgreeStudioServerComponent/"+fileName;
+//			fileName = "C:/Program Files/Apache Software Foundation/Tomcat 7.0/webapps/iAgreeStudioServerComponent/"+fileName;
+//			fileName = "/metrics/"+fileName;
+			fileName = ADAServiceImpl.getMetricsDirectoryPath() + fileName;
 			
 			
 			String elementName = metric.substring(metric.lastIndexOf(":") + 1);
@@ -94,8 +97,8 @@ public class ADAMetricParser implements MetricParser {
 			}
 		} catch (Exception e) {
 			metricXML = null;
-			System.err
-					.println("Error while opening the metric file!. Revise the file path, please");
+			System.err.println("Error loading metrics");
+			e.printStackTrace();
 		}
 	}
 

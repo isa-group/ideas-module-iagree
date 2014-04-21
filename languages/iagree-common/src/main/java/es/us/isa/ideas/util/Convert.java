@@ -33,7 +33,7 @@ public class Convert {
 	
 	private static List<IAgreeError> errors = new LinkedList<IAgreeError>();
 
-	public static String getWsagFromIAgree(String content) {
+	public static String[] getWsagFromIAgree(String content) {
 		// Get our lexer
 		System.out.println("conversion start");
 		iAgreeLexer lexer = new iAgreeLexer(new ANTLRInputStream(content));
@@ -56,17 +56,21 @@ public class Convert {
 		ParseTreeWalker walker = new ParseTreeWalker();
 		walker.walk(listener, context);
 
-		String res = "";
+		String[] res = new String[3];
+		String metricUri = listener.getMetricUri();
+		String metrics = listener.getMetrics();
+		
 		if (!errorListener.hasErrors()) {
-			res = listener.wsag.getResult();
+			res[0] = listener.wsag.getResult();
+			System.out.println(res[0]);
+			res[1] = metricUri + ".xml";
+			res[2] = metrics;
 		} else {
 			errors = errorListener.getErrors();
 		}
 
-		String title = listener.getTemplateName();
-		String metrics = listener.getMetrics();
 
-		String metricTitle = title + "_" + listener.getTimeStamp();
+		String metricTitle = metricUri + "_" + listener.getTimeStamp();
 		
 		if(metricsMap.size() < 100){
 			metricsStack.push(metricTitle);

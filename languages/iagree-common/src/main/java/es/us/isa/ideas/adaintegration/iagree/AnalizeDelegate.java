@@ -11,18 +11,22 @@ import es.us.isa.ideas.common.AppResponse.Status;
 
 public class AnalizeDelegate {
 	
-	public static AppResponse analize(String id, String document,
+	public static AppResponse analize(String id, String wsagAggregation[],
 			String otherDoc, boolean isOffer){
 		
 		// instanciados
 		AdaFacade service = new AdaFacade();
 		AppResponse appResponse = new AppResponse();
+		
+		// Añadir métricas primero:
+		service.getService().addMetricFile((wsagAggregation[2]).getBytes(), wsagAggregation[1].getBytes());
+		String document = wsagAggregation[0];
+		
 		// seleccion de la operacion
-		if (id == "checkConsistency") {
+		if (id.equals("checkConsistency")) {	// OJO: En Java el tipo String se tiene que comprar con .equals(), no con ==
 			try {
 				Boolean check = service.consistency(document);
 				if (check) {
-					appResponse.setStatus(Status.OK);
 					appResponse.setMessage("The document is consistent");
 				} else {
 					appResponse.setStatus(Status.OK_PROBLEMS);
@@ -33,7 +37,7 @@ public class AnalizeDelegate {
 				appResponse.setMessage("There has been an error: "
 						+ e.getMessage());
 			}
-		} else if (id == "inconsistencyExplainingShort") {
+		} else if (id.equals("inconsistencyExplainingShort")) {
 			try {
 				Map<AgreementElement, Collection<AgreementElement>> inconsistences = service.inconsistenciesMap(document);
 				if (inconsistences.isEmpty()) {
@@ -47,7 +51,7 @@ public class AnalizeDelegate {
 				appResponse.setStatus(Status.ERROR);
 				appResponse.setMessage("There has been an error: " + e.getMessage());
 			}
-		} else if (id == "inconsistenciesExplainingLong") {
+		} else if (id.equals("inconsistenciesExplainingLong")) {
 			try {
 				String inconsistencies = service.inconsitencyExplaining(document);
 				if (inconsistencies.contains("error")) {
@@ -61,7 +65,7 @@ public class AnalizeDelegate {
 				appResponse.setStatus(Status.ERROR);
 				appResponse.setMessage("There has been an error: " + e.getMessage());
 			}
-		} else if (id == "getNumberOfAlternatives") {
+		} else if (id.equals("getNumberOfAlternatives")) {
 			try {
 				Integer numAlt = service.getNumberOfAlternatives(document);
 				if (numAlt == 0) {
@@ -79,7 +83,7 @@ public class AnalizeDelegate {
 				appResponse.setStatus(Status.ERROR);
 				appResponse.setMessage("There has been an error: " + e.getMessage());
 			}
-		} else if (id == "checkCompliance" && isOffer) {
+		} else if (id.equals("checkCompliance") && isOffer) {
 			try {
 				Boolean compliance = service.isCompliant(otherDoc, document);
 				if (compliance) {
@@ -93,7 +97,7 @@ public class AnalizeDelegate {
 				appResponse.setStatus(Status.ERROR);
 				appResponse.setMessage("There has been an error: " + e.getMessage());
 			}
-		} else if (id == "nonComplianceExplaining" && isOffer) {
+		} else if (id.equals("nonComplianceExplaining") && isOffer) {
 			// TODO nonComplianceExplaining(String template, String offer)
 			try{
 				String explanation = service.nonComplianceExplaining(otherDoc, document);

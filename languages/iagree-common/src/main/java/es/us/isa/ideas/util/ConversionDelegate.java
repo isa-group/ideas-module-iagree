@@ -29,7 +29,7 @@ public class ConversionDelegate {
 					annotations.add(appAnnot);
 				}
 			} else {
-				wsag = Convert.getWsagFromIAgree(content);
+				wsag = Convert.getWsagFromIAgree(content)[0];
 			}
 
 			appResp.setData(wsag);

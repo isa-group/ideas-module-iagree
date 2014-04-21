@@ -1,6 +1,6 @@
 		{
 				id: "iagree-template-language",
-				extension: "iagree.template",
+				extension: "iagreetemplate",
 				name: "iAgreeTemplate",
 				formats: [
 				 	{
@@ -50,6 +50,6 @@
 				             
 				             ],
 				             
-				inspectorLoader: "function(loader, format) { loader.append('HelloWorld!\n' + format);}"
+				inspectorLoader: "function(loader, format) {}"
 
 			}

@@ -1,6 +1,6 @@
 {
 				id: "iagree-offer-language",
-				extension: "iagree-offer",
+				extension: "iagreeoffer",
 				name: "iAgreeOffer",
 				formats: [
 				 	{
@@ -64,6 +64,6 @@
 				             
 				             ],
 				             
-				inspectorLoader: "function(loader, format) { loader.append('HelloWorld!\n' + format);}"
+				inspectorLoader: "function(loader, format) {}"
 
 			}
