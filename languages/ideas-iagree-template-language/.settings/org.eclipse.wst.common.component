@@ -13,6 +13,10 @@
 			deploy-path="/WEB-INF/lib" handle="module:/resource/ideas-commons/ideas-commons">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
+		<dependent-module archiveName="iagree-common-0.0.2-SNAPSHOT.jar"
+			deploy-path="/WEB-INF/lib" handle="module:/resource/iagree-common/iagree-common">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
 
 		<property name="java-output-path" value="/ideas-iagree-module/target/classes" />
 		<property name="context-root" value="ideas-iagree-template-language" />
