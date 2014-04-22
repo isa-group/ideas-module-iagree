@@ -62,19 +62,15 @@ public class Convert {
 		
 		if (!errorListener.hasErrors()) {
 			res[0] = listener.wsag.getResult();
-			System.out.println(res[0]);
 			res[1] = metricUri + ".xml";
 			res[2] = metrics;
 		} else {
 			errors = errorListener.getErrors();
 		}
-
-
-		String metricTitle = metricUri + "_" + listener.getTimeStamp();
 		
 		if(metricsMap.size() < 100){
-			metricsStack.push(metricTitle);
-			metricsMap.put(metricTitle, metrics);
+			metricsStack.push(metricUri);
+			metricsMap.put(metricUri, metrics);
 		} else {
 			for(String key:metricsMap.keySet()){
 				if(!metricsStack.contains(key)){
@@ -83,14 +79,12 @@ public class Convert {
 			}
 		}
 		
-		System.out.println("Stack : " + metricsStack.toString());
-		System.out.println("Map : " + metricsMap.toString());
-		
 		return res;
 	}
 
 	public static String getIAgreeFromWsag(String content) {
 		String result = "";
+		
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
 					.newInstance();
