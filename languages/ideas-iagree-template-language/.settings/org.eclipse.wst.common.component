@@ -1,13 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="ideas-iagree-module">
-        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
-        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
-        <dependent-module archiveName="iagree-common-0.0.2-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/iagree-commons/iagree-commons">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <property name="java-output-path" value="/ideas-iagree-module/target/classes"/>
-        <property name="context-root" value="ideas-iagree-template-language"/>
-    </wb-module>
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+	<wb-module deploy-name="ideas-iagree-module">
+		<wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources" />
+		<wb-resource deploy-path="/" source-path="/src/main/webapp"
+			tag="defaultRootSource" />
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources" />
+		<dependent-module archiveName="ideas-core-0.0.1-SNAPSHOT.jar"
+			deploy-path="/WEB-INF/lib" handle="module:/resource/ideas-core/ideas-core">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module archiveName="ideas-commons-0.0.1-SNAPSHOT.jar"
+			deploy-path="/WEB-INF/lib" handle="module:/resource/ideas-commons/ideas-commons">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+
+		<property name="java-output-path" value="/ideas-iagree-module/target/classes" />
+		<property name="context-root" value="ideas-iagree-template-language" />
+	</wb-module>
 </project-modules>

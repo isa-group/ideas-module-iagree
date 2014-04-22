@@ -71,19 +71,19 @@ public class ADAServiceImpl implements ADAServiceV2 {
 	//private final static String METRICS_FOLDER = "C:/Users/Antonio/workspaceICSOC/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/iAgreeStudioServerComponent/metrics";
 	//private final static String METRICS_FOLDER = "/usr/share/tomcat6/webapps/iAgreeStudioServerComponent/metrics";
 	//private final static String METRICS_FOLDER = "C:/workspaceADA/iAgreeStudioServerComponent/metrics";
-	private static String METRICS_FOLDER = "metrics";
+	private final static String METRICS_FOLDER = getMetricsDirectoryPath() + "metrics/";
 	
 	public ADAServiceImpl() {
 		ExtensionsLoader el = new ReflexionExtensionsLoader();
 		ada = new ADA(el);
 		
-		METRICS_FOLDER = getMetricsDirectoryPath() + METRICS_FOLDER + "/";
 		System.out.println("metrics directory:" + METRICS_FOLDER);
 	}
 	
 	public static String getMetricsDirectoryPath() {
 		return ADAServiceImpl.class.getClassLoader().getResource("").getPath();
 	}
+	
 
 	@Override
 	public boolean checkDocumentConsistency(byte[] d) throws BadSyntaxException, PeriodDefinitionException, PeriodDefinitionWarningException {
@@ -334,21 +334,21 @@ public class ADAServiceImpl implements ADAServiceV2 {
 		String metricNameToAdd = new String(name);
 		// Comprobamos que no exista un documento con el mismo nombre
 		
-		File metricsPath = new File(METRICS_FOLDER);
-		File[] metrics = metricsPath.listFiles();
-		
+//		File metricsPath = new File(METRICS_FOLDER);
+//		File[] metrics = metricsPath.listFiles();
+//		
 		Boolean existingMetricName = false;
-		if (metrics!=null){
-			for (File metric : metrics) {
-				
-				if (metricNameToAdd.equalsIgnoreCase(metric.getName())) {
-					// Lanzar error y no seguimos buscando
-					result = metricNameToAdd + " already exists";
-					existingMetricName = true;
-					break;
-				}
-			}
-		}
+//		if (metrics!=null){
+//			for (File metric : metrics) {
+//				
+//				if (metricNameToAdd.equalsIgnoreCase(metric.getName())) {
+//					// Lanzar error y no seguimos buscando
+//					result = metricNameToAdd + " already exists";
+//					existingMetricName = true;
+//					break;
+//				}
+//			}
+//		}
 		
 		if (!existingMetricName) {
 			// Si no ha encontrado ninguno con el mismo nombre
@@ -359,24 +359,36 @@ public class ADAServiceImpl implements ADAServiceV2 {
 //			
 //			path = path.replace("/", System.getProperty("file.separator"));
 			
-			
+			OutputStream out = null;
 			
 			try {
 				path = new URI(path).normalize().getPath();
 				
 				File f = new File(path);
-				f.getParentFile().mkdirs();
-				f.createNewFile();
 				
-				OutputStream out = new FileOutputStream(path);
+				if (!f.getParentFile().exists())
+					f.getParentFile().mkdirs();
+				
+				if (f.canExecute() && !f.exists())
+					f.createNewFile();
+				
+				out = new FileOutputStream(path);
 				out.write(data);
+				
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (URISyntaxException e) {
 				e.printStackTrace();
+			}finally{
+				try {
+					out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
+			
 			result = path;
 		}
 		return result;
