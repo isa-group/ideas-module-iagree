@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding = "UTF-8"?>
-<wsag:AgreementOffer wsag:AgreementId="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+<wsag:Template wsag:TemplateId="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
  xmlns:wsag="http://schemas.ggf.org/graap/2007/03/ws-agreement" 
  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
  xsi:schemaLocation="http://schemas.ggf.org/graap/2007/03/wsagreement" 
  agreement_types.xsd="http://www.w3.org/2001/XMLSchema XMLSchema.xsd" >
-	<wsag:Name >CompliantOffer</wsag:Name>
+	<wsag:Name >TranslationServiceForCompliance</wsag:Name>
 	<wsag:Context >
-		<wsag:TemplateId>1.0</wsag:TemplateId>
-		<wsag:TemplateName>TranslationServiceForCompliance</wsag:TemplateName>
 		<wsag:AgreementResponder >Provider</wsag:AgreementResponder >
 
 	</wsag:Context >
@@ -15,18 +13,18 @@
 	<wsag:Terms wsag:Name="TranslationServiceForCompliance">
 		<wsag:All >
 			<wsag:ServiceDescriptionTerm wsag:Name="SDT_TranslationServiceForCompliance" wsag:ServiceName="TranslationServiceForCompliance" >
-				<OfferItem name="TranslationLangs" wsag:Metric="metrics/complianceOffer2Metrics:translations" >"ES_to_EN-UK"</OfferItem>
-				<OfferItem name="InputFileSize" wsag:Metric="metrics/complianceOffer2Metrics:int" >9</OfferItem>
-				<OfferItem name="ImageTranslation" wsag:Metric="metrics/complianceOffer2Metrics:boolean" >"False"</OfferItem>
-				<OfferItem name="Cost" wsag:Metric="metrics/complianceOffer2Metrics:int" >9</OfferItem>
+				<OfferItem name="TranslationLangs" wsag:Metric="metrics/TranslationServiceForCompliance_1398071165688:translations" >"ES_to_EN-UK"</OfferItem>
+				<OfferItem name="InputFileSize" wsag:Metric="metrics/TranslationServiceForCompliance_1398071165688:int" ></OfferItem>
+				<OfferItem name="ImageTranslation" wsag:Metric="metrics/TranslationServiceForCompliance_1398071165688:boolean" ></OfferItem>
+				<OfferItem name="Cost" wsag:Metric="metrics/TranslationServiceForCompliance_1398071165688:int" ></OfferItem>
 			</wsag:ServiceDescriptionTerm>
 
 			<wsag:ServiceProperties wsag:Name="SP_TranslationServiceForCompliance" wsag:ServiceName="TranslationServiceForCompliance">
 				<wsag:VariableSet >
-					<wsag:Variable  wsag:Name="TranslationTime" wsag:Metric="metrics/complianceOffer2Metrics:time" >
+					<wsag:Variable  wsag:Name="TranslationTime" wsag:Metric="metrics/TranslationServiceForCompliance_1398071165688:time" >
 						<wsag:Location >/TranslationTime</wsag:Location>
 					</wsag:Variable >
-					<wsag:Variable  wsag:Name="InputErrors" wsag:Metric="metrics/complianceOffer2Metrics:percent" >
+					<wsag:Variable  wsag:Name="InputErrors" wsag:Metric="metrics/TranslationServiceForCompliance_1398071165688:percent" >
 						<wsag:Location >/InputErrors</wsag:Location>
 					</wsag:Variable >
 				</wsag:VariableSet >
@@ -57,4 +55,30 @@
 		</wsag:All >
 	</wsag:Terms >
 
-</wsag:AgreementOffer>
+	<wsag:CreationConstraints >
+		<wsag:Constraint >
+			<Name>C1</Name>
+			<Content>(TranslationLangs = "ES_to_EN-UK") OR (TranslationLangs = "ES_to_FR") OR (TranslationLangs = "EN-UK_to_ES") OR (TranslationLangs = "FR_to_ES") OR (TranslationLangs = "Auto"))</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C2</Name>
+			<Content>InputFileSize&lt;=50</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C3</Name>
+			<Content>Cost&gt;=0</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C4</Name>
+			<Content>ImageTranslation="False" IMPLIES Cost=InputFileSize*1</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C5</Name>
+			<Content>ImageTranslation="True" IMPLIES Cost=InputFileSize*2</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C6</Name>
+			<Content>InputFileSize&lt;10 IMPLIES ImageTranslation="False"</Content>
+		</wsag:Constraint >
+	</wsag:CreationConstraints >
+</wsag:Template>

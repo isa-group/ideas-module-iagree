@@ -13,39 +13,39 @@
 	<wsag:Terms wsag:Name="AWS-S3">
 		<wsag:All >
 			<wsag:ServiceDescriptionTerm wsag:Name="SDT_AWS-S3" wsag:ServiceName="AWS-S3" >
-				<OfferItem name="Interface" wsag:Metric="metrics/pruebaMetrics:interfaces" ></OfferItem>
-				<OfferItem name="RRS" wsag:Metric="metrics/pruebaMetrics:boolean" ></OfferItem>
-				<OfferItem name="StorageSize" wsag:Metric="metrics/pruebaMetrics:size" ></OfferItem>
-				<OfferItem name="FirstProject" wsag:Metric="metrics/pruebaMetrics:boolean" ></OfferItem>
-				<OfferItem name="TotalPrice" wsag:Metric="metrics/pruebaMetrics:price" ></OfferItem>
-				<OfferItem name="StoragePrice" wsag:Metric="metrics/pruebaMetrics:price" ></OfferItem>
-				<OfferItem name="SupportPlanPrice" wsag:Metric="metrics/pruebaMetrics:price" ></OfferItem>
+				<OfferItem name="Interface" wsag:Metric="metrics/AmazonS3_1398071096106:interfaces" ></OfferItem>
+				<OfferItem name="RRS" wsag:Metric="metrics/AmazonS3_1398071096106:boolean" ></OfferItem>
+				<OfferItem name="StorageSize" wsag:Metric="metrics/AmazonS3_1398071096106:size" ></OfferItem>
+				<OfferItem name="FirstProject" wsag:Metric="metrics/AmazonS3_1398071096106:boolean" ></OfferItem>
+				<OfferItem name="TotalPrice" wsag:Metric="metrics/AmazonS3_1398071096106:price" ></OfferItem>
+				<OfferItem name="StoragePrice" wsag:Metric="metrics/AmazonS3_1398071096106:price" ></OfferItem>
+				<OfferItem name="SupportPlanPrice" wsag:Metric="metrics/AmazonS3_1398071096106:price" ></OfferItem>
 			</wsag:ServiceDescriptionTerm>
 
 			<wsag:ServiceProperties wsag:Name="SP_AWS-S3" wsag:ServiceName="AWS-S3">
 				<wsag:VariableSet >
-					<wsag:Variable  wsag:Name="MUP" wsag:Metric="metrics/pruebaMetrics:percent" >
+					<wsag:Variable  wsag:Name="MUP" wsag:Metric="metrics/AmazonS3_1398071096106:percent" >
 						<wsag:Location >/MUP</wsag:Location>
 					</wsag:Variable >
-					<wsag:Variable  wsag:Name="TransferredGb" wsag:Metric="metrics/pruebaMetrics:mediumInt" >
+					<wsag:Variable  wsag:Name="TransferredGb" wsag:Metric="metrics/AmazonS3_1398071096106:mediumInt" >
 						<wsag:Location >/TransferredGb</wsag:Location>
 					</wsag:Variable >
-					<wsag:Variable  wsag:Name="ResponseTime" wsag:Metric="metrics/pruebaMetrics:time" >
+					<wsag:Variable  wsag:Name="ResponseTime" wsag:Metric="metrics/AmazonS3_1398071096106:time" >
 						<wsag:Location >/ResponseTime</wsag:Location>
 					</wsag:Variable >
-					<wsag:Variable  wsag:Name="ReadRequests" wsag:Metric="metrics/pruebaMetrics:mediumInt" >
+					<wsag:Variable  wsag:Name="ReadRequests" wsag:Metric="metrics/AmazonS3_1398071096106:mediumInt" >
 						<wsag:Location >/ReadRequests</wsag:Location>
 					</wsag:Variable >
-					<wsag:Variable  wsag:Name="WriteRequests" wsag:Metric="metrics/pruebaMetrics:mediumInt" >
+					<wsag:Variable  wsag:Name="WriteRequests" wsag:Metric="metrics/AmazonS3_1398071096106:mediumInt" >
 						<wsag:Location >/WriteRequests</wsag:Location>
 					</wsag:Variable >
-					<wsag:Variable  wsag:Name="OnlineReportingSupport" wsag:Metric="metrics/pruebaMetrics:boolean" >
+					<wsag:Variable  wsag:Name="OnlineReportingSupport" wsag:Metric="metrics/AmazonS3_1398071096106:boolean" >
 						<wsag:Location >/OnlineReportingSupport</wsag:Location>
 					</wsag:Variable >
-					<wsag:Variable  wsag:Name="PhoneSupport" wsag:Metric="metrics/pruebaMetrics:boolean" >
+					<wsag:Variable  wsag:Name="PhoneSupport" wsag:Metric="metrics/AmazonS3_1398071096106:boolean" >
 						<wsag:Location >/PhoneSupport</wsag:Location>
 					</wsag:Variable >
-					<wsag:Variable  wsag:Name="TurnAroundTime" wsag:Metric="metrics/pruebaMetrics:time" >
+					<wsag:Variable  wsag:Name="TurnAroundTime" wsag:Metric="metrics/AmazonS3_1398071096106:time" >
 						<wsag:Location >/TurnAroundTime</wsag:Location>
 					</wsag:Variable >
 				</wsag:VariableSet >
@@ -97,6 +97,14 @@
 		<wsag:Constraint >
 			<Name>C4</Name>
 			<Content>FirstProject="False" IMPLIES TotalPrice=StoragePrice+SupportPlanPrice</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C5</Name>
+			<Content>ReadRequests&lt;WriteRequests</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C6</Name>
+			<Content>Interface="REST" AND ResponseTime&gt;70</Content>
 		</wsag:Constraint >
 	</wsag:CreationConstraints >
 </wsag:Template>

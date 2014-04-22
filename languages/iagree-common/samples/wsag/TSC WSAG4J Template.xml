@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding = "UTF-8"?>
+<wsag:Template wsag:TemplateId="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+ xmlns:wsag="http://schemas.ggf.org/graap/2007/03/ws-agreement" 
+ xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+ xsi:schemaLocation="http://schemas.ggf.org/graap/2007/03/wsagreement" 
+ agreement_types.xsd="http://www.w3.org/2001/XMLSchema XMLSchema.xsd" >
+	<wsag:Name >WSAG4J-UNICORE6-COMPUTE</wsag:Name>
+	<wsag:Context >
+		<wsag:AgreementResponder >Provider</wsag:AgreementResponder >
+
+	</wsag:Context >
+
+	<wsag:Terms wsag:Name="APPLICATION_STD_1">
+		<wsag:All >
+			<wsag:ServiceDescriptionTerm wsag:Name="SDT_APPLICATION_STD_1" wsag:ServiceName="APPLICATION_STD_1" >
+				<OfferItem name="ApplicationName" wsag:Metric="metrics/WSAG4J-UNICORE6-COMPUTE_1398072594370:appNames" >"WISDOM-PACK"</OfferItem>
+				<OfferItem name="ApplicationVersion" wsag:Metric="metrics/WSAG4J-UNICORE6-COMPUTE_1398072594370:versions" >1</OfferItem>
+				<OfferItem name="InputFilename" wsag:Metric="metrics/WSAG4J-UNICORE6-COMPUTE_1398072594370:fileNames" >"input"</OfferItem>
+				<OfferItem name="OutputFilename" wsag:Metric="metrics/WSAG4J-UNICORE6-COMPUTE_1398072594370:fileNames" >"output"</OfferItem>
+			</wsag:ServiceDescriptionTerm>
+
+			<wsag:ServiceProperties wsag:Name="SP_APPLICATION_STD_1" wsag:ServiceName="APPLICATION_STD_1">
+				<wsag:VariableSet >
+				</wsag:VariableSet >
+			</wsag:ServiceProperties>
+
+
+		</wsag:All >
+	</wsag:Terms >
+
+	<wsag:CreationConstraints >
+		<wsag:Constraint >
+			<Name>C1</Name>
+			<Content>(ApplicationName = "WISDOM-PACK"))</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C2</Name>
+			<Content>ApplicationVersion=2</Content>
+		</wsag:Constraint >
+	</wsag:CreationConstraints >
+</wsag:Template>
