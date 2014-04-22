@@ -28,6 +28,7 @@ public class AnalizeDelegate {
 				Boolean check = service.consistency(document);
 				if (check) {
 					appResponse.setMessage("The document is consistent");
+					appResponse.setStatus(Status.OK);
 				} else {
 					appResponse.setStatus(Status.OK_PROBLEMS);
 					appResponse.setMessage("The document is not consistent");
