@@ -62,6 +62,13 @@
 				            	 data: {},
 				            	 _remoteExecution: "true",
 				            	 action: "function(result) {console.log(result);}"
+				             },
+				             {
+				            	 id: "test",
+				            	 name: "Test",
+				            	 data: {},
+				            	 _remoteExecution: "false",
+				            	 action: "function(operationStructure) {CommandApi.fetchFileContentsBeforeExecutingOperation(operationStructure, fileUri, 'checkCompliance', 'MyTitle', 'MyDesc', 'primActionText', function(result){console.log(result);}, function(){})}"
 				             }
 				             
 				             ],

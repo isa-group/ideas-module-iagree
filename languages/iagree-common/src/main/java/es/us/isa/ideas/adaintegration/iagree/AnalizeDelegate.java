@@ -12,7 +12,7 @@ import es.us.isa.ideas.common.AppResponse.Status;
 public class AnalizeDelegate {
 	
 	public static AppResponse analize(String id, String wsagAggregation[],
-			String otherDoc, boolean isOffer){
+			String[] otherWsagAggregation, boolean isOffer){
 		
 		// instanciados
 		AdaFacade service = new AdaFacade();
@@ -85,6 +85,10 @@ public class AnalizeDelegate {
 			}
 		} else if (id.equals("checkCompliance") && isOffer) {
 			try {
+				
+				service.getService().addMetricFile((otherWsagAggregation[2]).getBytes(), otherWsagAggregation[1].getBytes());
+				String otherDoc = otherWsagAggregation[0];
+				
 				Boolean compliance = service.isCompliant(otherDoc, document);
 				if (compliance) {
 					appResponse.setStatus(Status.OK);
