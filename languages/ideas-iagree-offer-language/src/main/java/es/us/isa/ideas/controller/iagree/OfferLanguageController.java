@@ -27,8 +27,11 @@ public class OfferLanguageController extends BaseLanguageController {
 		// wsagAggregation[0]; // Converted Document
 		// wsagAggregation[1]; // Metrics URI
 		// wsagAggregation[2]; // Metrics content
+		String[] wsagAggregationForComparation = Convert.getWsagFromIAgree(contentToCompare);
 
-		AppResponse appResponse = AnalizeDelegate.analize(id, wsagAggregation, null, true);
+
+		AppResponse appResponse = AnalizeDelegate.analize(id, wsagAggregation, wsagAggregationForComparation, true);
+
 		appResponse.setFileUri(fileUri);
 		return appResponse;
 	}
