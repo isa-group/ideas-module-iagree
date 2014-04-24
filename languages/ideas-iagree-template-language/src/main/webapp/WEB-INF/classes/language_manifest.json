@@ -23,28 +23,14 @@
 
 				             {
 				            	 id: "checkConsistency",
-				            	 name: "Check the document consistency",
-				            	 data: {},
-				            	 _remoteExecution: "true",
-				            	 action: "function(result) {console.log(result);}"
-				             },
-				             {
-				            	 id: "inconsistencyExplainingShort",
-				            	 name: "Inconsistency explaining just with the inconsistent term",
-				            	 data: {},
-				            	 _remoteExecution: "true",
-				            	 action: "function(result) {console.log(result);}"
-				             },
-				             {
-				            	 id: "inconsistenciesExplainingLong",
-				            	 name: "Inconsistency full explaining",
+				            	 name: "Document Consistency",
 				            	 data: {},
 				            	 _remoteExecution: "true",
 				            	 action: "function(result) {console.log(result);}"
 				             },
 				             {
 				            	 id: "getNumberOfAlternatives",
-				            	 name: "Number of alternatives to the document",
+				            	 name: "Number of Alternatives",
 				            	 data: {},
 				            	 _remoteExecution: "true",
 				            	 action: "function(result) {console.log(result);}"

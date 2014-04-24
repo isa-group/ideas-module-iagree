@@ -67,14 +67,8 @@ public class AnalizeDelegate {
 				} else {
 					String explanation = service.nonComplianceExplaining(
 							otherDoc, document);
-					if (explanation.contains("error")
-							|| explanation.contains("errors")) {
-						appResponse.setStatus(Status.ERROR);
-						appResponse.setMessage(explanation);
-					} else {
-						appResponse.setStatus(Status.OK_PROBLEMS);
-						appResponse.setMessage(explanation);
-					}
+					appResponse.setStatus(Status.OK_PROBLEMS);
+					appResponse.setMessage(explanation);
 				}
 			} catch (Exception e) {
 				appResponse.setStatus(Status.ERROR);
