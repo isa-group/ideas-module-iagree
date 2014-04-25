@@ -22,12 +22,11 @@ public class OfferLanguageController extends BaseLanguageController {
 	@ResponseBody
 	public AppResponse executeOperation(String id, String content,
 			String fileUri, String auxArg0) {
-		
-		String[] wsagAggregation = Convert.getWsagFromIAgree(content);
+		Map<String, Object> wsagAggregation = Convert.getWsagFromIAgree(content);
 		// wsagAggregation[0]; // Converted Document
 		// wsagAggregation[1]; // Metrics URI
 		// wsagAggregation[2]; // Metrics content
-		String[] wsagAggregationForComparation = Convert.getWsagFromIAgree(auxArg0);
+		Map<String, Object> wsagAggregationForComparation = Convert.getWsagFromIAgree(auxArg0);
 
 
 		AppResponse appResponse = AnalizeDelegate.analize(id, wsagAggregation, wsagAggregationForComparation, true);

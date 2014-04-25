@@ -19,6 +19,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 
+import es.us.isa.ideas.common.AppAnnotations;
 import es.us.isa.ideas.error.IAgreeError;
 import es.us.isa.ideas.error.IAgreeErrorListener;
 import es.us.isa.ideas.parser.MiAgreeListener;
@@ -31,11 +32,17 @@ public class Convert {
 	public static Map<String, String> metricsMap = new HashMap<String, String>();
 	public static Stack<String> metricsStack = new SizedStack<String>(3);
 	
-	private static List<IAgreeError> errors = new LinkedList<IAgreeError>();
-
-	public static String[] getWsagFromIAgree(String content) {
+	private static List<AppAnnotations> annotations = new LinkedList<AppAnnotations>();
+	
+	public static Map<String, Object> getWsagFromIAgree(String content) {
 		// Get our lexer
 		System.out.println("conversion start");
+		
+		
+		System.out.println(content);
+		
+		
+		
 		iAgreeLexer lexer = new iAgreeLexer(new ANTLRInputStream(content));
 		System.out.println(lexer);
 
@@ -56,17 +63,31 @@ public class Convert {
 		ParseTreeWalker walker = new ParseTreeWalker();
 		walker.walk(listener, context);
 
-		String[] res = new String[3];
+		Map<String, Object> res = new HashMap<String, Object>();
 		String metricUri = listener.getMetricUri();
 		String metrics = listener.getMetrics();
 		
 		if (!errorListener.hasErrors()) {
-			res[0] = listener.wsag.getResult();
-			res[1] = metricUri + ".xml";
-			res[2] = metrics;
+			res.put("data", listener.wsag.getResult());
+			res.put("metricUri", metricUri + ".xml");
+			res.put("metrics", metrics);
 		} else {
-			errors = errorListener.getErrors();
+				// Construct error structures
+				for (IAgreeError error : errorListener.getErrors()) {
+					
+					Integer lineNo = error.getLineNo();
+					Integer columnNo = error.getCharStart();
+
+					AppAnnotations appAnnot = new AppAnnotations();
+					appAnnot.setRow(lineNo.toString());
+					appAnnot.setColumn(columnNo.toString());
+					appAnnot.setText(error.getMessage());
+					appAnnot.setType(error.getSeverity().toString());
+					annotations.add(appAnnot);
+				}
 		}
+		
+		res.put("annotations", annotations);
 		
 		if(metricsMap.size() < 100){
 			metricsStack.push(metricUri);
@@ -159,15 +180,11 @@ public class Convert {
 		return result;
 	}
 
-	public static List<IAgreeError> getErrors() {
-		return errors;
-	}
-
 	public static boolean hasErrors() {
-		return !errors.isEmpty();
+		return !annotations.isEmpty();
 	}
 
 	public static void clearErrors() {
-		errors.clear();
+		annotations.clear();
 	}
 }
