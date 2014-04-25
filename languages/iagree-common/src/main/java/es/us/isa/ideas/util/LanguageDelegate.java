@@ -65,8 +65,9 @@ public class LanguageDelegate {
 					AppAnnotations appAnnot = new AppAnnotations();
 					appAnnot.setRow(lineNo + "");
 					appAnnot.setColumn(columnNo + "");
-					appAnnot.setText(error.getMessage());
-					appAnnot.setType(error.getSeverity().toString());
+					appAnnot.setText(error.getMessage().replace("\"", "'"));
+					appAnnot.setType("error");	// TODO: En este momento solo se contempla el tipo error.
+												// Si se quisiera otros tipos, habría que usar AppAnnotations.Type
 					annotations.add(appAnnot);
 				}
 				
