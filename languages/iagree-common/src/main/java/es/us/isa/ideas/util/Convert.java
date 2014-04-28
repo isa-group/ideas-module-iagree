@@ -38,11 +38,6 @@ public class Convert {
 		// Get our lexer
 		System.out.println("conversion start");
 		
-		
-		System.out.println(content);
-		
-		
-		
 		iAgreeLexer lexer = new iAgreeLexer(new ANTLRInputStream(content));
 		System.out.println(lexer);
 
@@ -67,6 +62,8 @@ public class Convert {
 		String metricUri = listener.getMetricUri();
 		String metrics = listener.getMetrics();
 		
+		annotations.clear();
+		
 		if (!errorListener.hasErrors()) {
 			res.put("data", listener.wsag.getResult());
 			res.put("metricUri", metricUri + ".xml");
@@ -81,8 +78,8 @@ public class Convert {
 					AppAnnotations appAnnot = new AppAnnotations();
 					appAnnot.setRow(lineNo.toString());
 					appAnnot.setColumn(columnNo.toString());
-					appAnnot.setText(error.getMessage());
-					appAnnot.setType(error.getSeverity().toString());
+					appAnnot.setText(error.getMessage().replace("\"", "'"));
+					appAnnot.setType("error");
 					annotations.add(appAnnot);
 				}
 		}
@@ -178,13 +175,5 @@ public class Convert {
 		}
 
 		return result;
-	}
-
-	public static boolean hasErrors() {
-		return !annotations.isEmpty();
-	}
-
-	public static void clearErrors() {
-		annotations.clear();
 	}
 }
