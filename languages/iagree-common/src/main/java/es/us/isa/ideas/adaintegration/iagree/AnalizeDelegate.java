@@ -1,5 +1,7 @@
 package es.us.isa.ideas.adaintegration.iagree;
 
+import java.util.Map;
+
 import es.us.isa.ideas.common.AppResponse;
 import es.us.isa.ideas.common.AppResponse.Status;
 
@@ -7,8 +9,8 @@ import es.us.isa.ideas.common.AppResponse.Status;
 
 public class AnalizeDelegate {
 	
-	public static AppResponse analize(String id, String[] wsagAggregation,
-			String[] wsagAggregationForComparation, boolean isOffer){
+	public static AppResponse analize(String id, Map<String, Object> wsagAggregation,
+			Map<String, Object> wsagAggregationForComparation, boolean isOffer){
 
 		
 		// instanciados
@@ -16,8 +18,8 @@ public class AnalizeDelegate {
 		AppResponse appResponse = new AppResponse();
 		
 		// Añadir métricas primero:
-		service.getService().addMetricFile((wsagAggregation[2]).getBytes(), wsagAggregation[1].getBytes());
-		String document = wsagAggregation[0];
+		service.getService().addMetricFile(((String) wsagAggregation.get("metrics")).getBytes(), ((String) wsagAggregation.get("metricUri")).getBytes());
+		String document = (String) wsagAggregation.get("data");
 		
 		// seleccion de la operacion
 		if (id.equals("checkConsistency")) {
@@ -57,8 +59,8 @@ public class AnalizeDelegate {
 			
 			try {
 				
-				service.getService().addMetricFile((wsagAggregationForComparation[2]).getBytes(), wsagAggregationForComparation[1].getBytes());
-				String otherDoc = wsagAggregationForComparation[0];
+				service.getService().addMetricFile(((String) wsagAggregationForComparation.get("metrics")).getBytes(), ((String) wsagAggregationForComparation.get("metricUri")).getBytes());
+				String otherDoc = (String) wsagAggregationForComparation.get("data");
 				
 				Boolean compliance = service.isCompliant(otherDoc, document);
 				if (compliance) {

@@ -1,5 +1,7 @@
 package es.us.isa.ideas.controller.iagree;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,19 +21,14 @@ public class TemplateLanguageController extends BaseLanguageController {
 	@RequestMapping(value = "/operation/{id}/execute", method = RequestMethod.POST)
 	@ResponseBody
 	public AppResponse executeOperation(String id, String content,
-			String fileUri, String contentToCompare) {
+			String fileUri) {
 
-		String[] wsagAggregation = Convert.getWsagFromIAgree(content);
+		Map<String, Object> wsagAggregation = Convert.getWsagFromIAgree(content);
 		// wsagAggregation[0]; // Converted Document
 		// wsagAggregation[1]; // Metrics URI
 		// wsagAggregation[2]; // Metrics content
-		
-		String[] wsagToCompareAggregation = Convert.getWsagFromIAgree(contentToCompare);
-		// wsagToCompareAggregation[0]; // Converted Document
-		// wsagToCompareAggregation[1]; // Metrics URI
-		// wsagToCompareAggregation[2]; // Metrics content
 
-		AppResponse appResponse = AnalizeDelegate.analize(id, wsagAggregation, wsagToCompareAggregation, false);
+		AppResponse appResponse = AnalizeDelegate.analize(id, wsagAggregation, null, false);
 		appResponse.setFileUri(fileUri);
 		return appResponse;
 	}
