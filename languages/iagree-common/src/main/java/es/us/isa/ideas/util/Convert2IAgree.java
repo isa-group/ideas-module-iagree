@@ -73,8 +73,9 @@ public class Convert2IAgree {
 			String nodeId = node.getAttribute("id");
 			String nodeType = node.getAttribute("type");
 			if (!nodeId.equals("boolean")) {
-				result += "\t\t" + nodeId + ": " + nodeType;
+				
 				if (nodeType.equals("integer")) {
+					result += "\t\t" + nodeId + ": " + nodeType;
 					String min = node.getAttribute("min");
 					String max = node.getAttribute("max");
 					result += "["
@@ -82,6 +83,7 @@ public class Convert2IAgree {
 							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.RANGE_SEPARATOR])
 							+ max + "]\n";
 				} else if (nodeType.equals("enumerated")) {
+					result += "\t\t" + nodeId + ":  set";		// Si es "enumerated" hay que usar "set"
 					NodeList values = node.getElementsByTagName("met:value");
 					Element value = (Element) values.item(0);
 					if(value != null)
@@ -132,12 +134,17 @@ public class Convert2IAgree {
 				String type = node.getAttribute("wsag:Metric");
 				String[] aux = type.split(":");
 				result += " " + aux[1];
+				
+				String value = node.getTextContent();
+				
+				if (aux[1].equals("boolean"))
+					value = value.toLowerCase();
 
 				if (!node.getTextContent().isEmpty()) {
 					result += " "
 							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.IGUAL])
 							+ " "
-							+ node.getTextContent()
+							+ value
 							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.SEMICOLON]);
 				}
 			}

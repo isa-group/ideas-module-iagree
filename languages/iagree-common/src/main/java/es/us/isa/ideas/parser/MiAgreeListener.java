@@ -387,11 +387,20 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		try {
 			for (Key_value_propContext kv : ctx.key_value_prop()) {
 				enterKey_value_prop(kv);
+				
+				String oiKey = wsag.getKeyValue().value;
+				String oiValue = wsag.getKeyValue().assigValue;
+				
+				if (oiKey.equals("boolean")) {
+					oiValue = oiValue.toLowerCase();
+					oiValue = Character.toUpperCase(oiValue.charAt(0)) + oiValue.substring(1);
+				}
+				
 				wsag.setOfferItems(wsag.getOfferItems()
 						+ "\t\t\t\t<OfferItem name=\"" + wsag.getKeyValue().key
 						+ "\" wsag:Metric=\"metrics/" + wsag.getMetric() + ":"
-						+ wsag.getKeyValue().value + "\" >"
-						+ wsag.getKeyValue().assigValue + "</OfferItem>\n");
+						+ oiKey + "\" >"
+						+ oiValue + "</OfferItem>\n");
 			}
 		} catch (Exception e) {
 		}
