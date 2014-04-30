@@ -2,10 +2,12 @@ package es.us.isa.ideas.util;
 
 import java.io.StringReader;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,15 +31,18 @@ import es.us.isa.ideas.parser.iAgreeParser.EntryContext;
 
 public class Convert {
 
-	public static Map<String, String> metricsMap = new HashMap<String, String>();
-	public static Stack<String> metricsStack = new SizedStack<String>(3);
-	
+	public static Map<String, String> metricsMap = new ConcurrentHashMap<String, String>();
+	public static Stack<String> metricsStack = new SizedStack<String>(4);
+
 	private static List<AppAnnotations> annotations = new LinkedList<AppAnnotations>();
-	
+
 	public static Map<String, Object> getWsagFromIAgree(String content) {
+
+		System.out.println("MetricsMap Size: " + metricsMap.size());
+
 		// Get our lexer
 		System.out.println("conversion start");
-		
+
 		iAgreeLexer lexer = new iAgreeLexer(new ANTLRInputStream(content));
 		System.out.println(lexer);
 
@@ -61,48 +66,65 @@ public class Convert {
 		Map<String, Object> res = new HashMap<String, Object>();
 		String metricUri = listener.getMetricUri();
 		String metrics = listener.getMetrics();
-		
+
 		annotations.clear();
-		
+
 		if (!errorListener.hasErrors()) {
 			res.put("data", listener.wsag.getResult());
 			res.put("metricUri", metricUri + ".xml");
 			res.put("metrics", metrics);
 		} else {
-				// Construct error structures
-				for (IAgreeError error : errorListener.getErrors()) {
-					
-					Integer lineNo = error.getLineNo();
-					Integer columnNo = error.getCharStart();
+			// Construct error structures
+			for (IAgreeError error : errorListener.getErrors()) {
 
-					AppAnnotations appAnnot = new AppAnnotations();
-					appAnnot.setRow(lineNo.toString());
-					appAnnot.setColumn(columnNo.toString());
-					appAnnot.setText(error.getMessage().replace("\"", "'"));
-					appAnnot.setType("error");
-					annotations.add(appAnnot);
-				}
+				Integer lineNo = error.getLineNo();
+				Integer columnNo = error.getCharStart();
+
+				AppAnnotations appAnnot = new AppAnnotations();
+				appAnnot.setRow(lineNo.toString());
+				appAnnot.setColumn(columnNo.toString());
+				appAnnot.setText(error.getMessage().replace("\"", "'"));
+				appAnnot.setType("error");
+				annotations.add(appAnnot);
+			}
 		}
-		
+
 		res.put("annotations", annotations);
-		
-		if(metricsMap.size() < 100){
-			metricsStack.push(metricUri);
-			metricsMap.put(metricUri, metrics);
-		} else {
-			for(String key:metricsMap.keySet()){
-				if(!metricsStack.contains(key)){
+
+		// Cuando se inicia la app con un template erroneo intenta insertar en
+		// el mapa un Null y
+		// causa NullPointerException
+
+		if (metricsMap.size() >= 7) {
+
+			Iterator<String> it = metricsMap.keySet().iterator();
+			while (it.hasNext()) {
+				String key = it.next();
+
+				System.out.println("Linea actual: " + key + ", "
+						+ metricsMap.get(key));
+				if (!metricsStack.contains(key)) {
+					System.out.println("Borrado");
 					metricsMap.remove(key);
 				}
 			}
+
+			for (String key : metricsMap.keySet()) {
+				System.out.println("### " + key);
+			}
 		}
-		
+
+		if (metricUri != null && metrics != null) {
+			metricsStack.push(metricUri);
+			metricsMap.put(metricUri, metrics);
+		}
+
 		return res;
 	}
 
 	public static String getIAgreeFromWsag(String content) {
 		String result = "";
-		
+
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
 					.newInstance();
@@ -114,6 +136,10 @@ public class Convert {
 			Pattern pattern = Pattern.compile("(\"metrics/)(\\w*)");
 			Matcher matcher = pattern.matcher(content);
 			matcher.find();
+
+			// A veces se borra del mapa la metrica que necesita posteriormente
+			// la app
+			System.out.println("Buscando métrica: " + matcher.group(2));
 
 			String metrics = metricsMap.get(matcher.group(2));
 

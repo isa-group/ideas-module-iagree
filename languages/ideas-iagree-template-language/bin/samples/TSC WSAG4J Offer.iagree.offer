@@ -1,0 +1,22 @@
+AgreementOffer WSAGOffer version 1.0 for Template WSAG4J-UNICORE6-COMPUTE version 1.0
+	Provider as Responder
+	Metrics:
+		versions: integer [1..5]
+		appNames: enum {WISDOM-PACK, WISDOM-PACK2}
+		fileNames: enum {input, output}
+		
+AgreementTerms
+	Service APPLICATION_STD_1 availableAt 
+		GlobalDescription 
+			ApplicationName: appNames = "WISDOM-PACK";
+			ApplicationVersion: versions = 1;
+			InputFilename: fileNames = "input";
+			OutputFilename: fileNames = "output";
+	
+	MonitorableProperties
+		global:
+			ApplicationVersion: versions
+
+	GuaranteeTerms		
+		G1: Provider guarantees ApplicationVersion > 1;
+EndAgreementOffer
