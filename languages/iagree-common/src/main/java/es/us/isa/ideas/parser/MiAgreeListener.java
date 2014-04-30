@@ -390,8 +390,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				
 				String oiKey = wsag.getKeyValue().value;
 				String oiValue = wsag.getKeyValue().assigValue;
-				
-				if (oiKey.equals("boolean")) {
+
+				if (oiKey.equals("boolean") && !oiValue.isEmpty()) {
 					oiValue = oiValue.toLowerCase();
 					oiValue = Character.toUpperCase(oiValue.charAt(0)) + oiValue.substring(1);
 				}
@@ -403,6 +403,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 						+ oiValue + "</OfferItem>\n");
 			}
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterGlobalDescription");
+			e.printStackTrace();
 		}
 	}
 

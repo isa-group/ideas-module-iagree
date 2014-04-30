@@ -143,58 +143,62 @@ public class Convert {
 
 			String metrics = metricsMap.get(matcher.group(2));
 
-			Document doc_metrics = dBuilder.parse(new InputSource(
-					new StringReader(metrics)));
-			doc_metrics.getDocumentElement().normalize();
+			if (metrics != null) {
+				Document doc_metrics = dBuilder.parse(new InputSource(
+						new StringReader(metrics)));
+				doc_metrics.getDocumentElement().normalize();
 
-			Element root = doc.getDocumentElement();
+				Element root = doc.getDocumentElement();
 
-			if (root.getNodeName().equals("wsag:Template")) {
+				if (root.getNodeName().equals("wsag:Template")) {
 
-				String name = doc.getElementsByTagName("wsag:Name").item(0)
-						.getTextContent();
+					String name = doc.getElementsByTagName("wsag:Name").item(0)
+							.getTextContent();
 
-				String version = root.getAttribute("wsag:TemplateId");
+					String version = root.getAttribute("wsag:TemplateId");
 
-				result = Util
-						.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.TEMPLATE])
-						+ " "
-						+ name
-						+ " "
-						+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.VERSION])
-						+ " " + version;
+					result = Util
+							.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.TEMPLATE])
+							+ " "
+							+ name
+							+ " "
+							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.VERSION])
+							+ " " + version;
 
-				result += "\n"
-						+ Convert2IAgree.getContext(doc)
-						+ "\n\t"
-						+ Convert2IAgree.getMetrics(doc_metrics)
-						+ "\n"
-						+ Convert2IAgree.getAgreementTerms(doc)
-						+ "\n"
-						+ Convert2IAgree.getCreationConstraints(doc)
-						+ "\n"
-						+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.END_TEMPLATE]);
-			} else if (root.getNodeName().equals("wsag:AgreementOffer")) {
+					result += "\n"
+							+ Convert2IAgree.getContext(doc)
+							+ "\n\t"
+							+ Convert2IAgree.getMetrics(doc_metrics)
+							+ "\n"
+							+ Convert2IAgree.getAgreementTerms(doc)
+							+ "\n"
+							+ Convert2IAgree.getCreationConstraints(doc)
+							+ "\n"
+							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.END_TEMPLATE]);
+				} else if (root.getNodeName().equals("wsag:AgreementOffer")) {
 
-				String name = doc.getElementsByTagName("wsag:Name").item(0)
-						.getTextContent();
-				String version = root.getAttribute("wsag:AgreementId");
+					String name = doc.getElementsByTagName("wsag:Name").item(0)
+							.getTextContent();
+					String version = root.getAttribute("wsag:AgreementId");
 
-				result = Util
-						.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.AG_OFFER])
-						+ " "
-						+ name
-						+ " "
-						+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.VERSION])
-						+ " " + version;
+					result = Util
+							.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.AG_OFFER])
+							+ " "
+							+ name
+							+ " "
+							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.VERSION])
+							+ " " + version;
 
-				result += Convert2IAgree.getContext(doc)
-						+ "\n\t"
-						+ Convert2IAgree.getMetrics(doc_metrics)
-						+ "\n"
-						+ Convert2IAgree.getAgreementTerms(doc)
-						+ "\n"
-						+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.END_AG_OFFER]);
+					result += Convert2IAgree.getContext(doc)
+							+ "\n\t"
+							+ Convert2IAgree.getMetrics(doc_metrics)
+							+ "\n"
+							+ Convert2IAgree.getAgreementTerms(doc)
+							+ "\n"
+							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.END_AG_OFFER]);
+				}
+			} else {
+				System.out.println("Error al obtener el fichero de metricas");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
