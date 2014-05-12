@@ -1,13 +1,4 @@
-/*
- * based on
- * " Vim SEDL Sintaxis file
- * "    Language: SEDL - Sintaxis
- * "    Revision: 2.1
- * "  Maintainer: GHR
- * " Last Change: 2012 Oct 23
- */
-
-ace.define('ace/mode/SEDL4People', ['require', 'exports', 'module' , 'ace/tokenizer', 'ace/mode/abap_highlight_rules', 'ace/mode/folding/coffee', 'ace/range', 'ace/mode/text', 'ace/lib/oop'], function(require, exports, module) {
+ace.define('ace/mode/iAgree', ['require', 'exports', 'module' , 'ace/tokenizer', 'ace/mode/abap_highlight_rules', 'ace/mode/folding/coffee', 'ace/range', 'ace/mode/text', 'ace/lib/oop'], function(require, exports, module) {
 
 var Tokenizer = require("../tokenizer").Tokenizer;
 var Rules = require("./sintaxis_highlight_rules").AbapHighlightRules;
@@ -65,92 +56,76 @@ var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
 var AbapHighlightRules = function() {
 
     var keywordMapper = this.createKeywordMapper({
-        "variable.language": "this",
-        "token_Keyword.blockHeader": 
-            "EXPERIMENT Constants Variables Hypothesis Desing Configuration",
-        "entity-name-tag.EXPERIMENT.1": 
-            "Object Population Accessible_Population Subjects Notes Annotations Responsible Colaborator",
-        "entity-name-tag.Constants.1": 
-            "Solver Termination_criterion RandomNumberGenerator NFeatures CTC CrossoverProb MutationProb PopulationSize Executions",
-        "variable.Variables.1":
-            "Factors NCFactors Outcomes Outcome Nuisancess",
-        "entity-name-tag.Hypothesis.values":
-            "Differential Descriptive Associational" ,
-        "variable.Hypothesis.values":
-            "Random RandomBlockAdhoc RandomBlock" ,
-        "entity-name-tag.Design.1":
-            "Sampling Groups Protocol Analyses Alignment Analyses_Spec Detailed_Design Assignment Bloking sizing Grouping" ,
-        "entity-name-tag.Configuration.1":
-            "Outputs Inputs Setting Experimental_Setting Experimental_Procedure Procedure Runtimes Libraries Command Treatment role format mapping" ,
-        "variable.functions.1":
-            "linear cuadratic Random Adhoc Pvalue Sthreshold freedom_degrees Mean Avg StdDev Range CI IQR Ranking Pearson ANOVA Friedman Tukey KruskalWalls TTest Wilcoxon Holms FactANOVAwRS Chi Square " +
-            "SignTest Kolmogorov-Smirnov Lilliefors Shapiro-Wilk Levene T-student McNemar Aligned Friedman Iman & Davenport Quade Cochran Q Bonferroni-Dunn Hochberg Hommel Holland Rom Finner Li Shaffer Nemenyi" ,
-        "entity-name-tag.types.1":
-            "float integer enum ordered boolean" ,
-        "entity-name-tag.inlineOperator.1":
-            "version rep sizingrole format mapping as in size",
-        "variable.Variables.inlineOperator.2":
-            "(File)",
-        "numeric.sets":
-        	"N Z Q R I C",
-        "correlation.Types":
-        	"BivariateRegression Spearman Kendall CRAMER LogLinear"
+        "token_Keyword.keyword": //keyword
+            "Template EndTemplate AgreementOffer EndAgreementOffer AgreementTerms CreationConstraints",
+        "variable.def": //def
+            "Initiator Responder ServiceProvider ExpirationTime MonitorableProperties Service description Global GuaranteeTerms Constraints Service Metrics",
+        "variable.def2": //def-2 
+            "GMTZone DateFormat GlobalPeriod DefinedPeriod EndDefinedPeriod guarantees GlobalDescription global",
+        "entity-name-tag.atom": //atom
+            "belongs for of as measuredBy relatedTo availableAt valueOf is IMPLIES EQUAL Consumer",
+        "entity-name-tag.atom2": //atom-2
+            "except from during on AND OR NOT" ,
+        "entity-name-tag.condition": //condition
+            "all exactly one or more" ,
+        "token_Keyword.actor": //actor
+            "Provider" ,
+        "entity-name-tag.attribute": //attribute
+            "onlyIf upon" , //[\w\$_]:
+        "entity-name-tag.type": //type
+            "integer string enum set boolean" ,
+        "entity-name-tag.true": //true
+            "true" ,
+        "entity-name-tag.flase": //false
+            "false",
             
     }, "text", true, " ");
     
-    var headers = "\\b(EXPERIMENT|Constants|Variables|Hypothesis|Design|Configuration)\\b";
-    var experiments = "\\b(Object|Population|Accessible_Population|Subjects|Responsible|Colaborator)\\b";
-    var constants = "\\b(Solver|Termination_criterion|RandomNumberGenerator|NFeatures|CTC|CrossoverProb|MutationProb|PopulationSize|Executions)\\b";
-    var variables = "\\b(Factors|NCFactors|Outcomes|Outcome|Nuisances)\\b";
-    var hypothesis = "(\\b(Differential|Descriptive|Associational)\\b)|(\\b(Random|RandomBlockAdhoc|RandomBlock)\\b)";
-    var desing = "\\b(Sampling|Groups|Protocol|Analyses|Alignment|Analyses_Spec|Detailed_Design|Assignment|Bloking|sizing|Grouping)\\b";
-    var configuration = "\\b(Outputs|Inputs|Setting|Experimental_Setting|Experimental_Procedure|Procedure|Runtimes|Libraries|Command|Treatment|role|format|mapping)\\b";
-    var global =  "(\\b(float|integer|enum|ordered|boolean)\\b)|(\\b(version|rep|sizingrole|format|mapping|as|in|size)\\b)" +
-                    "(\\b(File)\\b)";
+    var keyword = "\\b(Template|EndTemplate|AgreementOffer|EndAgreementOffer|AgreementTerms|CreationConstraints)\\b";
+    var def = "\\b(Initiator|Responder|ServiceProvider|ExpirationTime|MonitorableProperties|Service|description|Global|GuaranteeTerms|Constraints|Service|Metrics)\\b";
+    var def2 = "\\b(GMTZone|DateFormat|GlobalPeriod|DefinedPeriod|EndDefinedPeriod|guarantees|GlobalDescription|global)\\b";
+    var atom = "\\b(belongs|for|of|as|measuredBy|relatedTo|availableAt|valueOf|is|IMPLIES|EQUAL|Consumer)\\b";
+    var atom2 = "(\\b(except|from|during|on|AND|OR|NOT)\\b)";
+    var condition = "\\b(all|exactly|one|or|more)\\b";
+    var actor = "\\b(Provider)\\b";
+    var attribute = "\\b(onlyIf|upon|[\w\$_]:)\\b";
+    var type = "\\b(integer|string|enum|set|boolean|float)\\b";
+    var True = "\\b(true)\\b";
+    var False = "\\b(false)\\b";
+    var subtle = "\\b((|)|[|])\\b";
     var otherVariables = "(\\b\\d+(\\.\\d+)?\\b)";
     var url = "((http://|https://|ftp://|www.|localhost/|localhost:)([^\\s])+)";
-    var comments = "(//.+)";
-    var functions = "(\\b(linear|cuadratic|Random|Adhoc|Pvalue|Sthreshold|freedom_degrees|Mean|Avg|StdDev|Range|CI|IQR|Ranking|Pearson|ANOVA|Friedman|Tukey|KruskalWalls|TTest|Wilcoxon|Holms|FactANOVAwRS|File|Chi Square|" +
-    		"SignTest|Kolmogorov-Smirnov|Lilliefors|Shapiro-Wilk|Levene|T-student|McNemar|Aligned Friedman|Iman & Davenport|Quade|Cochran Q|Bonferroni-Dunn|Hochberg|Hommel|Holland|Rom|Finner|Li|Shaffer|Nemenyi)\\b)";
-    var numerics = "(\\b(N|Z|Q|R|I|C)\\b)";
-    var correlation = "(\\b(BivariateRegression|Spearman|Kendall|CRAMER|LogLinear)\\b)";
+    
      
     this.$rules = {
         "start" : [
-            {token : "token_Keyword.blockHeader", regex : headers},
-            {token : "entity-name-tag.inlineOperator.1", regex : global},
-            {token : "variables", regex : otherVariables},
-            {token : "url", regex : url},
-            {token : "entity-name-tag.EXPERIMENT.1", regex : experiments},
-            {token : "string", regex : "'", next  : "qstring"},
-            {token : "entity-name-tag.Constants.1", regex : constants},
-            {token : "variable.Variables.1", regex : variables},
-            {token : "entity-name-tag.Hypothesis.values", regex : hypothesis},
-            {token : "variable.Hypothesis.values", regex : hypothesis},
-            {token : "entity-name-tag.Design.1", regex : desing},
-            {token : "entity-name-tag.Configuration.1", regex : configuration},
-            {token : "variable.functions.1", regex : global},
-            {token : "entity-name-tag.types.1", regex : global},
-            {token : "variable.Variables.inlineOperator.2", regex : global},
-            {token : "comments", regex : comments},
-            {token : "variable.functions.1", regex : functions},
-            {token : "numeric.sets", regex : numerics},
-            {token : "correlation.Types", regex : correlation},
+            {token : "token_Keyword.keyword", regex : keyword},
+            {token : "variable.def", regex : def},
+            {token : "variable.def2", regex : def2},
+            {token : "entity-name-tag.atom", regex : atom},
+            {token : "entity-name-tag.atom2", regex : atom2},
+            {token : "string", regex : '"', next  : "pstring"},
+			{token : "string", regex : "'", next  : "qstring"},
+            {token : "entity-name-tag.condition", regex : condition},
+            {token : "token_Keyword.actor", regex : actor},
+            {token : "entity-name-tag.attribute", regex : attribute},
+            {token : "entity-name-tag.type", regex : type},
+            {token : "entity-name-tag.true", regex : True},
+            {token : "entity-name-tag.false", regex : False},
             {token : keywordMapper, regex : "\\b\\w+\\b"},
-            {token : "comment", regex : "\\/\\/.*$" },
-            {token : "comment",  regex : "\\/\\*", next : "comment" },//multiline comment
             {caseInsensitive: true}
         ],
-        "qstring" : [
+        "pstring" : [
+            {token : "constant.language.escape",   regex : '""'},
+            {token : "string", regex : '"',     next  : "start"},
+            {defaultToken : "string"}
+        ],
+		"qstring" : [
             {token : "constant.language.escape",   regex : "''"},
             {token : "string", regex : "'",     next  : "start"},
             {defaultToken : "string"}
-        ],
-        "comment" : [
-                     {token : "comment", regex : ".*?\\*\\/", next : "start"}, 
-                     {token : "comment",regex : ".+"}
         ]
-    };
+    }
 };
 oop.inherits(AbapHighlightRules, TextHighlightRules);
 
