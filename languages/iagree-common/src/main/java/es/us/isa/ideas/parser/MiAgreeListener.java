@@ -560,6 +560,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				wsag.setExpression(result);
 			}
 		} catch (Exception e) {
+			System.out.println("MiAgreeListener:enterExpression. Error al procesar la expresion");
 		}
 	}
 

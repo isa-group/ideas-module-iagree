@@ -213,6 +213,10 @@ public class Convert2IAgree {
 					String exp = node
 							.getElementsByTagName("wsag:CustomServiceLevel")
 							.item(0).getTextContent();
+					if(exp.contains("True") || exp.contains("False")){
+						exp = exp.replace("\"", "");
+						exp = exp.replace("True", "true").replace("False", "false");
+					}
 					result += "\t"
 							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.PROVIDER])
 							+ " "
@@ -224,6 +228,10 @@ public class Convert2IAgree {
 
 					if (qualifCond != null) {
 						exp = qualifCond.getTextContent();
+						if(exp.contains("True") || exp.contains("False")){
+							exp = exp.replace("\"", "");
+							exp = exp.replace("True", "true").replace("False", "false");
+						}
 						exp = exp.trim().replace("(", "").replace(")", "");
 						result += "\n\t\t\t\t"
 								+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.ONLY_IF])
@@ -298,11 +306,21 @@ public class Convert2IAgree {
 					}
 				} else if (content.contains("IMPLIES")) {
 					String[] aux = content.split("IMPLIES");
-					result += "\t" + Util.decodeEntities(aux[1].trim()) + ";";
+					String exp1 = aux[0].trim();
+					if(exp1.contains("True") || exp1.contains("False")){
+						exp1 = exp1.replace("\"", "");
+						exp1 = exp1.replace("True", "true").replace("False", "false");
+					}
+					String exp2 = aux[1].trim();
+					if(exp2.contains("True") || exp2.contains("False")){
+						exp2 = exp2.replace("\"", "");
+						exp2 = exp2.replace("True", "true").replace("False", "false");
+					}
+					result += "\t" + Util.decodeEntities(exp2) + ";";
 
 					result += "\n\t\t"
 							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.ONLY_IF])
-							+ " (" + Util.decodeEntities(aux[0].trim())
+							+ " (" + Util.decodeEntities(exp1)
 							+ ");\n";
 				} else {
 					result += "\t" + Util.decodeEntities(content.trim())
