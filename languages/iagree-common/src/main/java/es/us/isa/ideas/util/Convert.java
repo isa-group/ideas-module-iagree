@@ -101,16 +101,9 @@ public class Convert {
 			while (it.hasNext()) {
 				String key = it.next();
 
-				System.out.println("Linea actual: " + key + ", "
-						+ metricsMap.get(key));
 				if (!metricsStack.contains(key)) {
-					System.out.println("Borrado");
 					metricsMap.remove(key);
 				}
-			}
-
-			for (String key : metricsMap.keySet()) {
-				System.out.println("### " + key);
 			}
 		}
 
@@ -136,10 +129,6 @@ public class Convert {
 			Pattern pattern = Pattern.compile("(\"metrics/)(\\w*)");
 			Matcher matcher = pattern.matcher(content);
 			matcher.find();
-
-			// A veces se borra del mapa la metrica que necesita posteriormente
-			// la app
-			System.out.println("Buscando métrica: " + matcher.group(2));
 
 			String metrics = metricsMap.get(matcher.group(2));
 

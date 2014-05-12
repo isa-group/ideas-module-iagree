@@ -64,6 +64,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			}
 
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterEntry");
+			e.printStackTrace();
 		}
 	}
 
@@ -91,7 +93,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 					+ "</wsag:Name>\n" + wsag.getTemplateDef()
 					+ "</wsag:Template>");
 		} catch (Exception e) {
-
+			System.out.println("parsing exception catched: enterTemplate");
+			e.printStackTrace();
 		}
 
 	}
@@ -122,6 +125,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 					+ "</wsag:Name>\n" + wsag.getAggDef()
 					+ "</wsag:AgreementOffer>");
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterAgOffer");
+			e.printStackTrace();
 		}
 	}
 
@@ -143,6 +148,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 					+ wsag.getAgreementTerms()
 					+ "\n\t\t</wsag:All >\n\t</wsag:Terms >\n\n");
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterAg_def");
+			e.printStackTrace();
 		}
 	}
 
@@ -166,6 +173,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 					+ "\t<wsag:CreationConstraints >\n" + wsag.getCc()
 					+ "\t</wsag:CreationConstraints >\n");
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterTemplate_def");
+			e.printStackTrace();
 		}
 	}
 
@@ -176,6 +185,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			enterAgreementTerms_def(ctx.agreementTerms_def());
 			wsag.setAgreementTerms(wsag.getAgreementTermsDef());
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterAgreementTerms");
+			e.printStackTrace();
 		}
 	}
 
@@ -185,6 +196,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		try {
 			enterCreationConstraints_def(ctx.creationConstraints_def());
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterCreationConstraints");
+			e.printStackTrace();
 		}
 	}
 
@@ -196,6 +209,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				enterCreationConstraint(cc);
 			}
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterCreationConstraints_def");
+			e.printStackTrace();
 		}
 	}
 
@@ -219,6 +234,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 
 			wsag.setCc(wsag.getCc() + cc);
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterCreationConstraint");
+			e.printStackTrace();
 		}
 	}
 
@@ -236,6 +253,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 					+ wsag.getMonitorableProperties()
 					+ wsag.getGuaranteeTerms());
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterAgreementTerms_def");
+			e.printStackTrace();
 		}
 	}
 
@@ -265,6 +284,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 						+ Util.withoutDoubleQuotes(ctx.url().getText())
 						+ "</wsag:ServiceReference>\n\n");
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterService");
+			e.printStackTrace();
 		}
 	}
 
@@ -335,6 +356,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				// + "</twsag4people:DefinedValidityPeriodSet >\n");
 			}
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterTemp_properties");
+			e.printStackTrace();
 		}
 	}
 
@@ -363,6 +386,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 					+ "\t\t\t\t</wsag:VariableSet >\n"
 					+ "\t\t\t</wsag:ServiceProperties>\n\n");
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterMonitorableProperties");
+			e.printStackTrace();
 		}
 	}
 
@@ -377,6 +402,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 						+ wsag.getGuaranteeTerm());
 			}
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterGuaranteeTerms");
+			e.printStackTrace();
 		}
 
 	}
@@ -424,6 +451,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 						+ "\t\t\t\t\t</wsag:Variable >\n");
 			}
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterGlobal_MonitorableProperties");
+			e.printStackTrace();
 		}
 	}
 
@@ -448,6 +477,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 						+ "\t\t\t</wsag:GuaranteeTerm>\n");
 			}
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterGuaranteeTerm");
+			e.printStackTrace();
 		}
 	}
 
@@ -473,6 +504,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 					+ "\t\t\t\t</wsag:ServiceLevelObjective>\n";
 			wsag.setGuaranteeDef(result);
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterGuarantee_def");
+			e.printStackTrace();
 		}
 	}
 
@@ -486,6 +519,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 						+ wsag.getGuaranteeTerm());
 			}
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterGrouped_guaranteeTerm");
+			e.printStackTrace();
 		}
 	}
 
@@ -560,7 +595,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				wsag.setExpression(result);
 			}
 		} catch (Exception e) {
-			System.out.println("MiAgreeListener:enterExpression. Error al procesar la expresion");
+			System.out.println("parsing exception catched: enterExpression");
+			e.printStackTrace();
 		}
 	}
 
@@ -621,6 +657,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				wsag.setAssigValue(result);
 			}
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterAssig_value");
+			e.printStackTrace();
 		}
 	}
 
@@ -650,6 +688,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			KeyValueProp kv = new KeyValueProp(key, value, assig, type, typeArg);
 			wsag.setKeyValue(kv);
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterKey_value_prop");
+			e.printStackTrace();
 		}
 	}
 
@@ -663,6 +703,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				wsag.setVersionNumber(ctx.Version().getText());
 			}
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterVersionNumber");
+			e.printStackTrace();
 		}
 	}
 
@@ -692,6 +734,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				wsag.setTypeArg(wsag.getListValues());
 			}
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterType");
+			e.printStackTrace();
 		}
 	}
 
@@ -705,6 +749,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				wsag.setListValues(wsag.getListValues() + l.l1.getText() + ",");
 			}
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterList");
+			e.printStackTrace();
 		}
 	}
 
@@ -717,6 +763,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 
 			wsag.setOnlyIf(wsag.getExpression());
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterOnlyif_sentence");
+			e.printStackTrace();
 		}
 	}
 
@@ -735,6 +783,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			}
 			wsag.setCuantif(cuantif);
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterCuantif");
+			e.printStackTrace();
 		}
 	}
 
@@ -744,6 +794,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		try {
 			wsag.setRange(new Range(ctx.min.getText(), ctx.max.getText()));
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterRange");
+			e.printStackTrace();
 		}
 	}
 
@@ -754,6 +806,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			enterAssig_value(ctx.assig_value());
 			wsag.setOperation(ctx.Operador().getText() + wsag.getAssigValue());
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterOperation");
+			e.printStackTrace();
 		}
 	}
 
@@ -816,6 +870,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			metrics = "<met:metricXML xmlns:met=\"http:/www.isa.us.es/ada/metrics\">\n"
 					+ metrics_def + "</met:metricXML>\n";
 		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterMetrics_prop");
+			e.printStackTrace();
 		}
 	}
 
