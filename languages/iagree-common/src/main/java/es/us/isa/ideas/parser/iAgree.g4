@@ -113,9 +113,11 @@ guaranteeTerm : Identifier DP
 
 grouped_guaranteeTerm : (guaranteeTerm)+;
 							
-guarantee_def : (PROVIDER | CONSUMER) GUARANTEES 
+guarantee_def : ob=(PROVIDER | CONSUMER) GUARANTEES 
                 expression temporality? SEMICOLON 
-                (upon_sentence)? (onlyif_sentence)?
+                (upon_sentence)?
+                (onlyif_sentence)?
+                (with_sentence)?
               ;
 
 
@@ -137,8 +139,8 @@ key_value_prop : k=(Identifier | Access | BOOLEAN | INTEGER ) DP
                  (v=String | v2=type)  (IGUAL a=assig_value SEMICOLON)?
                ;
 
-assig_value : (Identifier | Integer | String)+ (operation)?
-            | Boolean
+assig_value : val=(Identifier | Integer | String)+ (operation)?
+            | (TRUE | FALSE)
             | Float (Unit)? (operation)?
             | S_Float (Unit)? (operation)?
             | S_Integer (Unit)? (operation)?
@@ -147,10 +149,10 @@ assig_value : (Identifier | Integer | String)+ (operation)?
 
 operation : Operador assig_value;
 
-expression : NOT expression
-           | PA expression PC ((AND|OR|IMPLIES) expression)?
-           | (Identifier | Access | String) ( (IGUAL|MENOR|MAYOR|MENOR_IGUAL|MAYOR_IGUAL) assig_value)? ((AND|OR|IMPLIES) expression)?
-           | (Identifier | Access) BELONGS list ((AND|OR|IMPLIES) expression)?
+expression : NOT e1=expression
+           | PA e1=expression PC (log=(AND|OR|IMPLIES) e2=expression)?
+           | ident=(Identifier | Access | String) (cmp=(IGUAL|MENOR|MAYOR|MENOR_IGUAL|MAYOR_IGUAL) val=assig_value)? (log=(AND|OR|IMPLIES) e1=expression)?
+           | ident=(Identifier | Access) BELONGS l=list (log=(AND|OR|IMPLIES) e1=expression)?
            ;
 
 op : Identifier (PA Identifier (COMMA Identifier )* PC)?;
@@ -164,19 +166,35 @@ upon_sentence : UPON Identifier SEMICOLON;
 	
 onlyif_sentence : ONLY_IF PA expression PC SEMICOLON;
 
-type : Identifier | SET list | ENUM list 
-     | (INTEGER | FLOAT | NATURAL | NUMBER | BOOLEAN)(range)? 
+with_sentence : WITH interval compensationType
+                groupedWithExpression
+                END;
+
+interval : MONTHLY 
+         | DAILY
+         ;
+
+compensationType : PENALTY 
+                 | REWARD
+                 ;
+
+groupedWithExpression : (withExpression)+;
+
+withExpression : OF expression IF expression SEMICOLON;
+
+type : Identifier 
+     | SET list 
+     | ENUM list 
+     | v=(INTEGER | FLOAT | NATURAL | NUMBER | BOOLEAN) (range)? 
      ;
 
-list : LLA (Identifier | String | Integer | S_Integer | Float | S_Float) 
-       (COMMA (Identifier | String | Integer | S_Integer | Float | S_Float))* LLC
+list : LLA l1=listArg 
+       (COMMA l2=listArg)* LLC
      ;
 
-range : CA Integer RANGE_SEPARATOR Integer CC
-      |	CA Integer RANGE_SEPARATOR S_Integer CC
-      | CA S_Integer RANGE_SEPARATOR Integer CC
-      | CA S_Integer RANGE_SEPARATOR S_Integer CC
-      | CA (Integer | S_Integer) RANGE_SEPARATOR (Integer | S_Integer) CC
+listArg : l1=(Identifier | String | Integer | S_Integer | Float | S_Float);
+
+range : CA min=(Integer | S_Integer) RANGE_SEPARATOR max=(Integer | S_Integer) CC
       ;
 
 
@@ -233,6 +251,17 @@ NATURAL : 'natural';
 NUMBER : 'number';
 SET : 'set';
 ENUM : 'enum';
+
+TRUE : 'true';
+FALSE : 'false';
+
+WITH : 'with';
+END : 'end';
+IF : 'if';
+MONTHLY : 'monthly';
+DAILY : 'daily';
+PENALTY : 'penalty';
+REWARD : 'reward';
 
 
 //---------------------------------------
