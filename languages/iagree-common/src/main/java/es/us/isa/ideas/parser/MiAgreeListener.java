@@ -16,6 +16,7 @@ import es.us.isa.ideas.parser.iAgreeParser.ExpressionContext;
 import es.us.isa.ideas.parser.iAgreeParser.GlobalDescriptionContext;
 import es.us.isa.ideas.parser.iAgreeParser.Global_MonitorablePropertiesContext;
 import es.us.isa.ideas.parser.iAgreeParser.Grouped_guaranteeTermContext;
+import es.us.isa.ideas.parser.iAgreeParser.Grouped_withExpressionContext;
 import es.us.isa.ideas.parser.iAgreeParser.GuaranteeTermContext;
 import es.us.isa.ideas.parser.iAgreeParser.GuaranteeTermsContext;
 import es.us.isa.ideas.parser.iAgreeParser.Guarantee_defContext;
@@ -33,6 +34,8 @@ import es.us.isa.ideas.parser.iAgreeParser.TemplateContext;
 import es.us.isa.ideas.parser.iAgreeParser.Template_defContext;
 import es.us.isa.ideas.parser.iAgreeParser.TypeContext;
 import es.us.isa.ideas.parser.iAgreeParser.VersionNumberContext;
+import es.us.isa.ideas.parser.iAgreeParser.With_expressionContext;
+import es.us.isa.ideas.parser.iAgreeParser.With_sentenceContext;
 import es.us.isa.ideas.util.KeyValueProp;
 import es.us.isa.ideas.util.Range;
 import es.us.isa.ideas.util.Util;
@@ -185,7 +188,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			enterAgreementTerms_def(ctx.agreementTerms_def());
 			wsag.setAgreementTerms(wsag.getAgreementTermsDef());
 		} catch (Exception e) {
-			System.out.println("parsing exception catched: enterAgreementTerms");
+			System.out
+					.println("parsing exception catched: enterAgreementTerms");
 			e.printStackTrace();
 		}
 	}
@@ -196,7 +200,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		try {
 			enterCreationConstraints_def(ctx.creationConstraints_def());
 		} catch (Exception e) {
-			System.out.println("parsing exception catched: enterCreationConstraints");
+			System.out
+					.println("parsing exception catched: enterCreationConstraints");
 			e.printStackTrace();
 		}
 	}
@@ -209,7 +214,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				enterCreationConstraint(cc);
 			}
 		} catch (Exception e) {
-			System.out.println("parsing exception catched: enterCreationConstraints_def");
+			System.out
+					.println("parsing exception catched: enterCreationConstraints_def");
 			e.printStackTrace();
 		}
 	}
@@ -234,7 +240,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 
 			wsag.setCc(wsag.getCc() + cc);
 		} catch (Exception e) {
-			System.out.println("parsing exception catched: enterCreationConstraint");
+			System.out
+					.println("parsing exception catched: enterCreationConstraint");
 			e.printStackTrace();
 		}
 	}
@@ -253,7 +260,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 					+ wsag.getMonitorableProperties()
 					+ wsag.getGuaranteeTerms());
 		} catch (Exception e) {
-			System.out.println("parsing exception catched: enterAgreementTerms_def");
+			System.out
+					.println("parsing exception catched: enterAgreementTerms_def");
 			e.printStackTrace();
 		}
 	}
@@ -356,7 +364,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				// + "</twsag4people:DefinedValidityPeriodSet >\n");
 			}
 		} catch (Exception e) {
-			System.out.println("parsing exception catched: enterTemp_properties");
+			System.out
+					.println("parsing exception catched: enterTemp_properties");
 			e.printStackTrace();
 		}
 	}
@@ -386,7 +395,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 					+ "\t\t\t\t</wsag:VariableSet >\n"
 					+ "\t\t\t</wsag:ServiceProperties>\n\n");
 		} catch (Exception e) {
-			System.out.println("parsing exception catched: enterMonitorableProperties");
+			System.out
+					.println("parsing exception catched: enterMonitorableProperties");
 			e.printStackTrace();
 		}
 	}
@@ -402,7 +412,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 						+ wsag.getGuaranteeTerm());
 			}
 		} catch (Exception e) {
-			System.out.println("parsing exception catched: enterGuaranteeTerms");
+			System.out
+					.println("parsing exception catched: enterGuaranteeTerms");
 			e.printStackTrace();
 		}
 
@@ -414,23 +425,24 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		try {
 			for (Key_value_propContext kv : ctx.key_value_prop()) {
 				enterKey_value_prop(kv);
-				
+
 				String oiKey = wsag.getKeyValue().value;
 				String oiValue = wsag.getKeyValue().assigValue;
 
 				if (oiKey.equals("boolean") && !oiValue.isEmpty()) {
 					oiValue = oiValue.toLowerCase();
-					oiValue = Character.toUpperCase(oiValue.charAt(0)) + oiValue.substring(1);
+					oiValue = Character.toUpperCase(oiValue.charAt(0))
+							+ oiValue.substring(1);
 				}
-				
+
 				wsag.setOfferItems(wsag.getOfferItems()
 						+ "\t\t\t\t<OfferItem name=\"" + wsag.getKeyValue().key
 						+ "\" wsag:Metric=\"metrics/" + wsag.getMetric() + ":"
-						+ oiKey + "\" >"
-						+ oiValue + "</OfferItem>\n");
+						+ oiKey + "\" >" + oiValue + "</OfferItem>\n");
 			}
 		} catch (Exception e) {
-			System.out.println("parsing exception catched: enterGlobalDescription");
+			System.out
+					.println("parsing exception catched: enterGlobalDescription");
 			e.printStackTrace();
 		}
 	}
@@ -451,7 +463,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 						+ "\t\t\t\t\t</wsag:Variable >\n");
 			}
 		} catch (Exception e) {
-			System.out.println("parsing exception catched: enterGlobal_MonitorableProperties");
+			System.out
+					.println("parsing exception catched: enterGlobal_MonitorableProperties");
 			e.printStackTrace();
 		}
 	}
@@ -497,16 +510,70 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			}
 
 			enterExpression(ctx.expression());
-			result += "\t\t\t\t<wsag:ServiceLevelObjective >\n"
-					+ "\t\t\t\t\t<wsag:CustomServiceLevel >"
+			result += "\t\t\t\t<wsag:ServiceLevelObjective>\n"
+					+ "\t\t\t\t\t<wsag:CustomServiceLevel>"
 					+ Util.encodeEntities(wsag.getExpression())
 					+ "</wsag:CustomServiceLevel>\n"
 					+ "\t\t\t\t</wsag:ServiceLevelObjective>\n";
+
+			if (ctx.with_sentence() != null) {
+				enterWith_sentence(ctx.with_sentence());
+				result += "\t\t\t\t<wsag:BusinessValueList>\n"
+						+ wsag.getWithExpression()
+						+ "\t\t\t\t</wsag:BusinessValueList>\n";
+			}
+
 			wsag.setGuaranteeDef(result);
 		} catch (Exception e) {
 			System.out.println("parsing exception catched: enterGuarantee_def");
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void enterWith_sentence(With_sentenceContext ctx) {
+		super.enterWith_sentence(ctx);
+
+		wsag.setInterval(ctx.interv.getText());
+		wsag.setCompensationType(ctx.compType.getText());
+
+		enterGrouped_withExpression(ctx.grouped_withExpression());
+
+	}
+
+	@Override
+	public void enterGrouped_withExpression(Grouped_withExpressionContext ctx) {
+		super.enterGrouped_withExpression(ctx);
+		for (With_expressionContext expr : ctx.with_expression()) {
+			enterWith_expression(expr);
+		}
+	}
+
+	@Override
+	public void enterWith_expression(With_expressionContext ctx) {
+		super.enterWith_expression(ctx);
+
+		enterExpression(ctx.e1);
+		String exp1 = wsag.getExpression();
+
+		enterExpression(ctx.e2);
+		String exp2 = wsag.getExpression();
+
+		String result = "\t\t\t\t\t<wsag:"
+				+ wsag.getCompensationType().substring(0, 1).toUpperCase()
+				+ wsag.getCompensationType().substring(1) + ">\n"
+				+ "\t\t\t\t\t\t<wsag:AssessmentInterval>\n"
+				+ "\t\t\t\t\t\t\t<wsag:TimeInterval>" + wsag.getInterval()
+				+ "</wsag:TimeInterval>\n"
+				+ "\t\t\t\t\t\t</wsag:AssessmentInterval>\n"
+				+ "\t\t\t\t\t\t<wsag:ValueExpr>" + Util.encodeEntities(exp1)
+				+ " "
+				+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.IF])
+				+ " " + Util.encodeEntities(exp2) + "</wsag:ValueExpr>\n"
+				+ "\t\t\t\t\t</wsag:"
+				+ wsag.getCompensationType().substring(0, 1).toUpperCase()
+				+ wsag.getCompensationType().substring(1) + ">\n";
+		wsag.setWithExpression(wsag.getWithExpression() + result);
 	}
 
 	@Override
@@ -519,7 +586,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 						+ wsag.getGuaranteeTerm());
 			}
 		} catch (Exception e) {
-			System.out.println("parsing exception catched: enterGrouped_guaranteeTerm");
+			System.out
+					.println("parsing exception catched: enterGrouped_guaranteeTerm");
 			e.printStackTrace();
 		}
 	}
@@ -688,7 +756,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			KeyValueProp kv = new KeyValueProp(key, value, assig, type, typeArg);
 			wsag.setKeyValue(kv);
 		} catch (Exception e) {
-			System.out.println("parsing exception catched: enterKey_value_prop");
+			System.out
+					.println("parsing exception catched: enterKey_value_prop");
 			e.printStackTrace();
 		}
 	}
@@ -763,7 +832,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 
 			wsag.setOnlyIf(wsag.getExpression());
 		} catch (Exception e) {
-			System.out.println("parsing exception catched: enterOnlyif_sentence");
+			System.out
+					.println("parsing exception catched: enterOnlyif_sentence");
 			e.printStackTrace();
 		}
 	}
@@ -815,9 +885,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 	public void enterMetrics_prop(Metrics_propContext ctx) {
 		super.enterMetrics_prop(ctx);
 		try {
-			String metrics_def = "\t<met:metric id=\"boolean\" type=\"enumerated\" >\n"
-					+ "		<met:value value=\"True\"/>\n"
-					+ "		<met:value value=\"False\"/>\n" + "\t</met:metric>\n";
+			String metrics_def = "";
 
 			for (Key_value_propContext kv : ctx.key_value_prop()) {
 				enterKey_value_prop(kv);
@@ -827,43 +895,54 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				String max = "500";
 
 				mId = wsag.getKeyValue().key;
-				mType = Util.convertMetricType(wsag.getKeyValue().type);
+				mType = wsag.getKeyValue().type;
+				
+				if (mType.equals("boolean")) {
+					metrics_def += "\t<met:metric id=\"" + mId
+							+ "\"  type=\"enumerated\" >\n"
+							+ "		<met:value value=\"True\"/>\n"
+							+ "		<met:value value=\"False\"/>\n"
+							+ "\t</met:metric>\n";
+				} else {
+					mType = Util.convertMetricType(mType);
 
-				metrics_def += "\t<met:metric id=\"" + mId + "\" type=\""
-						+ mType + "\" ";
+					metrics_def += "\t<met:metric id=\"" + mId + "\" type=\""
+							+ mType + "\" ";
 
-				if (!wsag.getKeyValue().typeArg.isEmpty()) {
-					String[] aux = wsag.getKeyValue().typeArg.split(",");
+					if (!wsag.getKeyValue().typeArg.isEmpty()) {
+						String[] aux = wsag.getKeyValue().typeArg.split(",");
 
-					if (mType == "enumerated") {
-						metrics_def += ">\n";
+						if (mType == "enumerated") {
+							metrics_def += ">\n";
 
-						if (!wsag.getKeyValue().type.isEmpty()
-								&& wsag.getKeyValue().type.toLowerCase()
-										.equals("boolean")) {
-							aux[0] = "True";
-							aux[1] = "False";
+							if (!wsag.getKeyValue().type.isEmpty()
+									&& wsag.getKeyValue().type.toLowerCase()
+											.equals("boolean")) {
+								aux[0] = "True";
+								aux[1] = "False";
+							}
+
+							for (int i = 0; i < aux.length; i++) {
+								metrics_def += "\t\t<met:value value=\""
+										+ aux[i] + "\"/>\n";
+							}
+
+							metrics_def += "\t</met:metric>\n";
+
+						} else {
+							min = aux[0];
+							max = aux[1];
+
+							metrics_def += " min=\"" + min + "\" max=\"" + max
+									+ "\" />\n";
+
 						}
-
-						for (int i = 0; i < aux.length; i++) {
-							metrics_def += "\t\t<met:value value=\"" + aux[i]
-									+ "\"/>\n";
-						}
-
-						metrics_def += "\t</met:metric>\n";
 
 					} else {
-						min = aux[0];
-						max = aux[1];
-
 						metrics_def += " min=\"" + min + "\" max=\"" + max
-								+ "\" />\n";
-
+								+ "\"";
+						metrics_def += "/>\n";
 					}
-
-				} else {
-					metrics_def += " min=\"" + min + "\" max=\"" + max + "\"";
-					metrics_def += "/>\n";
 				}
 			}
 

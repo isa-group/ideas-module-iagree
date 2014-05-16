@@ -166,8 +166,8 @@ upon_sentence : UPON Identifier SEMICOLON;
 	
 onlyif_sentence : ONLY_IF PA expression PC SEMICOLON;
 
-with_sentence : WITH interval compensationType
-                groupedWithExpression
+with_sentence : WITH interv=interval compType=compensationType
+                grouped_withExpression
                 END;
 
 interval : MONTHLY 
@@ -178,9 +178,9 @@ compensationType : PENALTY
                  | REWARD
                  ;
 
-groupedWithExpression : (withExpression)+;
+grouped_withExpression : (with_expression)+;
 
-withExpression : OF expression IF expression SEMICOLON;
+with_expression : OF e1=expression IF e2=expression SEMICOLON;
 
 type : Identifier 
      | SET list 

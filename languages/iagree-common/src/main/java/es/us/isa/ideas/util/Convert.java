@@ -111,7 +111,7 @@ public class Convert {
 			metricsStack.push(metricUri);
 			metricsMap.put(metricUri, metrics);
 		}
-
+		
 		return res;
 	}
 
@@ -129,7 +129,7 @@ public class Convert {
 			Pattern pattern = Pattern.compile("(\"metrics/)(\\w*)");
 			Matcher matcher = pattern.matcher(content);
 			matcher.find();
-
+			
 			String metrics = metricsMap.get(matcher.group(2));
 
 			if (metrics != null) {

@@ -16,7 +16,7 @@ public class Convert2IAgree {
 
 	public static String getContext(Document doc) {
 		String result = "";
-
+		
 		Node nodeTempName = doc.getElementsByTagName("wsag:TemplateName").item(
 				0);
 		if (nodeTempName != null) {
@@ -236,11 +236,49 @@ public class Convert2IAgree {
 						result += "\n\t\t\t\t"
 								+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.ONLY_IF])
 								+ " (" + exp + ");\n";
+					} 
+					
+					Node withExp = node.getElementsByTagName(
+							"wsag:BusinessValueList").item(0);
+					
+					if(withExp != null) {
+						
+						String compType = "";
+						
+						Node nCompTypePenalty = node.getElementsByTagName(
+								"wsag:Penalty").item(0);
+						Node nCompTypeReward = node.getElementsByTagName(
+								"wsag:Reward").item(0);
+						
+						if(nCompTypePenalty != null){
+							compType = "penalty";
+						} else if(nCompTypeReward != null){
+							compType = "reward";
+						}
+	
+						Node nTimeInterval = node.getElementsByTagName(
+								"wsag:TimeInterval").item(0);
+						String interval = nTimeInterval.getTextContent();
+						
+						result += "\t\t\t\t" 
+						+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.WITH]) 
+						+ " " + interval + " " + compType + "\n";
+						
+						NodeList valueExprs = node.getElementsByTagName("wsag:ValueExpr");
+						
+						for (int k = 0; k < valueExprs.getLength(); k++) {
+							Element valueExpr = (Element) valueExprs.item(i);
+							result += "\t\t\t\t\t" + Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.OF]) + " " +
+									Util.decodeEntities(valueExpr.getTextContent()) + 
+									Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.SEMICOLON]) + "\n";
+						}
+						
+						result += "\t\t\t\tend\n";
+						
 					} else {
 						result += "\n";
 					}
 				}
-
 			}
 		}
 

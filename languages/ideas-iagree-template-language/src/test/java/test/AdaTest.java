@@ -2,8 +2,6 @@ package test;
 
 import java.io.IOException;
 
-import es.us.isa.ideas.adaintegration.iagree.AdaFacade;
-
 public class AdaTest{
 	public static void main(String[] args) throws IOException{
 //		AdaFacade ada = new AdaFacade();

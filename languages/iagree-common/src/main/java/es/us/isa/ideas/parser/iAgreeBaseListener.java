@@ -212,6 +212,19 @@ public class iAgreeBaseListener implements iAgreeListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterWith_expression(@NotNull iAgreeParser.With_expressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitWith_expression(@NotNull iAgreeParser.With_expressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterUpon_sentence(@NotNull iAgreeParser.Upon_sentenceContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -232,6 +245,19 @@ public class iAgreeBaseListener implements iAgreeListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitTemplate(@NotNull iAgreeParser.TemplateContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterGrouped_withExpression(@NotNull iAgreeParser.Grouped_withExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitGrouped_withExpression(@NotNull iAgreeParser.Grouped_withExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -537,19 +563,6 @@ public class iAgreeBaseListener implements iAgreeListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterWithExpression(@NotNull iAgreeParser.WithExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitWithExpression(@NotNull iAgreeParser.WithExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterMetrics_prop(@NotNull iAgreeParser.Metrics_propContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -609,19 +622,6 @@ public class iAgreeBaseListener implements iAgreeListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitList(@NotNull iAgreeParser.ListContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterGroupedWithExpression(@NotNull iAgreeParser.GroupedWithExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitGroupedWithExpression(@NotNull iAgreeParser.GroupedWithExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

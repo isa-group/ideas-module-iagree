@@ -256,6 +256,30 @@ public class WsagObject {
 		this.onlyIf = onlyIf;
 	}
 
+	public String getWithExpression() {
+		return withExpression;
+	}
+
+	public void setWithExpression(String withExpression) {
+		this.withExpression = withExpression;
+	}
+
+	public String getInterval() {
+		return interval;
+	}
+
+	public void setInterval(String interval) {
+		this.interval = interval;
+	}
+
+	public String getCompensationType() {
+		return compensationType;
+	}
+
+	public void setCompensationType(String compensationType) {
+		this.compensationType = compensationType;
+	}
+
 	public String getExpression() {
 		return expression;
 	}
@@ -320,6 +344,9 @@ public class WsagObject {
 	String variablesSet = "";
 	String cuantif = "";
 	String onlyIf = "";
+	String withExpression = "";
+	String interval = "";
+	String compensationType = "";
 	String expression = "";
 	String assigValue = "";
 	String operation = "";

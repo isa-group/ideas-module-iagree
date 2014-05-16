@@ -63,7 +63,7 @@ public class iAgreeParser extends Parser {
 		RULE_key_value_prop = 40, RULE_assig_value = 41, RULE_operation = 42, 
 		RULE_expression = 43, RULE_op = 44, RULE_cuantif = 45, RULE_upon_sentence = 46, 
 		RULE_onlyif_sentence = 47, RULE_with_sentence = 48, RULE_interval = 49, 
-		RULE_compensationType = 50, RULE_groupedWithExpression = 51, RULE_withExpression = 52, 
+		RULE_compensationType = 50, RULE_grouped_withExpression = 51, RULE_with_expression = 52, 
 		RULE_type = 53, RULE_list = 54, RULE_listArg = 55, RULE_range = 56;
 	public static final String[] ruleNames = {
 		"entry", "template", "agOffer", "template_def", "ag_def", "temp_properties", 
@@ -76,8 +76,8 @@ public class iAgreeParser extends Parser {
 		"local_MonitorableProperties", "guaranteeTerms", "guaranteeTerm", "grouped_guaranteeTerm", 
 		"guarantee_def", "id", "versionNumber", "url", "key_value_prop", "assig_value", 
 		"operation", "expression", "op", "cuantif", "upon_sentence", "onlyif_sentence", 
-		"with_sentence", "interval", "compensationType", "groupedWithExpression", 
-		"withExpression", "type", "list", "listArg", "range"
+		"with_sentence", "interval", "compensationType", "grouped_withExpression", 
+		"with_expression", "type", "list", "listArg", "range"
 	};
 
 	@Override
@@ -3085,6 +3085,8 @@ public class iAgreeParser extends Parser {
 	}
 
 	public static class With_sentenceContext extends ParserRuleContext {
+		public IntervalContext interv;
+		public CompensationTypeContext compType;
 		public CompensationTypeContext compensationType() {
 			return getRuleContext(CompensationTypeContext.class,0);
 		}
@@ -3092,10 +3094,10 @@ public class iAgreeParser extends Parser {
 		public IntervalContext interval() {
 			return getRuleContext(IntervalContext.class,0);
 		}
-		public TerminalNode END() { return getToken(iAgreeParser.END, 0); }
-		public GroupedWithExpressionContext groupedWithExpression() {
-			return getRuleContext(GroupedWithExpressionContext.class,0);
+		public Grouped_withExpressionContext grouped_withExpression() {
+			return getRuleContext(Grouped_withExpressionContext.class,0);
 		}
+		public TerminalNode END() { return getToken(iAgreeParser.END, 0); }
 		public With_sentenceContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -3117,9 +3119,9 @@ public class iAgreeParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(489); match(WITH);
-			setState(490); interval();
-			setState(491); compensationType();
-			setState(492); groupedWithExpression();
+			setState(490); ((With_sentenceContext)_localctx).interv = interval();
+			setState(491); ((With_sentenceContext)_localctx).compType = compensationType();
+			setState(492); grouped_withExpression();
 			setState(493); match(END);
 			}
 		}
@@ -3220,30 +3222,30 @@ public class iAgreeParser extends Parser {
 		return _localctx;
 	}
 
-	public static class GroupedWithExpressionContext extends ParserRuleContext {
-		public WithExpressionContext withExpression(int i) {
-			return getRuleContext(WithExpressionContext.class,i);
+	public static class Grouped_withExpressionContext extends ParserRuleContext {
+		public List<With_expressionContext> with_expression() {
+			return getRuleContexts(With_expressionContext.class);
 		}
-		public List<WithExpressionContext> withExpression() {
-			return getRuleContexts(WithExpressionContext.class);
+		public With_expressionContext with_expression(int i) {
+			return getRuleContext(With_expressionContext.class,i);
 		}
-		public GroupedWithExpressionContext(ParserRuleContext parent, int invokingState) {
+		public Grouped_withExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_groupedWithExpression; }
+		@Override public int getRuleIndex() { return RULE_grouped_withExpression; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof iAgreeListener ) ((iAgreeListener)listener).enterGroupedWithExpression(this);
+			if ( listener instanceof iAgreeListener ) ((iAgreeListener)listener).enterGrouped_withExpression(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof iAgreeListener ) ((iAgreeListener)listener).exitGroupedWithExpression(this);
+			if ( listener instanceof iAgreeListener ) ((iAgreeListener)listener).exitGrouped_withExpression(this);
 		}
 	}
 
-	public final GroupedWithExpressionContext groupedWithExpression() throws RecognitionException {
-		GroupedWithExpressionContext _localctx = new GroupedWithExpressionContext(_ctx, getState());
-		enterRule(_localctx, 102, RULE_groupedWithExpression);
+	public final Grouped_withExpressionContext grouped_withExpression() throws RecognitionException {
+		Grouped_withExpressionContext _localctx = new Grouped_withExpressionContext(_ctx, getState());
+		enterRule(_localctx, 102, RULE_grouped_withExpression);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -3254,7 +3256,7 @@ public class iAgreeParser extends Parser {
 			do {
 				{
 				{
-				setState(499); withExpression();
+				setState(499); with_expression();
 				}
 				}
 				setState(502); 
@@ -3274,40 +3276,42 @@ public class iAgreeParser extends Parser {
 		return _localctx;
 	}
 
-	public static class WithExpressionContext extends ParserRuleContext {
-		public TerminalNode IF() { return getToken(iAgreeParser.IF, 0); }
+	public static class With_expressionContext extends ParserRuleContext {
+		public ExpressionContext e1;
+		public ExpressionContext e2;
 		public ExpressionContext expression(int i) {
 			return getRuleContext(ExpressionContext.class,i);
 		}
+		public TerminalNode IF() { return getToken(iAgreeParser.IF, 0); }
 		public TerminalNode SEMICOLON() { return getToken(iAgreeParser.SEMICOLON, 0); }
 		public TerminalNode OF() { return getToken(iAgreeParser.OF, 0); }
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
 		}
-		public WithExpressionContext(ParserRuleContext parent, int invokingState) {
+		public With_expressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_withExpression; }
+		@Override public int getRuleIndex() { return RULE_with_expression; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof iAgreeListener ) ((iAgreeListener)listener).enterWithExpression(this);
+			if ( listener instanceof iAgreeListener ) ((iAgreeListener)listener).enterWith_expression(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof iAgreeListener ) ((iAgreeListener)listener).exitWithExpression(this);
+			if ( listener instanceof iAgreeListener ) ((iAgreeListener)listener).exitWith_expression(this);
 		}
 	}
 
-	public final WithExpressionContext withExpression() throws RecognitionException {
-		WithExpressionContext _localctx = new WithExpressionContext(_ctx, getState());
-		enterRule(_localctx, 104, RULE_withExpression);
+	public final With_expressionContext with_expression() throws RecognitionException {
+		With_expressionContext _localctx = new With_expressionContext(_ctx, getState());
+		enterRule(_localctx, 104, RULE_with_expression);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(504); match(OF);
-			setState(505); expression();
+			setState(505); ((With_expressionContext)_localctx).e1 = expression();
 			setState(506); match(IF);
-			setState(507); expression();
+			setState(507); ((With_expressionContext)_localctx).e2 = expression();
 			setState(508); match(SEMICOLON);
 			}
 		}

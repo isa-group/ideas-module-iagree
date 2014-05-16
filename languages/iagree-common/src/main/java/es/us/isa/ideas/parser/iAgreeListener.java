@@ -174,6 +174,17 @@ public interface iAgreeListener extends ParseTreeListener {
 	void exitFeature(@NotNull iAgreeParser.FeatureContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link iAgreeParser#with_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterWith_expression(@NotNull iAgreeParser.With_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link iAgreeParser#with_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitWith_expression(@NotNull iAgreeParser.With_expressionContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link iAgreeParser#upon_sentence}.
 	 * @param ctx the parse tree
 	 */
@@ -194,6 +205,17 @@ public interface iAgreeListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTemplate(@NotNull iAgreeParser.TemplateContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link iAgreeParser#grouped_withExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterGrouped_withExpression(@NotNull iAgreeParser.Grouped_withExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link iAgreeParser#grouped_withExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitGrouped_withExpression(@NotNull iAgreeParser.Grouped_withExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link iAgreeParser#op}.
@@ -449,17 +471,6 @@ public interface iAgreeListener extends ParseTreeListener {
 	void exitAgreementTerms_def(@NotNull iAgreeParser.AgreementTerms_defContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link iAgreeParser#withExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterWithExpression(@NotNull iAgreeParser.WithExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link iAgreeParser#withExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitWithExpression(@NotNull iAgreeParser.WithExpressionContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link iAgreeParser#metrics_prop}.
 	 * @param ctx the parse tree
 	 */
@@ -513,17 +524,6 @@ public interface iAgreeListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitList(@NotNull iAgreeParser.ListContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link iAgreeParser#groupedWithExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterGroupedWithExpression(@NotNull iAgreeParser.GroupedWithExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link iAgreeParser#groupedWithExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitGroupedWithExpression(@NotNull iAgreeParser.GroupedWithExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link iAgreeParser#gmtZone_prop}.

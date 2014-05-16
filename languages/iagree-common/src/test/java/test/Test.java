@@ -1,34 +1,34 @@
 package test;
 
+import java.io.IOException;
+import java.util.Map;
+
+import org.xml.sax.SAXException;
+
+import es.us.isa.ideas.util.Convert;
+import es.us.isa.ideas.util.Util;
+
 
 
 public class Test {
 
-//	public static void main(String[] args) throws SAXException, IOException {
-//		
-//		//Poner ruta del archivo .iagree
-//		String sample = Util.loadFile("samples/iagree/Template for Compliance.iagree.template");
-//		String[] sample3 =convert2WSAG(sample);
-//		String sample4 = sample3[0];
-//		//Poner ruta del archivo .xml original
-//		String sample2 = Util.loadFile("samples/wsag/Template for Compliance.xml");
-//		
-//		//System.out.println("----------------------");
-//		//System.out.println(sample4);
-//		//System.out.println("----------------------");
-//		//System.out.println(sample2);
-//		//System.out.println("----------------------");
-//
-//		Diff myDiff = new Diff(sample4, sample2);
-//		if (myDiff.similar()) System.out.println("pieces of XML are similar " + myDiff);
-//		if (myDiff.identical()) System.out.println("but are they identical? " + myDiff);
-//		if (!myDiff.similar() && !myDiff.identical()) System.out.println(myDiff);
-//		
-//	}
-//
-//	
-//	public static String[] convert2WSAG(String sample){
-//		return Convert.getWsagFromIAgree(sample);
-//	}
+	public static void main(String[] args) throws SAXException, IOException {
+		
+		String sample = Util.loadFile("samples/iagree/test_penalty.iagreetemplate");
+		String data = (String) convert2WSAG(sample).get("data");
+		System.out.println(data);
+		
+		String result = convert2iAgree(data);
+		System.out.println(result);
+	}
+
+	
+	public static Map<String, Object> convert2WSAG(String sample){
+		return Convert.getWsagFromIAgree(sample);
+	}
+	
+	public static String convert2iAgree(String sample){
+		return Convert.getIAgreeFromWsag(sample);
+	}
 	
 }
