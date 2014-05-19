@@ -67,7 +67,7 @@ public class AdaFacade {
 		Integer deadTermsShowedInConsole = 1;
 		Integer ludicrousTermsShowedInConsole = 1;
 
-		String returnMsg = "";
+		String returnMsg = "<pre>";
 
 		Collection<Collection<String>> explaining = new LinkedList<Collection<String>>();
 		try {
@@ -85,7 +85,7 @@ public class AdaFacade {
 						.getBytes());
 
 				if (deadTerms.size() > 0) {
-					returnMsg += "The document contains the following Dead Terms: ";
+					returnMsg += "The document contains the following Dead Terms: \n";
 
 					// Explaining Dead Terms
 					Map<Term, Collection<AgreementElement>> deadTermsExplanation = service
@@ -97,8 +97,8 @@ public class AdaFacade {
 						Collection<AgreementElement> termValues = e.getValue();
 						String warn = e.getKey().getName();
 
-						returnMsg += "Dead term " + deadTermsShowedInConsole
-								+ ": " + warn + " ";
+						returnMsg += "\t- Dead term " + deadTermsShowedInConsole
+								+ ": " + warn + ". ";
 
 						deadTermsShowedInConsole++;
 
@@ -110,19 +110,22 @@ public class AdaFacade {
 
 						for (AgreementElement cause : termValues) {
 							// causas del warning
-							returnMsg += "Cause: " + cause.getName() + " ";
+							returnMsg += "Cause: " + cause.getName();
 							if (!warningsNames.contains(cause)) {
 								// y metemos sus causas
 								set.add(cause.getName());
 								warningsNames.add(cause.getName());
 							}
 						}
+						
+						returnMsg += "\n";
+						
 						if (!set.isEmpty()) {
 							explaining.add(set);
 						}
 					}
 				} else {
-					returnMsg += "The document doesn't contain Dead Terms.";
+					returnMsg += "The document doesn't contain Dead Terms.\n";
 				}
 
 				// Checking Ludicrous Terms
@@ -130,7 +133,7 @@ public class AdaFacade {
 						.getLudicrousTerms(wsag.getBytes());
 
 				if (ludicrousTerms.size() > 0) {
-					returnMsg += "The document contains the following Conditionally Inconsistent Terms: ";
+					returnMsg += "The document contains the following Conditionally Inconsistent Terms: \n";
 
 					// Explaining Ludicrous Terms
 					Map<Term, Collection<AgreementElement>> ludicrousTermsExplanation = service
@@ -143,9 +146,9 @@ public class AdaFacade {
 
 						String warn = e.getKey().getName();
 
-						returnMsg += "Conditionally Inconsistent Term "
+						returnMsg += "\t- Conditionally Inconsistent Term "
 								+ ludicrousTermsShowedInConsole + ": " + warn
-								+ " ";
+								+ ". ";
 
 						ludicrousTermsShowedInConsole++;
 						if (!warningsNames.contains(warn)) {
@@ -155,7 +158,7 @@ public class AdaFacade {
 						}
 
 						for (AgreementElement cause : termValues) {
-							returnMsg += "Cause: " + cause.getName() + " ";
+							returnMsg += "Cause: " + cause.getName();
 							// causas del warning
 							if (!warningsNames.contains(cause)) {
 								// y metemos sus causas
@@ -163,6 +166,8 @@ public class AdaFacade {
 								warningsNames.add(cause.getName());
 							}
 						}
+						
+						returnMsg += "\n";
 
 						if (!set.isEmpty()) {
 							explaining.add(set);
@@ -170,12 +175,12 @@ public class AdaFacade {
 					}
 
 				} else {
-					returnMsg += "The document doesn't contain Conditionally Inconsistent Terms.";
+					returnMsg += "The document doesn't contain Conditionally Inconsistent Terms.\n";
 				}
 				hasWarnings = !(deadTerms.size() == 0 && ludicrousTerms.size() == 0);
 
 			} else {
-				returnMsg += "The document contains the following Inconsistent Terms: ";
+				returnMsg += "The document contains the following Inconsistent Terms: \n";
 
 				// Explaining inconsistent terms
 				Map<AgreementElement, Collection<AgreementElement>> errorsExplanation = service
@@ -186,8 +191,8 @@ public class AdaFacade {
 					Collection<String> set = new LinkedList<String>();
 
 					String keyName = e.getKey().getName();
-					returnMsg += "Conflict " + conflictsShowedInConsole + ": "
-							+ keyName + " ";
+					returnMsg += "\t- Conflict " + conflictsShowedInConsole + ": "
+							+ keyName + ". ";
 					conflictsShowedInConsole++;
 					if (!errorsNames.contains(keyName)) {
 						set.add(keyName);
@@ -196,12 +201,14 @@ public class AdaFacade {
 
 					Collection<AgreementElement> termValues = e.getValue();
 					for (AgreementElement ae : termValues) {
-						returnMsg += "Cause: " + ae.getName() + " ";
+						returnMsg += "Cause: " + ae.getName();
 						if (!errorsNames.contains(ae.getName())) {
 							set.add(ae.getName());
 							errorsNames.add(ae.getName());
 						}
 					}
+					
+					returnMsg += "\n";
 
 					if (!set.isEmpty()) {
 						explaining.add(set);
@@ -215,6 +222,8 @@ public class AdaFacade {
 			returnMsg += "There was an error: It may be due to a syntax error, please check the document syntax.";
 			result = null;
 		}
+		
+		returnMsg += "</pre>";
 
 		return returnMsg;
 	}
@@ -355,13 +364,16 @@ public class AdaFacade {
 							String templateElemName = explanationElem.getName();
 
 							returnMsg += "Template element: "
-									+ templateElemName + "\n";
+									+ templateElemName;
 
 							if (!templateErrorsNames.contains(templateElemName)) {
 								tempElems.add(templateElemName);
 								templateErrorsNames.add(templateElemName);
 							}
 						}
+						
+						returnMsg += "\n";
+						
 						tempErrors.add(tempElems);
 					}
 				} else {
@@ -371,7 +383,7 @@ public class AdaFacade {
 						returnMsg += "The agreement offer is Less Restrictive, or equal, than the template.\n";
 				}
 				if (!isMoreRestrictiveTemplateTerms) {
-					returnMsg += "Template terms are less restrictive than the template creation constraints: ";
+					returnMsg += "Template terms are less restrictive than the template creation constraints: \n";
 
 					// Explaining Non-Compliance for Less Restrictive template
 					// terms conflicts
@@ -386,8 +398,8 @@ public class AdaFacade {
 						for (AgreementElement gtErrorElem : guaranteeTermErrorElements) {
 							String gtElemName = gtErrorElem.getName();
 
-							returnMsg += "Conflicting Template Term: "
-									+ gtElemName + " ";
+							returnMsg += "\t- Conflicting Template Term: "
+									+ gtElemName + ". ";
 
 							if (!offerErrorsNames.contains(gtElemName)) {
 								gtElems.add(gtElemName);
@@ -403,8 +415,8 @@ public class AdaFacade {
 						for (AgreementElement ccElem : explanationElements) {
 							String ccElemName = ccElem.getName();
 
-							returnMsg += "Template Creation Constraint Cause: "
-									+ ccElemName + " ";
+							returnMsg += "Cause: "
+									+ ccElemName + "\n";
 
 							if (!templateErrorsNames.contains(ccElemName)) {
 								ccElems.add(ccElemName);
@@ -415,7 +427,7 @@ public class AdaFacade {
 					}
 
 				} else {
-					returnMsg += "The template terms are more restrictive, or equal, than the template creation constraints.";
+					returnMsg += "The template terms are more restrictive, or equal, than the template creation constraints.\n";
 				}
 
 			}
@@ -430,7 +442,7 @@ public class AdaFacade {
 		}
 		
 		returnMsg += "</pre>";
-
+		
 		return returnMsg;
 	}
 

@@ -763,21 +763,6 @@ public class MiAgreeListener extends iAgreeBaseListener {
 	}
 
 	@Override
-	public void enterVersionNumber(VersionNumberContext ctx) {
-		super.enterVersionNumber(ctx);
-		try {
-			if (ctx.Float() != null) {
-				wsag.setVersionNumber(ctx.Float().getText());
-			} else if (ctx.Version() != null) {
-				wsag.setVersionNumber(ctx.Version().getText());
-			}
-		} catch (Exception e) {
-			System.out.println("parsing exception catched: enterVersionNumber");
-			e.printStackTrace();
-		}
-	}
-
-	@Override
 	public void enterType(TypeContext ctx) {
 		super.enterType(ctx);
 		try {
@@ -877,6 +862,21 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			wsag.setOperation(ctx.Operador().getText() + wsag.getAssigValue());
 		} catch (Exception e) {
 			System.out.println("parsing exception catched: enterOperation");
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void enterVersionNumber(VersionNumberContext ctx) {
+		super.enterVersionNumber(ctx);
+		try {
+			if (ctx.Float() != null) {
+				wsag.setVersionNumber(ctx.Float().getText());
+			} else if (ctx.Version() != null) {
+				wsag.setVersionNumber(ctx.Version().getText());
+			}
+		} catch (Exception e) {
+			System.out.println("parsing exception catched: enterVersionNumber");
 			e.printStackTrace();
 		}
 	}

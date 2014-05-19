@@ -170,8 +170,12 @@ with_sentence : WITH interv=interval compType=compensationType
                 grouped_withExpression
                 END;
 
-interval : MONTHLY 
+interval : YEARLY
+         | MONTHLY
+         | WEEKLY
          | DAILY
+         | HOURLY
+         | MINUTELY
          ;
 
 compensationType : PENALTY 
@@ -258,8 +262,14 @@ FALSE : 'false';
 WITH : 'with';
 END : 'end';
 IF : 'if';
+
+YEARLY : 'yearly';
 MONTHLY : 'monthly';
+WEEKLY : 'weekly';
 DAILY : 'daily';
+HOURLY : 'hourly';
+MINUTELY : 'minutely';
+
 PENALTY : 'penalty';
 REWARD : 'reward';
 
