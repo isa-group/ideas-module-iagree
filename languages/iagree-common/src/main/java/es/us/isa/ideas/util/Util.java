@@ -51,7 +51,8 @@ public class Util {
 		if (originalType != null) {
 			newType = newType.toLowerCase();
 
-			if (originalType.equals("float") || originalType.equals("double")
+			if (originalType.equals("float") 
+					|| originalType.equals("double")
 					|| originalType.equals("natural")
 					|| originalType.equals("number")
 					|| originalType.equals("cost")

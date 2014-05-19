@@ -16,6 +16,7 @@ import es.us.isa.ideas.parser.iAgreeParser.ExpressionContext;
 import es.us.isa.ideas.parser.iAgreeParser.GlobalDescriptionContext;
 import es.us.isa.ideas.parser.iAgreeParser.Global_MonitorablePropertiesContext;
 import es.us.isa.ideas.parser.iAgreeParser.Grouped_guaranteeTermContext;
+import es.us.isa.ideas.parser.iAgreeParser.Grouped_withExpressionContext;
 import es.us.isa.ideas.parser.iAgreeParser.GuaranteeTermContext;
 import es.us.isa.ideas.parser.iAgreeParser.GuaranteeTermsContext;
 import es.us.isa.ideas.parser.iAgreeParser.Guarantee_defContext;
@@ -33,6 +34,8 @@ import es.us.isa.ideas.parser.iAgreeParser.TemplateContext;
 import es.us.isa.ideas.parser.iAgreeParser.Template_defContext;
 import es.us.isa.ideas.parser.iAgreeParser.TypeContext;
 import es.us.isa.ideas.parser.iAgreeParser.VersionNumberContext;
+import es.us.isa.ideas.parser.iAgreeParser.With_expressionContext;
+import es.us.isa.ideas.parser.iAgreeParser.With_sentenceContext;
 import es.us.isa.ideas.util.KeyValueProp;
 import es.us.isa.ideas.util.Range;
 import es.us.isa.ideas.util.Util;
@@ -502,6 +505,14 @@ public class MiAgreeListener extends iAgreeBaseListener {
 					+ Util.encodeEntities(wsag.getExpression())
 					+ "</wsag:CustomServiceLevel>\n"
 					+ "\t\t\t\t</wsag:ServiceLevelObjective>\n";
+			
+//			if (ctx.with_sentence() != null) {
+//				enterWith_sentence(ctx.with_sentence());
+//				result += "\t\t\t\t<wsag:BusinessValueList>\n"
+//						+ Util.encodeEntities(wsag.getWithExpression())
+//						+ "\t\t\t\t</wsag:BusinessValueList>\n";
+//			}
+		
 			wsag.setGuaranteeDef(result);
 		} catch (Exception e) {
 			System.out.println("parsing exception catched: enterGuarantee_def");
@@ -522,6 +533,52 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			System.out.println("parsing exception catched: enterGrouped_guaranteeTerm");
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void enterWith_sentence(With_sentenceContext ctx) {
+		super.enterWith_sentence(ctx);
+
+		wsag.setInterval(ctx.interv.getText());
+		wsag.setCompensationType(ctx.compType.getText());
+
+		enterGrouped_withExpression(ctx.grouped_withExpression());
+
+	}
+
+	@Override
+	public void enterGrouped_withExpression(Grouped_withExpressionContext ctx) {
+		super.enterGrouped_withExpression(ctx);
+		for (With_expressionContext expr : ctx.with_expression()) {
+			enterWith_expression(expr);
+		}
+	}
+
+	@Override
+	public void enterWith_expression(With_expressionContext ctx) {
+		super.enterWith_expression(ctx);
+
+		enterExpression(ctx.e1);
+		String exp1 = wsag.getExpression();
+
+		enterExpression(ctx.e2);
+		String exp2 = wsag.getExpression();
+
+		String result = "\t\t\t\t\t<wsag:"
+				+ wsag.getCompensationType().substring(0, 1).toUpperCase()
+				+ wsag.getCompensationType().substring(1) + ">\n"
+				+ "\t\t\t\t\t\t<wsag:AssessmentInterval>\n"
+				+ "\t\t\t\t\t\t\t<wsag:TimeInterval>" + wsag.getInterval()
+				+ "</wsag:TimeInterval>\n"
+				+ "\t\t\t\t\t\t</wsag:AssessmentInterval>\n"
+				+ "\t\t\t\t\t\t<wsag:ValueExpr>" + Util.encodeEntities(exp1)
+				+ " "
+				+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.IF])
+				+ " " + Util.encodeEntities(exp2) + "</wsag:ValueExpr>\n"
+				+ "\t\t\t\t\t</wsag:"
+				+ wsag.getCompensationType().substring(0, 1).toUpperCase()
+				+ wsag.getCompensationType().substring(1) + ">\n";
+		wsag.setWithExpression(wsag.getWithExpression() + result);
 	}
 
 	@Override

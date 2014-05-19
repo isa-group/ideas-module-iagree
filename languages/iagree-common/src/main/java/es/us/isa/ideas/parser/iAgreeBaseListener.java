@@ -212,6 +212,19 @@ public class iAgreeBaseListener implements iAgreeListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterWith_expression(@NotNull iAgreeParser.With_expressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitWith_expression(@NotNull iAgreeParser.With_expressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterUpon_sentence(@NotNull iAgreeParser.Upon_sentenceContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -238,6 +251,19 @@ public class iAgreeBaseListener implements iAgreeListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterGrouped_withExpression(@NotNull iAgreeParser.Grouped_withExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitGrouped_withExpression(@NotNull iAgreeParser.Grouped_withExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterOp(@NotNull iAgreeParser.OpContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -245,6 +271,19 @@ public class iAgreeBaseListener implements iAgreeListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitOp(@NotNull iAgreeParser.OpContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterCompensationType(@NotNull iAgreeParser.CompensationTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCompensationType(@NotNull iAgreeParser.CompensationTypeContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -355,6 +394,19 @@ public class iAgreeBaseListener implements iAgreeListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterWith_sentence(@NotNull iAgreeParser.With_sentenceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitWith_sentence(@NotNull iAgreeParser.With_sentenceContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterGuarantee_def(@NotNull iAgreeParser.Guarantee_defContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -388,6 +440,19 @@ public class iAgreeBaseListener implements iAgreeListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitRange(@NotNull iAgreeParser.RangeContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterInterval(@NotNull iAgreeParser.IntervalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitInterval(@NotNull iAgreeParser.IntervalContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

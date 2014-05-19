@@ -174,6 +174,17 @@ public interface iAgreeListener extends ParseTreeListener {
 	void exitFeature(@NotNull iAgreeParser.FeatureContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link iAgreeParser#with_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterWith_expression(@NotNull iAgreeParser.With_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link iAgreeParser#with_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitWith_expression(@NotNull iAgreeParser.With_expressionContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link iAgreeParser#upon_sentence}.
 	 * @param ctx the parse tree
 	 */
@@ -196,6 +207,17 @@ public interface iAgreeListener extends ParseTreeListener {
 	void exitTemplate(@NotNull iAgreeParser.TemplateContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link iAgreeParser#grouped_withExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterGrouped_withExpression(@NotNull iAgreeParser.Grouped_withExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link iAgreeParser#grouped_withExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitGrouped_withExpression(@NotNull iAgreeParser.Grouped_withExpressionContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link iAgreeParser#op}.
 	 * @param ctx the parse tree
 	 */
@@ -205,6 +227,17 @@ public interface iAgreeListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitOp(@NotNull iAgreeParser.OpContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link iAgreeParser#compensationType}.
+	 * @param ctx the parse tree
+	 */
+	void enterCompensationType(@NotNull iAgreeParser.CompensationTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link iAgreeParser#compensationType}.
+	 * @param ctx the parse tree
+	 */
+	void exitCompensationType(@NotNull iAgreeParser.CompensationTypeContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link iAgreeParser#responder_prop}.
@@ -295,6 +328,17 @@ public interface iAgreeListener extends ParseTreeListener {
 	void exitUrl(@NotNull iAgreeParser.UrlContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link iAgreeParser#with_sentence}.
+	 * @param ctx the parse tree
+	 */
+	void enterWith_sentence(@NotNull iAgreeParser.With_sentenceContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link iAgreeParser#with_sentence}.
+	 * @param ctx the parse tree
+	 */
+	void exitWith_sentence(@NotNull iAgreeParser.With_sentenceContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link iAgreeParser#guarantee_def}.
 	 * @param ctx the parse tree
 	 */
@@ -326,6 +370,17 @@ public interface iAgreeListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRange(@NotNull iAgreeParser.RangeContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link iAgreeParser#interval}.
+	 * @param ctx the parse tree
+	 */
+	void enterInterval(@NotNull iAgreeParser.IntervalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link iAgreeParser#interval}.
+	 * @param ctx the parse tree
+	 */
+	void exitInterval(@NotNull iAgreeParser.IntervalContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link iAgreeParser#global_MonitorableProperties}.
