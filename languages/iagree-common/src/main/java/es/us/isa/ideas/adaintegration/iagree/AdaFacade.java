@@ -49,10 +49,22 @@ public class AdaFacade {
 		return service.explainInconsistencies(doc.getBytes());
 	}
 
-	// Compara si la plantilla y la oferta son igual de restrictivas
+	// Compara si la plantilla y la oferta no contienen términos disconformes
 	public Boolean isCompliant(String template, String offer) {
 		return service.isCompliant(template.getBytes(), offer.getBytes());
 	}
+	
+	// Compara si la plantilla y la oferta son igual de restrictivas
+	public Boolean isLessRestrictiveOffer(String template, String offer) {
+		return service.isLessRestrictiveOffer(template.getBytes(), offer.getBytes());
+	}
+	
+	// Compara si la plantilla y la oferta son igual de restrictivas
+	public Boolean isMoreRestrictiveTemplateTermsThanCC(String template) {
+		return service.isMoreRestrictiveTemplateTermsThanCC(template.getBytes());
+	}
+		
+		
 
 	// Explicacion de la inconsistencia
 	public String inconsitencyExplaining(String wsag) {
@@ -251,7 +263,7 @@ public class AdaFacade {
 			if (isTempConsistent) {
 				returnMsg += "The template is valid.\n";
 			} else {
-				returnMsg += "The is NOT valid because it contains semantic errors.";
+				returnMsg += "The template is NOT valid because it contains semantic errors.";
 			}
 
 			isOfferConsistent = service.checkDocumentConsistency(offer
