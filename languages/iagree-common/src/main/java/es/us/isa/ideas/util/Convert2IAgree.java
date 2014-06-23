@@ -319,14 +319,14 @@ public class Convert2IAgree {
 						exp2 = getBelongsExp(exp2);
 					}
 
-					result += "\t" + Util.decodeEntities(exp2)+";";
+					result += "\t" + Util.decodeEntities(exp2) + ";";
 
 					result += "\n\t\t"
 							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.ONLY_IF])
 							+ " (" + Util.decodeEntities(exp1) + ");\n";
 
 				} else if (content.contains("OR")) {
-					result += getBelongsExp(content);
+					result += "\t" + getBelongsExp(content) + ";\n";
 				} else {
 					result += "\t" + Util.decodeEntities(content.trim())
 							+ ";\n";
