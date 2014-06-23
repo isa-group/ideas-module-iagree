@@ -23,7 +23,7 @@ public class TemplateLanguageController extends BaseLanguageController {
 	public AppResponse executeOperation(String id, String content,
 			String fileUri) {
 
-		Map<String, Object> wsagAggregation = Convert.getWsagFromIAgree(content);
+		Map<String, Object> wsagAggregation = Convert.getWsagFromIAgree(content, true);
 		// wsagAggregation[0]; // Converted Document
 		// wsagAggregation[1]; // Metrics URI
 		// wsagAggregation[2]; // Metrics content

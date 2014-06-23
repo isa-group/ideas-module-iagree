@@ -248,20 +248,20 @@ public class WsagObject {
 		this.cuantif = cuantif;
 	}
 
-	public String getOnlyIf() {
-		return onlyIf;
+	public String getQualifyingCondition() {
+		return qualifyingCondition;
 	}
 
-	public void setOnlyIf(String onlyIf) {
-		this.onlyIf = onlyIf;
+	public void setQualifyingCondition(String qualifyingCondition) {
+		this.qualifyingCondition = qualifyingCondition;
 	}
 
-	public String getWithExpression() {
-		return withExpression;
+	public String getCompensations() {
+		return compensations;
 	}
 
-	public void setWithExpression(String withExpression) {
-		this.withExpression = withExpression;
+	public void setCompensations(String compensations) {
+		this.compensations = compensations;
 	}
 
 	public String getInterval() {
@@ -343,8 +343,8 @@ public class WsagObject {
 	String serviceProperties = "";
 	String variablesSet = "";
 	String cuantif = "";
-	String onlyIf = "";
-	String withExpression = "";
+	String qualifyingCondition = "";
+	String compensations = "";
 	String interval = "";
 	String compensationType = "";
 	String expression = "";

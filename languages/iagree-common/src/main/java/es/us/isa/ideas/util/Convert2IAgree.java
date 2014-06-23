@@ -16,7 +16,7 @@ public class Convert2IAgree {
 
 	public static String getContext(Document doc) {
 		String result = "";
-		
+
 		Node nodeTempName = doc.getElementsByTagName("wsag:TemplateName").item(
 				0);
 		if (nodeTempName != null) {
@@ -63,8 +63,7 @@ public class Convert2IAgree {
 	public static String getMetrics(Document doc) {
 		String result = Util
 				.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.METRICS])
-				+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.DP])
-				+ "\n";
+				+ ':' + "\n";
 
 		NodeList nList = doc.getElementsByTagName("met:metric");
 
@@ -73,20 +72,19 @@ public class Convert2IAgree {
 			String nodeId = node.getAttribute("id");
 			String nodeType = node.getAttribute("type");
 			if (!nodeId.equals("boolean")) {
-				
+
 				if (nodeType.equals("integer")) {
 					result += "\t\t" + nodeId + ": " + nodeType;
 					String min = node.getAttribute("min");
 					String max = node.getAttribute("max");
-					result += "["
-							+ min
-							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.RANGE_SEPARATOR])
-							+ max + "]\n";
+					result += "[" + min + ".." + max + "]\n";
 				} else if (nodeType.equals("enumerated")) {
-					result += "\t\t" + nodeId + ":  set";		// Si es "enumerated" hay que usar "set"
+					result += "\t\t" + nodeId + ":  set"; // Si es "enumerated"
+															// hay que usar
+															// "set"
 					NodeList values = node.getElementsByTagName("met:value");
 					Element value = (Element) values.item(0);
-					if(value != null)
+					if (value != null)
 						result += " {" + value.getAttribute("value");
 					for (int j = 1; j < values.getLength(); j++) {
 						value = (Element) values.item(j);
@@ -127,25 +125,21 @@ public class Convert2IAgree {
 			for (int i = 0; i < nList.getLength(); i++) {
 				Element node = (Element) nList.item(i);
 
-				result += "\n\t\t\t"
-						+ node.getAttribute("name")
-						+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.DP]);
+				result += "\n\t\t\t" + node.getAttribute("name") + ':';
 
 				String type = node.getAttribute("wsag:Metric");
 				String[] aux = type.split(":");
 				result += " " + aux[1];
-				
+
 				String value = node.getTextContent();
-				
+
 				if (aux[1].equals("boolean"))
 					value = value.toLowerCase();
 
 				if (!node.getTextContent().isEmpty()) {
 					result += " "
-							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.IGUAL])
-							+ " "
-							+ value
-							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.SEMICOLON]);
+							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.EQ])
+							+ " " + value + ';';
 				}
 			}
 		}
@@ -161,15 +155,12 @@ public class Convert2IAgree {
 			if (nList != null) {
 
 				result += Util
-						.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.GLOBAL])
-						+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.DP]);
+						.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.GLOBAL]) + ':';
 
 				for (int i = 0; i < nList.getLength(); i++) {
 					Element node = (Element) nList.item(i);
 
-					result += "\n\t\t\t"
-							+ node.getAttribute("wsag:Name")
-							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.DP]);
+					result += "\n\t\t\t" + node.getAttribute("wsag:Name") + ':';
 
 					String type = node.getAttribute("wsag:Metric");
 					String[] aux = type.split(":");
@@ -194,28 +185,27 @@ public class Convert2IAgree {
 						if (!result.contains(name)) {
 							result += "\n\t\t\t"
 									+ name
-									+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.DP])
+									+ ':'
 									+ "\t"
 									+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.ONE_OR_MORE])
 									+ " "
 									+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.OF]);
 						}
 
-						result += "\n\t\t\t\t"
-								+ node.getAttribute("wsag:Name")
-								+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.DP]);
+						result += "\n\t\t\t\t" + node.getAttribute("wsag:Name")
+								+ ':';
 					} else {
-						result += "\n\t\t\t"
-								+ node.getAttribute("wsag:Name")
-								+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.DP]);
+						result += "\n\t\t\t" + node.getAttribute("wsag:Name")
+								+ ':';
 					}
 
 					String exp = node
 							.getElementsByTagName("wsag:CustomServiceLevel")
 							.item(0).getTextContent();
-					if(exp.contains("True") || exp.contains("False")){
+					if (exp.contains("True") || exp.contains("False")) {
 						exp = exp.replace("\"", "");
-						exp = exp.replace("True", "true").replace("False", "false");
+						exp = exp.replace("True", "true").replace("False",
+								"false");
 					}
 					result += "\t"
 							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.PROVIDER])
@@ -228,55 +218,58 @@ public class Convert2IAgree {
 
 					if (qualifCond != null) {
 						exp = qualifCond.getTextContent();
-						if(exp.contains("True") || exp.contains("False")){
+						if (exp.contains("True") || exp.contains("False")) {
 							exp = exp.replace("\"", "");
-							exp = exp.replace("True", "true").replace("False", "false");
+							exp = exp.replace("True", "true").replace("False",
+									"false");
 						}
 						exp = exp.trim().replace("(", "").replace(")", "");
 						result += "\n\t\t\t\t"
 								+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.ONLY_IF])
 								+ " (" + exp + ");\n";
-					} 
-					
-					Node withExp = node.getElementsByTagName(
-							"wsag:BusinessValueList").item(0);
-					
-					if(withExp != null) {
-						
+					}
+
+					NodeList compensation = node
+							.getElementsByTagName("wsag:BusinessValueList");
+
+					for (int j = 0; j < compensation.getLength(); j++) {
+
+						Element comp = (Element) compensation.item(j);
+
 						String compType = "";
-						
-						Node nCompTypePenalty = node.getElementsByTagName(
+
+						Node nCompTypePenalty = comp.getElementsByTagName(
 								"wsag:Penalty").item(0);
 						Node nCompTypeReward = node.getElementsByTagName(
 								"wsag:Reward").item(0);
 						
-						if(nCompTypePenalty != null){
+						if (nCompTypePenalty != null) {
 							compType = "penalty";
-						} else if(nCompTypeReward != null){
+						} else if (nCompTypeReward != null) {
 							compType = "reward";
 						}
-	
-						Node nTimeInterval = node.getElementsByTagName(
+						
+						Node nTimeInterval = comp.getElementsByTagName(
 								"wsag:TimeInterval").item(0);
 						String interval = nTimeInterval.getTextContent();
 						
-						result += "\t\t\t\t" 
-						+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.WITH]) 
-						+ " " + interval + " " + compType + "\n";
+						result += "\t\t\t\t"
+								+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.WITH])
+								+ " " + interval + " " + compType + "\n";
 						
-						NodeList valueExprs = node.getElementsByTagName("wsag:ValueExpr");
+						NodeList valueExprs = comp
+								.getElementsByTagName("wsag:ValueExpr");
 						
 						for (int k = 0; k < valueExprs.getLength(); k++) {
-							Element valueExpr = (Element) valueExprs.item(i);
-							result += "\t\t\t\t\t" + Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.OF]) + " " +
-									Util.decodeEntities(valueExpr.getTextContent()) + 
-									Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.SEMICOLON]) + "\n";
+							Element valueExpr = (Element) valueExprs.item(k);
+							result += "\t\t\t\t\t"
+									+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.OF])
+									+ " "
+									+ Util.decodeEntities(valueExpr
+											.getTextContent()) + ';' + "\n";
 						}
-						
+
 						result += "\t\t\t\tend\n";
-						
-					} else {
-						result += "\n";
 					}
 				}
 			}
@@ -345,21 +338,22 @@ public class Convert2IAgree {
 				} else if (content.contains("IMPLIES")) {
 					String[] aux = content.split("IMPLIES");
 					String exp1 = aux[0].trim();
-					if(exp1.contains("True") || exp1.contains("False")){
+					if (exp1.contains("True") || exp1.contains("False")) {
 						exp1 = exp1.replace("\"", "");
-						exp1 = exp1.replace("True", "true").replace("False", "false");
+						exp1 = exp1.replace("True", "true").replace("False",
+								"false");
 					}
 					String exp2 = aux[1].trim();
-					if(exp2.contains("True") || exp2.contains("False")){
+					if (exp2.contains("True") || exp2.contains("False")) {
 						exp2 = exp2.replace("\"", "");
-						exp2 = exp2.replace("True", "true").replace("False", "false");
+						exp2 = exp2.replace("True", "true").replace("False",
+								"false");
 					}
 					result += "\t" + Util.decodeEntities(exp2) + ";";
 
 					result += "\n\t\t"
 							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.ONLY_IF])
-							+ " (" + Util.decodeEntities(exp1)
-							+ ");\n";
+							+ " (" + Util.decodeEntities(exp1) + ");\n";
 				} else {
 					result += "\t" + Util.decodeEntities(content.trim())
 							+ ";\n";

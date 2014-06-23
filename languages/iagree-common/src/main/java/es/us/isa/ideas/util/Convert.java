@@ -36,7 +36,7 @@ public class Convert {
 
 	private static List<AppAnnotations> annotations = new LinkedList<AppAnnotations>();
 
-	public static Map<String, Object> getWsagFromIAgree(String content) {
+	public static Map<String, Object> getWsagFromIAgree(String content, Boolean simplified) {
 
 		System.out.println("MetricsMap Size: " + metricsMap.size());
 
@@ -60,6 +60,7 @@ public class Convert {
 
 		// Walk it and attach our listener
 		MiAgreeListener listener = new MiAgreeListener();
+		listener.setSimplified(simplified);
 		ParseTreeWalker walker = new ParseTreeWalker();
 		walker.walk(listener, context);
 

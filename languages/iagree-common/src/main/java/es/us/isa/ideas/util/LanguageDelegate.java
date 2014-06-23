@@ -18,11 +18,7 @@ public class LanguageDelegate {
 		
 		if (format.equals("iagree")) {
 			
-			// TODO: Refactorizar junto con lo que hay en Convert.
-			// En convert no se está gestionando bien la concurrencia. Los errores no se deben
-			// "preguntar", sino que se deben gestionar dentro de la misma llamada.
-			
-			annotations.addAll((List<AppAnnotations>) Convert.getWsagFromIAgree(content).get("annotations"));
+			annotations.addAll((List<AppAnnotations>) Convert.getWsagFromIAgree(content, false).get("annotations"));
 			
 			if (!annotations.isEmpty()) {
 				appResponse.setStatus(Status.OK_PROBLEMS);

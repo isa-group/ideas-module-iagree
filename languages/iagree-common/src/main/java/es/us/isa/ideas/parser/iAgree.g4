@@ -1,7 +1,6 @@
 grammar iAgree;
 
 
-
 /*=====================================
             SYNTACTICAL RULES
  ======================================*/
@@ -38,41 +37,41 @@ agreementTerms_def : service monitorableProperties guaranteeTerms;
 
 creationConstraints_def	: creationConstraint+;
 
-creationConstraint : (Identifier) DP expression SEMICOLON onlyif_sentence?;
+creationConstraint : (Identifier) ':' expression ';' qualifyingCondition?;
 
 //---------------------------------------
 // Template properties
 //---------------------------------------
 
-initiator_prop : INITIATOR DP String;
+initiator_prop : INITIATOR ':' String;
 
 responder_prop : (PROVIDER | CONSUMER | Identifier) AS RESPONDER;
 
-serviceProvider_prop : SERVICEPROVIDER DP String;
+serviceProvider_prop : SERVICEPROVIDER ':' String;
 				
-expirationTime_prop : EXPIRATIONTIME DP String;
+expirationTime_prop : EXPIRATIONTIME ':' String;
 
-dateFormat_prop : DATEFORMAT DP String;
+dateFormat_prop : DATEFORMAT ':' String;
 
-gmtZone_prop : GMTZONE DP (S_Integer | Integer);
+gmtZone_prop : GMTZONE ':' (S_Integer | Integer);
 
-globalPeriod_prop : GLOBALPERIOD DP datePeriod_def;
+globalPeriod_prop : GLOBALPERIOD ':' datePeriod_def;
 
-definedPeriod_prop : DEFINEDPERIOD DP period+;
+definedPeriod_prop : DEFINEDPERIOD ':' period+;
 
-metrics_prop : METRICS /*CA (ACCESS|IDENT) (',' (ACCESS|IDENT))* CC*/ DP (key_value_prop)+;
+metrics_prop : METRICS ':' (key_value_prop)+;
 
 //---------------------------------------
 // Temp. definitions
 //---------------------------------------
 
-datePeriod_def : DURING Date RANGE_SEPARATOR Date;
+datePeriod_def : DURING Date '..' Date;
 
 temporality : ON Identifier;
 
-period : Identifier DP period_def ((EXCEPT|AND) period_def)*;
+period : Identifier ':' period_def ((EXCEPT|AND) period_def)*;
 
-period_def : FROM Hour RANGE_SEPARATOR Hour (ON Identifier)? datePeriod_def 
+period_def : FROM Hour '..' Hour (ON Identifier)? datePeriod_def 
            | id
            | GLOBALPERIOD
            ;
@@ -86,43 +85,63 @@ service : SERVICE Identifier (AVAL_AT url)? (features)?
           globalDescription descriptions
         ;
 
-features : FEATURES DP feature (COMMA feature)*;
+features : FEATURES ':' feature (',' feature)*;
 
 globalDescription : GLOBALDESCRIPTION (key_value_prop)+;
 
 descriptions : description*;
 				
-feature : op (COMMA op)*;
+feature : op (',' op)*;
 
-description : DESCRIPTION FOR feature (COMMA feature)* key_value_prop+;
+description : DESCRIPTION FOR feature (',' feature)* key_value_prop+;
 		
 monitorableProperties : MONITORABLEPROPERTIES (Identifier)? 
                         global_MonitorableProperties? 
                         local_MonitorableProperties*
                       ;
 				
-global_MonitorableProperties : GLOBAL DP (key_value_prop)+;
+global_MonitorableProperties : GLOBAL ':' (key_value_prop)+;
 				
-local_MonitorableProperties : FOR Identifier DP key_value_prop+;
+local_MonitorableProperties : FOR Identifier ':' key_value_prop+;
 				
 guaranteeTerms : GUARANTEE_TERMS (guaranteeTerm )+;
 				
-guaranteeTerm : Identifier DP 
+guaranteeTerm : Identifier ':' 
                 (guarantee_def | cuantif OF grouped_guaranteeTerm)
               ;
 
 grouped_guaranteeTerm : (guaranteeTerm)+;
 							
-guarantee_def : ob=(PROVIDER | CONSUMER) GUARANTEES 
-                expression temporality? SEMICOLON 
-                (upon_sentence)?
-                (onlyif_sentence)?
-                (with_sentence)?
+guarantee_def : ob=(PROVIDER | CONSUMER) GUARANTEES slo temporality? ';' 
+                (serviceScope)?
+                (qualifyingCondition)?
+                (compensations)*
               ;
+
+slo : expression;
+
+serviceScope : UPON Identifier ';';
+	
+qualifyingCondition : ONLY_IF '(' expression ')' ';';
+
+compensations : WITH interv=compensationsInterval  compType=(PENALTY | REWARD)
+                (compensation)+
+                END;
+
+compensationsInterval : YEARLY
+         | MONTHLY
+         | WEEKLY
+         | DAILY
+         | HOURLY
+         | MINUTELY
+         ;
+
+compensation : OF e1=expression IF e2=expression ';';
+
 
 
 //----------------------------------
-// COMMONS
+// CORE ELEMENTS
 //----------------------------------
 
 id : Identifier;
@@ -135,8 +154,8 @@ url : Url
     | String
     ;
 
-key_value_prop : k=(Identifier | Access | BOOLEAN | INTEGER ) DP 
-                 (v=String | v2=type)  (IGUAL a=assig_value SEMICOLON)?
+key_value_prop : k=(Identifier | Access | BOOLEAN | INTEGER ) ':' 
+                 (v=String | v2=type)  (EQ a=assig_value ';')?
                ;
 
 assig_value : val=(Identifier | Integer | String)+ (operation)?
@@ -150,41 +169,18 @@ assig_value : val=(Identifier | Integer | String)+ (operation)?
 operation : Operador assig_value;
 
 expression : NOT e1=expression
-           | PA e1=expression PC (log=(AND|OR|IMPLIES) e2=expression)?
-           | ident=(Identifier | Access | String) (cmp=(IGUAL|MENOR|MAYOR|MENOR_IGUAL|MAYOR_IGUAL) val=assig_value)? (log=(AND|OR|IMPLIES) e1=expression)?
+           | '(' e1=expression ')'
+             (log=(AND|OR|IMPLIES) e2=expression)?
+           | ident=(Identifier | Access | String) (cmp=(EQ|LT|GT|LTE|GTE) val=assig_value)? (log=(AND|OR|IMPLIES) e1=expression)?
            | ident=(Identifier | Access) BELONGS l=list (log=(AND|OR|IMPLIES) e1=expression)?
            ;
 
-op : Identifier (PA Identifier (COMMA Identifier )* PC)?;
+op : Identifier ('(' Identifier (',' Identifier )* ')')?;
 
 cuantif : EXACTLY_ONE 
         | ONE_OR_MORE
         | ALL
         ;
-
-upon_sentence : UPON Identifier SEMICOLON;
-	
-onlyif_sentence : ONLY_IF PA expression PC SEMICOLON;
-
-with_sentence : WITH interv=interval compType=compensationType
-                grouped_withExpression
-                END;
-
-interval : YEARLY
-         | MONTHLY
-         | WEEKLY
-         | DAILY
-         | HOURLY
-         | MINUTELY
-         ;
-
-compensationType : PENALTY 
-                 | REWARD
-                 ;
-
-grouped_withExpression : (with_expression)+;
-
-with_expression : OF e1=expression IF e2=expression SEMICOLON;
 
 type : Identifier 
      | SET list 
@@ -192,13 +188,12 @@ type : Identifier
      | v=(INTEGER | FLOAT | NATURAL | NUMBER | BOOLEAN) (range)? 
      ;
 
-list : LLA l1=listArg 
-       (COMMA l2=listArg)* LLC
+list : '{' l1=listArg (',' l2=listArg)* '}'
      ;
 
 listArg : l1=(Identifier | String | Integer | S_Integer | Float | S_Float);
 
-range : CA min=(Integer | S_Integer) RANGE_SEPARATOR max=(Integer | S_Integer) CC
+range : '[' min=(Integer | S_Integer) '..' max=(Integer | S_Integer) ']'
       ;
 
 
@@ -273,6 +268,12 @@ MINUTELY : 'minutely';
 PENALTY : 'penalty';
 REWARD : 'reward';
 
+ON : 'on';
+FROM : 'from';
+OF : 'of';
+FOR : 'for';
+AS : 'as';
+
 
 //---------------------------------------
 // Commons tokens
@@ -284,11 +285,6 @@ PA : '(';
 PC : ')';
 LLA : '{';
 LLC : '}';
-ON : 'on';
-FROM : 'from';
-OF : 'of';
-FOR : 'for';
-AS : 'as';
 
 
 //---------------------------------------
@@ -315,31 +311,20 @@ ALL : 'all';
 // Relational tokens
 //---------------------------------------
 
-MENOR : '<';
-MAYOR : '>';
-IGUAL : '=';
-MENOR_IGUAL : '<=';
-MAYOR_IGUAL : '>=';
+LT : '<';
+GT : '>';
+EQ : '=';
+LTE : '<=';
+GTE : '>=';
 BELONGS : 'belongs';
 UPON : 'upon';
-
-
-//---------------------------------------
-// Punctuation marks
-//---------------------------------------
-
-DOT : '.';
-COMMA: ',';
-DP: ':';
-SEMICOLON : ';';
-RANGE_SEPARATOR : '..';
 
 
 //---------------------------------------
 // Basic Lexical Elements
 //---------------------------------------
 
-Identifier: Letter ('-'|'_'|DOT|LetterOrDigit)*;
+Identifier: Letter ('-'|'_'|'.'|LetterOrDigit)*;
 
 fragment Letter : [a-zA-Z$_];
 
@@ -350,56 +335,31 @@ fragment LetterOrDigit : [a-zA-Z0-9$_];
 Integer : Digit+;
 S_Integer : [+-] Integer;
 
-Float: Integer DOT Integer;
+Float: Integer '.' Integer;
 S_Float : [+-] Float;
 
-Boolean : 'true'
-        | 'false'
-        ;
+Boolean : 'true' | 'false';
 
 Url : ('http'|'https'|'ftp'|'file')':''/''/'[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]
     ;
 
-Version : Integer (DOT Integer)+;
-
+Version : Integer ('.' Integer)+;
 Date : Integer [-/] Integer [-/] Integer;
-
-Hour : Digit? Digit DP Digit Digit;
-
+Hour : Digit? Digit ':' Digit Digit;
 Access : Identifier ('.' Identifier)+;
-
 Unit : '%' | 'min';
-
 Operador : '+'|'-'|'*'|'/';
-
-
-
-//Digits
-
-fragment Digit : '0'
-               | NonZeroDigit
-               ;
-
-fragment NonZeroDigit : [1-9]
-                      ;
-
-// String
-
-String : '\'' ~[']* '\''
+fragment Digit : '0' | NonZeroDigit;
+fragment NonZeroDigit : [1-9];
+String : '\'' ~[']* '\'' 
        | '"' ~["]* '"'
        ;
 
 
 //---------------------------------------
-// Ignone spaces, tabs, newlines
+// Padding & Comments
 //---------------------------------------
 
-WS : [ \t\r\n]+ -> skip ;
-
-
-// Comments
-COMMENT : '/*' .*? '*/' -> skip
-        ;
-
-LINE_COMMENT : '//' ~[\r\n]* -> skip
-             ;
+WS : [ \t\r\n]+ -> skip;
+COMMENT : '/*' .*? '*/' -> skip;
+LINE_COMMENT : '//' ~[\r\n]* -> skip;

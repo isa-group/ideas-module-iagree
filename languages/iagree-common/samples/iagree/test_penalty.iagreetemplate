@@ -49,6 +49,9 @@ AgreementTerms
 					of SCP = 10 if MUP <= 99 AND MUP < 99.95;
 					of SCP = 20 if MUP < 99;
 				end
+				with yearly reward
+					of SCP = 15 if MUP >= 85;
+				end
 
 CreationConstraints
 	C1:	Region belongs {US, west_US, EU_Irland, Pacific_Asia, Southamerica, GovCloud_US};

@@ -17,7 +17,7 @@ public class ConversionDelegate {
 		List<AppAnnotations> annotations = new ArrayList<AppAnnotations>();
 		String wsag = "";
 		if (currentFormat.equals("iagree") && desiredFormat.equals("wsag")) {
-			Map<String, Object> res = Convert.getWsagFromIAgree(content);
+			Map<String, Object> res = Convert.getWsagFromIAgree(content, false);
 
 			annotations.addAll((List<AppAnnotations>) res.get("annotations"));
 

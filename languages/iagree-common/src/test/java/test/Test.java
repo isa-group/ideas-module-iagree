@@ -16,7 +16,8 @@ public class Test {
 		
 		String sample = Util.loadFile("samples/iagree/test_penalty.iagreetemplate");
 		String data = (String) convert2WSAG(sample).get("data");
-		System.out.println(data);
+		//System.out.println(data);
+		
 		
 		String result = convert2iAgree(data);
 		System.out.println(result);
@@ -24,7 +25,7 @@ public class Test {
 
 	
 	public static Map<String, Object> convert2WSAG(String sample){
-		return Convert.getWsagFromIAgree(sample);
+		return Convert.getWsagFromIAgree(sample, false);
 	}
 	
 	public static String convert2iAgree(String sample){

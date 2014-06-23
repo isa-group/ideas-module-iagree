@@ -7,6 +7,8 @@ import es.us.isa.ideas.parser.iAgreeParser.Ag_defContext;
 import es.us.isa.ideas.parser.iAgreeParser.AgreementTermsContext;
 import es.us.isa.ideas.parser.iAgreeParser.AgreementTerms_defContext;
 import es.us.isa.ideas.parser.iAgreeParser.Assig_valueContext;
+import es.us.isa.ideas.parser.iAgreeParser.CompensationContext;
+import es.us.isa.ideas.parser.iAgreeParser.CompensationsContext;
 import es.us.isa.ideas.parser.iAgreeParser.CreationConstraintContext;
 import es.us.isa.ideas.parser.iAgreeParser.CreationConstraintsContext;
 import es.us.isa.ideas.parser.iAgreeParser.CreationConstraints_defContext;
@@ -16,7 +18,6 @@ import es.us.isa.ideas.parser.iAgreeParser.ExpressionContext;
 import es.us.isa.ideas.parser.iAgreeParser.GlobalDescriptionContext;
 import es.us.isa.ideas.parser.iAgreeParser.Global_MonitorablePropertiesContext;
 import es.us.isa.ideas.parser.iAgreeParser.Grouped_guaranteeTermContext;
-import es.us.isa.ideas.parser.iAgreeParser.Grouped_withExpressionContext;
 import es.us.isa.ideas.parser.iAgreeParser.GuaranteeTermContext;
 import es.us.isa.ideas.parser.iAgreeParser.GuaranteeTermsContext;
 import es.us.isa.ideas.parser.iAgreeParser.Guarantee_defContext;
@@ -25,17 +26,16 @@ import es.us.isa.ideas.parser.iAgreeParser.ListArgContext;
 import es.us.isa.ideas.parser.iAgreeParser.ListContext;
 import es.us.isa.ideas.parser.iAgreeParser.Metrics_propContext;
 import es.us.isa.ideas.parser.iAgreeParser.MonitorablePropertiesContext;
-import es.us.isa.ideas.parser.iAgreeParser.Onlyif_sentenceContext;
 import es.us.isa.ideas.parser.iAgreeParser.OperationContext;
+import es.us.isa.ideas.parser.iAgreeParser.QualifyingConditionContext;
 import es.us.isa.ideas.parser.iAgreeParser.RangeContext;
 import es.us.isa.ideas.parser.iAgreeParser.ServiceContext;
+import es.us.isa.ideas.parser.iAgreeParser.SloContext;
 import es.us.isa.ideas.parser.iAgreeParser.Temp_propertiesContext;
 import es.us.isa.ideas.parser.iAgreeParser.TemplateContext;
 import es.us.isa.ideas.parser.iAgreeParser.Template_defContext;
 import es.us.isa.ideas.parser.iAgreeParser.TypeContext;
 import es.us.isa.ideas.parser.iAgreeParser.VersionNumberContext;
-import es.us.isa.ideas.parser.iAgreeParser.With_expressionContext;
-import es.us.isa.ideas.parser.iAgreeParser.With_sentenceContext;
 import es.us.isa.ideas.util.KeyValueProp;
 import es.us.isa.ideas.util.Range;
 import es.us.isa.ideas.util.Util;
@@ -43,9 +43,14 @@ import es.us.isa.ideas.util.Util;
 public class MiAgreeListener extends iAgreeBaseListener {
 
 	// Global vars:
+	public Boolean simplified = false;
 	public WsagObject wsag = null;
 	public String metrics;
 	public long timeStamp;
+	
+	public void setSimplified(Boolean simplified){
+		this.simplified = simplified;
+	}
 
 	@Override
 	public void enterEntry(EntryContext ctx) {
@@ -229,9 +234,9 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			String cc = "\t\t<wsag:Constraint >\n" + "\t\t\t<Name>" + name
 					+ "</Name>\n" + "\t\t\t<Content>";
 
-			if (ctx.onlyif_sentence() != null) {
-				enterOnlyif_sentence(ctx.onlyif_sentence());
-				cc += wsag.getOnlyIf() + " IMPLIES ";
+			if (ctx.qualifyingCondition() != null) {
+				enterQualifyingCondition(ctx.qualifyingCondition());
+				cc += wsag.getQualifyingCondition() + " IMPLIES ";
 			}
 
 			enterExpression(ctx.expression());
@@ -502,25 +507,27 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		try {
 			wsag.setGuaranteeDefObligated(ctx.ob.getText());
 			String result = "";
-			if (ctx.onlyif_sentence() != null) {
-				enterOnlyif_sentence(ctx.onlyif_sentence());
+			if (ctx.qualifyingCondition() != null) {
+				enterQualifyingCondition(ctx.qualifyingCondition());
 				result = "\t\t\t\t<wsag:QualifyingCondition >\n" + "					"
-						+ Util.encodeEntities(wsag.getOnlyIf()) + "\n"
+						+ Util.encodeEntities(wsag.getQualifyingCondition()) + "\n"
 						+ "\t\t\t\t</wsag:QualifyingCondition>\n";
 			}
 
-			enterExpression(ctx.expression());
+			enterSlo(ctx.slo());
 			result += "\t\t\t\t<wsag:ServiceLevelObjective>\n"
 					+ "\t\t\t\t\t<wsag:CustomServiceLevel>"
 					+ Util.encodeEntities(wsag.getExpression())
 					+ "</wsag:CustomServiceLevel>\n"
 					+ "\t\t\t\t</wsag:ServiceLevelObjective>\n";
 
-			if (ctx.with_sentence() != null) {
-				enterWith_sentence(ctx.with_sentence());
-				result += "\t\t\t\t<wsag:BusinessValueList>\n"
-						+ wsag.getWithExpression()
-						+ "\t\t\t\t</wsag:BusinessValueList>\n";
+			if (!simplified && ctx.compensations() != null) {
+				for (CompensationsContext expr : ctx.compensations()) {
+					enterCompensations(expr);
+					result += "\t\t\t\t<wsag:BusinessValueList>\n"
+							+ wsag.getCompensations()
+							+ "\t\t\t\t</wsag:BusinessValueList>\n";
+				}
 			}
 
 			wsag.setGuaranteeDef(result);
@@ -529,30 +536,31 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public void enterSlo(SloContext ctx) {
+		super.enterSlo(ctx);
+		
+		enterExpression(ctx.expression());
+		wsag.setExpression(wsag.getExpression());
+	}
 
 	@Override
-	public void enterWith_sentence(With_sentenceContext ctx) {
-		super.enterWith_sentence(ctx);
-
+	public void enterCompensations(CompensationsContext ctx) {
+		super.enterCompensations(ctx);
 		wsag.setInterval(ctx.interv.getText());
 		wsag.setCompensationType(ctx.compType.getText());
 
-		enterGrouped_withExpression(ctx.grouped_withExpression());
-
-	}
-
-	@Override
-	public void enterGrouped_withExpression(Grouped_withExpressionContext ctx) {
-		super.enterGrouped_withExpression(ctx);
-		for (With_expressionContext expr : ctx.with_expression()) {
-			enterWith_expression(expr);
+		wsag.setCompensations("");
+		for (CompensationContext expr : ctx.compensation()) {
+			enterCompensation(expr);
 		}
 	}
-
+	
 	@Override
-	public void enterWith_expression(With_expressionContext ctx) {
-		super.enterWith_expression(ctx);
-
+	public void enterCompensation(CompensationContext ctx) {
+		super.enterCompensation(ctx);
+		
 		enterExpression(ctx.e1);
 		String exp1 = wsag.getExpression();
 
@@ -573,7 +581,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				+ "\t\t\t\t\t</wsag:"
 				+ wsag.getCompensationType().substring(0, 1).toUpperCase()
 				+ wsag.getCompensationType().substring(1) + ">\n";
-		wsag.setWithExpression(wsag.getWithExpression() + result);
+		wsag.setCompensations(wsag.getCompensations() + result);
 	}
 
 	@Override
@@ -601,10 +609,9 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			if (ctx.NOT() != null) {
 				enterExpression(ctx.e1);
 				wsag.setExpression("NOT (" + wsag.getExpression() + ")");
-			} else if (ctx.PA() != null) {
+			} else if (ctx.getText().charAt(0) == '(') {
 				enterExpression(ctx.e1);
-				result = ctx.PA().getText() + wsag.getExpression()
-						+ ctx.PC().getText();
+				result = '(' + wsag.getExpression() + ')';
 				if (ctx.log != null) {
 					enterExpression(ctx.e2);
 					result += " " + ctx.log.getText() + " "
@@ -807,15 +814,16 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			e.printStackTrace();
 		}
 	}
-
+	
 	@Override
-	public void enterOnlyif_sentence(Onlyif_sentenceContext ctx) {
-		super.enterOnlyif_sentence(ctx);
+	public void enterQualifyingCondition(QualifyingConditionContext ctx) {
+		super.enterQualifyingCondition(ctx);
+		
 		try {
 			if (ctx.expression() != null)
 				enterExpression(ctx.expression());
 
-			wsag.setOnlyIf(wsag.getExpression());
+			wsag.setQualifyingCondition(wsag.getExpression());
 		} catch (Exception e) {
 			System.out
 					.println("parsing exception catched: enterOnlyif_sentence");

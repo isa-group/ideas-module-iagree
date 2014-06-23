@@ -22,7 +22,7 @@ public class OfferLanguageController extends BaseLanguageController {
 	@ResponseBody
 	public AppResponse executeOperation(String id, String content,
 			String fileUri, String auxArg0) {
-		Map<String, Object> wsagAggregation = Convert.getWsagFromIAgree(content);
+		Map<String, Object> wsagAggregation = Convert.getWsagFromIAgree(content, true);
 		// wsagAggregation[0]; // Converted Document
 		// wsagAggregation[1]; // Metrics URI
 		// wsagAggregation[2]; // Metrics content
@@ -30,7 +30,7 @@ public class OfferLanguageController extends BaseLanguageController {
 		Map<String, Object> wsagAggregationForComparation = null;
 		
 		if (auxArg0 != null)
-			wsagAggregationForComparation = Convert.getWsagFromIAgree(auxArg0);
+			wsagAggregationForComparation = Convert.getWsagFromIAgree(auxArg0, true);
 
 
 		AppResponse appResponse = AnalizeDelegate.analize(id, wsagAggregation, wsagAggregationForComparation, true);
@@ -44,7 +44,6 @@ public class OfferLanguageController extends BaseLanguageController {
 	public AppResponse checkLanguage(String id, String content, String fileUri) {
 		
 		return LanguageDelegate.checkLanguage(id, content, fileUri, true);
-		
 	}
 
 	@RequestMapping(value = "/convert", method = RequestMethod.POST)
