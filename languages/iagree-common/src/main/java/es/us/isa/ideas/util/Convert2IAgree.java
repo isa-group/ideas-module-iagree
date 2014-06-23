@@ -242,24 +242,24 @@ public class Convert2IAgree {
 								"wsag:Penalty").item(0);
 						Node nCompTypeReward = node.getElementsByTagName(
 								"wsag:Reward").item(0);
-						
+
 						if (nCompTypePenalty != null) {
 							compType = "penalty";
 						} else if (nCompTypeReward != null) {
 							compType = "reward";
 						}
-						
+
 						Node nTimeInterval = comp.getElementsByTagName(
 								"wsag:TimeInterval").item(0);
 						String interval = nTimeInterval.getTextContent();
-						
+
 						result += "\t\t\t\t"
 								+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.WITH])
 								+ " " + interval + " " + compType + "\n";
-						
+
 						NodeList valueExprs = comp
 								.getElementsByTagName("wsag:ValueExpr");
-						
+
 						for (int k = 0; k < valueExprs.getLength(); k++) {
 							Element valueExpr = (Element) valueExprs.item(k);
 							result += "\t\t\t\t\t"
@@ -299,43 +299,8 @@ public class Convert2IAgree {
 
 				String content = constraint.getElementsByTagName("Content")
 						.item(0).getTextContent();
-				if (content.contains("OR")) {
-					content = content.replace("(", "").replace(")", "");
-					String[] aux = content.split("OR");
 
-					Map<String, List<String>> mapa = new HashMap<String, List<String>>();
-
-					for (int j = 0; j < aux.length; j++) {
-						String elem = aux[j];
-						String[] aux2 = elem.split("=");
-
-						String key = aux2[0].trim();
-						String value = Util.withoutDoubleQuotes(aux2[1].trim());
-
-						if (mapa.containsKey(key)) {
-							List<String> l = mapa.get(key);
-							l.add(value);
-							mapa.put(key, l);
-						} else {
-							List<String> l = new ArrayList<String>();
-							l.add(value);
-							mapa.put(key, l);
-						}
-					}
-
-					for (String k : mapa.keySet()) {
-
-						String values = mapa.get(k).toString();
-
-						result += "\t"
-								+ k
-								+ " "
-								+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.BELONGS])
-								+ " "
-								+ values.replace("[", "{").replace("]", "}")
-								+ ";\n";
-					}
-				} else if (content.contains("IMPLIES")) {
+				if (content.contains("IMPLIES")) {
 					String[] aux = content.split("IMPLIES");
 					String exp1 = aux[0].trim();
 					if (exp1.contains("True") || exp1.contains("False")) {
@@ -349,16 +314,62 @@ public class Convert2IAgree {
 						exp2 = exp2.replace("True", "true").replace("False",
 								"false");
 					}
-					result += "\t" + Util.decodeEntities(exp2) + ";";
+
+					if (exp2.contains("OR")) {
+						exp2 = getBelongsExp(exp2);
+					}
+
+					result += "\t" + Util.decodeEntities(exp2)+";";
 
 					result += "\n\t\t"
 							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.ONLY_IF])
 							+ " (" + Util.decodeEntities(exp1) + ");\n";
+
+				} else if (content.contains("OR")) {
+					result += getBelongsExp(content);
 				} else {
 					result += "\t" + Util.decodeEntities(content.trim())
 							+ ";\n";
 				}
 			}
+		}
+
+		return result;
+	}
+
+	public static String getBelongsExp(String content) {
+		String result = "";
+		content = content.replace("(", "").replace(")", "");
+		String[] aux = content.split("OR");
+
+		Map<String, List<String>> mapa = new HashMap<String, List<String>>();
+
+		for (int j = 0; j < aux.length; j++) {
+			String elem = aux[j];
+			String[] aux2 = elem.split("=");
+
+			String key = aux2[0].trim();
+			String value = Util.withoutDoubleQuotes(aux2[1].trim());
+
+			if (mapa.containsKey(key)) {
+				List<String> l = mapa.get(key);
+				l.add(value);
+				mapa.put(key, l);
+			} else {
+				List<String> l = new ArrayList<String>();
+				l.add(value);
+				mapa.put(key, l);
+			}
+		}
+
+		for (String k : mapa.keySet()) {
+
+			String values = mapa.get(k).toString();
+
+			result += k
+					+ " "
+					+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.BELONGS])
+					+ " " + values.replace("[", "{").replace("]", "}");
 		}
 
 		return result;

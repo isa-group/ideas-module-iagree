@@ -33,17 +33,11 @@ public class ConversionDelegate {
 		} else if (currentFormat.equals("wsag")
 				&& desiredFormat.equals("iagree")) {
 
-			// TODO implementar los errores en la conversion de wsag a iagree
-
 			wsag = Convert.getIAgreeFromWsag(content);
-
-			if (wsag.isEmpty())
-				wsag = "ERROR!";
-
+			
+			appResp.setStatus(Status.OK);
 			appResp.setData(wsag);
 			appResp.setFileUri(fileUri);
-			appResp.setAnnotations(annotations
-					.toArray(new AppAnnotations[annotations.size()]));
 		}
 
 		return appResp;

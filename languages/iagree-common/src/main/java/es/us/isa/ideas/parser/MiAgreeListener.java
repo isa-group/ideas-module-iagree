@@ -606,10 +606,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		try {
 			String result = "";
 
-			if (ctx.NOT() != null) {
-				enterExpression(ctx.e1);
-				wsag.setExpression("NOT (" + wsag.getExpression() + ")");
-			} else if (ctx.getText().charAt(0) == '(') {
+			if (ctx.getText().charAt(0) == '(') {
 				enterExpression(ctx.e1);
 				result = '(' + wsag.getExpression() + ')';
 				if (ctx.log != null) {
@@ -619,6 +616,9 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				}
 				result = Util.encodeEntities(result);
 				wsag.setExpression(result);
+			}else if (ctx.NOT() != null) {
+				enterExpression(ctx.e1);
+				wsag.setExpression("NOT (" + wsag.getExpression() + ")");
 			} else if (ctx.BELONGS() != null) {
 
 				result = "";
