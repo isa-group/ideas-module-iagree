@@ -100,14 +100,14 @@ monitorableProperties : MONITORABLEPROPERTIES (Identifier)?
                         local_MonitorableProperties*
                       ;
 				
-global_MonitorableProperties : GLOBAL ':' (key_value_prop)+;
+global_MonitorableProperties : GLOBAL ':' (key_value_prop)*;
 				
 local_MonitorableProperties : FOR Identifier ':' key_value_prop+;
 				
-guaranteeTerms : GUARANTEE_TERMS (guaranteeTerm )+;
+guaranteeTerms : GUARANTEE_TERMS (guaranteeTerm)*;
 				
 guaranteeTerm : Identifier ':' 
-                (guarantee_def | cuantif OF grouped_guaranteeTerm)
+                (guarantee_def | cuantif OF grouped_guaranteeTerm) (END)?
               ;
 
 grouped_guaranteeTerm : (guaranteeTerm)+;

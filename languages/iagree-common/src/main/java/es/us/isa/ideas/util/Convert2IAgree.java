@@ -17,8 +17,7 @@ public class Convert2IAgree {
 	public static String getContext(Document doc) {
 		String result = "";
 
-		Node nodeTempName = doc.getElementsByTagName("wsag:TemplateName").item(
-				0);
+		Node nodeTempName = doc.getElementsByTagName("wsag:TemplateName").item(0);
 		if (nodeTempName != null) {
 			String templateName = nodeTempName.getTextContent();
 			result += " for " + templateName;
@@ -224,6 +223,11 @@ public class Convert2IAgree {
 									"false");
 						}
 						exp = exp.trim().replace("(", "").replace(")", "");
+						
+						if (exp.contains("OR")) {
+							exp = getBelongsExp(exp);
+						}
+						
 						result += "\n\t\t\t\t"
 								+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.ONLY_IF])
 								+ " (" + exp + ");\n";

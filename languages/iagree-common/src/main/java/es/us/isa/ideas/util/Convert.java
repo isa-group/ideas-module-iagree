@@ -44,7 +44,6 @@ public class Convert {
 		System.out.println("conversion start");
 
 		iAgreeLexer lexer = new iAgreeLexer(new ANTLRInputStream(content));
-		System.out.println(lexer);
 
 		// Get a list of matched tokens
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -127,7 +126,7 @@ public class Convert {
 					content)));
 			doc.getDocumentElement().normalize();
 
-			Pattern pattern = Pattern.compile("(\"metrics/)(\\w*)");
+			Pattern pattern = Pattern.compile("(\"metrics/)(\\w+(-\\w+)*)");
 			Matcher matcher = pattern.matcher(content);
 			matcher.find();
 			
@@ -188,7 +187,7 @@ public class Convert {
 							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.END_AG_OFFER]);
 				}
 			} else {
-				System.out.println("Error al obtener el fichero de metricas");
+				System.err.println("Error al obtener el fichero de metricas");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
