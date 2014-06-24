@@ -507,9 +507,20 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		try {
 			wsag.setGuaranteeDefObligated(ctx.ob.getText());
 			String result = "";
+			
+			//TODO definir sintaxis de los service scope
+			/*
+			if(ctx.serviceScope() != null){
+				enterServiceScope(ctx.serviceScope());
+				result = "\t\t\t\t<wsag:etiqServiceScope >\n" + "\t\t\t\t\t"
+						+ Util.encodeEntities(wsag.getServiceScope()) + "\n"
+						+ "\t\t\t\t</wsag:etiqServiceScope>\n";
+			}
+			*/
+			
 			if (ctx.qualifyingCondition() != null) {
 				enterQualifyingCondition(ctx.qualifyingCondition());
-				result = "\t\t\t\t<wsag:QualifyingCondition >\n" + "					"
+				result = "\t\t\t\t<wsag:QualifyingCondition >\n" + "\t\t\t\t\t"
 						+ Util.encodeEntities(wsag.getQualifyingCondition()) + "\n"
 						+ "\t\t\t\t</wsag:QualifyingCondition>\n";
 			}

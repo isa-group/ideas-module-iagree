@@ -12,7 +12,7 @@ entry : template END_TEMPLATE
 template : TEMPLATE Identifier VERSION versionNumber template_def
          ;
 
-agOffer : AG_OFFER Identifier VERSION versionNumber FOR Identifier VERSION versionNumber ag_def;
+agOffer : AG_OFFER Identifier VERSION versionNumber FOR (TEMPLATE)? Identifier VERSION versionNumber ag_def;
 
 template_def : temp_properties* agreementTerms creationConstraints?;
 

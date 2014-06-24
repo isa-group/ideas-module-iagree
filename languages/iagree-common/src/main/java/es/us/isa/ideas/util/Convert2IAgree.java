@@ -198,39 +198,45 @@ public class Convert2IAgree {
 								+ ':';
 					}
 
-					String exp = node
+					String csl = node
 							.getElementsByTagName("wsag:CustomServiceLevel")
 							.item(0).getTextContent();
-					if (exp.contains("True") || exp.contains("False")) {
-						exp = exp.replace("\"", "");
-						exp = exp.replace("True", "true").replace("False",
+					if (csl.contains("True") || csl.contains("False")) {
+						csl = csl.replace("\"", "");
+						csl = csl.replace("True", "true").replace("False",
 								"false");
 					}
-					result += "\t"
-							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.PROVIDER])
-							+ " "
-							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.GUARANTEES])
-							+ " " + Util.decodeEntities(exp) + ";";
 
 					Node qualifCond = node.getElementsByTagName(
 							"wsag:QualifyingCondition").item(0);
-
+					
 					if (qualifCond != null) {
-						exp = qualifCond.getTextContent();
-						if (exp.contains("True") || exp.contains("False")) {
-							exp = exp.replace("\"", "");
-							exp = exp.replace("True", "true").replace("False",
+						String qc = qualifCond.getTextContent();
+						if (qc.contains("True") || qc.contains("False")) {
+							qc = qc.replace("\"", "");
+							qc = qc.replace("True", "true").replace("False",
 									"false");
 						}
-						exp = exp.trim().replace("(", "").replace(")", "");
+						qc = qc.trim().replace("(", "").replace(")", "");
 						
-						if (exp.contains("OR")) {
-							exp = getBelongsExp(exp);
+						if (qc.contains("OR")) {
+							qc = getBelongsExp(qc);
 						}
 						
-						result += "\n\t\t\t\t"
+						result += "\t"
+								+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.PROVIDER])
+								+ " "
+								+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.GUARANTEES])
+								+ " " + Util.decodeEntities(csl) + ";\n" 
+								+ "\t\t\t\t"
 								+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.ONLY_IF])
-								+ " (" + exp + ");\n";
+								+ " (" + qc + ");\n";
+					} else {
+						result += "\t"
+								+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.PROVIDER])
+								+ " "
+								+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.GUARANTEES])
+								+ " " + Util.decodeEntities(csl) + ";\n";
 					}
 
 					NodeList compensation = node
