@@ -178,8 +178,17 @@ public class MiAgreeListener extends iAgreeBaseListener {
 					+ wsag.getServiceName() + "\">\n\t\t<wsag:All >\n"
 					+ wsag.getAgreementTerms()
 					+ "\n\t\t</wsag:All >\n	</wsag:Terms >\n\n"
-					+ "\t<wsag:CreationConstraints >\n" + wsag.getCc()
-					+ "\t</wsag:CreationConstraints >\n");
+					);
+			if (!wsag.getCc().isEmpty()){
+				wsag.setTemplateDef(wsag.getTemplateDef() 
+						+ "\t" + "<wsag:CreationConstraints>" + "\n" 
+						+ wsag.getCc()
+						+ "\t" + "</wsag:CreationConstraints>" + "\n");			
+			}else{
+				wsag.setTemplateDef(wsag.getTemplateDef() 
+						+ "\t" + "<wsag:CreationConstraints></wsag:CreationConstraints>" + "\n");		
+			}
+					
 		} catch (Exception e) {
 			System.out.println("parsing exception catched: enterTemplate_def");
 			e.printStackTrace();
@@ -207,7 +216,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		} catch (Exception e) {
 			System.out
 					.println("parsing exception catched: enterCreationConstraints");
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 	}
 

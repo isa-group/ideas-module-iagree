@@ -294,8 +294,8 @@ public class Convert2IAgree {
 
 		Element cc = (Element) doc.getElementsByTagName(
 				"wsag:CreationConstraints").item(0);
-
-		if (cc != null) {
+		
+		if (cc != null && !cc.getTextContent().isEmpty()) {
 			result += Util
 					.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.CREATION_CONSTRAINTS]);
 
