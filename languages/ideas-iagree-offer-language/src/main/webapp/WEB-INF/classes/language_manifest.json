@@ -40,7 +40,16 @@
 				            	 name: "Check Compliance with a Template",
 				            	 data: {},
 				            	 _remoteExecution: "false",
-				            	  action: "function(operationStructure, fileUri) {CommandApi.fetchFileContentsBeforeExecutingOperation(operationStructure, fileUri, 'iagreetemplate', 'checkCompliance', 'Check Compliance with Template', 'Select a Template to check this Offer Document with.', 'Check Compliance', function(result){}, function(result){})}"
+				            	  action: "function(operationStructure, fileUri) {
+							            	  	CommandApi.fetchFileContentsBeforeExecutingOperation(operationStructure, 
+							            	  		fileUri, 'iagreetemplate', 'checkCompliance', 
+							            	  		'Check Compliance with Template', 
+							            	  		'Select a Template to check this Offer Document with.', 
+							            	  		'Check Compliance', 
+							            	  		function(result){}, 
+							            	  		function(result){}
+							            	  	)
+							            	}"
 				             }
 				             
 				             

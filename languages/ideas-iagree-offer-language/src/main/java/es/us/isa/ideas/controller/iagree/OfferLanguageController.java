@@ -20,8 +20,7 @@ public class OfferLanguageController extends BaseLanguageController {
 	
 	@RequestMapping(value = "/operation/{id}/execute", method = RequestMethod.POST)
 	@ResponseBody
-	public AppResponse executeOperation(String id, String content,
-			String fileUri, String auxArg0) {
+	public AppResponse executeOperation(String id, String content, String fileUri, String auxArg0) {
 		Map<String, Object> wsagAggregation = Convert.getWsagFromIAgree(content, true);
 		// wsagAggregation[0]; // Converted Document
 		// wsagAggregation[1]; // Metrics URI

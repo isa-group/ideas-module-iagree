@@ -329,9 +329,9 @@ public class Convert2IAgree {
 						exp2 = getBelongsExp(exp2);
 					}
 
-					result += "\t" + Util.decodeEntities(exp2) + ";";
+					result += Util.decodeEntities(exp2) + ";" + "\n";
 
-					result += "\n\t\t"
+					result += "\t\t"
 							+ Util.withoutQuotes(iAgreeParser.tokenNames[iAgreeParser.ONLY_IF])
 							+ " (" + Util.decodeEntities(exp1) + ");\n";
 

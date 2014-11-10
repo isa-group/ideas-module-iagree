@@ -20,8 +20,7 @@ public class TemplateLanguageController extends BaseLanguageController {
 
 	@RequestMapping(value = "/operation/{id}/execute", method = RequestMethod.POST)
 	@ResponseBody
-	public AppResponse executeOperation(String id, String content,
-			String fileUri) {
+	public AppResponse executeOperation(String id, String content, String fileUri) {
 
 		Map<String, Object> wsagAggregation = Convert.getWsagFromIAgree(content, true);
 		// wsagAggregation[0]; // Converted Document
@@ -42,8 +41,7 @@ public class TemplateLanguageController extends BaseLanguageController {
 
 	@RequestMapping(value = "/convert", method = RequestMethod.POST)
 	@ResponseBody
-	public AppResponse convertFormat(String currentFormat,
-			String desiredFormat, String fileUri, String content) {
+	public AppResponse convertFormat(String currentFormat, String desiredFormat, String fileUri, String content) {
 		
 		return ConversionDelegate.convert(currentFormat, desiredFormat,
 				fileUri, content);
