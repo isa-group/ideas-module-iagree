@@ -13,6 +13,8 @@ import es.us.isa.ideas.parser.iAgreeParser.CreationConstraintContext;
 import es.us.isa.ideas.parser.iAgreeParser.CreationConstraintsContext;
 import es.us.isa.ideas.parser.iAgreeParser.CreationConstraints_defContext;
 import es.us.isa.ideas.parser.iAgreeParser.CuantifContext;
+import es.us.isa.ideas.parser.iAgreeParser.DescriptionContext;
+import es.us.isa.ideas.parser.iAgreeParser.DescriptionsContext;
 import es.us.isa.ideas.parser.iAgreeParser.EntryContext;
 import es.us.isa.ideas.parser.iAgreeParser.ExpressionContext;
 import es.us.isa.ideas.parser.iAgreeParser.GlobalDescriptionContext;
@@ -285,6 +287,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		super.enterService(ctx);
 		try {
 			enterGlobalDescription(ctx.globalDescription());
+			enterDescriptions(ctx.descriptions());
 
 			wsag.setServiceUrl(Util.withoutDoubleQuotes(ctx.url().getText()));
 
@@ -457,6 +460,48 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		} catch (Exception e) {
 			System.out
 					.println("parsing exception catched: enterGlobalDescription");
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void enterDescriptions(DescriptionsContext ctx) {
+		super.enterDescriptions(ctx);
+		try {
+			for (DescriptionContext desc : ctx.description()) {
+				enterDescription(desc);
+			}
+		} catch (Exception e) {
+			System.out
+					.println("parsing exception catched: enterDescriptions");
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void enterDescription(DescriptionContext ctx) {
+		super.enterDescription(ctx);
+		try {
+			for (Key_value_propContext kv : ctx.key_value_prop()) {
+				enterKey_value_prop(kv);
+
+				String oiKey = wsag.getKeyValue().value;
+				String oiValue = wsag.getKeyValue().assigValue;
+
+				if (oiKey.equals("boolean") && !oiValue.isEmpty()) {
+					oiValue = oiValue.toLowerCase();
+					oiValue = Character.toUpperCase(oiValue.charAt(0))
+							+ oiValue.substring(1);
+				}
+
+				wsag.setOfferItems(wsag.getOfferItems()
+						+ "\t\t\t\t<OfferItem name=\"" + wsag.getKeyValue().key
+						+ "\" wsag:Metric=\"metrics/" + wsag.getMetric() + ":"
+						+ oiKey + "\" >" + oiValue + "</OfferItem>\n");
+			}
+		} catch (Exception e) {
+			System.out
+					.println("parsing exception catched: enterDescription");
 			e.printStackTrace();
 		}
 	}

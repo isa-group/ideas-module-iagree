@@ -46,11 +46,11 @@ public class Util {
 	}
 
 	public static String convertMetricType(String originalType) {
-		String newType = originalType;
+		String newType = null;
 
 		if (originalType != null) {
-			newType = newType.toLowerCase();
-
+			originalType = originalType.toLowerCase();
+			
 			if (originalType.equals("float") 
 					|| originalType.equals("double")
 					|| originalType.equals("natural")
