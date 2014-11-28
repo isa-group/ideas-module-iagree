@@ -63,13 +63,13 @@ var AbapHighlightRules = function() {
         "variable.def2": //def-2 
             "GMTZone DateFormat GlobalPeriod DefinedPeriod EndDefinedPeriod guarantees GlobalDescription global",
         "entity-name-tag.atom": //atom
-            "belongs for of as measuredBy relatedTo availableAt valueOf is IMPLIES EQUAL Consumer",
+            "belongs for of as measuredBy relatedTo availableAt valueOf is IMPLIES EQUAL",
         "entity-name-tag.atom2": //atom-2
             "except from during on AND OR NOT" ,
         "entity-name-tag.condition": //condition
             "all exactly one or more" ,
         "token_Keyword.actor": //actor
-            "Provider" ,
+            "Provider Consumer" ,
         "entity-name-tag.attribute": //attribute
             "onlyIf upon" , //[\w\$_]:
         "entity-name-tag.type": //type
@@ -79,15 +79,15 @@ var AbapHighlightRules = function() {
         "entity-name-tag.flase": //false
             "false",
             
-    }, "text", true, " ");
+    }, "text", false, " ");
     
     var keyword = "\\b(Template|EndTemplate|AgreementOffer|EndAgreementOffer|AgreementTerms|CreationConstraints)\\b";
     var def = "\\b(Initiator|Responder|ServiceProvider|ExpirationTime|MonitorableProperties|Service|description|Global|GuaranteeTerms|Constraints|Service|Metrics)\\b";
     var def2 = "\\b(GMTZone|DateFormat|GlobalPeriod|DefinedPeriod|EndDefinedPeriod|guarantees|GlobalDescription|global)\\b";
-    var atom = "\\b(belongs|for|of|as|measuredBy|relatedTo|availableAt|valueOf|is|IMPLIES|EQUAL|Consumer)\\b";
+    var atom = "\\b(belongs|for|of|as|measuredBy|relatedTo|availableAt|valueOf|is|IMPLIES|EQUAL)\\b";
     var atom2 = "(\\b(except|from|during|on|AND|OR|NOT)\\b)";
     var condition = "\\b(all|exactly|one|or|more)\\b";
-    var actor = "\\b(Provider)\\b";
+    var actor = "\\b(Provider|Consumer)\\b";
     var attribute = "\\b(onlyIf|upon|[\w\$_]:)\\b";
     var type = "\\b(integer|string|enum|set|boolean|float)\\b";
     var True = "\\b(true)\\b";
@@ -112,8 +112,8 @@ var AbapHighlightRules = function() {
             {token : "entity-name-tag.type", regex : type},
             {token : "entity-name-tag.true", regex : True},
             {token : "entity-name-tag.false", regex : False},
-            {token : keywordMapper, regex : "\\b\\w+\\b"},
-            {caseInsensitive: true}
+//            {token : keywordMapper, regex : "\\b\\w+\\b"},
+            {caseInsensitive: false}
         ],
         "pstring" : [
             {token : "constant.language.escape",   regex : '""'},
