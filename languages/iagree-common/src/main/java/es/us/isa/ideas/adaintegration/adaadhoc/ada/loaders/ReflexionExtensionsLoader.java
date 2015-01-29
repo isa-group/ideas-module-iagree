@@ -92,6 +92,7 @@ public class ReflexionExtensionsLoader implements ExtensionsLoader {
 //    			}
 //    			
             adaConfig = this.getClass().getClassLoader().getResourceAsStream("/config/ADAConfig.xml");
+            
         	//InputStream adaConfig = this.getClass().getResourceAsStream("C:/workspaceADA/iAgreeStudioServerComponent/config/ADAConfig.xml");
         	//InputStream adaConfig = this.getClass().getClassLoader().get.getResourceAsStream("C:\\workspaceADA\\iAgreeStudioServerComponent\\config\\ADAConfig.xml");
             
@@ -110,6 +111,7 @@ public class ReflexionExtensionsLoader implements ExtensionsLoader {
                     NamedNodeMap atts = n.getAttributes();
                     String id = atts.getNamedItem("id").getTextContent();
                     String path = atts.getNamedItem("implementation").getTextContent();
+                                        
                     Class<Analyzer> clazz = (Class<Analyzer>) Class.forName(path);
                     Analyzer an = clazz.newInstance();
                     ProxyAnalyzer proxy = new ProxyAnalyzer(id,an);

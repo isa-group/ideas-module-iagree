@@ -1,0 +1,82 @@
+[
+	{
+		"id": "checkConsistency-ValidDoc",
+		"description": "Check if the document is valid",
+		"opUri": "/language/operation/checkConsistency/execute",
+		"opMethod": "POST",
+		"parameters": 
+		{
+			"id": "checkConsistency",
+			"content": "",
+			"fileUri": "/tests/resources/valid.iagreeoffer"
+		},
+		"results": [
+			{"status":"OK","message":"<pre>The document is consistent.</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/valid.iagreeoffer","annotations":null,"customStruct":null}
+		]
+	},
+	{
+		"id": "checkConsistency-InvalidDoc",
+		"description": "Check if the document is not valid",
+		"opUri": "/language/operation/checkConsistency/execute",
+		"opMethod": "POST",
+		"parameters": 
+		{
+			"id": "checkConsistency",
+			"content": "",
+			"fileUri": "/tests/resources/invalid.iagreeoffer"
+		},
+		"results": [
+			{"status":"OK_PROBLEMS","message":"<pre>Error: line 2:13 missing 'Responder' at 'Responde'</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/invalid.iagreeoffer","annotations":null,"customStruct":null}
+		]
+	},
+	{
+		"id": "getNumberOfAlternatives-1Alt",
+		"description": "Return 1 alternative for the provided document",
+		"opUri": "/language/operation/getNumberOfAlternatives/execute",
+		"opMethod": "POST",
+		"parameters": 
+		{
+			"id": "getNumberOfAlternatives",
+			"content": "",
+			"fileUri": "/tests/resources/alternatives.iagreeoffer"
+		},
+		"results": [
+			{"status":"OK","message":"<pre>There is 1 alternative to the document</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/alternatives.iagreeoffer","annotations":null,"customStruct":null}
+		]
+	},
+	{
+		"id": "checkCompliance-Valid",
+		"description": "Check if the provided offer is compliant with the provided template",
+		"opUri": "/language/operation/checkCompliance/execute",
+		"opMethod": "POST",
+		"parameters": 
+		{
+			"id": "checkCompliance",
+			"content": "",
+			"fileUri": "/tests/resources/compliantOffer.iagreeoffer",
+			"auxArg0": "/tests/resources/compliantTemplate.iagreetemplate"
+		},
+		"results": [
+			{"status":"OK","message":"<pre>The provided offer is compliant with the provided template</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/compliantOffer.iagreeoffer","annotations":null,"customStruct":null}
+		]
+	},
+	{
+		"id": "checkCompliance-Invalid",
+		"description": "Check if the provided offer is not compliant with the provided template",
+		"opUri": "/language/operation/checkCompliance/execute",
+		"opMethod": "POST",
+		"parameters": 
+		{
+			"id": "checkCompliance",
+			"content": "",
+			"fileUri": "/tests/resources/nonCompliantOffer.iagreeoffer",
+			"auxArg0": "/tests/resources/nonCompliantTemplate.iagreetemplate"
+		},
+		"results": [
+			{"status":"OK_PROBLEMS","message":"<pre>The template is valid.\nThe offer is valid.\n\nConflicts between agreement offer terms and the template: \n\t- G2 in Offer is not compliant with G2 in Template\n\t- StorageSize in Offer is not compliant with G3 in Templatewith C1 in Template\nAs the documents are not compliant, the explaining for more restrictive offer is not performed.\nThe template terms are more restrictive, or equal, than the template creation constraints.\n</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/nonCompliantOffer.iagreeoffer","annotations":null,"customStruct":null},
+			{"status":"OK_PROBLEMS","message":"<pre>The template is valid.\nThe offer is valid.\n\nConflicts between agreement offer terms and the template: \n\t- G2 in Offer is not compliant with G2 in Template\n\t- StorageSize in Offer is not compliant with C1 in Templatewith G3 in Template\nAs the documents are not compliant, the explaining for more restrictive offer is not performed.\nThe template terms are more restrictive, or equal, than the template creation constraints.\n</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/nonCompliantOffer.iagreeoffer","annotations":null,"customStruct":null},
+			{"status":"OK_PROBLEMS","message":"<pre>The template is valid.\nThe offer is valid.\n\nConflicts between agreement offer terms and the template: \n\t- StorageSize in Offer is not compliant with C1 in Templatewith G3 in Template\n\t- G2 in Offer is not compliant with G2 in Template\nAs the documents are not compliant, the explaining for more restrictive offer is not performed.\nThe template terms are more restrictive, or equal, than the template creation constraints.\n</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/nonCompliantOffer.iagreeoffer","annotations":null,"customStruct":null},
+			{"status":"OK_PROBLEMS","message":"<pre>The template is valid.\nThe offer is valid.\n\nConflicts between agreement offer terms and the template: \n\t- StorageSize in Offer is not compliant with G3 in Templatewith C1 in Template\n\t- G2 in Offer is not compliant with G2 in Template\nAs the documents are not compliant, the explaining for more restrictive offer is not performed.\nThe template terms are more restrictive, or equal, than the template creation constraints.\n</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/nonCompliantOffer.iagreeoffer","annotations":null,"customStruct":null}
+		]
+	}
+]

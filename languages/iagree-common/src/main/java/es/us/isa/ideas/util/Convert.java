@@ -69,11 +69,11 @@ public class Convert {
 
 		annotations.clear();
 
-		if (!errorListener.hasErrors()) {
-			res.put("data", listener.wsag.getResult());
-			res.put("metricUri", metricUri + ".xml");
-			res.put("metrics", metrics);
-		} else {
+		res.put("data", listener.wsag.getResult());
+		res.put("metricUri", metricUri + ".xml");
+		res.put("metrics", metrics);
+		
+		if (errorListener.hasErrors()) {
 			// Construct error structures
 			for (IAgreeError error : errorListener.getErrors()) {
 

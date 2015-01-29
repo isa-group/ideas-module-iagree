@@ -14,8 +14,10 @@
 	    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd            
 	">
 
-<context:component-scan base-package="es.us.isa.ideas.controller" />
+	<context:component-scan base-package="es.us.isa.ideas.controller" />
 
-<mvc:annotation-driven />
+	<mvc:resources mapping="/**" location="/" />
+
+	<mvc:annotation-driven />
 
 </beans>

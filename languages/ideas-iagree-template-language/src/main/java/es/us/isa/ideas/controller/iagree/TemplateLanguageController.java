@@ -1,5 +1,6 @@
 package es.us.isa.ideas.controller.iagree;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -8,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import es.us.isa.ideas.adaintegration.iagree.AnalizeDelegate;
+import es.us.isa.ideas.common.AppAnnotations;
 import es.us.isa.ideas.common.AppResponse;
+import es.us.isa.ideas.common.AppResponse.Status;
 import es.us.isa.ideas.module.controller.BaseLanguageController;
 import es.us.isa.ideas.util.ConversionDelegate;
 import es.us.isa.ideas.util.Convert;
@@ -21,13 +24,20 @@ public class TemplateLanguageController extends BaseLanguageController {
 	@RequestMapping(value = "/operation/{id}/execute", method = RequestMethod.POST)
 	@ResponseBody
 	public AppResponse executeOperation(String id, String content, String fileUri) {
-
+		
 		Map<String, Object> wsagAggregation = Convert.getWsagFromIAgree(content, true);
 		// wsagAggregation[0]; // Converted Document
 		// wsagAggregation[1]; // Metrics URI
 		// wsagAggregation[2]; // Metrics content
-
-		AppResponse appResponse = AnalizeDelegate.analize(id, wsagAggregation, null, false);
+		List<AppAnnotations> annotations = (List<AppAnnotations>) wsagAggregation.get("annotations");
+		AppResponse appResponse = new AppResponse();
+		if(annotations.isEmpty()){
+			appResponse = AnalizeDelegate.analize(id, wsagAggregation, null, false);
+		} else {
+			for(AppAnnotations ann : annotations)
+				appResponse.setMessage("<pre>Error: " + ann.getText() + "</pre>");
+			appResponse.setStatus(Status.OK_PROBLEMS);
+		}
 		appResponse.setFileUri(fileUri);
 		return appResponse;
 	}

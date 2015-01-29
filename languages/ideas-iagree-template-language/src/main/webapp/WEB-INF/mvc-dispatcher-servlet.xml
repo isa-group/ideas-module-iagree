@@ -15,6 +15,8 @@
 	">
 
 	<context:component-scan base-package="es.us.isa.ideas.controller" />
+	
+	<mvc:resources mapping="/**" location="/"/>
 
 	<mvc:annotation-driven />
 

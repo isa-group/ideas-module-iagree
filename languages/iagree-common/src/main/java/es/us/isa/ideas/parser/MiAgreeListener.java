@@ -49,8 +49,8 @@ public class MiAgreeListener extends iAgreeBaseListener {
 	public WsagObject wsag = null;
 	public String metrics;
 	public long timeStamp;
-	
-	public void setSimplified(Boolean simplified){
+
+	public void setSimplified(Boolean simplified) {
 		this.simplified = simplified;
 	}
 
@@ -179,18 +179,18 @@ public class MiAgreeListener extends iAgreeBaseListener {
 					+ "\n\t</wsag:Context >\n\n" + "\t<wsag:Terms wsag:Name=\""
 					+ wsag.getServiceName() + "\">\n\t\t<wsag:All >\n"
 					+ wsag.getAgreementTerms()
-					+ "\n\t\t</wsag:All >\n	</wsag:Terms >\n\n"
-					);
-			if (!wsag.getCc().isEmpty()){
-				wsag.setTemplateDef(wsag.getTemplateDef() 
-						+ "\t" + "<wsag:CreationConstraints>" + "\n" 
-						+ wsag.getCc()
-						+ "\t" + "</wsag:CreationConstraints>" + "\n");			
-			}else{
-				wsag.setTemplateDef(wsag.getTemplateDef() 
-						+ "\t" + "<wsag:CreationConstraints></wsag:CreationConstraints>" + "\n");		
+					+ "\n\t\t</wsag:All >\n	</wsag:Terms >\n\n");
+			if (!wsag.getCc().isEmpty()) {
+				wsag.setTemplateDef(wsag.getTemplateDef() + "\t"
+						+ "<wsag:CreationConstraints>" + "\n" + wsag.getCc()
+						+ "\t" + "</wsag:CreationConstraints>" + "\n");
+			} else {
+				wsag.setTemplateDef(wsag.getTemplateDef()
+						+ "\t"
+						+ "<wsag:CreationConstraints></wsag:CreationConstraints>"
+						+ "\n");
 			}
-					
+
 		} catch (Exception e) {
 			System.out.println("parsing exception catched: enterTemplate_def");
 			e.printStackTrace();
@@ -218,7 +218,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		} catch (Exception e) {
 			System.out
 					.println("parsing exception catched: enterCreationConstraints");
-//			e.printStackTrace();
+			// e.printStackTrace();
 		}
 	}
 
@@ -463,7 +463,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void enterDescriptions(DescriptionsContext ctx) {
 		super.enterDescriptions(ctx);
@@ -472,12 +472,11 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				enterDescription(desc);
 			}
 		} catch (Exception e) {
-			System.out
-					.println("parsing exception catched: enterDescriptions");
+			System.out.println("parsing exception catched: enterDescriptions");
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void enterDescription(DescriptionContext ctx) {
 		super.enterDescription(ctx);
@@ -500,8 +499,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 						+ oiKey + "\" >" + oiValue + "</OfferItem>\n");
 			}
 		} catch (Exception e) {
-			System.out
-					.println("parsing exception catched: enterDescription");
+			System.out.println("parsing exception catched: enterDescription");
 			e.printStackTrace();
 		}
 	}
@@ -561,22 +559,21 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		try {
 			wsag.setGuaranteeDefObligated(ctx.ob.getText());
 			String result = "";
-			
-			//TODO definir sintaxis de los service scope
+
+			// TODO definir sintaxis de los service scope
 			/*
-			if(ctx.serviceScope() != null){
-				enterServiceScope(ctx.serviceScope());
-				result = "\t\t\t\t<wsag:etiqServiceScope >\n" + "\t\t\t\t\t"
-						+ Util.encodeEntities(wsag.getServiceScope()) + "\n"
-						+ "\t\t\t\t</wsag:etiqServiceScope>\n";
-			}
-			*/
-			
+			 * if(ctx.serviceScope() != null){
+			 * enterServiceScope(ctx.serviceScope()); result =
+			 * "\t\t\t\t<wsag:etiqServiceScope >\n" + "\t\t\t\t\t" +
+			 * Util.encodeEntities(wsag.getServiceScope()) + "\n" +
+			 * "\t\t\t\t</wsag:etiqServiceScope>\n"; }
+			 */
+
 			if (ctx.qualifyingCondition() != null) {
 				enterQualifyingCondition(ctx.qualifyingCondition());
 				result = "\t\t\t\t<wsag:QualifyingCondition >\n" + "\t\t\t\t\t"
-						+ Util.encodeEntities(wsag.getQualifyingCondition()) + "\n"
-						+ "\t\t\t\t</wsag:QualifyingCondition>\n";
+						+ Util.encodeEntities(wsag.getQualifyingCondition())
+						+ "\n" + "\t\t\t\t</wsag:QualifyingCondition>\n";
 			}
 
 			enterSlo(ctx.slo());
@@ -601,11 +598,11 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void enterSlo(SloContext ctx) {
 		super.enterSlo(ctx);
-		
+
 		enterExpression(ctx.expression());
 		wsag.setExpression(wsag.getExpression());
 	}
@@ -621,11 +618,11 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			enterCompensation(expr);
 		}
 	}
-	
+
 	@Override
 	public void enterCompensation(CompensationContext ctx) {
 		super.enterCompensation(ctx);
-		
+
 		enterExpression(ctx.e1);
 		String exp1 = wsag.getExpression();
 
@@ -681,7 +678,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				}
 				result = Util.encodeEntities(result);
 				wsag.setExpression(result);
-			}else if (ctx.NOT() != null) {
+			} else if (ctx.NOT() != null) {
 				enterExpression(ctx.e1);
 				wsag.setExpression("NOT (" + wsag.getExpression() + ")");
 			} else if (ctx.BELONGS() != null) {
@@ -694,14 +691,12 @@ public class MiAgreeListener extends iAgreeBaseListener {
 				String[] values = wsag.getListValues().split(",");
 
 				result += "(" + ctx.ident.getText() + " = \"" + values[0]
-						+ "\"";
+						+ "\")";
 
 				for (int i = 1; i < values.length; i++) {
-					result += " OR " + ctx.ident.getText() + " = \""
-							+ values[i] + "\"";
+					result += " OR " + "(" + ctx.ident.getText() + " = \""
+							+ values[i] + "\")";
 				}
-
-				result += ")";
 
 				if (ctx.log != null) {
 					if (ctx.e1 != null)
@@ -879,11 +874,11 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void enterQualifyingCondition(QualifyingConditionContext ctx) {
 		super.enterQualifyingCondition(ctx);
-		
+
 		try {
 			if (ctx.expression() != null)
 				enterExpression(ctx.expression());
@@ -938,7 +933,7 @@ public class MiAgreeListener extends iAgreeBaseListener {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void enterVersionNumber(VersionNumberContext ctx) {
 		super.enterVersionNumber(ctx);
@@ -960,6 +955,11 @@ public class MiAgreeListener extends iAgreeBaseListener {
 		try {
 			String metrics_def = "";
 
+			metrics_def += "\t<met:metric id=\"boolean\"  type=\"enumerated\" >\n"
+					+ "		<met:value value=\"True\"/>\n"
+					+ "		<met:value value=\"False\"/>\n"
+					+ "\t</met:metric>\n";
+			
 			for (Key_value_propContext kv : ctx.key_value_prop()) {
 				enterKey_value_prop(kv);
 
@@ -969,53 +969,44 @@ public class MiAgreeListener extends iAgreeBaseListener {
 
 				mId = wsag.getKeyValue().key;
 				mType = wsag.getKeyValue().type;
-				
-				if (mType.equals("boolean")) {
-					metrics_def += "\t<met:metric id=\"" + mId
-							+ "\"  type=\"enumerated\" >\n"
-							+ "		<met:value value=\"True\"/>\n"
-							+ "		<met:value value=\"False\"/>\n"
-							+ "\t</met:metric>\n";
-				} else {
-					mType = Util.convertMetricType(mType);
 
-					metrics_def += "\t<met:metric id=\"" + mId + "\" type=\""
-							+ mType + "\" ";
+				mType = Util.convertMetricType(mType);
 
-					if (!wsag.getKeyValue().typeArg.isEmpty()) {
-						String[] aux = wsag.getKeyValue().typeArg.split(",");
+				metrics_def += "\t<met:metric id=\"" + mId + "\" type=\""
+						+ mType + "\" ";
 
-						if (mType == "enumerated") {
-							metrics_def += ">\n";
+				if (!wsag.getKeyValue().typeArg.isEmpty()) {
+					String[] aux = wsag.getKeyValue().typeArg.split(",");
 
-							if (!wsag.getKeyValue().type.isEmpty()
-									&& wsag.getKeyValue().type.toLowerCase()
-											.equals("boolean")) {
-								aux[0] = "True";
-								aux[1] = "False";
-							}
+					if (mType == "enumerated") {
+						metrics_def += ">\n";
 
-							for (int i = 0; i < aux.length; i++) {
-								metrics_def += "\t\t<met:value value=\""
-										+ aux[i] + "\"/>\n";
-							}
-
-							metrics_def += "\t</met:metric>\n";
-
-						} else {
-							min = aux[0];
-							max = aux[1];
-
-							metrics_def += " min=\"" + min + "\" max=\"" + max
-									+ "\" />\n";
-
+						if (!wsag.getKeyValue().type.isEmpty()
+								&& wsag.getKeyValue().type.toLowerCase()
+										.equals("boolean")) {
+							aux[0] = "True";
+							aux[1] = "False";
 						}
 
+						for (int i = 0; i < aux.length; i++) {
+							metrics_def += "\t\t<met:value value=\"" + aux[i]
+									+ "\"/>\n";
+						}
+
+						metrics_def += "\t</met:metric>\n";
+
 					} else {
+						min = aux[0];
+						max = aux[1];
+
 						metrics_def += " min=\"" + min + "\" max=\"" + max
-								+ "\"";
-						metrics_def += "/>\n";
+								+ "\" />\n";
+
 					}
+
+				} else {
+					metrics_def += " min=\"" + min + "\" max=\"" + max + "\"";
+					metrics_def += "/>\n";
 				}
 			}
 

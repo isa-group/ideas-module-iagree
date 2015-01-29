@@ -20,7 +20,6 @@ public class AdaFacade {
 	private ADAServiceV2 service;
 
 	public AdaFacade() {
-		System.out.println("## 1");
 		this.service = new ADAServiceImpl();
 	}
 

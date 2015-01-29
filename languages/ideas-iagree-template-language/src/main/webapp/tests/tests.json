@@ -1,0 +1,47 @@
+[
+	{
+		"id": "checkConsistencyValidDoc",
+		"description": "Test the consistency of the document",
+		"opUri": "/language/operation/checkConsistency/execute",
+		"opMethod": "POST",
+		"parameters": 
+		{
+			"id": "checkConsistency",
+			"content": "",
+			"fileUri": "/tests/resources/valid.iagreetemplate"
+		},
+		"results": [
+			{"status":"OK","message":"<pre>The document is consistent.</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/valid.iagreetemplate","annotations":null,"customStruct":null}
+		]
+	},
+	{
+		"id": "checkConsistencyInvalidDoc",
+		"description": "Test the consistency of the document",
+		"opUri": "/language/operation/checkConsistency/execute",
+		"opMethod": "POST",
+		"parameters": 
+		{
+			"id": "checkConsistency",
+			"content": "",
+			"fileUri": "/tests/resources/invalid.iagreetemplate"
+		},
+		"results": [
+			{"status":"OK_PROBLEMS","message":"<pre>Error: line 2:13 missing 'Responder' at 'Responde'</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/invalid.iagreetemplate","annotations":null,"customStruct":null}
+		]
+	},
+	{
+		"id": "getNumberOfAlternatives1Alt",
+		"description": "Return the number of alternatives of a document",
+		"opUri": "/language/operation/getNumberOfAlternatives/execute",
+		"opMethod": "POST",
+		"parameters": 
+		{
+			"id": "getNumberOfAlternatives",
+			"content": "",
+			"fileUri": "/tests/resources/alternatives.iagreetemplate"
+		},
+		"results": [
+			{"status":"OK","message":"<pre>There is 1 alternative to the document</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/alternatives.iagreetemplate","annotations":null,"customStruct":null}
+		]
+	}
+]
