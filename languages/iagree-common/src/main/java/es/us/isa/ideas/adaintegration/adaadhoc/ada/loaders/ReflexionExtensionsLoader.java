@@ -23,6 +23,7 @@ import es.us.isa.ideas.adaintegration.adaadhoc.ada.subfacades.*;
 import es.us.isa.ideas.adaintegration.adaadhoc.ada.wsag10.parsers.DefaultWSAgParser;
 import es.us.isa.ideas.adaintegration.adaadhoc.ada.wsag10.transforms.WSAg4PeopleTransform;
 import es.us.isa.ideas.adaintegration.adaadhoc.ada.wsag10.transforms.WSAgPeople2XMLTransform;
+import es.us.isa.ideas.util.Util;
 
 import org.antlr.runtime.RecognitionException;
 import org.w3c.dom.Document;
@@ -91,8 +92,7 @@ public class ReflexionExtensionsLoader implements ExtensionsLoader {
 //    			}
 //    			}
 //    			
-            adaConfig = this.getClass().getClassLoader().getResourceAsStream("/config/ADAConfig.xml");
-            
+            adaConfig = this.getClass().getClassLoader().getResourceAsStream("ADAConfig.xml");
         	//InputStream adaConfig = this.getClass().getResourceAsStream("C:/workspaceADA/iAgreeStudioServerComponent/config/ADAConfig.xml");
         	//InputStream adaConfig = this.getClass().getClassLoader().get.getResourceAsStream("C:\\workspaceADA\\iAgreeStudioServerComponent\\config\\ADAConfig.xml");
             
@@ -111,7 +111,7 @@ public class ReflexionExtensionsLoader implements ExtensionsLoader {
                     NamedNodeMap atts = n.getAttributes();
                     String id = atts.getNamedItem("id").getTextContent();
                     String path = atts.getNamedItem("implementation").getTextContent();
-                                        
+                    
                     Class<Analyzer> clazz = (Class<Analyzer>) Class.forName(path);
                     Analyzer an = clazz.newInstance();
                     ProxyAnalyzer proxy = new ProxyAnalyzer(id,an);
