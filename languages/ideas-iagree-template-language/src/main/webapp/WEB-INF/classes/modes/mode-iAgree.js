@@ -63,7 +63,7 @@ var AbapHighlightRules = function() {
         "variable.def2": //def-2 
             "GMTZone DateFormat GlobalPeriod DefinedPeriod EndDefinedPeriod guarantees GlobalDescription global",
         "entity-name-tag.atom": //atom
-            "belongs for of as measuredBy relatedTo availableAt valueOf is IMPLIES EQUAL",
+            "version belongs for of as measuredBy relatedTo availableAt valueOf is IMPLIES EQUAL",
         "entity-name-tag.atom2": //atom-2
             "except from during on AND OR NOT" ,
         "entity-name-tag.condition": //condition
@@ -84,7 +84,7 @@ var AbapHighlightRules = function() {
     var keyword = "\\b(Template|EndTemplate|AgreementOffer|EndAgreementOffer|AgreementTerms|CreationConstraints)\\b";
     var def = "\\b(Initiator|Responder|ServiceProvider|ExpirationTime|MonitorableProperties|Service|description|Global|GuaranteeTerms|Constraints|Service|Metrics)\\b";
     var def2 = "\\b(GMTZone|DateFormat|GlobalPeriod|DefinedPeriod|EndDefinedPeriod|guarantees|GlobalDescription|global)\\b";
-    var atom = "\\b(belongs|for|of|as|measuredBy|relatedTo|availableAt|valueOf|is|IMPLIES|EQUAL)\\b";
+    var atom = "\\b(version|belongs|for|of|as|measuredBy|relatedTo|availableAt|valueOf|is|IMPLIES|EQUAL)\\b";
     var atom2 = "(\\b(except|from|during|on|AND|OR|NOT)\\b)";
     var condition = "\\b(all|exactly|one|or|more)\\b";
     var actor = "\\b(Provider|Consumer)\\b";
@@ -113,6 +113,7 @@ var AbapHighlightRules = function() {
             {token : "entity-name-tag.true", regex : True},
             {token : "entity-name-tag.false", regex : False},
 //            {token : keywordMapper, regex : "\\b\\w+\\b"},
+            {token : "comment",  regex : "//.*"},
             {caseInsensitive: false}
         ],
         "pstring" : [

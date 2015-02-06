@@ -49,8 +49,11 @@ exports.cssText = ".ace-iAgree{\
 .ace_variables{\
 	color: #000000;\
 }\
-.ace_comments{\
+.ace_doc.ace_comments{\
 	color: #0000FF;\
+}\
+.ace_comment{\
+	color: #236e24;\
 }\
 .ace_variable.ace_functions.ace_1{\
 	color: #DF7401;\
