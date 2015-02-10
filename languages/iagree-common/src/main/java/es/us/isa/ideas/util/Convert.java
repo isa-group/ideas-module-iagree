@@ -77,7 +77,7 @@ public class Convert {
 			// Construct error structures
 			for (IAgreeError error : errorListener.getErrors()) {
 
-				Integer lineNo = error.getLineNo();
+				Integer lineNo = error.getLineNo() - 1;
 				Integer columnNo = error.getCharStart();
 
 				AppAnnotations appAnnot = new AppAnnotations();

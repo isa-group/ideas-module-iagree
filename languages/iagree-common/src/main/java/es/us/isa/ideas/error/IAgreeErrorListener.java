@@ -29,8 +29,8 @@ public class IAgreeErrorListener extends BaseErrorListener {
 		// line + ":" + charPositionInLine+1 + ":" + charEndOffset+1 + " " +
 		// msg);
 
-		errors.add(new IAgreeError(Integer.valueOf(line).intValue() - 1,
-				charPositionInLine + 1, charEndOffset + 1,
+		errors.add(new IAgreeError(line,
+				charPositionInLine, charEndOffset,
 				ERROR_SEVERITY.ERROR, "line " + line + ":" + charPositionInLine
 						+ " " + msg));
 
