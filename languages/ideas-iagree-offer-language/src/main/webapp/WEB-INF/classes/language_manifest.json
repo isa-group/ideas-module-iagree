@@ -1,7 +1,7 @@
 {
-				id: "iagree-offer-language2",
+				id: "iagree-offer-language",
 				extension: "ao",
-				name: "iAgreeOffer2",
+				name: "iAgreeOffer",
 				formats: [
 				 	{
 				 		format: "iagree",

@@ -1,7 +1,7 @@
 		{
-				id: "iagree-template-language2",
+				id: "iagree-template-language",
 				extension: "at",
-				name: "iAgreeTemplate2",
+				name: "iAgreeTemplate",
 				formats: [
 				 	{
 				 		format: "iagree",
