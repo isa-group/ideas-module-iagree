@@ -1,14 +1,14 @@
-		{
-				id: "iagree-template-language",
-				extension: "at",
-				name: "iAgreeTemplate",
+{
+				id: "iagree-agreement-language",
+				extension: "ag",
+				name: "iAgreeAgreement",
 				formats: [
 				 	{
 				 		format: "iagree",
-				 		editorModeId: "ace/mode/at",
-				 		_editorModeURI: "mode-at.js",
-				 		editorThemeId: "ace/theme/at",
-				 		_editorThemeURI: "theme-at.js",
+				 		editorModeId: "ace/mode/ag",
+				 		_editorModeURI: "mode-ag.js",
+				 		editorThemeId: "ace/theme/ag",
+				 		_editorThemeURI: "theme-ag.js",
 				 		checkLanguage: "true"
 				 	}, 
 				 	{
@@ -31,22 +31,6 @@
 				            	 		  }"
 				             },
 				             {
-				            	 id: "CheckCompliance",
-				            	 name: "Check Compliance",
-				            	  data: {},
-				            	 _remoteExecution: "false",
-				            	  action: "function(operationStructure, fileUri) {
-							            	  	CommandApi.fetchFileContentsBeforeExecutingOperation(operationStructure, 
-							            	  		fileUri, 'ao', 'checkCompliance', 
-							            	  		'Check Compliance with Offer', 
-							            	  		'Select an Offer to check this Template Document with.', 
-							            	  		'Check Compliance', 
-							            	  		function(result){}, 
-							            	  		function(result){}
-							            	  	)
-							            	}"
-				             },
-				             {
 				            	 id: "generateOPL",
 				            	 name: "Generate OPL",
 				            	 data: {},
@@ -67,13 +51,11 @@
 												EditorManager.openFile(newUri);
 											});
 										});
-									}									
+									}
 								 }"
 				             }
-				             
 				             ],
-				"templateProjects":null,
-   				"templateFiles":null,
+				             
 				inspectorLoader: "function(loader, format) {}"
 
 			}

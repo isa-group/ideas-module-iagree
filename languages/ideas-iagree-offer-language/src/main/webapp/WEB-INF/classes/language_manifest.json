@@ -1,58 +1,133 @@
 {
 				id: "iagree-offer-language",
-				extension: "iagreeoffer",
+				extension: "ao",
 				name: "iAgreeOffer",
 				formats: [
 				 	{
 				 		format: "iagree",
-				 		editorModeId: "ace/mode/iAgree",
-				 		_editorModeURI: "mode-iAgree.js",
-				 		editorThemeId: "ace/theme/iAgree",
-				 		_editorThemeURI: "theme-iAgree.js",
+				 		editorModeId: "ace/mode/ao",
+				 		_editorModeURI: "mode-ao.js",
+				 		editorThemeId: "ace/theme/ao",
+				 		_editorThemeURI: "theme-ao.js",
 				 		checkLanguage: "true"
-				 	},
+				 	}, 
 				 	{
 				 		format: "wsag",
 				 		editorModeId: "ace/mode/xml",
 				 		_editorModeURI: "mode-xml.js",
-				 		checkLanguage: "false"
+				 		checkLanguage: "false",
+				 		readOnly: "true"
 				 	}
 				],
 				 
 				operations: [
-
 				             {
 				            	 id: "checkConsistency",
-				            	 name: "Document Consistency",
+				            	 name: "Check validity",
 				            	 data: {},
 				            	 _remoteExecution: "true",
-				            	 action: "function(result) {console.log(result);}"
+				            	 action: "function(operation, fileUri, result) {}"
 				             },
 				             {
-				            	 id: "getNumberOfAlternatives",
-				            	 name: "Number of Alternatives",
-				            	 data: {},
-				            	 _remoteExecution: "true",
-				            	 action: "function(result) {console.log(result);}"
-				             },
-				             {
-				            	 id: "checkCompliance",
-				            	 name: "Check Compliance with a Template",
-				            	 data: {},
+				            	 id: "CheckComplianceAuto",
+				            	 name: "Check Compliance",
+				            	  data: {},
 				            	 _remoteExecution: "false",
 				            	  action: "function(operationStructure, fileUri) {
-							            	  	CommandApi.fetchFileContentsBeforeExecutingOperation(operationStructure, 
-							            	  		fileUri, 'iagreetemplate', 'checkCompliance', 
-							            	  		'Check Compliance with Template', 
-							            	  		'Select a Template to check this Offer Document with.', 
-							            	  		'Check Compliance', 
-							            	  		function(result){}, 
-							            	  		function(result){}
-							            	  	)
+				            	  				FileApi.loadFileContents(fileUri, function(offer){													
+													var firstLine = offer.split('\\n')[0];													
+													var offerTemplateName = firstLine.match(/Template (.*) version/)[1];
+													var offerTemplateVersion = firstLine.match(/Template .* version (.*)/)[1];
+													
+													var uri = fileUri.substring(0, fileUri.lastIndexOf('/') + 1);
+													var newUri = uri + offerTemplateName;
+													
+													FileApi.loadFileContents(newUri, function(template){
+														if(template){
+															var firstLine = template.split('\\n')[0];													
+															var templateName = firstLine.match(/Template (.*) version/)[1];
+															var templateVersion = firstLine.match(/Template .* version (.*)/)[1];
+															
+															if(offerTemplateVersion != templateVersion){
+																CommandApi.echo('<pre>Warning: Documents version mismatch. Template ' + templateName + ' has version ' + templateVersion +
+																 ' while version declared in the offer is ' + offerTemplateVersion);
+															}														
+															
+															CommandApi.doDocumentOperation('checkComplianceAuto', operationStructure.data, fileUri, function(result){
+																	console.log(result);
+																}, true, template);
+																
+														} else {
+															CommandApi.echo('<pre>ERROR: Template ' + offerTemplateName + ' not found.\\nIn order to check compliance, you need to ' + 
+															'specify a valid template in the first line (and be sure this file exists in the same directory).\\nExample: \\n' + 
+															'AgreementOffer MyOffer version 1.0 for Template MyTemplate.at version 1.0</pre>');
+														}
+													});
+												});
 							            	}"
+				             },
+				             {
+				            	 id: "ComplianceAnalysis",
+				            	 name: "Compliance Analysis",
+				            	  data: {},
+				            	 _remoteExecution: "false",
+				            	  action: "function(operationStructure, fileUri) {
+				            	  				FileApi.loadFileContents(fileUri, function(offer){													
+													var firstLine = offer.split('\\n')[0];													
+													var offerTemplateName = firstLine.match(/Template (.*) version/)[1];
+													var offerTemplateVersion = firstLine.match(/Template .* version (.*)/)[1];
+													
+													var uri = fileUri.substring(0, fileUri.lastIndexOf('/') + 1);
+													var newUri = uri + offerTemplateName;
+													
+													FileApi.loadFileContents(newUri, function(template){
+														if(template){
+															var firstLine = template.split('\\n')[0];													
+															var templateName = firstLine.match(/Template (.*) version/)[1];
+															var templateVersion = firstLine.match(/Template .* version (.*)/)[1];
+															
+															if(offerTemplateVersion != templateVersion){
+																CommandApi.echo('<pre>Warning: Documents version mismatch. Template ' + templateName + ' has version ' + templateVersion +
+																 ' while version declared in the offer is ' + offerTemplateVersion);
+															}														
+															
+															CommandApi.doDocumentOperation('complianceAnalysis', operationStructure.data, fileUri, function(result){
+																	console.log(result);
+																}, true, template);
+																
+														} else {
+															CommandApi.echo('<pre>ERROR: Template ' + offerTemplateName + ' not found.\\nIn order to get the compliance analysis, you need to ' + 
+															'specify a valid template in the first line (and be sure this file exists in the same directory).\\nExample: \\n' + 
+															'AgreementOffer MyOffer version 1.0 for Template MyTemplate.at version 1.0</pre>');
+														}
+													});
+												});
+							            	}"
+				             },
+				             {
+				            	 id: "generateOPL",
+				            	 name: "Generate OPL",
+				            	 data: {},
+				            	 _remoteExecution: "true",
+				            	 action: "function(operation, fileUri, result) {									
+									newUri = result.fileUri;
+									content = result.data;
+									
+									if(result.status != 'OK_PROBLEMS'){
+										res = newUri.split('/');
+										filename = res[res.length-1];
+										aux = filename.split('.');
+										name = aux[0];
+										extension = '.'+aux[1];
+										
+										EditorManager.createNode(newUri, name, extension, function(){
+											EditorManager.saveFile(newUri, content, function(){
+												EditorManager.openFile(newUri);
+											});
+										});
+									}
+								 }"
 				             }
-				             
-				             
 				             ],
 				             
 				inspectorLoader: "function(loader, format) {}"

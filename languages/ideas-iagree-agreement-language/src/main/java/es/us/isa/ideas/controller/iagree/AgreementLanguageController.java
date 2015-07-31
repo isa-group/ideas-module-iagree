@@ -14,13 +14,13 @@ import es.us.isa.ideas.module.controller.BaseLanguageController;
 
 @Controller
 @RequestMapping("/language")
-public class TemplateLanguageController extends BaseLanguageController {
+public class AgreementLanguageController extends BaseLanguageController {
 	
 	@RequestMapping(value = "/operation/{id}/execute", method = RequestMethod.POST)
 	@ResponseBody
 	public AppResponse executeOperation(String id, String content, String fileUri, String auxArg0) {
 		
-		return AnalyzeDelegate.analize(id, content, fileUri, DocType.TEMPLATE, auxArg0);
+		return AnalyzeDelegate.analize(id, content, fileUri, DocType.AGREEMENT, auxArg0);
 	}
 
 	@RequestMapping(value = "/format/{format}/checkLanguage", method = RequestMethod.POST)

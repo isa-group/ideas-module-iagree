@@ -3,14 +3,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>es.us.isa.ideas.module</groupId>
-		<artifactId>IDEAS-iAgree-module</artifactId>
+		<artifactId>IDEAS-iAgree-module2</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>./../../pom.xml</relativePath>
+		<relativePath>./../pom.xml</relativePath>
 	</parent>
-	<artifactId>ideas-iagree-template-language</artifactId>
-	<packaging>war</packaging>
-	<groupId>es.us.isa.ideas.module.iagree</groupId>
 
+	<groupId>es.us.isa.ideas.module.iagree</groupId>
+	<artifactId>ideas-iagree-common</artifactId>
+	<version>0.0.2-SNAPSHOT</version>
 
 	<!-- Properties -->
 	<properties>
@@ -19,21 +19,8 @@
 		<!--- VERSIONING -->
 		<java.version>1.7</java.version>
 		<ideas.version>0.0.1-SNAPSHOT</ideas.version>
+		<aml.version>0.3</aml.version>
 	</properties>
-
-	<!-- Repositories to download components and plugins -->
-	<pluginRepositories>
-		<pluginRepository>
-			<id>codehaus-snapshots</id>
-			<url>http://ci.repository.codehaus.org/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
 
 	<repositories>
 
@@ -54,6 +41,11 @@
 			<url>http://clinker.isagroup.es/nexus/content/repositories/ideas</url>
 		</repository>
 
+		<repository>
+			<id>AML</id>
+			<url>http://clinker.isagroup.es/nexus/content/repositories/AML</url>
+		</repository>
+
 	</repositories>
 
 	<dependencies>
@@ -66,15 +58,22 @@
 		</dependency>
 
 		<dependency>
-			<groupId>es.us.isa.ideas.module.iagree</groupId>
-			<artifactId>ideas-iagree-common</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<groupId>es.us.isa</groupId>
+			<artifactId>AML</artifactId>
+			<version>${aml.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr4-runtime</artifactId>
+			<version>4.5</version>
+			<scope>compile</scope>
 		</dependency>
 
 	</dependencies>

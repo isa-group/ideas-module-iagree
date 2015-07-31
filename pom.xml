@@ -5,13 +5,10 @@
 	<artifactId>IDEAS-iAgree-module</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>IDEAS-iAgree-module</name>
 	<modules>
-		<module>languages/iagree-common</module>
 		<module>languages/ideas-iagree-template-language</module>
 		<module>languages/ideas-iagree-offer-language</module>
+		<module>languages/ideas-iagree-agreement-language</module>
+		<module>ideas-iagree-common</module>
 	</modules>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 </project>
