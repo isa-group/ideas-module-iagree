@@ -3,14 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>es.us.isa.ideas.module</groupId>
-		<artifactId>IDEAS-iAgree-module</artifactId>
+		<artifactId>IDEAS-iAgree-module2</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>./../../pom.xml</relativePath>
 	</parent>
-	<artifactId>ideas-iagree-template-language</artifactId>
-	<packaging>war</packaging>
 	<groupId>es.us.isa.ideas.module.iagree</groupId>
-
+	<artifactId>ideas-iagree-agreement-language</artifactId>
+	<packaging>war</packaging>
 
 	<!-- Properties -->
 	<properties>
@@ -20,20 +19,6 @@
 		<java.version>1.7</java.version>
 		<ideas.version>0.0.1-SNAPSHOT</ideas.version>
 	</properties>
-
-	<!-- Repositories to download components and plugins -->
-	<pluginRepositories>
-		<pluginRepository>
-			<id>codehaus-snapshots</id>
-			<url>http://ci.repository.codehaus.org/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
 
 	<repositories>
 
@@ -77,8 +62,9 @@
 			<version>4.11</version>
 		</dependency>
 
+
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>

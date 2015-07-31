@@ -1,0 +1,33 @@
+[
+	{
+		"id": "valid",
+		"description": "Execute the valid operation for a valid document",
+		"opUri": "/language/operation/checkConsistency/execute",
+		"opMethod": "POST",
+		"parameters": 
+		{
+			"id": "checkConsistency",
+			"content": "",
+			"fileUri": "/tests/resources/iagree-core.at"
+		},
+		"results": [
+			{"status":"OK","message":"<pre>The document is consistent.</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/iagree-core.at","annotations":null,"customStruct":null}
+		]
+	},
+	{
+		"id": "invalid",
+		"description": "Execute the valid operation for an invalid document",
+		"opUri": "/language/operation/checkConsistency/execute",
+		"opMethod": "POST",
+		"parameters": 
+		{
+			"id": "checkConsistency",
+			"content": "",
+			"fileUri": "/tests/resources/iagree-core-dead.at"
+		},
+		"results": [
+			{"status":"OK_PROBLEMS","message":"<pre>The document has dead terms.\n{provedConflicts=[G1, G2], possibleConflicts=[]}</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/iagree-core-dead.at","annotations":null,"customStruct":null},
+			{"status":"OK_PROBLEMS","message":"<pre>The document has dead terms.\n{provedConflicts=[G2, G1], possibleConflicts=[]}</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/iagree-core-dead.at","annotations":null,"customStruct":null}
+		]
+	}
+]
