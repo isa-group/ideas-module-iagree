@@ -1,0 +1,43 @@
+		{
+				id: "iagree-template-language",
+				extension: "iagreetemplate",
+				name: "iAgreeTemplate",
+				formats: [
+				 	{
+				 		format: "iagree",
+				 		editorModeId: "ace/mode/iAgree",
+				 		_editorModeURI: "mode-iAgree.js",
+				 		editorThemeId: "ace/theme/iAgree",
+				 		_editorThemeURI: "theme-iAgree.js",
+				 		checkLanguage: "true"
+				 	},
+				 	{
+				 		format: "wsag",
+				 		editorModeId: "ace/mode/xml",
+				 		_editorModeURI: "mode-xml.js",
+				 		checkLanguage: "false"
+				 	}
+				],
+				 
+				operations: [
+
+				             {
+				            	 id: "checkConsistency",
+				            	 name: "Document Consistency",
+				            	 data: {},
+				            	 _remoteExecution: "true",
+				            	 action: "function(result) {console.log(result);}"
+				             },
+				             {
+				            	 id: "getNumberOfAlternatives",
+				            	 name: "Number of Alternatives",
+				            	 data: {},
+				            	 _remoteExecution: "true",
+				            	 action: "function(result) {console.log(result);}"
+				             }
+				             
+				             ],
+				             
+				inspectorLoader: "function(loader, format) {}"
+
+			}

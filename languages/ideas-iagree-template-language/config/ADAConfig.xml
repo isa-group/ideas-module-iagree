@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ADA>
+	<Analyzer id="Choco" implementation="es.us.isa.ada.choco.ChocoAnalyzer">
+		<Operation id="Consistency"
+			implementation="es.us.isa.ada.choco.questions.ChocoConsistencyOp"></Operation>
+		<Operation id="ExplainNonConsistency"
+            implementation="es.us.isa.ada.choco.questions.ChocoExplainNoConsistencyOp"></Operation>
+        <Operation id="Compliance"
+            implementation="es.us.isa.ada.choco.questions.ChocoComplianceOp"></Operation>
+        <Operation id="ExplainNonCompliance"
+            implementation="es.us.isa.ada.choco.questions.ChocoQuickxplainNoComplianceOp"></Operation>
+        <Operation id="LessRestrictiveOfferCompliance"
+            implementation="es.us.isa.ada.choco.questions.ChocoLessRestrictiveOfferComplianceOp"></Operation>
+        <Operation id="ExplainMoreRestrictiveOffer"
+            implementation="es.us.isa.ada.choco.questions.ChocoExplainMoreRestrictiveOfferOp"></Operation>
+        <Operation id="MoreRestrictiveTemplateTermsCompliance"
+            implementation="es.us.isa.ada.choco.questions.ChocoMoreRestrictiveTemplateTermsComplianceOp"></Operation>
+        <Operation id="ExplainLessRestrictiveTemplateTerms"
+            implementation="es.us.isa.ada.choco.questions.ChocoExplainLessRestrictiveTemplateTermsOp"></Operation>
+        <Operation id="LudicrousTerms"
+            implementation="es.us.isa.ada.choco.questions.ChocoLudicrousTermsOp"></Operation>
+	    <Operation id="DeadTerms"
+            implementation="es.us.isa.ada.choco.questions.ChocoDeadTermsOp"></Operation>
+        <Operation id="ExplainLudicrousTerms"
+            implementation="es.us.isa.ada.choco.questions.ChocoExplainLudicrousTermsOp"></Operation>
+        <Operation id="ExplainDeadTerms"
+            implementation="es.us.isa.ada.choco.questions.ChocoExplainDeadTermsOp"></Operation>
+        <Operation id="AlternativeDocuments"
+			implementation="es.us.isa.ada.choco.questions.ChocoAlternativeDocumentsOp"></Operation>
+		<Operation id="NumberOfAlternatives"
+			implementation="es.us.isa.ada.choco.questions.ChocoNumberOfAlternativeDocsOp"></Operation>    
+        <Operation id="Views"
+			implementation="es.us.isa.ada.choco.questions.ChocoDecomposeIntoViewsOp"></Operation>
+	</Analyzer>
+</ADA>

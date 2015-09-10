@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding = "UTF-8"?>
+<wsag:Template wsag:TemplateId="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+ xmlns:wsag="http://schemas.ggf.org/graap/2007/03/ws-agreement" 
+ xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+ xsi:schemaLocation="http://schemas.ggf.org/graap/2007/03/wsagreement" 
+ agreement_types.xsd="http://www.w3.org/2001/XMLSchema XMLSchema.xsd" >
+	<wsag:Name >AmazonS3</wsag:Name>
+	<wsag:Context >
+		<wsag:AgreementResponder >Provider</wsag:AgreementResponder >
+
+	</wsag:Context >
+
+	<wsag:Terms wsag:Name="AWS-S3">
+		<wsag:All >
+			<wsag:ServiceDescriptionTerm wsag:Name="SDT_AWS-S3" wsag:ServiceName="AWS-S3" >
+				<OfferItem name="Interface" wsag:Metric="metrics/AmazonS3_1398071096106:interfaces" ></OfferItem>
+				<OfferItem name="RRS" wsag:Metric="metrics/AmazonS3_1398071096106:boolean" ></OfferItem>
+				<OfferItem name="StorageSize" wsag:Metric="metrics/AmazonS3_1398071096106:size" ></OfferItem>
+				<OfferItem name="FirstProject" wsag:Metric="metrics/AmazonS3_1398071096106:boolean" ></OfferItem>
+				<OfferItem name="TotalPrice" wsag:Metric="metrics/AmazonS3_1398071096106:price" ></OfferItem>
+				<OfferItem name="StoragePrice" wsag:Metric="metrics/AmazonS3_1398071096106:price" ></OfferItem>
+				<OfferItem name="SupportPlanPrice" wsag:Metric="metrics/AmazonS3_1398071096106:price" ></OfferItem>
+			</wsag:ServiceDescriptionTerm>
+
+			<wsag:ServiceProperties wsag:Name="SP_AWS-S3" wsag:ServiceName="AWS-S3">
+				<wsag:VariableSet >
+					<wsag:Variable  wsag:Name="MUP" wsag:Metric="metrics/AmazonS3_1398071096106:percent" >
+						<wsag:Location >/MUP</wsag:Location>
+					</wsag:Variable >
+					<wsag:Variable  wsag:Name="TransferredGb" wsag:Metric="metrics/AmazonS3_1398071096106:mediumInt" >
+						<wsag:Location >/TransferredGb</wsag:Location>
+					</wsag:Variable >
+					<wsag:Variable  wsag:Name="ResponseTime" wsag:Metric="metrics/AmazonS3_1398071096106:time" >
+						<wsag:Location >/ResponseTime</wsag:Location>
+					</wsag:Variable >
+					<wsag:Variable  wsag:Name="ReadRequests" wsag:Metric="metrics/AmazonS3_1398071096106:mediumInt" >
+						<wsag:Location >/ReadRequests</wsag:Location>
+					</wsag:Variable >
+					<wsag:Variable  wsag:Name="WriteRequests" wsag:Metric="metrics/AmazonS3_1398071096106:mediumInt" >
+						<wsag:Location >/WriteRequests</wsag:Location>
+					</wsag:Variable >
+					<wsag:Variable  wsag:Name="OnlineReportingSupport" wsag:Metric="metrics/AmazonS3_1398071096106:boolean" >
+						<wsag:Location >/OnlineReportingSupport</wsag:Location>
+					</wsag:Variable >
+					<wsag:Variable  wsag:Name="PhoneSupport" wsag:Metric="metrics/AmazonS3_1398071096106:boolean" >
+						<wsag:Location >/PhoneSupport</wsag:Location>
+					</wsag:Variable >
+					<wsag:Variable  wsag:Name="TurnAroundTime" wsag:Metric="metrics/AmazonS3_1398071096106:time" >
+						<wsag:Location >/TurnAroundTime</wsag:Location>
+					</wsag:Variable >
+				</wsag:VariableSet >
+			</wsag:ServiceProperties>
+
+			<wsag:GuaranteeTerm wsag:Obligated="ServiceProvider" wsag:Name="G1" >
+				<wsag:ServiceLevelObjective >
+					<wsag:CustomServiceLevel >MUP&gt;=99</wsag:CustomServiceLevel>
+				</wsag:ServiceLevelObjective>
+			</wsag:GuaranteeTerm>
+			<wsag:GuaranteeTerm wsag:Obligated="ServiceConsumer" wsag:Name="G2" >
+				<wsag:ServiceLevelObjective >
+					<wsag:CustomServiceLevel >(TransferredGb&lt;StorageSize*2) AND (ReadRequests&gt;WriteRequests)</wsag:CustomServiceLevel>
+				</wsag:ServiceLevelObjective>
+			</wsag:GuaranteeTerm>
+			<wsag:GuaranteeTerm wsag:Obligated="ServiceProvider" wsag:Name="G3" >
+				<wsag:QualifyingCondition >
+					Interface="SOAP"
+				</wsag:QualifyingCondition>
+				<wsag:ServiceLevelObjective >
+					<wsag:CustomServiceLevel >ResponseTime&lt;=100</wsag:CustomServiceLevel>
+				</wsag:ServiceLevelObjective>
+			</wsag:GuaranteeTerm>
+			<wsag:GuaranteeTerm wsag:Obligated="ServiceProvider" wsag:Name="G4" >
+				<wsag:QualifyingCondition >
+					Interface="REST"
+				</wsag:QualifyingCondition>
+				<wsag:ServiceLevelObjective >
+					<wsag:CustomServiceLevel >ResponseTime&lt;=70</wsag:CustomServiceLevel>
+				</wsag:ServiceLevelObjective>
+			</wsag:GuaranteeTerm>
+
+		</wsag:All >
+	</wsag:Terms >
+
+	<wsag:CreationConstraints >
+		<wsag:Constraint >
+			<Name>C1</Name>
+			<Content>RRS="True" IMPLIES StoragePrice=StorageSize*1</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C2</Name>
+			<Content>RRS="False" IMPLIES StoragePrice=StorageSize*2</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C3</Name>
+			<Content>StorageSize&lt;=150</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C4</Name>
+			<Content>FirstProject="False" IMPLIES TotalPrice=StoragePrice+SupportPlanPrice</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C5</Name>
+			<Content>ReadRequests&lt;WriteRequests</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C6</Name>
+			<Content>Interface="REST" AND ResponseTime&gt;70</Content>
+		</wsag:Constraint >
+	</wsag:CreationConstraints >
+</wsag:Template>

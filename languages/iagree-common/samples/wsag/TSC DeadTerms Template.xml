@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding = "UTF-8"?>
+<wsag:Template wsag:TemplateId="1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+ xmlns:wsag="http://schemas.ggf.org/graap/2007/03/ws-agreement" 
+ xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+ xsi:schemaLocation="http://schemas.ggf.org/graap/2007/03/wsagreement" 
+ agreement_types.xsd="http://www.w3.org/2001/XMLSchema XMLSchema.xsd" >
+	<wsag:Name >TranslationService</wsag:Name>
+	<wsag:Context >
+		<wsag:AgreementResponder >Provider</wsag:AgreementResponder >
+
+	</wsag:Context >
+
+	<wsag:Terms wsag:Name="TranslationService">
+		<wsag:All >
+			<wsag:ServiceDescriptionTerm wsag:Name="SDT_TranslationService" wsag:ServiceName="TranslationService" >
+				<OfferItem name="TranslationLangs" wsag:Metric="metrics/TranslationService_1398072125847:translations" >"ES_to_EN-UK"</OfferItem>
+				<OfferItem name="InputFileSize" wsag:Metric="metrics/TranslationService_1398072125847:int" ></OfferItem>
+				<OfferItem name="ImageTranslation" wsag:Metric="metrics/TranslationService_1398072125847:boolean" ></OfferItem>
+				<OfferItem name="Cost" wsag:Metric="metrics/TranslationService_1398072125847:int" ></OfferItem>
+			</wsag:ServiceDescriptionTerm>
+
+			<wsag:ServiceProperties wsag:Name="SP_TranslationService" wsag:ServiceName="TranslationService">
+				<wsag:VariableSet >
+					<wsag:Variable  wsag:Name="TranslationTime" wsag:Metric="metrics/TranslationService_1398072125847:time" >
+						<wsag:Location >/TranslationTime</wsag:Location>
+					</wsag:Variable >
+					<wsag:Variable  wsag:Name="InputErrors" wsag:Metric="metrics/TranslationService_1398072125847:percent" >
+						<wsag:Location >/InputErrors</wsag:Location>
+					</wsag:Variable >
+				</wsag:VariableSet >
+			</wsag:ServiceProperties>
+
+			<wsag:GuaranteeTerm wsag:Obligated="ServiceProvider" wsag:Name="G1" >
+				<wsag:QualifyingCondition >
+					ImageTranslation="False"
+				</wsag:QualifyingCondition>
+				<wsag:ServiceLevelObjective >
+					<wsag:CustomServiceLevel >TranslationTime&lt;=1</wsag:CustomServiceLevel>
+				</wsag:ServiceLevelObjective>
+			</wsag:GuaranteeTerm>
+			<wsag:GuaranteeTerm wsag:Obligated="ServiceProvider" wsag:Name="G2" >
+				<wsag:QualifyingCondition >
+					ImageTranslation="True"
+				</wsag:QualifyingCondition>
+				<wsag:ServiceLevelObjective >
+					<wsag:CustomServiceLevel >TranslationTime&lt;=2</wsag:CustomServiceLevel>
+				</wsag:ServiceLevelObjective>
+			</wsag:GuaranteeTerm>
+			<wsag:GuaranteeTerm wsag:Obligated="ServiceConsumer" wsag:Name="G3" >
+				<wsag:ServiceLevelObjective >
+					<wsag:CustomServiceLevel >InputErrors&lt;=1</wsag:CustomServiceLevel>
+				</wsag:ServiceLevelObjective>
+			</wsag:GuaranteeTerm>
+			<wsag:GuaranteeTerm wsag:Obligated="ServiceConsumer" wsag:Name="G4" >
+				<wsag:ServiceLevelObjective >
+					<wsag:CustomServiceLevel >InputFileSize&gt;30</wsag:CustomServiceLevel>
+				</wsag:ServiceLevelObjective>
+			</wsag:GuaranteeTerm>
+			<wsag:GuaranteeTerm wsag:Obligated="ServiceProvider" wsag:Name="G5" >
+				<wsag:QualifyingCondition >
+					InputErrors&gt;1
+				</wsag:QualifyingCondition>
+				<wsag:ServiceLevelObjective >
+					<wsag:CustomServiceLevel >TranslationTime&lt;=1</wsag:CustomServiceLevel>
+				</wsag:ServiceLevelObjective>
+			</wsag:GuaranteeTerm>
+
+		</wsag:All >
+	</wsag:Terms >
+
+	<wsag:CreationConstraints >
+		<wsag:Constraint >
+			<Name>C1</Name>
+			<Content>(TranslationLangs = "ES_to_EN-UK") OR (TranslationLangs = "ES_to_FR") OR (TranslationLangs = "EN-UK_to_ES") OR (TranslationLangs = "FR_to_ES") OR (TranslationLangs = "Auto"))</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C2</Name>
+			<Content>InputFileSize&lt;=50</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C3</Name>
+			<Content>Cost&gt;=0</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C4</Name>
+			<Content>ImageTranslation="False" IMPLIES Cost=InputFileSize*1</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C5</Name>
+			<Content>ImageTranslation="True" IMPLIES Cost=InputFileSize*2</Content>
+		</wsag:Constraint >
+		<wsag:Constraint >
+			<Name>C6</Name>
+			<Content>InputFileSize&lt;30 IMPLIES ImageTranslation="False"</Content>
+		</wsag:Constraint >
+	</wsag:CreationConstraints >
+</wsag:Template>

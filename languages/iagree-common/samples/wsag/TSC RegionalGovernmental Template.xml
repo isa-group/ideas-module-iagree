@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding = "UTF-8"?>
+<wsag:Template wsag:TemplateId="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+ xmlns:wsag="http://schemas.ggf.org/graap/2007/03/ws-agreement" 
+ xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+ xsi:schemaLocation="http://schemas.ggf.org/graap/2007/03/wsagreement" 
+ agreement_types.xsd="http://www.w3.org/2001/XMLSchema XMLSchema.xsd" >
+	<wsag:Name >FASTServiceProvisioning</wsag:Name>
+	<wsag:Context >
+		<wsag:AgreementResponder >Provider</wsag:AgreementResponder >
+
+	</wsag:Context >
+
+	<wsag:Terms wsag:Name="ServiceProvisioning">
+		<wsag:All >
+			<wsag:ServiceDescriptionTerm wsag:Name="SDT_ServiceProvisioning" wsag:ServiceName="ServiceProvisioning" >
+				<OfferItem name="ConsumerNode" wsag:Metric="metrics/FASTServiceProvisioning_1398072509909:node" ></OfferItem>
+				<OfferItem name="Availability" wsag:Metric="metrics/FASTServiceProvisioning_1398072509909:period" ></OfferItem>
+				<OfferItem name="Certificate" wsag:Metric="metrics/FASTServiceProvisioning_1398072509909:certificateType" ></OfferItem>
+				<OfferItem name="InterfaceVersion" wsag:Metric="metrics/FASTServiceProvisioning_1398072509909:interfaceVersionType" ></OfferItem>
+			</wsag:ServiceDescriptionTerm>
+
+			<wsag:ServiceProperties wsag:Name="SP_ServiceProvisioning" wsag:ServiceName="ServiceProvisioning">
+				<wsag:VariableSet >
+					<wsag:Variable  wsag:Name="Availability" wsag:Metric="metrics/FASTServiceProvisioning_1398072509909:period" >
+						<wsag:Location >/Availability</wsag:Location>
+					</wsag:Variable >
+					<wsag:Variable  wsag:Name="Certificate" wsag:Metric="metrics/FASTServiceProvisioning_1398072509909:certificateType" >
+						<wsag:Location >/Certificate</wsag:Location>
+					</wsag:Variable >
+					<wsag:Variable  wsag:Name="InterfaceVersion" wsag:Metric="metrics/FASTServiceProvisioning_1398072509909:interfaceVersionType" >
+						<wsag:Location >/InterfaceVersion</wsag:Location>
+					</wsag:Variable >
+				</wsag:VariableSet >
+			</wsag:ServiceProperties>
+
+			<wsag:GuaranteeTerm wsag:Obligated="ServiceProvider" wsag:Name="G1" >
+				<wsag:QualifyingCondition >
+					ConsumerNode="Node_1"
+				</wsag:QualifyingCondition>
+				<wsag:ServiceLevelObjective >
+					<wsag:CustomServiceLevel >((Availability = "WorkingNights") OR (Availability = "NonWorkingPeriods"))) AND ((Certificate = "Cert1") OR (Certificate = "Cert2") OR (Certificate = "Cert3")))</wsag:CustomServiceLevel>
+				</wsag:ServiceLevelObjective>
+			</wsag:GuaranteeTerm>
+			<wsag:GuaranteeTerm wsag:Obligated="ServiceProvider" wsag:Name="G2" >
+				<wsag:QualifyingCondition >
+					InterfaceVersion="1.0"
+				</wsag:QualifyingCondition>
+				<wsag:ServiceLevelObjective >
+					<wsag:CustomServiceLevel >(Availability="WorkingDays") AND (Certificate="Cert1")</wsag:CustomServiceLevel>
+				</wsag:ServiceLevelObjective>
+			</wsag:GuaranteeTerm>
+
+		</wsag:All >
+	</wsag:Terms >
+
+	<wsag:CreationConstraints >
+		<wsag:Constraint >
+			<Name>C1</Name>
+			<Content>Certificate="Cert1" IMPLIES (InterfaceVersion="1.0") AND (ConsumerNode="Node_1")</Content>
+		</wsag:Constraint >
+	</wsag:CreationConstraints >
+</wsag:Template>

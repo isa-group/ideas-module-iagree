@@ -1,0 +1,48 @@
+Template TranslationService version 1.3
+	Provider as Responder
+	Metrics:
+		percent: float [0..100]
+		time: integer [0..100]
+		translations: set {ES_to_EN-UK, ES_to_EN-US, ES_to_FR, EN-UK_to_ES, EN-US_to_ES, FR_to_ES, Auto}
+		int: integer [0..500]
+		
+AgreementTerms
+	Service TranslationService availableAt. "www.translator.com/translator.wsdl"
+		GlobalDescription 
+			TranslationLangs: translations = "ES_to_EN-UK";
+			InputFileSize: int
+			ImageTranslation: boolean
+			Cost: int
+
+	MonitorableProperties
+		global:
+			TranslationTime: time
+			InputErrors: percent
+				
+	GuaranteeTerms		
+		G3: Consumer guarantees InputErrors <= 1;
+		
+		G4: Consumer guarantees InputFileSize > 30;
+		
+		G5: Provider guarantees TranslationTime <= 1;  
+			onlyIf (InputErrors > 1);
+			
+		G8: exactly one of 
+			G8.1: Provider guarantees TranslationTime <= 2;
+				onlyIf (TranslationLangs = "ES_to_DE");
+
+			G8.2: Provider guarantees TranslationTime <= 1;
+				onlyIf (TranslationLangs belongs {EN-UK_to_ES, EN-US_to_ES, FR_to_ES, Auto});
+		end
+
+CreationConstraints
+	C1: TranslationLangs belongs {ES_to_EN-UK, ES_to_FR, EN-UK_to_ES, FR_to_ES, Auto};
+	C2: InputFileSize <= 50;
+	C3: Cost >= 0;
+	C4: Cost = InputFileSize * 1;
+		onlyIf (ImageTranslation=false);
+	C5: Cost = InputFileSize * 2;
+		onlyIf (ImageTranslation=true);
+	C6: ImageTranslation="False";
+		onlyIf (InputFileSize < 30);
+EndTemplate		

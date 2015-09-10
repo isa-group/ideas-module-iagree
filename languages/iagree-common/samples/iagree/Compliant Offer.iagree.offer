@@ -1,0 +1,32 @@
+AgreementOffer CompliantOffer version 1.0 for TranslationServiceForCompliance version 1.0
+	Provider as Responder
+	Metrics:
+		percent: float [0..100]
+		time: integer [0..23]
+		translations: set {ES_to_EN-UK, ES_to_EN-US, ES_to_FR, EN-UK_to_ES, EN-US_to_ES, FR_to_ES, Auto}
+		int: integer [0..20]
+		
+AgreementTerms
+	Service TranslationServiceForCompliance availableAt. "www.translator.com/translator.wsdl"
+		GlobalDescription
+			TranslationLangs: translations = "ES_to_EN-UK";
+			InputFileSize: int = 9;
+			ImageTranslation: boolean = false;
+			Cost: int = 9;
+
+	MonitorableProperties
+		global:
+			TranslationTime: time
+			InputErrors: percent
+				
+	GuaranteeTerms
+		G1: Provider guarantees TranslationTime <= 1;
+			onlyIf (ImageTranslation=false);
+			
+		G2: Provider guarantees TranslationTime <= 2;
+			onlyIf (ImageTranslation=true);
+		
+		G3: Consumer guarantees InputErrors <= 1;
+
+
+EndAgreementOffer		

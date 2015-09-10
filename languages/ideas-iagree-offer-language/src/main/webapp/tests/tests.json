@@ -11,7 +11,7 @@
 			"fileUri": "/tests/resources/iagree-core.ao"
 		},
 		"results": [
-			{"status":"OK","message":"<pre>The document is consistent.</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/iagree-core.ao","annotations":null,"customStruct":null}
+			{"status":"OK","message":"<pre><b>The document is consistent.</b></pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/iagree-core.ao","annotations":null,"customStruct":null}
 		]
 	},
 	{
@@ -26,8 +26,8 @@
 			"fileUri": "/tests/resources/iagree-core-dead.ao"
 		},
 		"results": [
-			{"status":"OK_PROBLEMS","message":"<pre>The document has dead terms.\n{provedConflicts=[G1, G2], possibleConflicts=[]}</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/iagree-core-dead.ao","annotations":null,"customStruct":null},
-			{"status":"OK_PROBLEMS","message":"<pre>The document has dead terms.\n{provedConflicts=[G2, G1], possibleConflicts=[]}</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/iagree-core-dead.ao","annotations":null,"customStruct":null}
+			{"status":"OK_PROBLEMS","message":"<pre><b>The document has dead terms.</b>\n[G1_1, G2]</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/iagree-core-dead.ao","annotations":null,"customStruct":null},
+			{"status":"OK_PROBLEMS","message":"<pre><b>The document has dead terms.</b>\n[G2, G1_1]</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/iagree-core-dead.ao","annotations":null,"customStruct":null}
 		]
 	},
 	{
@@ -39,11 +39,11 @@
 		{
 			"id": "checkCompliance",
 			"content": "",
-			"fileUri": "/tests/resources/compliant-offer.ao",
-			"auxArg0": "/tests/resources/compliant-template.at"
+			"fileUri": "/tests/resources/compliant-template.at",
+			"auxArg0": "/tests/resources/compliant-offer.ao"
 		},
 		"results": [
-			{"status":"OK","message":"<pre>The provided offer is compliant with the provided template.</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/compliant-offer.ao","annotations":null,"customStruct":null}
+			{"status":"OK","message":"<pre><b>The provided offer is compliant with the provided template.</b></pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/compliant-template.at","annotations":null,"customStruct":null}
 		]
 	}
 ]

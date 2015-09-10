@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="1179,1586" id="es.us.isa.ada.wsag10" metadata="uml2-1.0" initialized="true" scrolledX="255" scrolledY="532" tag="1000" key="32303037303533312D31303030205753414720312E3020446F63756D656E742F636D756C6C6572">
+  <children xsi:type="editmodel:ClassEditModel" name="BusinessValueList" location="1125,135" size="302,319" id="es.us.isa.ada.wsag10/BusinessValueList" runTimeClassModel="setCustomBVLs(Ljava.util.Collection;),getRewards(),setPreferences(Ljava.util.Collection;),getCustomBVLs(),rewards,getPreferences(),penalties,getImportance(),setPenalties(Ljava.util.Collection;),setImportance(I),importance,setRewards(Ljava.util.Collection;),customBVLs,preferences,getPenalties()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="279,90">
+      <children xsi:type="editmodel:AttributeEditModel" name="importance" id="es.us.isa.ada.wsag10/BusinessValueList#importance"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="rewards" id="es.us.isa.ada.wsag10/BusinessValueList#rewards"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="penalties" id="es.us.isa.ada.wsag10/BusinessValueList#penalties"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="customBVLs" id="es.us.isa.ada.wsag10/BusinessValueList#customBVLs"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="preferences" id="es.us.isa.ada.wsag10/BusinessValueList#preferences"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="108,180">
+      <children xsi:type="editmodel:MethodEditModel" name="getImportance" id="es.us.isa.ada.wsag10/BusinessValueList#getImportance()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setImportance" id="es.us.isa.ada.wsag10/BusinessValueList#setImportance(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getCustomBVLs" id="es.us.isa.ada.wsag10/BusinessValueList#getCustomBVLs()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setRewards" id="es.us.isa.ada.wsag10/BusinessValueList#setRewards(Ljava.util.Collection;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setPenalties" id="es.us.isa.ada.wsag10/BusinessValueList#setPenalties(Ljava.util.Collection;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPreferences" id="es.us.isa.ada.wsag10/BusinessValueList#getPreferences()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPenalties" id="es.us.isa.ada.wsag10/BusinessValueList#getPenalties()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRewards" id="es.us.isa.ada.wsag10/BusinessValueList#getRewards()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setPreferences" id="es.us.isa.ada.wsag10/BusinessValueList#setPreferences(Ljava.util.Collection;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setCustomBVLs" id="es.us.isa.ada.wsag10/BusinessValueList#setCustomBVLs(Ljava.util.Collection;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Context" location="335,525" size="180,165" id="es.us.isa.ada.wsag10/Context" runTimeClassModel="templateId,extraTime,expirationTime,agreementResponder,agreementInitiator,serviceProviderRole,templateName">
+    <children xsi:type="editmodel:CompartmentEditModel" size="157,126">
+      <children xsi:type="editmodel:AttributeEditModel" name="agreementInitiator" id="es.us.isa.ada.wsag10/Context#agreementInitiator"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="agreementResponder" id="es.us.isa.ada.wsag10/Context#agreementResponder"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="expirationTime" id="es.us.isa.ada.wsag10/Context#expirationTime"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="extraTime" id="es.us.isa.ada.wsag10/Context#extraTime"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="serviceProviderRole" id="es.us.isa.ada.wsag10/Context#serviceProviderRole"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="templateId" id="es.us.isa.ada.wsag10/Context#templateId"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="templateName" id="es.us.isa.ada.wsag10/Context#templateName"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="CreationConstraints" location="465,764" size="242,139" id="es.us.isa.ada.wsag10/CreationConstraints" runTimeClassModel="addConstraint(Les.us.isa.ada.wsag10.GeneralConstraint;),addItem(Les.us.isa.ada.wsag10.Item;),items,constraints,CreationConstraints()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="219,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="items" id="es.us.isa.ada.wsag10/CreationConstraints#items"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="constraints" id="es.us.isa.ada.wsag10/CreationConstraints#constraints"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="125,54">
+      <children xsi:type="editmodel:MethodEditModel" name="CreationConstraints" id="es.us.isa.ada.wsag10/CreationConstraints#CreationConstraints()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addConstraint" id="es.us.isa.ada.wsag10/CreationConstraints#addConstraint(Les.us.isa.ada.wsag10.GeneralConstraint;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addItem" id="es.us.isa.ada.wsag10/CreationConstraints#addItem(Les.us.isa.ada.wsag10.Item;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Metric" location="733,1173" size="150,147" id="es.us.isa.ada.wsag10/Metric" runTimeClassModel="min,dataType,max,rEAL_TYPE,iNTEGER_TYPE,sTRING_TYPE">
+    <children xsi:type="editmodel:CompartmentEditModel" size="127,108">
+      <children xsi:type="editmodel:AttributeEditModel" name="dataType" id="es.us.isa.ada.wsag10/Metric#dataType"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="max" id="es.us.isa.ada.wsag10/Metric#max"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="min" id="es.us.isa.ada.wsag10/Metric#min"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="rEAL_TYPE" id="es.us.isa.ada.wsag10/Metric#rEAL_TYPE"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="iNTEGER_TYPE" id="es.us.isa.ada.wsag10/Metric#iNTEGER_TYPE"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="sTRING_TYPE" id="es.us.isa.ada.wsag10/Metric#sTRING_TYPE"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ServiceScope" location="673,30" size="139,57" id="es.us.isa.ada.wsag10/ServiceScope" runTimeClassModel="serviceName">
+    <children xsi:type="editmodel:CompartmentEditModel" size="116,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="serviceName" id="es.us.isa.ada.wsag10/ServiceScope#serviceName"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Target" location="986,1205" size="83,29" id="es.us.isa.ada.wsag10/Target" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Variable" location="403,1191" size="135,75" id="es.us.isa.ada.wsag10/Variable" runTimeClassModel="location,uniqueName">
+    <children xsi:type="editmodel:CompartmentEditModel" size="112,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="location" id="es.us.isa.ada.wsag10/Variable#location"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="uniqueName" id="es.us.isa.ada.wsag10/Variable#uniqueName"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ServiceProperties" location="255,300" size="195,57" id="es.us.isa.ada.wsag10/ServiceProperties" runTimeClassModel="variableSet">
+    <children xsi:type="editmodel:CompartmentEditModel" size="172,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="variableSet" id="es.us.isa.ada.wsag10/ServiceProperties#variableSet"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="es.us.isa.ada.wsag10/ServiceTerm&lt;-es.us.isa.ada.wsag10/ServiceProperties" source="//@children.7" target="//@children.10/@sourceConnections.0" targetEnd="//@children.7/@sourceConnections.0/@children.1" sourceEnd="//@children.7/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="97,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="GuaranteeTerm" location="629,157" size="202,93" id="es.us.isa.ada.wsag10/GuaranteeTerm" runTimeClassModel="qualifyingCondition,scopes,obligated">
+    <children xsi:type="editmodel:CompartmentEditModel" size="179,54">
+      <children xsi:type="editmodel:AttributeEditModel" name="obligated" id="es.us.isa.ada.wsag10/GuaranteeTerm#obligated"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="qualifyingCondition" id="es.us.isa.ada.wsag10/GuaranteeTerm#qualifyingCondition"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="scopes" id="es.us.isa.ada.wsag10/GuaranteeTerm#scopes"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.13/@sourceConnections.0 //@children.11/@sourceConnections.0" autoLocated="true" id="es.us.isa.ada.wsag10/Term&lt;-es.us.isa.ada.wsag10/GuaranteeTerm" source="//@children.8" target="//@children.12" targetEnd="//@children.8/@sourceConnections.0/@children.1" sourceEnd="//@children.8/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="101,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="62,57" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ServiceReference" location="480,300" size="155,29" id="es.us.isa.ada.wsag10/ServiceReference" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="es.us.isa.ada.wsag10/ServiceTerm&lt;-es.us.isa.ada.wsag10/ServiceReference" source="//@children.9" target="//@children.10/@sourceConnections.0" targetEnd="//@children.9/@sourceConnections.0/@children.1" sourceEnd="//@children.9/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="77,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ServiceDescriptionTerm" location="15,300" size="218,103" id="es.us.isa.ada.wsag10/ServiceDescriptionTerm" runTimeClassModel="getFeatureValue(Ljava.lang.String;),serviceFeatures,setFeature(Ljava.lang.String;Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="195,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="serviceFeatures" id="es.us.isa.ada.wsag10/ServiceDescriptionTerm#serviceFeatures"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="110,36">
+      <children xsi:type="editmodel:MethodEditModel" name="getFeatureValue" id="es.us.isa.ada.wsag10/ServiceDescriptionTerm#getFeatureValue(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setFeature" id="es.us.isa.ada.wsag10/ServiceDescriptionTerm#setFeature(Ljava.lang.String;Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.7/@sourceConnections.0 //@children.9/@sourceConnections.0" autoLocated="true" id="es.us.isa.ada.wsag10/ServiceTerm&lt;-es.us.isa.ada.wsag10/ServiceDescriptionTerm" source="//@children.10" target="//@children.13" targetEnd="//@children.10/@sourceConnections.0/@children.1" sourceEnd="//@children.10/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="109,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="69,57" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="TermCompositor" location="37,157" size="214,175" id="es.us.isa.ada.wsag10/TermCompositor" runTimeClassModel="comprisedTerms,eXACTLY_ONE,TermCompositor(),aLL,oNE_OR_MORE,type,addComprisedTerm(Les.us.isa.ada.wsag10.Term;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="191,90">
+      <children xsi:type="editmodel:AttributeEditModel" name="comprisedTerms" id="es.us.isa.ada.wsag10/TermCompositor#comprisedTerms"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="type" id="es.us.isa.ada.wsag10/TermCompositor#type"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="eXACTLY_ONE" id="es.us.isa.ada.wsag10/TermCompositor#eXACTLY_ONE"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="aLL" id="es.us.isa.ada.wsag10/TermCompositor#aLL"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="oNE_OR_MORE" id="es.us.isa.ada.wsag10/TermCompositor#oNE_OR_MORE"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="123,36">
+      <children xsi:type="editmodel:MethodEditModel" name="addComprisedTerm" id="es.us.isa.ada.wsag10/TermCompositor#addComprisedTerm(Les.us.isa.ada.wsag10.Term;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="TermCompositor" id="es.us.isa.ada.wsag10/TermCompositor#TermCompositor()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="es.us.isa.ada.wsag10/Term&lt;-es.us.isa.ada.wsag10/TermCompositor" source="//@children.11" target="//@children.8/@sourceConnections.0" targetEnd="//@children.11/@sourceConnections.0/@children.1" sourceEnd="//@children.11/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="107,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.8/@sourceConnections.0" name="Term" location="291,30" size="124,57" id="es.us.isa.ada.wsag10/Term" runTimeClassModel="termName">
+    <children xsi:type="editmodel:CompartmentEditModel" size="101,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="termName" id="es.us.isa.ada.wsag10/Term#termName"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.10/@sourceConnections.0" name="ServiceTerm" location="283,166" size="139,57" id="es.us.isa.ada.wsag10/ServiceTerm" runTimeClassModel="serviceName">
+    <children xsi:type="editmodel:CompartmentEditModel" size="116,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="serviceName" id="es.us.isa.ada.wsag10/ServiceTerm#serviceName"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="es.us.isa.ada.wsag10/Term&lt;-es.us.isa.ada.wsag10/ServiceTerm" source="//@children.13" target="//@children.8/@sourceConnections.0" targetEnd="//@children.13/@sourceConnections.0/@children.1" sourceEnd="//@children.13/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="69,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="StringSLO" location="859,440" size="107,57" id="es.us.isa.ada.wsag10/StringSLO" runTimeClassModel="slo">
+    <children xsi:type="editmodel:CompartmentEditModel" size="67,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="slo" id="es.us.isa.ada.wsag10/StringSLO#slo"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="es.us.isa.ada.wsag10/CustomServiceLevel&lt;-es.us.isa.ada.wsag10/StringSLO" source="//@children.14" target="//@children.17" targetEnd="//@children.14/@sourceConnections.0/@children.1" sourceEnd="//@children.14/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="53,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="85,43"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.17/@sourceConnections.0" name="SLO" location="961,240" size="78,43" id="es.us.isa.ada.wsag10/SLO" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="KPITarget" location="1029,333" size="116,57" id="es.us.isa.ada.wsag10/KPITarget" runTimeClassModel="kpiName">
+    <children xsi:type="editmodel:CompartmentEditModel" size="93,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="kpiName" id="es.us.isa.ada.wsag10/KPITarget#kpiName"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="es.us.isa.ada.wsag10/SLO&lt;-es.us.isa.ada.wsag10/KPITarget" source="//@children.16" target="//@children.17/@sourceConnections.0" targetEnd="//@children.16/@sourceConnections.0/@children.1" sourceEnd="//@children.16/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="58,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.14/@sourceConnections.0" name="CustomServiceLevel" location="827,333" size="172,43" id="es.us.isa.ada.wsag10/CustomServiceLevel" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.16/@sourceConnections.0" autoLocated="true" id="es.us.isa.ada.wsag10/SLO&lt;-es.us.isa.ada.wsag10/CustomServiceLevel" source="//@children.17" target="//@children.15" targetEnd="//@children.17/@sourceConnections.0/@children.1" sourceEnd="//@children.17/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="86,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="39,43" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Item" location="603,1073" size="113,57" id="es.us.isa.ada.wsag10/Item" runTimeClassModel="location">
+    <children xsi:type="editmodel:CompartmentEditModel" size="90,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="location" id="es.us.isa.ada.wsag10/Item#location"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="es.us.isa.ada.wsag10/CreationConstraint&lt;-es.us.isa.ada.wsag10/Item" source="//@children.18" target="//@children.19/@sourceConnections.0" targetEnd="//@children.18/@sourceConnections.0/@children.1" sourceEnd="//@children.18/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="56,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="GeneralConstraint" location="439,1073" size="157,57" id="es.us.isa.ada.wsag10/GeneralConstraint" runTimeClassModel="constraint">
+    <children xsi:type="editmodel:CompartmentEditModel" size="101,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="constraint" id="es.us.isa.ada.wsag10/GeneralConstraint#constraint"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.18/@sourceConnections.0" autoLocated="true" id="es.us.isa.ada.wsag10/CreationConstraint&lt;-es.us.isa.ada.wsag10/GeneralConstraint" source="//@children.19" target="//@children.20" targetEnd="//@children.19/@sourceConnections.0/@children.1" sourceEnd="//@children.19/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="78,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="80,57" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.19/@sourceConnections.0" name="CreationConstraint" location="514,945" size="160,57" id="es.us.isa.ada.wsag10/CreationConstraint" runTimeClassModel="ccName">
+    <children xsi:type="editmodel:CompartmentEditModel" size="92,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="ccName" id="es.us.isa.ada.wsag10/CreationConstraint#ccName"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="All" location="540,630" size="59,29" id="es.us.isa.ada.wsag10/All" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.22/@sourceConnections.0 //@children.25/@sourceConnections.0 //@children.26/@sourceConnections.0 //@children.24/@sourceConnections.0" autoLocated="true" id="es.us.isa.ada.wsag10/ItemConstraint&lt;-es.us.isa.ada.wsag10/All" source="//@children.21" target="//@children.23" targetEnd="//@children.21/@sourceConnections.0/@children.1" sourceEnd="//@children.21/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="29,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="67,29" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Choice" location="629,630" size="86,29" id="es.us.isa.ada.wsag10/Choice" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="es.us.isa.ada.wsag10/ItemConstraint&lt;-es.us.isa.ada.wsag10/Choice" source="//@children.22" target="//@children.21/@sourceConnections.0" targetEnd="//@children.22/@sourceConnections.0/@children.1" sourceEnd="//@children.22/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="43,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.21/@sourceConnections.0" name="ItemConstraint" location="740,551" size="134,29" id="es.us.isa.ada.wsag10/ItemConstraint" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Sequence" location="1038,630" size="106,29" id="es.us.isa.ada.wsag10/Sequence" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="es.us.isa.ada.wsag10/ItemConstraint&lt;-es.us.isa.ada.wsag10/Sequence" source="//@children.24" target="//@children.21/@sourceConnections.0" targetEnd="//@children.24/@sourceConnections.0/@children.1" sourceEnd="//@children.24/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="53,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Group" location="745,630" size="81,29" id="es.us.isa.ada.wsag10/Group" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="es.us.isa.ada.wsag10/ItemConstraint&lt;-es.us.isa.ada.wsag10/Group" source="//@children.25" target="//@children.21/@sourceConnections.0" targetEnd="//@children.25/@sourceConnections.0/@children.1" sourceEnd="//@children.25/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="40,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Restriction" location="856,630" size="142,175" id="es.us.isa.ada.wsag10/Restriction" runTimeClassModel="maxExclusive,minInclusive,baseType,minExclusive,maxInclusive,getBaseType(),setBaseType(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="119,90">
+      <children xsi:type="editmodel:AttributeEditModel" name="maxExclusive" id="es.us.isa.ada.wsag10/Restriction#maxExclusive"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="maxInclusive" id="es.us.isa.ada.wsag10/Restriction#maxInclusive"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="minExclusive" id="es.us.isa.ada.wsag10/Restriction#minExclusive"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="minInclusive" id="es.us.isa.ada.wsag10/Restriction#minInclusive"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="baseType" id="es.us.isa.ada.wsag10/Restriction#baseType"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="94,36">
+      <children xsi:type="editmodel:MethodEditModel" name="setBaseType" id="es.us.isa.ada.wsag10/Restriction#setBaseType(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getBaseType" id="es.us.isa.ada.wsag10/Restriction#getBaseType()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="es.us.isa.ada.wsag10/ItemConstraint&lt;-es.us.isa.ada.wsag10/Restriction" source="//@children.26" target="//@children.21/@sourceConnections.0" targetEnd="//@children.26/@sourceConnections.0/@children.1" sourceEnd="//@children.26/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="71,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Template" location="223,791" size="123,85" id="es.us.isa.ada.wsag10/Template" runTimeClassModel="getVariables(),getConstraints()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="100,36">
+      <children xsi:type="editmodel:MethodEditModel" name="getConstraints" id="es.us.isa.ada.wsag10/Template#getConstraints()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getVariables" id="es.us.isa.ada.wsag10/Template#getVariables()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="es.us.isa.ada.wsag10/AgreementDocument&lt;-es.us.isa.ada.wsag10/Template" source="//@children.27" target="//@children.28/@sourceConnections.0" targetEnd="//@children.27/@sourceConnections.0/@children.1" sourceEnd="//@children.27/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="61,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="AgreementOffer" location="50,791" size="143,29" id="es.us.isa.ada.wsag10/AgreementOffer" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.27/@sourceConnections.0" autoLocated="true" id="es.us.isa.ada.wsag10/AgreementDocument&lt;-es.us.isa.ada.wsag10/AgreementOffer" source="//@children.28" target="//@children.29" targetEnd="//@children.28/@sourceConnections.0/@children.1" sourceEnd="//@children.28/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="71,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="88,139" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.28/@sourceConnections.0" name="AgreementDocument" location="115,602" size="176,139" id="es.us.isa.ada.wsag10/AgreementDocument" runTimeClassModel="id,getVariables(),getConstraints(),name,AgreementDocument()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="79,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="id" id="es.us.isa.ada.wsag10/AgreementDocument#id"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="name" id="es.us.isa.ada.wsag10/AgreementDocument#name"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="131,54">
+      <children xsi:type="editmodel:MethodEditModel" name="AgreementDocument" id="es.us.isa.ada.wsag10/AgreementDocument#AgreementDocument()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getConstraints" id="es.us.isa.ada.wsag10/AgreementDocument#getConstraints()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getVariables" id="es.us.isa.ada.wsag10/AgreementDocument#getVariables()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ValueExpr" location="1755,360" size="108,29" id="es.us.isa.ada.wsag10/ValueExpr" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="TimeInterval" location="1665,840" size="122,103" id="es.us.isa.ada.wsag10/TimeInterval" runTimeClassModel="duration,setDuration(Ljava.lang.String;),getDuration()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="92,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="duration" id="es.us.isa.ada.wsag10/TimeInterval#duration"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="85,36">
+      <children xsi:type="editmodel:MethodEditModel" name="getDuration" id="es.us.isa.ada.wsag10/TimeInterval#getDuration()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setDuration" id="es.us.isa.ada.wsag10/TimeInterval#setDuration(Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="es.us.isa.ada.wsag10/AssesmentInterval&lt;-es.us.isa.ada.wsag10/TimeInterval" source="//@children.31" target="//@children.35/@sourceConnections.0" targetEnd="//@children.31/@sourceConnections.0/@children.1" sourceEnd="//@children.31/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="61,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Reward" location="1680,630" size="91,29" id="es.us.isa.ada.wsag10/Reward" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="es.us.isa.ada.wsag10/Compensation&lt;-es.us.isa.ada.wsag10/Reward" source="//@children.32" target="//@children.34/@sourceConnections.0" targetEnd="//@children.32/@sourceConnections.0/@children.1" sourceEnd="//@children.32/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="45,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Preference" location="1215,495" size="274,157" id="es.us.isa.ada.wsag10/Preference" runTimeClassModel="getUtility(),utility,setServiceTermReference(Les.us.isa.ada.wsag10.ServiceDescriptionTerm;),setUtility(F),serviceTermReference,getServiceTermReference()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="251,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="serviceTermReference" id="es.us.isa.ada.wsag10/Preference#serviceTermReference"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="utility" id="es.us.isa.ada.wsag10/Preference#utility"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="157,72">
+      <children xsi:type="editmodel:MethodEditModel" name="getServiceTermReference" id="es.us.isa.ada.wsag10/Preference#getServiceTermReference()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getUtility" id="es.us.isa.ada.wsag10/Preference#getUtility()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setServiceTermReference" id="es.us.isa.ada.wsag10/Preference#setServiceTermReference(Les.us.isa.ada.wsag10.ServiceDescriptionTerm;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setUtility" id="es.us.isa.ada.wsag10/Preference#setUtility(F)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Penalty" location="1540,630" size="90,29" id="es.us.isa.ada.wsag10/Penalty" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.32/@sourceConnections.0" autoLocated="true" id="es.us.isa.ada.wsag10/Compensation&lt;-es.us.isa.ada.wsag10/Penalty" source="//@children.34" target="//@children.36" targetEnd="//@children.34/@sourceConnections.0/@children.1" sourceEnd="//@children.34/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="45,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="86,211" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Count" location="1515,819" size="115,157" id="es.us.isa.ada.wsag10/Count" runTimeClassModel="concept,setConcept(Ljava.lang.String;),count,setCount(I),getConcept(),getCount()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="92,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="concept" id="es.us.isa.ada.wsag10/Count#concept"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="count" id="es.us.isa.ada.wsag10/Count#count"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="85,72">
+      <children xsi:type="editmodel:MethodEditModel" name="getConcept" id="es.us.isa.ada.wsag10/Count#getConcept()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getCount" id="es.us.isa.ada.wsag10/Count#getCount()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setConcept" id="es.us.isa.ada.wsag10/Count#setConcept(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setCount" id="es.us.isa.ada.wsag10/Count#setCount(I)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.31/@sourceConnections.0" autoLocated="true" id="es.us.isa.ada.wsag10/AssesmentInterval&lt;-es.us.isa.ada.wsag10/Count" source="//@children.35" target="//@children.37" targetEnd="//@children.35/@sourceConnections.0/@children.1" sourceEnd="//@children.35/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="57,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="78,29" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.34/@sourceConnections.0" name="Compensation" location="1575,356" size="173,211" id="es.us.isa.ada.wsag10/Compensation" runTimeClassModel="valueUnit,getValueUnit(),setInterval(Les.us.isa.ada.wsag10.AssesmentInterval;),interval,vExp,getInterval(),setVExp(Les.us.isa.ada.wsag10.ValueExpr;),setValueUnit(Ljava.lang.String;),getVExp()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="150,54">
+      <children xsi:type="editmodel:AttributeEditModel" name="interval" id="es.us.isa.ada.wsag10/Compensation#interval"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="vExp" id="es.us.isa.ada.wsag10/Compensation#vExp"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="valueUnit" id="es.us.isa.ada.wsag10/Compensation#valueUnit"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="91,108">
+      <children xsi:type="editmodel:MethodEditModel" name="getInterval" id="es.us.isa.ada.wsag10/Compensation#getInterval()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getVExp" id="es.us.isa.ada.wsag10/Compensation#getVExp()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getValueUnit" id="es.us.isa.ada.wsag10/Compensation#getValueUnit()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setInterval" id="es.us.isa.ada.wsag10/Compensation#setInterval(Les.us.isa.ada.wsag10.AssesmentInterval;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setVExp" id="es.us.isa.ada.wsag10/Compensation#setVExp(Les.us.isa.ada.wsag10.ValueExpr;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setValueUnit" id="es.us.isa.ada.wsag10/Compensation#setValueUnit(Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.35/@sourceConnections.0" name="AssesmentInterval" location="1575,712" size="157,29" id="es.us.isa.ada.wsag10/AssesmentInterval" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=1;Product=eUML2" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>
