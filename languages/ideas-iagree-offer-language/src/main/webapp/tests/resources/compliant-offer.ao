@@ -1,5 +1,7 @@
 AgreementOffer CompliantOfferAmazon version 1.0 for Template TemplateforComplianceAmazon version 1.0
+	
 	Provider "Prov1" as Responder;
+	
 	Metrics:
 		mediumInt: integer[0..100];
 		size: integer[0..200];

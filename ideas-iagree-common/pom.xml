@@ -19,7 +19,7 @@
 		<!--- VERSIONING -->
 		<java.version>1.7</java.version>
 		<ideas.version>0.0.1-SNAPSHOT</ideas.version>
-		<aml.version>0.3</aml.version>
+		<aml.version>0.4</aml.version>
 	</properties>
 
 	<repositories>
