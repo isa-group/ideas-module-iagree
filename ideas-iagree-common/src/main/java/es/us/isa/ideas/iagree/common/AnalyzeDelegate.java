@@ -85,7 +85,7 @@ public class AnalyzeDelegate {
 						appResponse.setStatus(Status.OK_PROBLEMS);
 					}
 				}
-				
+
 			} else if (id.equals("checkCompliance")) {
 				model = manager.createAgreementTemplate(content);
 				model2 = manager.createAgreementOffer(auxArg0);
@@ -143,7 +143,14 @@ public class AnalyzeDelegate {
 					} else {
 						appResponse
 								.setMessage("<pre><b>The documents are not compliant:</b>\n"
-										+ op.getResult().get("explaining")
+										+ " - Conflict type: "
+										+ op.getResult().get("conflictType")
+										+ "\n"
+										+ " - Conflicting offer terms: "
+										+ op.getResult().get("conflicts")
+										+ "\n"
+										+ " - Affected template terms: "
+										+ op.getResult().get("affectedTerms")
 										+ "</pre>");
 						appResponse.setStatus(Status.OK_PROBLEMS);
 					}
