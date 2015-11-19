@@ -12,9 +12,9 @@ import es.us.isa.aml.translator.Translator;
 import es.us.isa.aml.translator.builders.csp.CSPBuilder;
 import es.us.isa.aml.translator.builders.iagree.IAgreeBuilder;
 import es.us.isa.aml.translator.builders.wsag.WSAGBuilder;
-import es.us.isa.ideas.common.AppAnnotations;
-import es.us.isa.ideas.common.AppResponse;
-import es.us.isa.ideas.common.AppResponse.Status;
+import es.us.isa.ideas.module.common.AppAnnotations;
+import es.us.isa.ideas.module.common.AppResponse;
+import es.us.isa.ideas.module.common.AppResponse.Status;
 
 public class ConversionDelegate {
 
@@ -87,7 +87,6 @@ public class ConversionDelegate {
 						.toArray(new AppAnnotations[annotations.size()]));
 
 			} else {
-
 				Translator translator = new Translator(new WSAGBuilder());
 				String wsag = translator.print(model);
 

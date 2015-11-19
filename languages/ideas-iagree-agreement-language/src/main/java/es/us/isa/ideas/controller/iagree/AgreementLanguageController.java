@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import es.us.isa.aml.util.DocType;
-import es.us.isa.ideas.common.AppResponse;
 import es.us.isa.ideas.iagree.common.AnalyzeDelegate;
 import es.us.isa.ideas.iagree.common.ConversionDelegate;
 import es.us.isa.ideas.iagree.common.LanguageDelegate;
+import es.us.isa.ideas.module.common.AppResponse;
 import es.us.isa.ideas.module.controller.BaseLanguageController;
 
 @Controller
