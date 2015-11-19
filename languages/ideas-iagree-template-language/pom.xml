@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>es.us.isa.ideas.module</groupId>
 		<artifactId>IDEAS-iAgree-module</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.7</version>
 		<relativePath>./../../pom.xml</relativePath>
 	</parent>
 	<artifactId>ideas-iagree-template-language</artifactId>
@@ -14,11 +14,10 @@
 
 	<!-- Properties -->
 	<properties>
+		<iagree-common.version>0.1</iagree-common.version>
+		<java.version>1.7</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<!--- VERSIONING -->
-		<java.version>1.7</java.version>
-		<ideas.version>0.0.1-SNAPSHOT</ideas.version>
 	</properties>
 
 	<!-- Repositories to download components and plugins -->
@@ -60,15 +59,9 @@
 
 		<!-- IDEAS Dependencies -->
 		<dependency>
-			<groupId>es.us.isa.ideas</groupId>
-			<artifactId>ideas-core</artifactId>
-			<version>${ideas.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>es.us.isa.ideas.module.iagree</groupId>
 			<artifactId>ideas-iagree-common</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<version>${iagree-common.version}</version>
 		</dependency>
 
 		<dependency>
@@ -78,7 +71,7 @@
 		</dependency>
 
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>

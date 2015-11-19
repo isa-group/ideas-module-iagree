@@ -9,11 +9,11 @@ import es.us.isa.aml.AgreementManager;
 import es.us.isa.aml.model.AgreementModel;
 import es.us.isa.aml.operations.core.csp.AreCompliant;
 import es.us.isa.aml.operations.core.csp.WhyAreNotCompliant;
-import es.us.isa.aml.operations.noCore.ValidOp;
+import es.us.isa.aml.operations.noCore.Valid;
 import es.us.isa.aml.util.DocType;
 import es.us.isa.aml.util.Util;
-import es.us.isa.ideas.common.AppResponse;
-import es.us.isa.ideas.common.AppResponse.Status;
+import es.us.isa.ideas.module.common.AppResponse;
+import es.us.isa.ideas.module.common.AppResponse.Status;
 
 /**
  * @author jdelafuente
@@ -54,7 +54,7 @@ public class AnalyzeDelegate {
 							.setMessage("<pre><b>The document is consistent.</b></pre>");
 					appResponse.setStatus(Status.OK);
 				} else {
-					ValidOp op = new ValidOp();
+					Valid op = new Valid();
 					op.analyze(model);
 
 					if ((Boolean) op.getResult().get("existInconsistencies")) {

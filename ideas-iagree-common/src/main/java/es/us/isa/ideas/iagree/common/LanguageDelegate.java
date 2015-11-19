@@ -8,9 +8,9 @@ import java.util.logging.Logger;
 import es.us.isa.aml.parsers.agreements.IAgreeParser;
 import es.us.isa.aml.parsers.agreements.iagree.IAgreeError;
 import es.us.isa.aml.parsers.agreements.iagree.IAgreeErrorListener;
-import es.us.isa.ideas.common.AppAnnotations;
-import es.us.isa.ideas.common.AppResponse;
-import es.us.isa.ideas.common.AppResponse.Status;
+import es.us.isa.ideas.module.common.AppAnnotations;
+import es.us.isa.ideas.module.common.AppResponse;
+import es.us.isa.ideas.module.common.AppResponse.Status;
 
 public class LanguageDelegate {
 	

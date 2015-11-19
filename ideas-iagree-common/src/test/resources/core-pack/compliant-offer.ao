@@ -1,0 +1,26 @@
+AgreementOffer CompliantOffer version 1.0 for Template compliant-template.at version 1.0
+	Provider "Prov1" as Responder;
+	Metrics:
+		size: integer[0..200];
+		price: integer[0..400];
+		time: integer[0..100];
+		percent: integer[0..100];
+
+AgreementTerms
+	Service AWS-S3 availableAt "aws.amazon.com/s3"
+		GlobalDescription
+			StorageSize: size = 170;
+			SupportPlanPrice: price = 301;
+
+	MonitorableProperties
+		global:
+			MUP: percent;
+			ResponseTime: time;
+
+	GuaranteeTerms
+		G1: Provider guarantees MUP >= 90;
+
+		G2: Provider guarantees ResponseTime <= 10;
+
+
+EndAgreementOffer
