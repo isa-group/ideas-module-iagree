@@ -1,6 +1,4 @@
 Agreement TranslationService version 1.1
-	Created from "template" availableAt "http://www.";
-	Created on 24/03/2015 12:17:33;
 	
 	Provider "Prov1" as Responder;
 	Consumer "Cons1" as Initiator;

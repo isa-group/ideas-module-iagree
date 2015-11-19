@@ -11,7 +11,7 @@
 			"fileUri": "/tests/resource/ag/iagree-core"
 		},
 		"results": [
-			{"status":"OK","message":"<pre><b>The document is consistent.</b></pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resources/iagree-core.ag","annotations":null,"customStruct":null}
+			{"status":"OK","message":"<pre><b>The document is consistent.</b></pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resource/ag/iagree-core","annotations":null,"customStruct":null}
 		]
 	}
 ]

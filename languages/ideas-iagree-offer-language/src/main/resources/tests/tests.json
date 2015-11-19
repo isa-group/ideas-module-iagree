@@ -1,0 +1,49 @@
+[
+	{
+		"id": "valid",
+		"description": "Execute the valid operation for a valid document",
+		"opUri": "/language/operation/checkConsistency/execute",
+		"opMethod": "POST",
+		"parameters": 
+		{
+			"id": "checkConsistency",
+			"content": "",
+			"fileUri": "/tests/resource/ao/iagree-core"
+		},
+		"results": [
+			{"status":"OK","message":"<pre><b>The document is consistent.</b></pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resource/ao/iagree-core","annotations":null,"customStruct":null}
+		]
+	},
+	{
+		"id": "invalid",
+		"description": "Execute the valid operation for an invalid document",
+		"opUri": "/language/operation/checkConsistency/execute",
+		"opMethod": "POST",
+		"parameters": 
+		{
+			"id": "checkConsistency",
+			"content": "",
+			"fileUri": "/tests/resource/ao/iagree-core-dead"
+		},
+		"results": [
+			{"status":"OK_PROBLEMS","message":"<pre><b>The document has dead terms.</b>\n[G1_1, G2]</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resource/ao/iagree-core-dead","annotations":null,"customStruct":null},
+			{"status":"OK_PROBLEMS","message":"<pre><b>The document has dead terms.</b>\n[G2, G1_1]</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resource/ao/iagree-core-dead","annotations":null,"customStruct":null}
+		]
+	},
+	{
+		"id": "checkCompliance-Valid",
+		"description": "Check if the provided offer is compliant with the provided template",
+		"opUri": "/language/operation/checkCompliance/execute",
+		"opMethod": "POST",
+		"parameters": 
+		{
+			"id": "checkCompliance",
+			"content": "",
+			"fileUri": "/tests/resource/at/compliant-template",
+			"auxArg0": "/tests/resource/ao/compliant-offer"
+		},
+		"results": [
+			{"status":"OK","message":"<pre><b>The provided offer is compliant with the provided template.</b></pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resource/at/compliant-template","annotations":null,"customStruct":null}
+		]
+	}
+]
