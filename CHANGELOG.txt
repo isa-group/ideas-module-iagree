@@ -1,0 +1,7 @@
+iAgree v0.7, 19/11/2015
+-----------------------
+- Migrated iAgree module from Clinker to GitHub. Updated to new IDEAS architecture.
+
+iAgree v0.1, 2015-09-23
+-----------------------
+- Feature #1082.
