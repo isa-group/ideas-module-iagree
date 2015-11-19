@@ -10,7 +10,7 @@
 
 	<groupId>es.us.isa.ideas.module.iagree</groupId>
 	<artifactId>ideas-iagree-common</artifactId>
-	<version>0.1</version>
+	<packaging>jar</packaging>
 
 	<!-- Properties -->
 	<properties>
@@ -36,13 +36,13 @@
 
 		<!-- IDEAS repository -->
 		<repository>
-			<id>ideas</id>
-			<url>http://clinker.isagroup.es/nexus/content/repositories/ideas</url>
+			<id>ideas-base-module</id>
+			<url>https://github.com/isa-group/ideas-base-module</url>
 		</repository>
 
 		<repository>
-			<id>AML</id>
-			<url>http://clinker.isagroup.es/nexus/content/repositories/AML</url>
+			<id>aml</id>
+			<url>https://github.com/isa-group/aml</url>
 		</repository>
 
 	</repositories>
@@ -65,7 +65,7 @@
 
 		<dependency>
 			<groupId>es.us.isa</groupId>
-			<artifactId>AML</artifactId>
+			<artifactId>aml</artifactId>
 			<version>${aml.version}</version>
 		</dependency>
 
