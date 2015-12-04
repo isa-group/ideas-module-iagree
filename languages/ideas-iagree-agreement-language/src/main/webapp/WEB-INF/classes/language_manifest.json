@@ -1,61 +1,39 @@
 {
-				id: "iagree-agreement-language",
-				extension: "ag",
-				name: "iAgreeAgreement",
-				formats: [
-				 	{
-				 		format: "iagree",
-				 		editorModeId: "ace/mode/ag",
-				 		_editorModeURI: "mode-ag.js",
-				 		editorThemeId: "ace/theme/ag",
-				 		_editorThemeURI: "theme-ag.js",
-				 		checkLanguage: "true"
-				 	}, 
-				 	{
-				 		format: "wsag",
-				 		editorModeId: "ace/mode/xml",
-				 		_editorModeURI: "mode-xml.js",
-				 		checkLanguage: "false",
-				 		readOnly: "true"
-				 	}
-				],
-				 
-				operations: [
-				             {
-				            	 id: "checkConsistency",
-				            	 name: "Check validity",
-				            	 data: {},
-				            	 _remoteExecution: "true",
-				            	 action: "function(operation, fileUri, result) {
-				            	 				console.log(result);
-				            	 		  }"
-				             },
-				             {
-				            	 id: "generateOPL",
-				            	 name: "Generate OPL",
-				            	 data: {},
-				            	 _remoteExecution: "true",
-				            	 action: "function(operation, fileUri, result) {									
-									newUri = result.fileUri;
-									content = result.data;
-									
-									if(result.status != 'OK_PROBLEMS'){
-										res = newUri.split('/');
-										filename = res[res.length-1];
-										aux = filename.split('.');
-										name = aux[0];
-										extension = '.'+aux[1];
-										
-										EditorManager.createNode(newUri, name, extension, function(){
-											EditorManager.saveFile(newUri, content, function(){
-												EditorManager.openFile(newUri);
-											});
-										});
-									}
-								 }"
-				             }
-				             ],
-				             
-				inspectorLoader: "function(loader, format) {}"
-
-			}
+    "id": "iagree-agreement-language",
+    "extension": "ag",
+    "name": "iAgreeAgreement",
+    "formats": [
+        {
+            "format": "iagree",
+            "editorModeId": "ace/mode/ag",
+            "_editorModeURI": "mode-ag.js",
+            "editorThemeId": "ace/theme/ag",
+            "_editorThemeURI": "theme-ag.js",
+            "checkLanguage": "true"
+        },
+        {
+            "format": "wsag",
+            "editorModeId": "ace/mode/xml",
+            "_editorModeURI": "mode-xml.js",
+            "checkLanguage": "false",
+            "readOnly": "true"
+        }
+    ],
+    "operations": [
+        {
+            "id": "checkConsistency",
+            "name": "Check validity",
+            "data": {},
+            "_remoteExecution": "true",
+            "action": "function(operation, fileUri, result) {console.log(result);}"
+        },
+        {
+            "id": "generateOPL",
+            "name": "Generate OPL",
+            "data": {},
+            "_remoteExecution": "true",
+            "action": "function(operation, fileUri, result) {newUri = result.fileUri;content = result.data;if(result.status != 'OK_PROBLEMS'){res = newUri.split('/');filename = res[res.length-1];aux = filename.split('.');name = aux[0];extension = '.'+aux[1];EditorManager.createNode(newUri, name, extension, function(){EditorManager.saveFile(newUri, content, function(){EditorManager.openFile(newUri);});});}}"
+        }
+    ],
+    "inspectorLoader": "function(loader, format) {}"
+}

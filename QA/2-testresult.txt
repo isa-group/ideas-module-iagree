@@ -1,0 +1,212 @@
+cd C:\Users\ISA Group\git\ideas-iagree-module; "JAVA_HOME=C:\\Program Files\\Java\\jdk1.7.0_75" M2_HOME=C:\\apache-maven-3.3.3 cmd /c "\"\"C:\\apache-maven-3.3.3\\bin\\mvn.cmd\" -Dmaven.ext.class.path=\"C:\\Program Files\\NetBeans 8.1\\java\\maven-nblib\\netbeans-eventspy.jar\" clean install\""
+Scanning for projects...
+------------------------------------------------------------------------
+Reactor Build Order:
+
+ideas-iagree-module
+ideas-iagree-common
+ideas-iagree-template-language
+ideas-iagree-offer-language
+ideas-iagree-agreement-language
+                                                                        
+------------------------------------------------------------------------
+Building ideas-iagree-module 0.7
+------------------------------------------------------------------------
+
+--- maven-clean-plugin:2.5:clean (default-clean) @ ideas-iagree-module ---
+
+--- maven-install-plugin:2.4:install (default-install) @ ideas-iagree-module ---
+Installing C:\Users\ISA Group\git\ideas-iagree-module\pom.xml to C:\Users\ISA Group\.m2\repository\es\us\isa\ideas\module\ideas-iagree-module\0.7\ideas-iagree-module-0.7.pom
+                                                                        
+------------------------------------------------------------------------
+Building ideas-iagree-common 0.7
+------------------------------------------------------------------------
+The POM for es.us.isa.opl:oplall:jar:1.0.0 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+
+--- maven-clean-plugin:2.5:clean (default-clean) @ ideas-iagree-common ---
+Deleting C:\Users\ISA Group\git\ideas-iagree-module\ideas-iagree-common\target
+
+--- maven-resources-plugin:2.6:resources (default-resources) @ ideas-iagree-common ---
+Using 'UTF-8' encoding to copy filtered resources.
+Copying 1 resource
+
+--- maven-compiler-plugin:3.2:compile (default-compile) @ ideas-iagree-common ---
+Changes detected - recompiling the module!
+Compiling 3 source files to C:\Users\ISA Group\git\ideas-iagree-module\ideas-iagree-common\target\classes
+
+--- maven-resources-plugin:2.6:testResources (default-testResources) @ ideas-iagree-common ---
+Using 'UTF-8' encoding to copy filtered resources.
+Copying 18 resources
+
+--- maven-compiler-plugin:3.2:testCompile (default-testCompile) @ ideas-iagree-common ---
+Changes detected - recompiling the module!
+Compiling 5 source files to C:\Users\ISA Group\git\ideas-iagree-module\ideas-iagree-common\target\test-classes
+
+--- maven-surefire-plugin:2.12.4:test (default-test) @ ideas-iagree-common ---
+Surefire report directory: C:\Users\ISA Group\git\ideas-iagree-module\ideas-iagree-common\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running es.us.isa.ideas.iagree.common.test.TestAzureCompliance
+OPL - Development Mode. Use IloOplFactory.setDebugMode(false) to switch to production mode.
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.723 sec
+Running es.us.isa.ideas.iagree.common.test.TestExpression
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running es.us.isa.ideas.iagree.common.test.TestIAgreeModel
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 sec
+Running es.us.isa.ideas.iagree.common.test.TestOperationsWebReasoner
+Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.319 sec
+Running es.us.isa.ideas.iagree.common.test.TestPapamoscas
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 sec
+
+Results :
+
+Tests run: 31, Failures: 0, Errors: 0, Skipped: 0
+
+
+--- maven-jar-plugin:2.4:jar (default-jar) @ ideas-iagree-common ---
+Building jar: C:\Users\ISA Group\git\ideas-iagree-module\ideas-iagree-common\target\ideas-iagree-common-0.7.jar
+
+--- maven-install-plugin:2.4:install (default-install) @ ideas-iagree-common ---
+Installing C:\Users\ISA Group\git\ideas-iagree-module\ideas-iagree-common\target\ideas-iagree-common-0.7.jar to C:\Users\ISA Group\.m2\repository\es\us\isa\ideas\module\iagree\ideas-iagree-common\0.7\ideas-iagree-common-0.7.jar
+Installing C:\Users\ISA Group\git\ideas-iagree-module\ideas-iagree-common\pom.xml to C:\Users\ISA Group\.m2\repository\es\us\isa\ideas\module\iagree\ideas-iagree-common\0.7\ideas-iagree-common-0.7.pom
+                                                                        
+------------------------------------------------------------------------
+Building ideas-iagree-template-language 0.7
+------------------------------------------------------------------------
+
+--- maven-clean-plugin:2.5:clean (default-clean) @ ideas-iagree-template-language ---
+Deleting C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-template-language\target
+
+--- maven-resources-plugin:2.6:resources (default-resources) @ ideas-iagree-template-language ---
+Using 'UTF-8' encoding to copy filtered resources.
+Copying 8 resources
+
+--- maven-compiler-plugin:3.2:compile (default-compile) @ ideas-iagree-template-language ---
+Changes detected - recompiling the module!
+Compiling 2 source files to C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-template-language\target\classes
+
+--- maven-resources-plugin:2.6:testResources (default-testResources) @ ideas-iagree-template-language ---
+Using 'UTF-8' encoding to copy filtered resources.
+skip non existing resourceDirectory C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-template-language\src\test\resources
+
+--- maven-compiler-plugin:3.2:testCompile (default-testCompile) @ ideas-iagree-template-language ---
+Changes detected - recompiling the module!
+Compiling 1 source file to C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-template-language\target\test-classes
+
+--- maven-surefire-plugin:2.12.4:test (default-test) @ ideas-iagree-template-language ---
+Surefire report directory: C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-template-language\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+Results :
+
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+
+
+--- maven-war-plugin:2.2:war (default-war) @ ideas-iagree-template-language ---
+Packaging webapp
+Assembling webapp [ideas-iagree-template-language] in [C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-template-language\target\ideas-iagree-template-language-0.7]
+Processing war project
+Copying webapp resources [C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-template-language\src\main\webapp]
+Webapp assembled in [180 msecs]
+Building war: C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-template-language\target\ideas-iagree-template-language-0.7.war
+WEB-INF\web.xml already added, skipping
+
+--- maven-install-plugin:2.4:install (default-install) @ ideas-iagree-template-language ---
+Installing C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-template-language\target\ideas-iagree-template-language-0.7.war to C:\Users\ISA Group\.m2\repository\es\us\isa\ideas\module\iagree\ideas-iagree-template-language\0.7\ideas-iagree-template-language-0.7.war
+Installing C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-template-language\pom.xml to C:\Users\ISA Group\.m2\repository\es\us\isa\ideas\module\iagree\ideas-iagree-template-language\0.7\ideas-iagree-template-language-0.7.pom
+                                                                        
+------------------------------------------------------------------------
+Building ideas-iagree-offer-language 0.7
+------------------------------------------------------------------------
+
+--- maven-clean-plugin:2.5:clean (default-clean) @ ideas-iagree-offer-language ---
+Deleting C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-offer-language\target
+
+--- maven-resources-plugin:2.6:resources (default-resources) @ ideas-iagree-offer-language ---
+Using 'UTF-8' encoding to copy filtered resources.
+Copying 13 resources
+
+--- maven-compiler-plugin:3.2:compile (default-compile) @ ideas-iagree-offer-language ---
+Changes detected - recompiling the module!
+Compiling 2 source files to C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-offer-language\target\classes
+
+--- maven-resources-plugin:2.6:testResources (default-testResources) @ ideas-iagree-offer-language ---
+Using 'UTF-8' encoding to copy filtered resources.
+skip non existing resourceDirectory C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-offer-language\src\test\resources
+
+--- maven-compiler-plugin:3.2:testCompile (default-testCompile) @ ideas-iagree-offer-language ---
+Nothing to compile - all classes are up to date
+
+--- maven-surefire-plugin:2.12.4:test (default-test) @ ideas-iagree-offer-language ---
+No tests to run.
+
+--- maven-war-plugin:2.2:war (default-war) @ ideas-iagree-offer-language ---
+Packaging webapp
+Assembling webapp [ideas-iagree-offer-language] in [C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-offer-language\target\ideas-iagree-offer-language-0.7]
+Processing war project
+Copying webapp resources [C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-offer-language\src\main\webapp]
+Webapp assembled in [215 msecs]
+Building war: C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-offer-language\target\ideas-iagree-offer-language-0.7.war
+WEB-INF\web.xml already added, skipping
+
+--- maven-install-plugin:2.4:install (default-install) @ ideas-iagree-offer-language ---
+Installing C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-offer-language\target\ideas-iagree-offer-language-0.7.war to C:\Users\ISA Group\.m2\repository\es\us\isa\ideas\module\iagree\ideas-iagree-offer-language\0.7\ideas-iagree-offer-language-0.7.war
+Installing C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-offer-language\pom.xml to C:\Users\ISA Group\.m2\repository\es\us\isa\ideas\module\iagree\ideas-iagree-offer-language\0.7\ideas-iagree-offer-language-0.7.pom
+                                                                        
+------------------------------------------------------------------------
+Building ideas-iagree-agreement-language 0.7
+------------------------------------------------------------------------
+
+--- maven-clean-plugin:2.5:clean (default-clean) @ ideas-iagree-agreement-language ---
+Deleting C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-agreement-language\target
+
+--- maven-resources-plugin:2.6:resources (default-resources) @ ideas-iagree-agreement-language ---
+Using 'UTF-8' encoding to copy filtered resources.
+Copying 8 resources
+
+--- maven-compiler-plugin:3.2:compile (default-compile) @ ideas-iagree-agreement-language ---
+Changes detected - recompiling the module!
+Compiling 2 source files to C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-agreement-language\target\classes
+
+--- maven-resources-plugin:2.6:testResources (default-testResources) @ ideas-iagree-agreement-language ---
+Using 'UTF-8' encoding to copy filtered resources.
+skip non existing resourceDirectory C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-agreement-language\src\test\resources
+
+--- maven-compiler-plugin:3.2:testCompile (default-testCompile) @ ideas-iagree-agreement-language ---
+No sources to compile
+
+--- maven-surefire-plugin:2.12.4:test (default-test) @ ideas-iagree-agreement-language ---
+No tests to run.
+
+--- maven-war-plugin:2.2:war (default-war) @ ideas-iagree-agreement-language ---
+Packaging webapp
+Assembling webapp [ideas-iagree-agreement-language] in [C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-agreement-language\target\ideas-iagree-agreement-language-0.7]
+Processing war project
+Copying webapp resources [C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-agreement-language\src\main\webapp]
+Webapp assembled in [189 msecs]
+Building war: C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-agreement-language\target\ideas-iagree-agreement-language-0.7.war
+WEB-INF\web.xml already added, skipping
+
+--- maven-install-plugin:2.4:install (default-install) @ ideas-iagree-agreement-language ---
+Installing C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-agreement-language\target\ideas-iagree-agreement-language-0.7.war to C:\Users\ISA Group\.m2\repository\es\us\isa\ideas\module\iagree\ideas-iagree-agreement-language\0.7\ideas-iagree-agreement-language-0.7.war
+Installing C:\Users\ISA Group\git\ideas-iagree-module\languages\ideas-iagree-agreement-language\pom.xml to C:\Users\ISA Group\.m2\repository\es\us\isa\ideas\module\iagree\ideas-iagree-agreement-language\0.7\ideas-iagree-agreement-language-0.7.pom
+------------------------------------------------------------------------
+Reactor Summary:
+
+ideas-iagree-module ................................ SUCCESS [  0.251 s]
+ideas-iagree-common ................................ SUCCESS [ 11.416 s]
+ideas-iagree-template-language ..................... SUCCESS [  2.177 s]
+ideas-iagree-offer-language ........................ SUCCESS [  1.570 s]
+ideas-iagree-agreement-language .................... SUCCESS [  1.306 s]
+------------------------------------------------------------------------
+BUILD SUCCESS
+------------------------------------------------------------------------
+Total time: 16.815 s
+Finished at: 2015-12-04T12:38:58+01:00
+Final Memory: 26M/306M
+------------------------------------------------------------------------

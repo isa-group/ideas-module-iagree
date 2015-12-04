@@ -1,49 +1,351 @@
 [
-	{
-		"id": "valid",
-		"description": "Execute the valid operation for a valid document",
-		"opUri": "/language/operation/checkConsistency/execute",
-		"opMethod": "POST",
-		"parameters": 
-		{
-			"id": "checkConsistency",
-			"content": "",
-			"fileUri": "/tests/resource/ao/iagree-core"
-		},
-		"results": [
-			{"status":"OK","message":"<pre><b>The document is consistent.</b></pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resource/ao/iagree-core","annotations":null,"customStruct":null}
-		]
-	},
-	{
-		"id": "invalid",
-		"description": "Execute the valid operation for an invalid document",
-		"opUri": "/language/operation/checkConsistency/execute",
-		"opMethod": "POST",
-		"parameters": 
-		{
-			"id": "checkConsistency",
-			"content": "",
-			"fileUri": "/tests/resource/ao/iagree-core-dead"
-		},
-		"results": [
-			{"status":"OK_PROBLEMS","message":"<pre><b>The document has dead terms.</b>\n[G1_1, G2]</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resource/ao/iagree-core-dead","annotations":null,"customStruct":null},
-			{"status":"OK_PROBLEMS","message":"<pre><b>The document has dead terms.</b>\n[G2, G1_1]</pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resource/ao/iagree-core-dead","annotations":null,"customStruct":null}
-		]
-	},
-	{
-		"id": "checkCompliance-Valid",
-		"description": "Check if the provided offer is compliant with the provided template",
-		"opUri": "/language/operation/checkCompliance/execute",
-		"opMethod": "POST",
-		"parameters": 
-		{
-			"id": "checkCompliance",
-			"content": "",
-			"fileUri": "/tests/resource/at/compliant-template",
-			"auxArg0": "/tests/resource/ao/compliant-offer"
-		},
-		"results": [
-			{"status":"OK","message":"<pre><b>The provided offer is compliant with the provided template.</b></pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resource/at/compliant-template","annotations":null,"customStruct":null}
-		]
-	}
+    {
+        "id": "valid",
+        "description": "Execute the valid operation for a valid document",
+        "opUri": "/language/operation/checkConsistency/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "checkConsistency",
+                    "content": "",
+                    "fileUri": "/tests/resource/ao/iagree-core"
+                },
+        "results": [
+            {
+                "status": "OK",
+                "message": "<pre><b>The document is consistent.</b></pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ao/iagree-core",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    },
+    {
+        "id": "valid-with-resources",
+        "description": "Execute the valid operation for a valid document with resource metrics",
+        "opUri": "/language/operation/checkConsistency/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "checkConsistency",
+                    "content": "",
+                    "fileUri": "/tests/resource/ao/iagree-resources"
+                },
+        "results": [
+            {
+                "status": "OK_PROBLEMS",
+                "message": null,
+                "htmlMessage": "<pre>This document is not supported by analysis operations. See annotations in lines 18, 19 for more information.</pre>",
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ao/iagree-resources",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    },
+    {
+        "id": "valid-with-definition-reference",
+        "description": "Execute the valid operation for a valid document with resource metrics",
+        "opUri": "/language/operation/checkConsistency/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "checkConsistency",
+                    "content": "",
+                    "fileUri": "/tests/resource/ao/iagree-defref"
+                },
+        "results": [
+            {
+                "status": "OK",
+                "message": "<pre><b>The document is consistent.</b></pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ao/iagree-defref",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    },
+    {
+        "id": "inconsistent",
+        "description": "Execute the valid operation for an inconsistent document",
+        "opUri": "/language/operation/checkConsistency/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "checkConsistency",
+                    "content": "",
+                    "fileUri": "/tests/resource/ao/iagree-inconsistent"
+                },
+        "results": [
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The document is not consistent.</b>\n[G2, G1]</pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ao/iagree-inconsistent",
+                "annotations": null,
+                "customStruct": null
+            },
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The document is not consistent.</b>\n[G1, G2]</pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ao/iagree-inconsistent",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    },
+    {
+        "id": "deadterms",
+        "description": "Execute the valid operation for a document with dead terms",
+        "opUri": "/language/operation/checkConsistency/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "checkConsistency",
+                    "content": "",
+                    "fileUri": "/tests/resource/ao/iagree-core-dead"
+                },
+        "results": [
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The document has dead terms.</b>\n[G1_1, G2]</pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ao/iagree-core-dead",
+                "annotations": null,
+                "customStruct": null
+            },
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The document has dead terms.</b>\n[G2, G1_1]</pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ao/iagree-core-dead",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    },
+    {
+        "id": "conditionally-inconsistent-terms",
+        "description": "Execute the valid operation for a document with conditionally inconsistent terms",
+        "opUri": "/language/operation/checkConsistency/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "checkConsistency",
+                    "content": "",
+                    "fileUri": "/tests/resource/ao/iagree-cond-inc"
+                },
+        "results": [
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The document has conditionally inconsistent terms.</b>\n[G1, G2]</pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ao/iagree-cond-inc",
+                "annotations": null,
+                "customStruct": null
+            },
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The document has conditionally inconsistent terms.</b>\n[G2, G1]</pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ao/iagree-cond-inc",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    },
+    {
+        "id": "checkCompliance-OK",
+        "description": "Check if the provided offer is compliant with the provided template",
+        "opUri": "/language/operation/checkCompliance/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "checkCompliance",
+                    "content": "",
+                    "fileUri": "/tests/resource/at/compliant-template",
+                    "auxArg0": "/tests/resource/ao/compliant-offer"
+                },
+        "results": [
+            {
+                "status": "OK",
+                "message": "<pre><b>The provided offer is compliant with the provided template.</b></pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/at/compliant-template",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    },
+    {
+        "id": "checkCompliance-FAIL-1",
+        "description": "Check if the provided offer is compliant with the provided template",
+        "opUri": "/language/operation/checkCompliance/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "checkCompliance",
+                    "content": "",
+                    "fileUri": "/tests/resource/at/azure-template",
+                    "auxArg0": "/tests/resource/ao/azure-non-compliant1"
+                },
+        "results": [
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The documents are not compliant.</b></pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/at/azure-template",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    },
+    {
+        "id": "complianceAnalysis-FAIL-1",
+        "description": "Analyze if the provided offer is compliant with the provided template",
+        "opUri": "/language/operation/checkCompliance/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "complianceAnalysis",
+                    "content": "",
+                    "fileUri": "/tests/resource/ao/azure-non-compliant1",
+                    "auxArg0": "/tests/resource/at/azure-template"
+                },
+        "results": [
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The documents are not compliant:</b>\n - Conflict type: contradictory offer term\n - Conflicting offer terms: [G1: MUP < 999;]\n - Affected template terms: G1: MUP >= 999;</pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ao/azure-non-compliant1",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    },
+    {
+        "id": "checkCompliance-FAIL-2",
+        "description": "Check if the provided offer is compliant with the provided template",
+        "opUri": "/language/operation/checkCompliance/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "checkCompliance",
+                    "content": "",
+                    "fileUri": "/tests/resource/at/azure-template",
+                    "auxArg0": "/tests/resource/ao/azure-non-compliant2"
+                },
+        "results": [
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The documents are not compliant.</b></pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/at/azure-template",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    },
+    {
+        "id": "complianceAnalysis-FAIL-2",
+        "description": "Analyze if the provided offer is compliant with the provided template",
+        "opUri": "/language/operation/checkCompliance/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "complianceAnalysis",
+                    "content": "",
+                    "fileUri": "/tests/resource/ao/azure-non-compliant2",
+                    "auxArg0": "/tests/resource/at/azure-template"
+                },
+        "results": [
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The documents are not compliant:</b>\n - Conflict type: more restrictive offer term\n - Conflicting offer terms: [G1: MUP >= 9999;]\n - Affected template terms: G1: MUP >= 999;</pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ao/azure-non-compliant2",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    },
+    {
+        "id": "checkCompliance-FAIL-3",
+        "description": "Check if the provided offer is compliant with the provided template",
+        "opUri": "/language/operation/checkCompliance/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "checkCompliance",
+                    "content": "",
+                    "fileUri": "/tests/resource/at/azure-template",
+                    "auxArg0": "/tests/resource/ao/azure-non-compliant3"
+                },
+        "results": [
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The documents are not compliant.</b></pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/at/azure-template",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    },
+    {
+        "id": "complianceAnalysis-FAIL-3",
+        "description": "Analyze if the provided offer is compliant with the provided template",
+        "opUri": "/language/operation/checkCompliance/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "complianceAnalysis",
+                    "content": "",
+                    "fileUri": "/tests/resource/ao/azure-non-compliant3",
+                    "auxArg0": "/tests/resource/at/azure-template"
+                },
+        "results": [
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The documents are not compliant:</b>\n - Conflict type: contradictory offer term\n - Conflicting offer terms: [ASSIG_Price: Price == 10000;]\n - Affected template terms: C2: Price == 1192 * MPI;</pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ao/azure-non-compliant3",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    }
 ]
