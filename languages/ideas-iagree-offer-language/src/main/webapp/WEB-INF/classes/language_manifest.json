@@ -12,11 +12,16 @@
             "checkLanguage": "true"
         },
         {
-            "format": "wsag",
-            "editorModeId": "ace/mode/xml",
-            "_editorModeURI": "mode-xml.js",
-            "checkLanguage": "false",
-            "readOnly": "true"
+            "format": "json",
+            "editorModeId": "ace/mode/json",
+            "_editorModeURI": "mode-json.js",
+            "checkLanguage": "false"
+        },
+        {
+            "format": "yaml",
+            "editorModeId": "ace/mode/yaml",
+            "_editorModeURI": "mode-yaml.js",
+            "checkLanguage": "false"
         }
     ],
     "operations": [

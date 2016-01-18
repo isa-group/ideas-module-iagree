@@ -15,7 +15,7 @@
 	<!-- Properties -->
 	<properties>
 		<ideas-base-module.version>0.7</ideas-base-module.version>
-		<aml.version>0.9.1-SNAPSHOT</aml.version>
+		<aml.version>0.9.3-SNAPSHOT</aml.version>
 		<java.version>1.7</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
