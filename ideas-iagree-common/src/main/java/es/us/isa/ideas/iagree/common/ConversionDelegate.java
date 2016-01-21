@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.us.isa.aml.model.AgreementModel;
+import es.us.isa.aml.parsers.Error.ERROR_SEVERITY;
 import es.us.isa.aml.parsers.agreements.IAgreeParser;
 import es.us.isa.aml.parsers.agreements.JsonParser;
 import es.us.isa.aml.parsers.agreements.WsagParser;
@@ -110,7 +111,7 @@ public class ConversionDelegate {
             IAgreeParser parser = new IAgreeParser();
             AgreementModel model = parser.doParse(content);
             IAgreeErrorListener errorListener = parser.getErrorListener();
-            if (errorListener.hasErrors()) {
+            if(hasCriticalErrors(errorListener)){
                 appResponse.setStatus(Status.OK_PROBLEMS);
                 List<AppAnnotations> annotations = new ArrayList<AppAnnotations>();
                 for (IAgreeError error : errorListener.getErrors()) {
@@ -135,7 +136,7 @@ public class ConversionDelegate {
             IAgreeParser parser = new IAgreeParser();
             AgreementModel model = parser.doParse(content);
             IAgreeErrorListener errorListener = parser.getErrorListener();
-            if (errorListener.hasErrors()) {
+            if(hasCriticalErrors(errorListener)){
                 appResponse.setStatus(Status.OK_PROBLEMS);
                 List<AppAnnotations> annotations = new ArrayList<AppAnnotations>();
                 for (IAgreeError error : errorListener.getErrors()) {
@@ -250,5 +251,17 @@ public class ConversionDelegate {
             }
         }
         return appResponse;
+    }
+    
+    
+    public static Boolean hasCriticalErrors(IAgreeErrorListener errors){
+        Boolean res=false;
+        for(IAgreeError er:errors.getErrors()){
+            if((er.getSeverity()!=ERROR_SEVERITY.INFO)&&(er.getSeverity()!=ERROR_SEVERITY.WARNING)){
+                res=true;
+                break;
+            }
+        }
+        return res;
     }
 }
