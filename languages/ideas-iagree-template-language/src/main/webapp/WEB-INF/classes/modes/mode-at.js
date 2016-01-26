@@ -55,7 +55,7 @@ ace.define('ace/mode/sintaxis_highlight_rules', ['require', 'exports', 'module',
 
     var AbapHighlightRules = function () {
 
-        var keyword = "\\b(Template|EndTemplate|AgreementOffer|EndAgreementOffer|AgreementTerms|CreationConstraints|version)\\b";
+        var keyword = "\\b(Template|EndTemplate|AgreementTerms|CreationConstraints|version)\\b";
         var def = "\\b(Initiator|Responder|ServiceProvider|ExpirationTime|MonitorableProperties|Service|description|Global|GuaranteeTerms|Constraints|Service|Metrics)\\b";
         var def2 = "\\b(GMTZone|DateFormat|GlobalPeriod|DefinedPeriod|EndDefinedPeriod|guarantees|GlobalDescription|global|Description|Features|with|end)\\b";
         var atom = "\\b(belongs|except|from|during|on|for|of|in|if|as|is|by|measuredBy|relatedTo|availableAt|definedAt|monitoredAt|valueOf|IMPLIES|EQUAL)\\b";
