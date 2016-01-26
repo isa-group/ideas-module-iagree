@@ -1,79 +1,54 @@
-		{
-				id: "iagree-template-language",
-				extension: "at",
-				name: "iAgreeTemplate",
-				formats: [
-				 	{
-				 		format: "iagree",
-				 		editorModeId: "ace/mode/at",
-				 		_editorModeURI: "mode-at.js",
-				 		editorThemeId: "ace/theme/at",
-				 		_editorThemeURI: "theme-at.js",
-				 		checkLanguage: "true"
-				 	}, 
-				 	{
-				 		format: "wsag",
-				 		editorModeId: "ace/mode/xml",
-				 		_editorModeURI: "mode-xml.js",
-				 		checkLanguage: "false",
-				 		readOnly: "true"
-				 	}
-				],
-				 
-				operations: [
-				             {
-				            	 id: "checkConsistency",
-				            	 name: "Check validity",
-				            	 data: {},
-				            	 _remoteExecution: "true",
-				            	 action: "function(operation, fileUri, result) {
-				            	 				console.log(result);
-				            	 		  }"
-				             },
-				             {
-				            	 id: "CheckCompliance",
-				            	 name: "Check Compliance",
-				            	  data: {},
-				            	 _remoteExecution: "false",
-				            	  action: "function(operationStructure, fileUri) {
-							            	  	CommandApi.fetchFileContentsBeforeExecutingOperation(operationStructure, 
-							            	  		fileUri, 'ao', 'checkCompliance', 
-							            	  		'Check Compliance with Offer', 
-							            	  		'Select an Offer to check this Template Document with.', 
-							            	  		'Check Compliance', 
-							            	  		function(result){}, 
-							            	  		function(result){}
-							            	  	)
-							            	}"
-				             },
-				             {
-				            	 id: "generateOPL",
-				            	 name: "Generate OPL",
-				            	 data: {},
-				            	 _remoteExecution: "true",
-				            	 action: "function(operation, fileUri, result) {									
-									newUri = result.fileUri;
-									content = result.data;
-									
-									if(result.status != 'OK_PROBLEMS'){
-										res = newUri.split('/');
-										filename = res[res.length-1];
-										aux = filename.split('.');
-										name = aux[0];
-										extension = '.'+aux[1];
-										
-										EditorManager.createNode(newUri, name, extension, function(){
-											EditorManager.saveFile(newUri, content, function(){
-												EditorManager.openFile(newUri);
-											});
-										});
-									}									
-								 }"
-				             }
-				             
-				             ],
-				"templateProjects":null,
-   				"templateFiles":null,
-				inspectorLoader: "function(loader, format) {}"
+{
+    "id": "iagree-template-language",
+    "extension": "at",
+    "name": "iAgreeTemplate",
+    "formats": [
+        {
+            "format": "iagree",
+            "editorModeId": "ace/mode/at",
+            "_editorModeURI": "mode-at.js",
+            "editorThemeId": "ace/theme/at",
+            "_editorThemeURI": "theme-at.js",
+            "checkLanguage": "true"
+        },
+        {
+            "format": "json",
+            "editorModeId": "ace/mode/json",
+            "_editorModeURI": "mode-json.js",
+            "checkLanguage": "false"
+        },
+        {
+            "format": "yaml",
+            "editorModeId": "ace/mode/yaml",
+            "_editorModeURI": "mode-yaml.js",
+            "checkLanguage": "false"
+        }
+    ],
+    "operations": [
+        {
+            "id": "checkConsistency",
+            "name": "Check validity",
+            "data": {},
+            "_remoteExecution": "true",
+            "action": "function(operation, fileUri, result) {console.log(result);}"
+        },
+        {
+            "id": "CheckCompliance",
+            "name": "Check Compliance",
+            "data": {},
+            "_remoteExecution": "false",
+            "action": "function(operationStructure, fileUri) {CommandApi.fetchFileContentsBeforeExecutingOperation(operationStructure,fileUri, 'ao', 'checkCompliance','Check Compliance with Offer','Select an Offer to check this Template Document with.','Check Compliance',function(result){},function(result){})}"
+        },
+        {
+            "id": "generateOPL",
+            "name": "Generate OPL",
+            "data": {},
+            "_remoteExecution": "true",
+            "action": "function(operation, fileUri, result) {newUri = result.fileUri;content = result.data;if(result.status != 'OK_PROBLEMS'){res = newUri.split('/');filename = res[res.length - 1];aux = filename.split('.');name = aux[0];extension = '.'+aux[1];EditorManager.createNode(newUri, name, extension, function(){EditorManager.saveFile(newUri, content, function(){EditorManager.openFile(newUri);});});}}"
+        }
+    ],
+    "templateProjects": null,
+    "templateFiles": null,
+    "inspectorLoader": "function(loader, format) {}"
 
-			}
+}

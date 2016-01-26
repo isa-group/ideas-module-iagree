@@ -1,17 +1,176 @@
 [
-	{
-		"id": "valid",
-		"description": "Execute the valid operation for a valid document",
-		"opUri": "/language/operation/checkConsistency/execute",
-		"opMethod": "POST",
-		"parameters": 
-		{
-			"id": "checkConsistency",
-			"content": "",
-			"fileUri": "/tests/resource/ag/iagree-core"
-		},
-		"results": [
-			{"status":"OK","message":"<pre><b>The document is consistent.</b></pre>","htmlMessage":null,"data":null,"context":null,"fileUri":"/tests/resource/ag/iagree-core","annotations":null,"customStruct":null}
-		]
-	}
+    {
+        "id": "valid",
+        "description": "Execute the valid operation for a valid document",
+        "opUri": "/language/operation/checkConsistency/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "checkConsistency",
+                    "content": "",
+                    "fileUri": "/tests/resource/ag/iagree-core"
+                },
+        "results": [
+            {
+                "status": "OK",
+                "message": "<pre><b>The document is consistent.</b></pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ag/iagree-core",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    },
+    {
+        "id": "valid-with-resources",
+        "description": "Execute the valid operation for a valid document with resource metrics",
+        "opUri": "/language/operation/checkConsistency/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "checkConsistency",
+                    "content": "",
+                    "fileUri": "/tests/resource/ag/iagree-resources"
+                },
+        "results": [
+            {
+                "status": "OK_PROBLEMS",
+                "message": null,
+                "htmlMessage": "<pre>This document is not supported by analysis operations. See annotations in lines 18, 19 for more information.</pre>",
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ag/iagree-resources",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    },
+    {
+        "id": "valid-with-definition-reference",
+        "description": "Execute the valid operation for a valid document with resource metrics",
+        "opUri": "/language/operation/checkConsistency/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "checkConsistency",
+                    "content": "",
+                    "fileUri": "/tests/resource/ag/iagree-defref"
+                },
+        "results": [
+            {
+                "status": "OK",
+                "message": "<pre><b>The document is consistent.</b></pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ag/iagree-defref",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    },
+    {
+        "id": "inconsistent",
+        "description": "Execute the valid operation for an inconsistent document",
+        "opUri": "/language/operation/checkConsistency/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "checkConsistency",
+                    "content": "",
+                    "fileUri": "/tests/resource/ag/iagree-inconsistent"
+                },
+        "results": [
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The document is not consistent.</b>\n[G2, G1]</pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ag/iagree-inconsistent",
+                "annotations": null,
+                "customStruct": null
+            },
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The document is not consistent.</b>\n[G1, G2]</pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ag/iagree-inconsistent",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    },
+    {
+        "id": "deadterms",
+        "description": "Execute the valid operation for a document with dead terms",
+        "opUri": "/language/operation/checkConsistency/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "checkConsistency",
+                    "content": "",
+                    "fileUri": "/tests/resource/ag/iagree-core-dead"
+                },
+        "results": [
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The document has dead terms.</b>\n[G1_1, G2]</pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ag/iagree-core-dead",
+                "annotations": null,
+                "customStruct": null
+            },
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The document has dead terms.</b>\n[G2, G1_1]</pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ag/iagree-core-dead",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    },
+    {
+        "id": "conditionally-inconsistent-terms",
+        "description": "Execute the valid operation for a document with conditionally inconsistent terms",
+        "opUri": "/language/operation/checkConsistency/execute",
+        "opMethod": "POST",
+        "parameters":
+                {
+                    "id": "checkConsistency",
+                    "content": "",
+                    "fileUri": "/tests/resource/ag/iagree-cond-inc"
+                },
+        "results": [
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The document has conditionally inconsistent terms.</b>\n[G1, G2]</pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ag/iagree-cond-inc",
+                "annotations": null,
+                "customStruct": null
+            },
+            {
+                "status": "OK_PROBLEMS",
+                "message": "<pre><b>The document has conditionally inconsistent terms.</b>\n[G2, G1]</pre>",
+                "htmlMessage": null,
+                "data": null,
+                "context": null,
+                "fileUri": "/tests/resource/ag/iagree-cond-inc",
+                "annotations": null,
+                "customStruct": null
+            }
+        ]
+    }
 ]
