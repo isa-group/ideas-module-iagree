@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>es.us.isa.ideas.module</groupId>
-	<artifactId>ideas-iagree-module</artifactId>
-	<version>0.7</version>
-	<packaging>pom</packaging>
-	<modules>
-		<module>languages/ideas-iagree-template-language</module>
-		<module>languages/ideas-iagree-offer-language</module>
-		<module>languages/ideas-iagree-agreement-language</module>
-		<module>ideas-iagree-common</module>
-	</modules>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>es.us.isa.ideas.module</groupId>
+    <artifactId>ideas-iagree-module</artifactId>
+    <version>0.8</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>languages/ideas-iagree-template-language</module>
+        <module>languages/ideas-iagree-offer-language</module>
+        <module>languages/ideas-iagree-agreement-language</module>
+        <module>ideas-iagree-common</module>
+    </modules>
 </project>
