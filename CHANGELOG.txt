@@ -1,13 +1,17 @@
-iAgree v0.8, 26/01/2016
+ideas-module-iagree v0.8.1, 07/04/2016
+-----------------------
+- Updated iAgree module with the latest CSPWebReasoner.
+
+ideas-module-iagree v0.8, 26/01/2016
 -----------------------
 - Update to support resources #2
 - FormatChangerJsonYaml #4
 - Bug JSON/YAML parser #7
 
-iAgree v0.7, 19/11/2015
+ideas-module-iagree v0.7, 19/11/2015
 -----------------------
 - Migrated iAgree module from Clinker to GitHub. Updated to new IDEAS architecture.
 
-iAgree v0.1, 2015-09-23
+ideas-module-iagree v0.1, 2015-09-23
 -----------------------
 - Feature #1082.
