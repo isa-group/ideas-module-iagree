@@ -15,7 +15,7 @@
     <!-- Properties -->
     <properties>
         <ideas-base-module.version>0.7</ideas-base-module.version>
-        <aml.version>0.9.4</aml.version>
+        <aml.version>0.9.5</aml.version>
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -76,7 +76,23 @@
             <version>4.5</version>
             <scope>compile</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20151123</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
     <build>

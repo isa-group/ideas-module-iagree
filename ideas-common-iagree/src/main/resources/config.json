@@ -1,8 +1,8 @@
 {
     "defaultInputFormat": "IAGREE",
     "CSPReasoner": "CSPWebReasoner",
-    "CSPWebReasonerEndpoint": "http://services.governify.io:8080/CSPWebReasoner/api/v1",
+    "CSPWebReasonerEndpoint": "http://services.governify.io:8080/CSPWebReasoner/api/v2",
     "DLReasoner": "NONE",
-    "ANDConstraintsBreaking" : "true",
-    "AgreementGenerator" : "BASIC"
+    "ANDConstraintsBreaking": "true",
+    "AgreementGenerator": "BASIC"
 }
