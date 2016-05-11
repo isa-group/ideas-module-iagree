@@ -28,12 +28,12 @@ import org.junit.Test;
 import es.us.isa.aml.AgreementManager;
 import es.us.isa.aml.model.AgreementOffer;
 import es.us.isa.aml.model.AgreementTemplate;
+import es.us.isa.aml.operations.core.OperationResult;
 import es.us.isa.aml.operations.core.csp.AreCompliant;
 import es.us.isa.aml.operations.core.csp.ExistInconsistencies;
 import es.us.isa.aml.operations.core.csp.WhyAreNotCompliant;
 import es.us.isa.aml.operations.noCore.ExistCondInconsTerms;
 import es.us.isa.aml.operations.noCore.ExistDeadTerms;
-import es.us.isa.aml.util.OperationResponse;
 import es.us.isa.aml.util.Util;
 import es.us.isa.ideas.iagree.common.AnalyzeDelegate;
 import java.io.InputStream;
@@ -71,11 +71,11 @@ public class TestAzureCompliance {
     public void testInconsistencyOperation() {
         ExistInconsistencies op = new ExistInconsistencies();
         op.analyze(TSCTemplate);
-        assertFalse(Boolean.valueOf(op.getResult().get("existInconsistencies")
+        assertFalse(Boolean.valueOf(op.getResult().getExistInconsistencies()
                 .toString()));
 
         op.analyze(TSCCompliant);
-        assertFalse(Boolean.valueOf(op.getResult().get("existInconsistencies")
+        assertFalse(Boolean.valueOf(op.getResult().getExistInconsistencies()
                 .toString()));
     }
 
@@ -83,11 +83,11 @@ public class TestAzureCompliance {
     public void testDeadTermsOperation() {
         ExistDeadTerms op = new ExistDeadTerms();
         op.analyze(TSCTemplate);
-        assertFalse(Boolean.valueOf(op.getResult().get("existDeadTerms")
+        assertFalse(Boolean.valueOf(op.getResult().getExistDeadTerms()
                 .toString()));
 
         op.analyze(TSCCompliant);
-        assertFalse(Boolean.valueOf(op.getResult().get("existDeadTerms")
+        assertFalse(Boolean.valueOf(op.getResult().getExistDeadTerms()
                 .toString())); //Tiene un dead term??
     }
 
@@ -95,11 +95,11 @@ public class TestAzureCompliance {
     public void testCondInconsistentOperation() {
         ExistCondInconsTerms op = new ExistCondInconsTerms();
         op.analyze(TSCTemplate);
-        assertFalse(Boolean.valueOf(op.getResult().get("existCondInconsTerms")
+        assertFalse(Boolean.valueOf(op.getResult().getExistCondInconsTerms()
                 .toString()));
 
         op.analyze(TSCCompliant);
-        assertFalse(Boolean.valueOf(op.getResult().get("existCondInconsTerms")
+        assertFalse(Boolean.valueOf(op.getResult().getExistCondInconsTerms()
                 .toString())); //Tiene un dead term??
     }
 
@@ -107,15 +107,15 @@ public class TestAzureCompliance {
     public void testAreCompliant1() {
         AreCompliant op = new AreCompliant();
         op.analyze(TSCTemplate, TSCCompliant);
-        OperationResponse resp = op.getResult();
-        assertTrue(Boolean.valueOf(resp.get("compliant").toString()));
+        OperationResult resp = op.getResult();
+        assertTrue(resp.getCompliant());
     }
 
     @Test
     public void testWhyAreNotCompliant1() {
         WhyAreNotCompliant op = new WhyAreNotCompliant();
         op.analyze(TSCTemplate, TSCCompliant);
-        OperationResponse resp = op.getResult();
-        assertTrue(Boolean.valueOf(resp.get("compliant").toString()));
+        OperationResult resp = op.getResult();
+        assertTrue(resp.getCompliant());
     }
 }

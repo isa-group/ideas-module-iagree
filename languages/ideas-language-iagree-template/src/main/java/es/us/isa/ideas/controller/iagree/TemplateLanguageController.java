@@ -11,6 +11,7 @@ import es.us.isa.ideas.iagree.common.ConversionDelegate;
 import es.us.isa.ideas.iagree.common.LanguageDelegate;
 import es.us.isa.ideas.module.common.AppResponse;
 import es.us.isa.ideas.module.controller.BaseLanguageController;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/language")
@@ -18,9 +19,9 @@ public class TemplateLanguageController extends BaseLanguageController {
 	
 	@RequestMapping(value = "/operation/{id}/execute", method = RequestMethod.POST)
 	@ResponseBody
-	public AppResponse executeOperation(String id, String content, String fileUri, String auxArg0) {
-		
-		return AnalyzeDelegate.analize(id, content, fileUri, DocType.TEMPLATE, auxArg0);
+	public AppResponse executeOperation(String id, String content, String fileUri, String auxArg0, HttpServletRequest request) {
+                
+		return AnalyzeDelegate.analize(id, content, fileUri, DocType.TEMPLATE, auxArg0, request);
 	}
 
 	@RequestMapping(value = "/format/{format}/checkLanguage", method = RequestMethod.POST)

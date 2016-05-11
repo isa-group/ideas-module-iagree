@@ -22,7 +22,7 @@ public class LanguageDelegate {
 
         AppResponse appResponse = new AppResponse();
         appResponse.setFileUri(fileUri);
-        List<AppAnnotations> annotations = new ArrayList<AppAnnotations>();
+        List<AppAnnotations> annotations = new ArrayList<>();
 
         if (format.equals("iagree")) {
             IAgreeParser parser = new IAgreeParser();

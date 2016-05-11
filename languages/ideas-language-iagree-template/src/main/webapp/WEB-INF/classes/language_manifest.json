@@ -45,6 +45,13 @@
             "data": {},
             "_remoteExecution": "true",
             "action": "function(operation, fileUri, result) {newUri = result.fileUri;content = result.data;if(result.status != 'OK_PROBLEMS'){res = newUri.split('/');filename = res[res.length - 1];aux = filename.split('.');name = aux[0];extension = '.'+aux[1];EditorManager.createNode(newUri, name, extension, function(){EditorManager.saveFile(newUri, content, function(){EditorManager.openFile(newUri);});});}}"
+        },
+        {
+            "id": "generatePortal",
+            "name": "Generate Portal",
+            "data": {},
+            "_remoteExecution": "false",
+            "action": "function(operation, fileUri) { jQuery.getJSON('/IDEAS/researcher/principaluser', function(data) { var username = data.username; CommandApi.doDocumentOperation(operation.id, operation.data, fileUri, function(result) { newUri = result.fileUri; content = result.data; if (result.status != 'OK_PROBLEMS') { res = newUri.split('/'); filename = res[res.length - 1]; aux = filename.split('.'); name = aux[0]; extension = '.' + aux[1]; EditorManager.createNode(newUri, name, extension, function() { EditorManager.saveFile(newUri, content, function() {}); }); } }, true, username); }); }"
         }
     ],
     "templateProjects": null,

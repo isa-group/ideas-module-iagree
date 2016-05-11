@@ -30,9 +30,9 @@ import es.us.isa.aml.AgreementManager;
 import es.us.isa.aml.model.Agreement;
 import es.us.isa.aml.model.AgreementOffer;
 import es.us.isa.aml.model.AgreementTemplate;
+import es.us.isa.aml.operations.core.OperationResult;
 import es.us.isa.aml.operations.core.csp.AreCompliant;
 import es.us.isa.aml.util.DocType;
-import es.us.isa.aml.util.OperationResponse;
 import es.us.isa.aml.util.Util;
 import es.us.isa.ideas.iagree.common.AnalyzeDelegate;
 import java.io.InputStream;
@@ -70,9 +70,9 @@ public class TestPapamoscas {
 
         AreCompliant compliantOp = new AreCompliant();
         compliantOp.analyze(at, ao);
-        OperationResponse resp = compliantOp.getResult();
+        OperationResult resp = compliantOp.getResult();
         // TODO Should be true
-        assertFalse(Boolean.valueOf(resp.get("compliant").toString()));
+        assertFalse(resp.getCompliant());
     }
 
     @Test

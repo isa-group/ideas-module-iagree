@@ -1,0 +1,427 @@
+cd C:\Users\ISA Group\git\ideas-module-iagree; "JAVA_HOME=C:\\Program Files\\Java\\jdk1.7.0_75" M2_HOME=C:\\apache-maven-3.3.3 cmd /c "\"\"C:\\apache-maven-3.3.3\\bin\\mvn.cmd\" -Dmaven.ext.class.path=\"C:\\Program Files\\NetBeans 8.1\\java\\maven-nblib\\netbeans-eventspy.jar\" test\""
+Scanning for projects...
+------------------------------------------------------------------------
+Reactor Build Order:
+
+ideas-module-iagree
+ideas-common-iagree
+ideas-language-iagree-agreement
+ideas-language-iagree-offer
+ideas-language-iagree-template
+                                                                        
+------------------------------------------------------------------------
+Building ideas-module-iagree 0.8.2
+------------------------------------------------------------------------
+                                                                        
+------------------------------------------------------------------------
+Building ideas-common-iagree 0.8.2
+------------------------------------------------------------------------
+
+--- maven-resources-plugin:2.6:resources (default-resources) @ ideas-common-iagree ---
+Using 'UTF-8' encoding to copy filtered resources.
+Copying 1 resource
+
+--- maven-compiler-plugin:3.2:compile (default-compile) @ ideas-common-iagree ---
+Nothing to compile - all classes are up to date
+
+--- maven-resources-plugin:2.6:testResources (default-testResources) @ ideas-common-iagree ---
+Using 'UTF-8' encoding to copy filtered resources.
+Copying 20 resources
+
+--- maven-compiler-plugin:3.2:testCompile (default-testCompile) @ ideas-common-iagree ---
+Nothing to compile - all classes are up to date
+
+--- maven-surefire-plugin:2.12.4:test (default-test) @ ideas-common-iagree ---
+Surefire report directory: C:\Users\ISA Group\git\ideas-module-iagree\ideas-common-iagree\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running es.us.isa.ideas.iagree.common.test.TestAzureCompliance
+may 11, 2016 11:49:24 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 71175851-89b4-41c4-b934-170e043b16d9 has been solved
+may 11, 2016 11:49:26 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 66cfaeae-32be-4d9a-9bdc-f4765ee7652f has been solved
+may 11, 2016 11:49:29 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 2c5e3e6a-6d29-4a5e-ba6c-47e23647b751 has been solved
+may 11, 2016 11:49:31 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: c35bda7a-b0b6-42da-ba9d-8e76a00c176a has been solved
+may 11, 2016 11:49:33 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: c92ce7f5-ef6f-4761-bf5b-8cc6394f10fa has been solved
+may 11, 2016 11:49:36 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 91688979-b54b-4966-b4ce-b7fe6bb24a51 has been solved
+may 11, 2016 11:49:38 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: de072677-9bca-4a11-bb0e-582497faa98f has been solved
+may 11, 2016 11:49:41 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 7990d081-be8f-4d33-8a1d-49dbabddca5e has been solved
+may 11, 2016 11:49:43 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 774db87f-3c02-4e09-a551-813aa416567b has been solved
+may 11, 2016 11:49:46 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 94d39d09-362f-405f-8a32-181cf48754f5 has been solved
+may 11, 2016 11:49:48 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 86983cc6-fe3b-4bbb-9a1f-eccc2a406803 has been solved
+may 11, 2016 11:49:51 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: d376c11b-0968-4a46-af1a-d4c20ce3edfa has been solved
+may 11, 2016 11:49:53 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 9579f14a-f0ac-4f91-82e9-32e17396bb85 has been solved
+may 11, 2016 11:49:56 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: b6c3bd23-f580-410c-b899-4ce98cfc35ba has been solved
+may 11, 2016 11:49:58 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: ce9de9ad-f579-4acf-b688-ba11e7a38d3e has been solved
+may 11, 2016 11:50:01 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: b7886315-6675-43cc-812f-9eb783e482db has been solved
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 39.818 sec
+Running es.us.isa.ideas.iagree.common.test.TestExpression
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running es.us.isa.ideas.iagree.common.test.TestIAgreeModel
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.125 sec
+Running es.us.isa.ideas.iagree.common.test.TestOperationsWebReasoner
+may 11, 2016 11:50:03 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 7f7812d0-038a-4072-8e79-18d4aa9050b6 has been solved
+may 11, 2016 11:50:06 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 141851fe-a4f1-4d02-b5ae-e61aa24f4de3 has been solved
+may 11, 2016 11:50:08 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 7cd37141-1e61-420b-ac2e-1d471d85ec88 has been solved
+may 11, 2016 11:50:11 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 49999e89-0c1a-452f-bc3a-8ed62cf21596 has been solved
+may 11, 2016 11:50:13 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: e4999ba5-00a4-4852-b6d6-6b9105e7d191 has been solved
+may 11, 2016 11:50:16 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: ce483425-c108-4a0e-9b7e-95acf6667fb1 has been solved
+may 11, 2016 11:50:18 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 579a3efd-615f-4c86-a505-f74ae607b8e7 has been solved
+may 11, 2016 11:50:21 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: a647941c-a7c7-402b-a5d6-d124a80bd985 has been solved
+may 11, 2016 11:50:23 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: f36fbf20-fb24-4e66-bbd4-effb28d8ccd8 has been solved
+may 11, 2016 11:50:26 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 48e8a49a-78ab-4287-a6b7-b8216cf3ff62 has been solved
+may 11, 2016 11:50:28 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 87a91e2a-a589-4e37-9844-9c9f8a9ad46f has been solved
+may 11, 2016 11:50:30 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: d5c031f5-911b-4ffd-b686-a769d746f93f has been solved
+may 11, 2016 11:50:33 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 5171edf2-d898-4ad5-8fdf-0ef6be49c774 has been solved
+may 11, 2016 11:50:35 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: e8698e2b-1b50-4ec0-afa7-57402029ba78 has been solved
+may 11, 2016 11:50:38 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 14833f00-7e61-4e67-a29a-af84949a92e0 has been solved
+may 11, 2016 11:50:40 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 064f2c93-6ce4-4cd8-9d24-a832e1ebcba1 has been solved
+may 11, 2016 11:50:43 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: a0a65a54-50c8-40de-b37e-27fffb14e089 has been solved
+may 11, 2016 11:50:45 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 3a7a9d72-d1c4-42ba-80f6-af9d58cf90a9 has been solved
+may 11, 2016 11:50:48 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 3d42007a-a4a9-48fc-aab1-bb0f3d9df45e has been solved
+may 11, 2016 11:50:50 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 5e619dc0-78cd-47df-af7c-c97795c438e7 has been solved
+may 11, 2016 11:50:53 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: d2452eb2-6ab1-4e43-837f-2d452acfc336 has been solved
+may 11, 2016 11:50:55 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 008fc2c9-718d-426a-a6a2-da7de93f7f82 has been solved
+may 11, 2016 11:50:58 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: fadff64c-c95c-4b94-9302-e7f472424fde has been solved
+may 11, 2016 11:51:00 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 344ee28a-ef08-4bf3-b22f-d5e36e617dd4 has been solved
+may 11, 2016 11:51:03 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 6d5aa6f2-9dbd-4e85-8a5f-5208f17a980c has been solved
+may 11, 2016 11:51:05 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 26dae7f9-d83f-40ac-b757-76b16800385c has been solved
+may 11, 2016 11:51:08 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: eff60e84-7aca-492e-95d9-87fcbafd4d63 has been solved
+may 11, 2016 11:51:10 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 62ff1f45-c6cc-431f-a916-cf35a7946e92 has been solved
+may 11, 2016 11:51:13 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: d5354a56-af96-497e-833c-4a28d2519192 has been solved
+may 11, 2016 11:51:15 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: cdfaa5f2-3649-4d37-84a8-b618fc79b31e has been solved
+may 11, 2016 11:51:17 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: ce826162-2884-4af0-bf6b-0d0e74178d78 has been solved
+may 11, 2016 11:51:20 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: a3e88000-f492-4cf1-9929-27e322cd1298 has been solved
+may 11, 2016 11:51:22 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 24f4e55b-59d5-4cad-8e8b-62df49aebf2b has been solved
+may 11, 2016 11:51:25 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 27d6d729-9d4f-48f6-9c6d-bf245b57e0b5 has been solved
+may 11, 2016 11:51:27 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 0e8a09b6-a830-441c-8f7a-5dd916b92f29 has been solved
+may 11, 2016 11:51:30 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 5dbee99b-f389-496c-b980-d99910d90f38 has been solved
+may 11, 2016 11:51:32 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: e76124d2-ac11-490b-99f6-d9357d8712c8 has been solved
+may 11, 2016 11:51:35 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 8e293892-5112-4180-93eb-57bd247e66dc has been solved
+may 11, 2016 11:51:37 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 8ce1775e-017e-4b7c-8c24-b2f8687c8afb has been solved
+may 11, 2016 11:51:40 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 8d2c7584-1f65-42ab-9cae-8bda5f39b1db has been solved
+may 11, 2016 11:51:42 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: b2a5f155-53c9-4109-9916-9ec56dd37c04 has been solved
+may 11, 2016 11:51:45 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: e57fe3ea-956d-41da-a7fd-545a3fd9cca4 has been solved
+may 11, 2016 11:51:47 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: dcddf166-4931-4cdf-9b7a-f55ba48e45c6 has been solved
+may 11, 2016 11:51:50 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 4ca3a148-aede-495b-a0d8-dade259ffd48 has been solved
+may 11, 2016 11:51:52 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 0481a1d4-9b56-4c97-a0dd-c332732a7521 has been solved
+may 11, 2016 11:51:54 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 916e0087-7a3c-448f-815d-7762c55c7be1 has been solved
+may 11, 2016 11:51:57 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: d5c88d41-763a-462c-b197-14c83fbc2bbd has been solved
+may 11, 2016 11:51:59 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: f8021b2d-2318-4a0e-a084-27226eec590c has been solved
+may 11, 2016 11:52:02 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: a472512f-4a9f-4ec5-8bcb-5b3b64000b64 has been solved
+may 11, 2016 11:52:04 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 67d3823f-a62f-410f-b196-120603159845 has been solved
+may 11, 2016 11:52:07 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 3732d902-bcb3-4d7f-bf02-0eeaa2673d44 has been solved
+may 11, 2016 11:52:09 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: a84d75fb-7f32-40bc-928a-2e54b2994845 has been solved
+may 11, 2016 11:52:12 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: eb187ec2-89c7-43e4-85aa-e7089a3ce978 has been solved
+may 11, 2016 11:52:14 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: db543998-408a-4529-b5de-7d44c62e52ba has been solved
+may 11, 2016 11:52:17 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 64045141-07e6-42fe-80a3-2aeec4d28231 has been solved
+may 11, 2016 11:52:19 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 11f38880-dac9-460e-b77a-16eab445931a has been solved
+may 11, 2016 11:52:22 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 4c11ec8e-1bf0-4eab-946a-af813d4ca39c has been solved
+may 11, 2016 11:52:24 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: f34d60cc-697a-48a6-833b-d2646ac869ba has been solved
+may 11, 2016 11:52:27 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 9f4cca5e-fa4e-4642-b8fb-b10ed5a18999 has been solved
+may 11, 2016 11:52:29 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: ab116132-a327-472a-aa1f-e78aced07bdb has been solved
+may 11, 2016 11:52:32 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: ed7a1eb4-4f76-4462-ae63-7861aaf0e226 has been solved
+may 11, 2016 11:52:34 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 3909c2b8-4dab-4ee5-b708-ab64e52f4450 has been solved
+may 11, 2016 11:52:36 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: a6fff9d5-59db-48f3-95e3-ab5d2c410607 has been solved
+may 11, 2016 11:52:39 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: c23a2daa-966a-4b71-8184-2d226250d683 has been solved
+may 11, 2016 11:52:41 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: dfc52753-0a71-46ca-b067-b752a6c445de has been solved
+may 11, 2016 11:52:44 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: e13f62e0-1ea8-4982-b418-51abda581337 has been solved
+may 11, 2016 11:52:46 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 52b16ede-8fd6-4de9-a0f9-f8a6452ea6b5 has been solved
+may 11, 2016 11:52:49 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 92e2d4f2-1ad6-4bac-9c56-ffce6a546730 has been solved
+may 11, 2016 11:52:51 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 95f94e92-10ca-4e68-a381-5e2dbc7ccc39 has been solved
+may 11, 2016 11:52:54 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 1159a48c-4557-4e34-8b69-8d330f1fb191 has been solved
+may 11, 2016 11:52:56 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 14680646-9b1e-4267-9d5e-09ec658a6699 has been solved
+may 11, 2016 11:52:59 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 3c165c98-fe16-4f33-b88f-5c627f474ab2 has been solved
+may 11, 2016 11:53:01 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 2ec01771-d8f1-47ef-835d-55b945a6e675 has been solved
+may 11, 2016 11:53:04 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 43ecbc47-a4ec-4c0f-88b0-b07fbac99754 has been solved
+may 11, 2016 11:53:06 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 045fec84-9aaf-438d-853c-bb771a135c36 has been solved
+may 11, 2016 11:53:09 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 5a356ec8-8126-43dc-8600-0f0f40d3d335 has been solved
+may 11, 2016 11:53:11 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 1fbac3f8-91e9-48b6-8991-6646ccc78041 has been solved
+may 11, 2016 11:53:13 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: c325b0f1-fd15-4b61-b4d1-ee504677793d has been solved
+may 11, 2016 11:53:16 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 90fcb26e-bdff-42ba-8dbe-f64aaff054cd has been solved
+may 11, 2016 11:53:18 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 50a80599-1058-4a9a-ba7e-f8ab53c1d71b has been solved
+may 11, 2016 11:53:21 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: bb189da1-3298-4054-801d-b744de9423ca has been solved
+may 11, 2016 11:53:23 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 168eaab3-5010-489b-bef2-a59d50906bb8 has been solved
+may 11, 2016 11:53:26 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 7252ec00-176d-46b8-b8ab-6ed43fa2fd09 has been solved
+may 11, 2016 11:53:28 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 3d79e939-9161-4af9-8257-e95191900fb0 has been solved
+may 11, 2016 11:53:31 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: f760ee28-a4b1-4f2b-84e8-2cb5292291fa has been solved
+may 11, 2016 11:53:33 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 0998f8d9-6a3b-479c-819b-40d16fa2cc76 has been solved
+may 11, 2016 11:53:36 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 17166e3e-4ed2-43cd-850f-97ad06599dad has been solved
+may 11, 2016 11:53:38 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: b84a7665-446a-4552-8f98-79e7f1380207 has been solved
+may 11, 2016 11:53:41 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: a1352ffc-1750-4ab0-af28-9c7537ffb701 has been solved
+may 11, 2016 11:53:43 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 2f72f64b-8014-4d4e-8031-f5abfce4b5fb has been solved
+may 11, 2016 11:53:46 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 0ed2817d-a11c-4fa7-bc04-bb13607162fc has been solved
+may 11, 2016 11:53:48 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 55b047dd-8143-40ee-a330-783480ba350d has been solved
+may 11, 2016 11:53:51 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 096159b0-6030-4a4c-9020-b97f80253507 has been solved
+may 11, 2016 11:53:53 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 0f51adec-755b-4b94-b1fb-38e0952d4208 has been solved
+may 11, 2016 11:53:56 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 09598264-2131-471c-9795-b7dc650f6424 has been solved
+may 11, 2016 11:53:58 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 553e4f64-b1b0-4610-893d-a04048a079ee has been solved
+may 11, 2016 11:54:01 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: ca6855dc-085a-48c7-ab6a-f4c85ab69085 has been solved
+may 11, 2016 11:54:03 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: a9a60c59-66f5-42a4-ac9c-d6bb4cbc4a5f has been solved
+may 11, 2016 11:54:06 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: d6222265-c236-40f0-9e8f-31ebf2f8c0ce has been solved
+may 11, 2016 11:54:08 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: f8edef75-0734-402d-a23e-48146d944e9c has been solved
+may 11, 2016 11:54:10 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 9b3d8504-f164-4e8f-9570-7c3e7e5d0f69 has been solved
+may 11, 2016 11:54:13 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 52f21e09-4c84-4b2f-ab17-5083a66097ce has been solved
+may 11, 2016 11:54:15 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 71b183fd-7e2d-41ba-86a0-7ace2d66ba6f has been solved
+may 11, 2016 11:54:18 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 3e3db5a3-cb83-4ebc-b203-b5aab43ec070 has been solved
+may 11, 2016 11:54:20 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 128f402a-1dab-4645-834b-2ecaa36663d8 has been solved
+may 11, 2016 11:54:23 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: c6431a7a-5dda-49a0-9245-580b2297746b has been solved
+may 11, 2016 11:54:25 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 008ed01d-f800-4d8b-bc42-bbd9b4e730f2 has been solved
+may 11, 2016 11:54:28 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 49be21f1-c45b-4b60-b1ba-a7481347ee29 has been solved
+may 11, 2016 11:54:30 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: ba5108c6-65db-4a00-a322-8ca01563cad8 has been solved
+may 11, 2016 11:54:33 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: ff9fa3f6-bdb8-4202-bc25-c39dc7e7ec9e has been solved
+may 11, 2016 11:54:35 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 74bbf766-aabd-479a-9b9d-f644170512e9 has been solved
+may 11, 2016 11:54:38 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 23786fff-5fd7-4941-93ec-828a7ed6be5b has been solved
+may 11, 2016 11:54:40 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: d4214401-2cae-4b73-add9-c0e1f28b8648 has been solved
+may 11, 2016 11:54:43 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: c79ef67c-baef-4593-937e-b3a9aa681013 has been solved
+may 11, 2016 11:54:45 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: d5ceb22d-cf7a-47bb-8257-6cfc2b87ca09 has been solved
+may 11, 2016 11:54:48 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 76760b4b-7702-4572-b54e-13934118eb5c has been solved
+may 11, 2016 11:54:50 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 0ce29eca-134f-4f19-8465-42c0c65f9d5f has been solved
+may 11, 2016 11:54:53 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 2927727a-b07c-4e3b-92bb-3776e6192bb8 has been solved
+may 11, 2016 11:54:55 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 00098868-79d3-4ebf-bec9-d93958acd282 has been solved
+may 11, 2016 11:54:58 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 4eb81bbb-b561-4b17-8b35-598983cfc0f4 has been solved
+may 11, 2016 11:55:00 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 84801373-8600-4cd8-9b20-c91e8e5c8789 has been solved
+may 11, 2016 11:55:02 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 9c998120-d22e-4f4e-8fc1-02c30545487c has been solved
+may 11, 2016 11:55:05 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 1ddbb591-c671-4c17-9420-59222097f975 has been solved
+may 11, 2016 11:55:07 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 02d8ce9c-dfbb-45f7-ad4e-fc0e2c054d03 has been solved
+may 11, 2016 11:55:10 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: bcc64d06-7826-4ba2-9add-7ba50effd26e has been solved
+may 11, 2016 11:55:12 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 240c753e-ef14-4e9c-855f-af419d4c8b94 has been solved
+Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 311.554 sec
+Running es.us.isa.ideas.iagree.common.test.TestPapamoscas
+may 11, 2016 11:55:15 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 529c7e8d-c37c-4a18-8912-5caf75ae7370 has been solved
+may 11, 2016 11:55:17 AM es.us.isa.aml.reasoners.cspwebreasoner.CSPWebReasonerUtils pollService
+INFORMACIÓN: [PollingService] Problem ID: 83365091-7f62-4c5c-8dc4-259061bc54a9 has been solved
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.926 sec
+
+Results :
+
+Tests run: 34, Failures: 0, Errors: 0, Skipped: 0
+
+                                                                        
+------------------------------------------------------------------------
+Building ideas-language-iagree-agreement 0.8.2
+------------------------------------------------------------------------
+
+--- maven-resources-plugin:2.6:resources (default-resources) @ ideas-language-iagree-agreement ---
+Using 'UTF-8' encoding to copy filtered resources.
+Copying 8 resources
+
+--- maven-compiler-plugin:3.2:compile (default-compile) @ ideas-language-iagree-agreement ---
+Nothing to compile - all classes are up to date
+
+--- maven-resources-plugin:2.6:testResources (default-testResources) @ ideas-language-iagree-agreement ---
+Using 'UTF-8' encoding to copy filtered resources.
+skip non existing resourceDirectory C:\Users\ISA Group\git\ideas-module-iagree\languages\ideas-language-iagree-agreement\src\test\resources
+
+--- maven-compiler-plugin:3.2:testCompile (default-testCompile) @ ideas-language-iagree-agreement ---
+No sources to compile
+
+--- maven-surefire-plugin:2.12.4:test (default-test) @ ideas-language-iagree-agreement ---
+                                                                        
+------------------------------------------------------------------------
+Building ideas-language-iagree-offer 0.8.2
+------------------------------------------------------------------------
+
+--- maven-resources-plugin:2.6:resources (default-resources) @ ideas-language-iagree-offer ---
+Using 'UTF-8' encoding to copy filtered resources.
+Copying 13 resources
+
+--- maven-compiler-plugin:3.2:compile (default-compile) @ ideas-language-iagree-offer ---
+Nothing to compile - all classes are up to date
+
+--- maven-resources-plugin:2.6:testResources (default-testResources) @ ideas-language-iagree-offer ---
+Using 'UTF-8' encoding to copy filtered resources.
+skip non existing resourceDirectory C:\Users\ISA Group\git\ideas-module-iagree\languages\ideas-language-iagree-offer\src\test\resources
+
+--- maven-compiler-plugin:3.2:testCompile (default-testCompile) @ ideas-language-iagree-offer ---
+Nothing to compile - all classes are up to date
+
+--- maven-surefire-plugin:2.12.4:test (default-test) @ ideas-language-iagree-offer ---
+                                                                        
+------------------------------------------------------------------------
+Building ideas-language-iagree-template 0.8.2
+------------------------------------------------------------------------
+
+--- maven-resources-plugin:2.6:resources (default-resources) @ ideas-language-iagree-template ---
+Using 'UTF-8' encoding to copy filtered resources.
+Copying 7 resources
+
+--- maven-compiler-plugin:3.2:compile (default-compile) @ ideas-language-iagree-template ---
+Nothing to compile - all classes are up to date
+
+--- maven-resources-plugin:2.6:testResources (default-testResources) @ ideas-language-iagree-template ---
+Using 'UTF-8' encoding to copy filtered resources.
+skip non existing resourceDirectory C:\Users\ISA Group\git\ideas-module-iagree\languages\ideas-language-iagree-template\src\test\resources
+
+--- maven-compiler-plugin:3.2:testCompile (default-testCompile) @ ideas-language-iagree-template ---
+Nothing to compile - all classes are up to date
+
+--- maven-surefire-plugin:2.12.4:test (default-test) @ ideas-language-iagree-template ---
+Surefire report directory: C:\Users\ISA Group\git\ideas-module-iagree\languages\ideas-language-iagree-template\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+Results :
+
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+
+------------------------------------------------------------------------
+Reactor Summary:
+
+ideas-module-iagree ................................ SUCCESS [  0.000 s]
+ideas-common-iagree ................................ SUCCESS [05:57 min]
+ideas-language-iagree-agreement .................... SUCCESS [  0.109 s]
+ideas-language-iagree-offer ........................ SUCCESS [  0.063 s]
+ideas-language-iagree-template ..................... SUCCESS [  0.578 s]
+------------------------------------------------------------------------
+BUILD SUCCESS
+------------------------------------------------------------------------
+Total time: 05:58 min
+Finished at: 2016-05-11T11:55:18+02:00
+Final Memory: 11M/236M
+------------------------------------------------------------------------
