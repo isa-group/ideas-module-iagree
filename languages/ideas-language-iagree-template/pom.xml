@@ -62,7 +62,6 @@
             <artifactId>junit</artifactId>
             <version>4.11</version>
         </dependency>
-
     </dependencies>
 
     <build>
