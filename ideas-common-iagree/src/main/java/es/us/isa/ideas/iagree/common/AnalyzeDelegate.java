@@ -24,20 +24,8 @@ import es.us.isa.ideas.iagree.common.portalConfig.Plan;
 import es.us.isa.ideas.iagree.common.portalConfig.PortalConfig;
 import es.us.isa.ideas.module.common.AppResponse;
 import es.us.isa.ideas.module.common.AppResponse.Status;
-import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.io.IOUtils;
-import org.json.JSONObject;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.context.request.RequestContextHolder;
 
 /**
  * @author jdelafuente
@@ -45,13 +33,9 @@ import org.springframework.web.context.request.RequestContextHolder;
  */
 public class AnalyzeDelegate {
     
+    
     public static AppResponse analize(String id, String content,
             String fileUri, DocType docType, String auxArg0) {
-        return analize(id, content, fileUri, docType, auxArg0, null);
-    }
-
-    public static AppResponse analize(String id, String content,
-            String fileUri, DocType docType, String auxArg0, HttpServletRequest request) {
 
         AppResponse appResponse = new AppResponse();
         appResponse.setFileUri(fileUri);
@@ -62,22 +46,7 @@ public class AnalyzeDelegate {
 
         AgreementManager manager = new AgreementManager(config);
         
-        String username;
         try {
-            String baseUrl = String.format("%s://%s:%d",request.getScheme(),  request.getServerName(), request.getServerPort());
-            RestTemplate restTemplate = new RestTemplate();
-            HttpHeaders headers = new HttpHeaders();
-            
-            String sessionId = RequestContextHolder.currentRequestAttributes().getSessionId();
-            headers.add("Cookie", "JSESSIONID=" + sessionId);
-            HttpEntity requestEntity = new HttpEntity(null, headers);
-            ResponseEntity<String> jsonResponse = restTemplate.exchange(baseUrl + "/IDEAS/researcher/principaluser", HttpMethod.GET, requestEntity, String.class);
-            JSONObject json = new Gson().fromJson(jsonResponse.getBody(), JSONObject.class);
-            username = json.getString("username");
-            if(Strings.isNullOrEmpty(username)){
-                username = "DemoMaster";
-            }
-            Config.getInstance().setCredential(username);
             AgreementModel model = null, model2;
         
             IAgreeParser parser = new IAgreeParser();
@@ -221,6 +190,11 @@ public class AnalyzeDelegate {
                 }
             } else if (id.equals("generatePortal")) {
                 try {
+                    String username = auxArg0;
+                    if(Strings.isNullOrEmpty(username)){
+                        username = "DemoMaster";
+                    }
+                    Config.getInstance().setCredential(username);
                     PortalConfig pConfig = new PortalConfig();
                     pConfig.setType("multiplan");
                     pConfig.setDatastore("http://datastore.governify.io/api/v6.1/");
