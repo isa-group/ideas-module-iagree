@@ -4,5 +4,10 @@
     "CSPWebReasonerEndpoint": "http://services.governify.io:8080/CSPWebReasoner/api/v2",
     "DLReasoner": "NONE",
     "ANDConstraintsBreaking": "true",
-    "AgreementGenerator": "BASIC"
+    "AgreementGenerator": "BASIC",
+    "frequency": 1,
+    "timeout": 15,
+    "credential": "demo@governify.io",
+    "apikeyVariable": "apikey",
+    "apikeyValue": "13c4ba0a-bf63-48f8-9d4c-7def1e3850d0"
 }
