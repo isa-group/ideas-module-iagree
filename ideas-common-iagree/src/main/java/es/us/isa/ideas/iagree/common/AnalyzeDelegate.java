@@ -26,16 +26,18 @@ import es.us.isa.ideas.module.common.AppResponse;
 import es.us.isa.ideas.module.common.AppResponse.Status;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+import java.util.UUID;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author jdelafuente
  *
  */
 public class AnalyzeDelegate {
-    
-    
+
     public static AppResponse analize(String id, String content,
-            String fileUri, DocType docType, String auxArg0) {
+            String fileUri, DocType docType, String auxArg0, HttpServletRequest request) {
 
         AppResponse appResponse = new AppResponse();
         appResponse.setFileUri(fileUri);
@@ -45,10 +47,10 @@ public class AnalyzeDelegate {
         String config = Util.getStringFromInputStream(in);
 
         AgreementManager manager = new AgreementManager(config);
-        
+
         try {
             AgreementModel model = null, model2;
-        
+
             IAgreeParser parser = new IAgreeParser();
             parser.doParse(content);
             IAgreeErrorListener errorListener = parser.getErrorListener();
@@ -191,38 +193,64 @@ public class AnalyzeDelegate {
             } else if (id.equals("generatePortal")) {
                 try {
                     String username = auxArg0;
-                    if(Strings.isNullOrEmpty(username)){
-                        username = "DemoMaster";
+                    if (!Strings.isNullOrEmpty(username)) {
+                        Config.getInstance().setCredential(username);
+
+                        Properties p = new Properties();
+                        p.load(AnalyzeDelegate.class.getResourceAsStream("/module.properties"));
+                        Boolean dockerMode = Boolean.valueOf(p.getProperty("docker-mode"));
+                        String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/ir/";  // http://labs.isa.us.es/ir/";
+                        if (dockerMode) {
+                            String port = "10880";
+                            if (request.isSecure()) {
+                                port = "10843";
+                            }
+                            baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + port + "/";
+                        }
+
+                        PortalConfig pConfig = new PortalConfig();
+
+                        String accessToken = UUID.randomUUID().toString();
+                        pConfig.setAccessToken(accessToken);
+
+                        pConfig.setType("multiplan");
+                        pConfig.setDatastore("http://datastore.governify.io/api/v6.1/");
+                        Plan plan = new Plan();
+                        plan.setRenderMode("angular");
+
+                        Content pContent = new Content();
+                        pContent.setModelURL(baseUrl + username + "/" + fileUri + "?accessToken=" + accessToken);
+                        pContent.setViewURL(baseUrl + username + "/" + constructGovernifyPortalUri(fileUri, "ang") + "?accessToken=" + accessToken);
+                        pContent.setCtlURL(baseUrl + username + "/" + constructGovernifyPortalUri(fileUri, "ctl") + "?accessToken=" + accessToken);
+                        pContent.setCustomizable(false);
+                        List<Content> contents = new ArrayList<>();
+                        contents.add(pContent);
+                        plan.setContent(contents);
+                        pConfig.setPlan(plan);
+
+                        Paypal paypal = new Paypal();
+                        paypal.setAccount("paypal@governify.io");
+                        paypal.setClientID("AWGQIW44STGH_tqJRMfu2WfSmY1uQauI6pDXzOjIPJ3-lL0una-ySLsNCvhPbzaUO9fvEgBfMavPgSwV");
+                        paypal.setSecret("ENIR681gXkKPRL_kdfJccO0YkeamPVlxr6fOaYj43Rhs_nRI1f-LmPAzKI_ipqhtCFohEVGXc9GVvF7l");
+                        pConfig.setPaypal(paypal);
+
+                        String newFileUri = constructUri(fileUri, "portal-config", "json");
+                        String portalLink;
+                        if (dockerMode) {
+                            portalLink = "http://portal.governify.io/app/#/portal?configurl=" + baseUrl + username + "/" + newFileUri + "?accessToken=" + accessToken;
+                        } else {
+                            portalLink = "http://portal.governify.io/app/#/portal?configurl=" + baseUrl + username + "/" + newFileUri;
+                        }
+
+                        appResponse.setMessage("<pre><b>Access to <a href='" + portalLink + "' target='_blank'>Portal</a></b></pre>");
+                        appResponse.setData(new Gson().toJson(pConfig));
+                        appResponse.setFileUri(newFileUri);
+                        appResponse.setStatus(Status.OK);
+                    } else {
+                        appResponse.setMessage("<pre>Your session has expired. Due to this, it has been impossible obtain your credentials.</pre>");
+                        appResponse.setStatus(Status.ERROR);
                     }
-                    Config.getInstance().setCredential(username);
-                    PortalConfig pConfig = new PortalConfig();
-                    pConfig.setType("multiplan");
-                    pConfig.setDatastore("http://datastore.governify.io/api/v6.1/");
-                    Plan plan = new Plan();
-                    plan.setRenderMode("angular");
 
-                    Content pContent = new Content();
-                    pContent.setModelURL("http://labs.isa.us.es/ir/" + username + "/" + fileUri);
-                    pContent.setViewURL("http://labs.isa.us.es/ir/" + username + "/" + constructGovernifyPortalUri(fileUri, "ang"));
-                    pContent.setCtlURL("http://labs.isa.us.es/ir/" + username + "/" + constructGovernifyPortalUri(fileUri, "ctl"));
-                    pContent.setCustomizable(false);
-                    List<Content> contents = new ArrayList<>();
-                    contents.add(pContent);
-                    plan.setContent(contents);
-                    pConfig.setPlan(plan);
-
-                    Paypal paypal = new Paypal();
-                    paypal.setAccount("paypal@governify.io");
-                    paypal.setClientID("AWGQIW44STGH_tqJRMfu2WfSmY1uQauI6pDXzOjIPJ3-lL0una-ySLsNCvhPbzaUO9fvEgBfMavPgSwV");
-                    paypal.setSecret("ENIR681gXkKPRL_kdfJccO0YkeamPVlxr6fOaYj43Rhs_nRI1f-LmPAzKI_ipqhtCFohEVGXc9GVvF7l");
-                    pConfig.setPaypal(paypal);
-
-                    String newFileUri = constructUri(fileUri, "portal-config", "json");
-                    String portalLink = "http://portal.governify.io/app/#/portal?configurl=http://labs.isa.us.es/ir/" + username + "/" + newFileUri;
-                    appResponse.setMessage("<pre><b>Access to <a href='"+portalLink+"' target='_blank'>Portal</a></b></pre>");
-                    appResponse.setData(new Gson().toJson(pConfig));
-                    appResponse.setFileUri(newFileUri);
-                    appResponse.setStatus(Status.OK);
                 } catch (Exception e) {
                     appResponse.setMessage("<pre>There was an error: " + e.getMessage() + "</pre>");
                     appResponse.setStatus(Status.ERROR);
@@ -243,7 +271,7 @@ public class AnalyzeDelegate {
         ret = listUri[0];
         return ret;
     }
-    
+
     private static String constructUri(String uri, String filename, String extension) {
         String ret = "";
         String[] listUri = uri.split("/");
@@ -253,7 +281,7 @@ public class AnalyzeDelegate {
         ret += filename + "." + extension;
         return ret;
     }
-    
+
     private static String constructUri(String uri, String extension) {
         String ret = "";
         String[] listUri = uri.split("/");

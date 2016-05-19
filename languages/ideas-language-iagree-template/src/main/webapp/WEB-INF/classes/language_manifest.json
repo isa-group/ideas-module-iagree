@@ -15,16 +15,16 @@
             "format": "json",
             "editorModeId": "ace/mode/json",
             "_editorModeURI": "mode-json.js",
-            "editorThemeId": "ace/theme/at",
-            "_editorThemeURI": "theme-at.js",
+            "editorThemeId": "ace/theme/json",
+            "_editorThemeURI": "theme-json.js",
             "checkLanguage": "false"
         },
         {
             "format": "yaml",
             "editorModeId": "ace/mode/yaml",
             "_editorModeURI": "mode-yaml.js",
-            "editorThemeId": "ace/theme/at",
-            "_editorThemeURI": "theme-at.js",
+            "editorThemeId": "ace/theme/yaml",
+            "_editorThemeURI": "theme-yaml.js",
             "checkLanguage": "false"
         }
     ],
@@ -55,7 +55,7 @@
             "name": "Generate Portal",
             "data": {},
             "_remoteExecution": "false",
-            "action": "function(operation, fileUri) { jQuery.getJSON('/IDEAS/researcher/principaluser', function(data) { var username = data.username; CommandApi.doDocumentOperation(operation.id, operation.data, fileUri, function(result) { newUri = result.fileUri; content = result.data; if (result.status != 'OK_PROBLEMS') { res = newUri.split('/'); filename = res[res.length - 1]; aux = filename.split('.'); name = aux[0]; extension = '.' + aux[1]; EditorManager.createNode(newUri, name, extension, function() { EditorManager.saveFile(newUri, content, function() {}); }); } }, true, username); }); }"
+            "action": "function(operation, fileUri) { CommandApi.doDocumentOperation(operation.id, operation.data, fileUri, function(result) { newUri = result.fileUri; content = result.data; if (result.status != 'OK_PROBLEMS') { res = newUri.split('/'); filename = res[res.length - 1]; aux = filename.split('.'); name = aux[0]; extension = '.' + aux[1]; EditorManager.createNode(newUri, name, extension, function() { EditorManager.saveFile(newUri, content, function() {}); }); } }, true, principalUser); }"
         }
     ],
     "templateProjects": null,

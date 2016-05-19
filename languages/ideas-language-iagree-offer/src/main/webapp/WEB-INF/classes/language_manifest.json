@@ -15,16 +15,16 @@
             "format": "json",
             "editorModeId": "ace/mode/json",
             "_editorModeURI": "mode-json.js",
-            "editorThemeId": "ace/theme/at",
-            "_editorThemeURI": "theme-at.js",
+            "editorThemeId": "ace/theme/json",
+            "_editorThemeURI": "theme-json.js",
             "checkLanguage": "false"
         },
         {
             "format": "yaml",
             "editorModeId": "ace/mode/yaml",
             "_editorModeURI": "mode-yaml.js",
-            "editorThemeId": "ace/theme/at",
-            "_editorThemeURI": "theme-at.js",
+            "editorThemeId": "ace/theme/yaml",
+            "_editorThemeURI": "theme-yaml.js",
             "checkLanguage": "false"
         }
     ],

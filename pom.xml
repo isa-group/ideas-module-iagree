@@ -5,11 +5,23 @@
     <artifactId>ideas-module-iagree</artifactId>
     <version>0.8.2.1</version>
     <packaging>pom</packaging>
+    <properties>
+        <!-- Docker -->
+        <docker-mode>false</docker-mode>
+    </properties>
     <modules>
         <module>ideas-common-iagree</module>
         <module>languages/ideas-language-iagree-agreement</module>
         <module>languages/ideas-language-iagree-offer</module>
         <module>languages/ideas-language-iagree-template</module>
     </modules>
-    <name>ideas-module-iagree</name>
+    <name>ideas-module-iagree</name>    
+    <profiles>
+        <profile>
+            <id>docker-mode</id>
+            <properties>
+                <docker-mode>true</docker-mode>
+            </properties>
+        </profile>
+    </profiles>
 </project>

@@ -12,7 +12,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
     "type",
     "plan",
     "datastore",
-    "paypal"
+    "paypal",
+    "accessToken"
 })
 public class PortalConfig {
 
@@ -24,6 +25,8 @@ public class PortalConfig {
     private String datastore;
     @JsonProperty("paypal")
     private Paypal paypal;
+    @JsonProperty("accessToken")
+    private String accessToken;
 
     /**
      *
@@ -96,6 +99,24 @@ public class PortalConfig {
     public void setPaypal(Paypal paypal) {
         this.paypal = paypal;
     }
+
+    /**
+     *
+     * @return The accessToken
+     */
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    /**
+     *
+     * @param accessToken The accessToken
+     */
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+    
+    
 
     @Override
     public String toString() {

@@ -11,32 +11,31 @@ import es.us.isa.ideas.iagree.common.ConversionDelegate;
 import es.us.isa.ideas.iagree.common.LanguageDelegate;
 import es.us.isa.ideas.module.common.AppResponse;
 import es.us.isa.ideas.module.controller.BaseLanguageController;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/language")
 public class OfferLanguageController extends BaseLanguageController {
 
-	@RequestMapping(value = "/operation/{id}/execute", method = RequestMethod.POST)
-	@ResponseBody
-	public AppResponse executeOperation(String id, String content,
-			String fileUri, String auxArg0) {
-		return AnalyzeDelegate.analize(id, content, fileUri, DocType.OFFER,
-				auxArg0);
-	}
+    @RequestMapping(value = "/operation/{id}/execute", method = RequestMethod.POST)
+    @ResponseBody
+    public AppResponse executeOperation(String id, String content, String fileUri, String auxArg0, HttpServletRequest request) {
+        return AnalyzeDelegate.analize(id, content, fileUri, DocType.OFFER, auxArg0, request);
+    }
 
-	@RequestMapping(value = "/format/{format}/checkLanguage", method = RequestMethod.POST)
-	@ResponseBody
-	public AppResponse checkLanguage(String id, String content, String fileUri) {
+    @RequestMapping(value = "/format/{format}/checkLanguage", method = RequestMethod.POST)
+    @ResponseBody
+    public AppResponse checkLanguage(String id, String content, String fileUri) {
 
-		return LanguageDelegate.checkLanguage(id, content, fileUri, false);
-	}
+        return LanguageDelegate.checkLanguage(id, content, fileUri, false);
+    }
 
-	@RequestMapping(value = "/convert", method = RequestMethod.POST)
-	@ResponseBody
-	public AppResponse convertFormat(String currentFormat,
-			String desiredFormat, String fileUri, String content) {
+    @RequestMapping(value = "/convert", method = RequestMethod.POST)
+    @ResponseBody
+    public AppResponse convertFormat(String currentFormat,
+            String desiredFormat, String fileUri, String content) {
 
-		return ConversionDelegate.convert(currentFormat, desiredFormat,
-				fileUri, content);
-	}
+        return ConversionDelegate.convert(currentFormat, desiredFormat,
+                fileUri, content);
+    }
 }
